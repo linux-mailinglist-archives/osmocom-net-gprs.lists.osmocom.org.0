@@ -2,39 +2,61 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id B662D10E26D
-	for <lists+osmocom-net-gprs@lfdr.de>; Sun,  1 Dec 2019 16:55:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EEF711A5CA
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 11 Dec 2019 09:24:14 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id BA72CE4048;
-	Sun,  1 Dec 2019 15:53:42 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none header.from=osmocom.org
+	by lists.osmocom.org (Postfix) with ESMTP id B217CCCAE7;
+	Wed, 11 Dec 2019 08:22:58 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=pass header.from=gmail.com
+Authentication-Results: lists.osmocom.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=GSpLC4u1
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (sender SPF authorized) identity=mailfrom;
- client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
- envelope-from=laforge@osmocom.org; receiver=openbsc@lists.osmocom.org 
-Authentication-Results: lists.osmocom.org; dmarc=none header.from=osmocom.org
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
- [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
- by lists.osmocom.org (Postfix) with ESMTP id CCC56E24C3;
- Sun,  1 Dec 2019 13:41:05 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
- (envelope-from <laforge@osmocom.org>)
- id 1ibPTE-0006ki-SR; Sun, 01 Dec 2019 14:41:04 +0100
-Received: from laforge by localhost.localdomain with local (Exim 4.93-RC5)
- (envelope-from <laforge@osmocom.org>)
- id 1ibPSj-005cym-Ue; Sun, 01 Dec 2019 14:40:33 +0100
-Date: Sun, 1 Dec 2019 14:40:33 +0100
-From: Harald Welte <laforge@osmocom.org>
-To: openbsc@lists.osmocom.org
-Subject: OsmoDevCon 2020 registration
-Message-ID: <20191201134033.GB1292548@nataraja>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="Dxnq1zWXvFF0Q93v"
-Content-Disposition: inline
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Mailman-Approved-At: Sun, 01 Dec 2019 15:51:34 +0000
+ client-ip=2607:f8b0:4864:20::442; helo=mail-pf1-x442.google.com;
+ envelope-from=ap420073@gmail.com; receiver=osmocom-net-gprs@lists.osmocom.org 
+Authentication-Results: lists.osmocom.org; dmarc=pass header.from=gmail.com
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com
+ [IPv6:2607:f8b0:4864:20::442])
+ by lists.osmocom.org (Postfix) with ESMTP id C32A3CCAD1
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 11 Dec 2019 08:22:53 +0000 (UTC)
+Received: by mail-pf1-x442.google.com with SMTP id b19so1435943pfo.2
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 11 Dec 2019 00:22:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=rveMbpPf16JSkGp1c+3AGjpujfZxn6vIX/+XYtDa1KA=;
+ b=GSpLC4u1qZ63g5vP4SXucoubDpIxEHNVFsgo+hERcytGAuPcCeLIBi7k4EJNzE59vo
+ +jzYHZ8qHfqUlOQ8CfDyvdaQWGm7Cs9IlnFVFlZRnJxurxPRZdK+t+I4rBOPr8w4iYqa
+ zHLHTZGjJ1XmHEmT0xi3RbbgNrOyt0ErjJgGDoq6tehuM7g/aalzreX0qFanbnMmfYWl
+ WolcoTsgpGbThsYvZTuD154gLLEtL6DV0G7h/duCby80jTIAvFhCJ/ugtqKyDd6VPETw
+ J+/PWvIpZSbr4ddilbdeuOWg4AlN5iZgmK3nEql9eJcwr1iqwjy6Dv/W7Afx67YVXHIl
+ LHhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=rveMbpPf16JSkGp1c+3AGjpujfZxn6vIX/+XYtDa1KA=;
+ b=pp3YrbIdcnNGY+RUxCfLMZ+5Ey2XPVJdkHzJLi7ULizQn+92ZwE1EIp4H8IA8fxGaZ
+ XJQs0zB/Ooygtns6juiYPel2Evi51Fshsw8EsEbDllHnawvfK7j7h+XqeZ1XheyasEy5
+ /7LG6s6IACX3/UM/H2gXVzrW1szTBgCrL9K1BYksZSLgR/Vijj/OR6oo8BFNyfooB0p6
+ 5FEdsqPV+jUFKTVFzpFOCiDT5HmSDfV3ss5ZxhFVXMz2gVShpwQ8LAYyKTz5SjtdGC3c
+ HOyc1zkIRzoUWoPCKEOsJV99iiJm+kN6bVQ6HrOzMOMnqzb72ZQt9Q1V6wuuSNpVdsB6
+ mGiw==
+X-Gm-Message-State: APjAAAWYUwwk7+WHWbhvJM7UTlxPgXoKuro7v8RCd21r3vPNz39KwbsE
+ WVxUkF/XyMimqB/MYf0KcZE=
+X-Google-Smtp-Source: APXvYqxo1ZezgIZ9FL+2PdAQx+a3IKjSTznrB13Lb4OXLZjl5Mqo4LqMeUnTSgbT1x3cas63AcFzzg==
+X-Received: by 2002:aa7:95a3:: with SMTP id a3mr2452264pfk.193.1576052572174; 
+ Wed, 11 Dec 2019 00:22:52 -0800 (PST)
+Received: from localhost.localdomain ([110.35.161.54])
+ by smtp.gmail.com with ESMTPSA id y6sm1667720pgc.10.2019.12.11.00.22.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Dec 2019 00:22:50 -0800 (PST)
+From: Taehee Yoo <ap420073@gmail.com>
+To: davem@davemloft.net, pablo@netfilter.org, laforge@gnumonks.org,
+ osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org
+Subject: [PATCH net 0/4] gtp: fix several bugs in gtp module
+Date: Wed, 11 Dec 2019 08:22:43 +0000
+Message-Id: <20191211082243.28465-1-ap420073@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,64 +69,43 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
-Cc: baseband-devel@lists.osmocom.org, simtrace@lists.osmocom.org,
- osmocom-sdr@lists.osmocom.org, osmocom-net-gprs@lists.osmocom.org,
- gmr@lists.osmocom.org, tetra@lists.osmocom.org, gr-gsm@lists.osmocom.org
+Cc: ap420073@gmail.com
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
+This patchset fixes several bugs in the GTP module.
 
---Dxnq1zWXvFF0Q93v
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+1. Do not allow adding duplicate TID and ms_addr pdp context.
+In the current code, duplicate TID and ms_addr pdp context could be added.
+So, RX and TX path could find correct pdp context.
 
-Dear fellow Osmocom developers,
+2. Fix wrong condition in ->dumpit() callback.
+->dumpit() callback is re-called if dump packet size is too big.
+So, before return, it saves last position and then restart from
+last dump position.
+TID value is used to find last dump position.
+GTP module allows adding zero TID value. But ->dumpit() callback ignores
+zero TID value.
+So, dump would not work correctly if dump packet size too big.
 
-I would like to invite all developers and contributors to Osmocom [sub]proj=
-ects
-to register for OsmoDevCon 2020 (held on April 24th-27th, 2020 in Berlin).
+3. Fix use-after-free in ipv4_pdp_find().
+RX and TX patch always uses gtp->tid_hash and gtp->addr_hash.
+but while packet processing, these hash pointer would be freed.
+So, use-after-free would occur.
 
-For details known so far, please check
-	http://osmocom.org/projects/osmo-dev-con/wiki/OsmoDevCon2020
+4. Fix panic because of zero size hashtable
+GTP hashtable size could be set by user-space.
+If hashsize is set to 0, hashtable will not work and panic will occur.
 
-Please enter your name at
-https://osmocom.org/projects/osmo-dev-con/wiki/OsmoDevCon2020#Requested
-in case you would like to attend.  Registering early allows proper
-planning.  Thanks!
+Taehee Yoo (4):
+  gtp: do not allow adding duplicate tid and ms_addr pdp context
+  gtp: fix wrong condition in gtp_genl_dump_pdp()
+  gtp: fix an use-after-free in ipv4_pdp_find()
+  gtp: avoid zero size hashtable
 
-Looking forward to meeting old and new Osmocom developers in April 2020.
+ drivers/net/gtp.c | 109 +++++++++++++++++++++++++++-------------------
+ 1 file changed, 63 insertions(+), 46 deletions(-)
 
-Regards,
-	Harald
+-- 
+2.17.1
 
---=20
-- Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.org/
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
-
---Dxnq1zWXvFF0Q93v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEigrqmUioHHGhfemTShB5H1XkRJYFAl3jws4ACgkQShB5H1Xk
-RJbNBw//UHckFEQsiP2jCpQ+PwDp2eAOsX/Efx8/QpkOVFxxPinaf7VJ3p6M/BJ3
-YbayE+e2BbYjru3biHUBBEOnvrkbXjXkc2vSZlgmCEXwtP/N0xisVp8FExgAiKF2
-spmqFZVA+ahBpimmrLrcBbSHIYm/EbnfE3xsZ+bc9VPbE8O4IWEd8XzajnOb9/KC
-ZkcjuhYspYM+/wPLiG/RPGlSh+y0OCwlQ0HZyNCfTBPcdiJXduCKj3pMukIptHRf
-6cfUUjPqAzxvMXiOPoVDnvyonYXKpq9rOcqV7mCrAh5z7muqZ/ph1YjrMlJDRhr5
-3HyQ/BfvT12OusxJe2XkCuBURU22DUfPA5ri8jKlpDhADLhvXK0+hpDZ8aAVm7T9
-dBr91p2AnhmNl9cop2dVFtZ8CEoi790L+s62igBXEd+4rzpQ3hb7IpFXIIkwNRJG
-2N6AlgsUQyNsOa7/7ORKAqv8OpHvm6+5BHc5RQ9YbqxacjUCHdPXuHPzl+a0ifAE
-+/JEJThhmFGt9idExT7xqo8r0SRJUXeWd3QvgzwsUQUoXQohRwkEHbVBSpQ9oIbT
-4mzP9zkNJIhgsFxzI5e52l3UrHTlC5dAzsX7953DEssQuJhyIvIuBAhL0XdOKf68
-aZhS8srnM2P4mDbTPa3Q/LRAVpbHpXXn9Wi70h/oEQayoc4pEkg=
-=m2on
------END PGP SIGNATURE-----
-
---Dxnq1zWXvFF0Q93v--
