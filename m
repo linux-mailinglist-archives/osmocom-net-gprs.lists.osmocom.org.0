@@ -2,70 +2,70 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 839B51A13BB
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue,  7 Apr 2020 20:36:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1677C1A13BC
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue,  7 Apr 2020 20:36:21 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 29BCC10D056;
-	Tue,  7 Apr 2020 18:36:11 +0000 (UTC)
+	by lists.osmocom.org (Postfix) with ESMTP id 740BC10D069;
+	Tue,  7 Apr 2020 18:36:20 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=netronome.com
 Authentication-Results: lists.osmocom.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=netronome-com.20150623.gappssmtp.com header.i=@netronome-com.20150623.gappssmtp.com header.b=KEL8/tHD
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=netronome-com.20150623.gappssmtp.com header.i=@netronome-com.20150623.gappssmtp.com header.b=Y6yD6Dl8
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: None (no SPF record) identity=mailfrom;
- client-ip=2607:f8b0:4864:20::441; helo=mail-pf1-x441.google.com;
- envelope-from=jakub.kicinski@netronome.com;
- receiver=osmocom-net-gprs@lists.osmocom.org 
-Authentication-Results: lists.osmocom.org; dmarc=none header.from=netronome.com
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com
- [IPv6:2607:f8b0:4864:20::441])
- by lists.osmocom.org (Postfix) with ESMTP id 154E9E9CF3
- for <osmocom-net-gprs@lists.osmocom.org>; Sun, 15 Dec 2019 01:21:30 +0000 (UTC)
-Received: by mail-pf1-x441.google.com with SMTP id y206so3611406pfb.0
- for <osmocom-net-gprs@lists.osmocom.org>; Sat, 14 Dec 2019 17:21:30 -0800 (PST)
+Received-SPF: None (mailfrom) identity=mailfrom;
+ client-ip=2a00:1450:4864:20::344; helo=mail-wm1-x344.google.com;
+ envelope-from=simon.horman@netronome.com; receiver=<UNKNOWN> 
+Authentication-Results: lists.osmocom.org;
+ dmarc=none (p=none dis=none) header.from=netronome.com
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by lists.osmocom.org (Postfix) with ESMTP id 8997E115A8D
+ for <osmocom-net-gprs@lists.osmocom.org>; Mon,  6 Jan 2020 08:59:44 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id q9so14197351wmj.5
+ for <osmocom-net-gprs@lists.osmocom.org>; Mon, 06 Jan 2020 00:59:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=netronome-com.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :organization:mime-version:content-transfer-encoding;
- bh=fMT9Uq8oA7N4cc8A+BqwQHzoKGnygJU6FYugzr2VIag=;
- b=KEL8/tHDQaGUH7uxzfNpx/uUU3s4ZR+ORlxEazfZo+lqq7HGWpSu6E5v+P8E32beS6
- xTNxrZ3TwmW7im+hVvhuMlQZ1gUQje34Ghn2x0yVS0L2F313/BMR0a3mfoHs5JP4UFuP
- 2t8A1eMKgIOUWfJ7Xsdnr0VPEJl5DUhbAb0ZFShFdmi2eAxwRn3OT4JJICWeQoY/3TMZ
- K9AygQL+4lXRPW4eknD1MBFuRI20WfA6fwRymWvlxNX1mqpmwTM3XuRl7/T0bnhQxQE1
- JNUiivSvpkGfDoo+ZoL5jDGEvRZydugbcL/UB+mKkXmEFBG+gClx/nA65M793Y7tGppO
- 3p5g==
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=/ZwyOis6F3QKO9vpXF7tA9K3dMi7rhKdiD8Hhm+STvI=;
+ b=Y6yD6Dl8fSrpCiMi6JFctDAcHcLCWwV4WbimfBvj3+DL9Ty8MfYj5w1Jus52QpCEJl
+ nlmHxj+yyP4MtkOxKVVgDe7K2MPPf5cMrUjhsM8svB3s9M6RYkSINppYo2FslFGuSox8
+ fRb6bdg9iqcq0j5GEsidiFjyXNfdXtYqabeDILKYHaPmBhD9Ipydv3If5LV3nXeNKcdt
+ EPO/FkJ9ZXJjNjxHdfr3Pz1/8pLLlOaGP+EuBz1Mv/SqE9k816wR/Ss6b7WH5sY734FS
+ d3wOMe/FAYyhHeGbZ+9XsFeKMFPxdF9RJ42+wHli+mv5DlaM7u7YwKnLlejHmga0BPn8
+ Qf8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:organization:mime-version:content-transfer-encoding;
- bh=fMT9Uq8oA7N4cc8A+BqwQHzoKGnygJU6FYugzr2VIag=;
- b=HeXPn2kIHvbmuEljghmtfxsZZda8oeFR+/dBkyWqqNAjoGr5674Ijw7vwYhfcuoGYz
- zdupQrvXP81AvGJP+Pew5dCf2DcOQFjOsPu90UKu37zCB+GCqp6PyEbfYW3f/vJfoV8o
- 7mVxqJz1X196Rqg7IIlTo9e7O9oxOf2mkY8rD4Zkfh87LQ+HmVEV+qxsRfQD782z/Z2h
- 3VSgnBagjq/BQkUpeUGdDNRXEzmeT0dVdUs63CNySb0Jjw0k457xxZJL3QMjDhNB634P
- CgoKe66TRBurpumn4UpBorKRTHBUFRTg7/I60a6zwb7hU4cu2wuj1thzcH9gTcktBVRe
- zbiw==
-X-Gm-Message-State: APjAAAXFTOkCyj0bAFClPNhRt+hwzvroBLGQsJKSkHGnvEQKtQF52RDV
- ckj7+oEHNjnrgUM7sQ9SqCsfQQ==
-X-Google-Smtp-Source: APXvYqyNRkNh1NsJ8oLFOFP+NHLe8b5KbJ+8zLzYGQ2/YH/lDvmaRFXrRk5+K6ycUraXoFFAjahcMQ==
-X-Received: by 2002:a63:597:: with SMTP id 145mr8792268pgf.384.1576372889380; 
- Sat, 14 Dec 2019 17:21:29 -0800 (PST)
-Received: from cakuba.netronome.com (c-73-202-202-92.hsd1.ca.comcast.net.
- [73.202.202.92])
- by smtp.gmail.com with ESMTPSA id d13sm13282631pjx.21.2019.12.14.17.21.28
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=/ZwyOis6F3QKO9vpXF7tA9K3dMi7rhKdiD8Hhm+STvI=;
+ b=m3uaJXUtL/6yKRNJ1eigOP/P6b0yv1Y5zbqk+6Wyn5unCrpWWuC+JBIGgkHGd3KGa3
+ FMf7mY+l8oq/vB7Gws/+a+N6/nAs/zDFDHlDRoZlNKaXq4l7wM0qaIEgDzAMizP3YpOx
+ nmS8TiBm/Xt+iuw6iNWgj6Ml6SSNrk5qWbNzuOEYEYma1f2J4mupWqD99qU74DFgDKfk
+ +aY6olGuSzltr8ZvYaN3NY5qg56Z8lOqSTgIM3zKqYnMPDlJNi/F2tXkc1q5C9oV36Rw
+ KiuBV0nzzvqDCy59Mw3NP4i8UVpgDsqWrKyKsLH5q7e7kHGJxxmDNYUS5uN4l2S/0h8p
+ N1yw==
+X-Gm-Message-State: APjAAAXMMSotNoAU35barEKBWzP3rW+gAxiUX7vMT8AYI54fd1vEcvok
+ 1Pga36LkdvrJhSKXQTeONbJ8ew==
+X-Google-Smtp-Source: APXvYqxF9x2VCzl/gJXkRc4d1WJjn/hIPNpdwO3oQ7KKNlfk2KXb1uw38kE6ewg/kcMvECWhpHrbPA==
+X-Received: by 2002:a05:600c:2551:: with SMTP id
+ e17mr2841233wma.26.1578301184153; 
+ Mon, 06 Jan 2020 00:59:44 -0800 (PST)
+Received: from netronome.com ([2001:982:756:703:d63d:7eff:fe99:ac9d])
+ by smtp.gmail.com with ESMTPSA id x11sm73880628wre.68.2020.01.06.00.59.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 14 Dec 2019 17:21:29 -0800 (PST)
-Date: Sat, 14 Dec 2019 17:21:26 -0800
-From: Jakub Kicinski <jakub.kicinski@netronome.com>
-To: Taehee Yoo <ap420073@gmail.com>
-Subject: Re: [PATCH net 0/4] gtp: fix several bugs in gtp module
-Message-ID: <20191214172126.3f5027a4@cakuba.netronome.com>
-In-Reply-To: <20191211082243.28465-1-ap420073@gmail.com>
-References: <20191211082243.28465-1-ap420073@gmail.com>
-Organization: Netronome Systems, Ltd.
+ Mon, 06 Jan 2020 00:59:44 -0800 (PST)
+Date: Mon, 6 Jan 2020 09:59:43 +0100
+From: Simon Horman <simon.horman@netronome.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: Re: [PATCH] gtp: simplify error handling code in 'gtp_encap_enable()'
+Message-ID: <20200106085943.GB10460@netronome.com>
+References: <20200105173607.5456-1-christophe.jaillet@wanadoo.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200105173607.5456-1-christophe.jaillet@wanadoo.fr>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Mailman-Approved-At: Tue, 07 Apr 2020 18:36:08 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.29
@@ -80,33 +80,17 @@ List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
 Cc: netdev@vger.kernel.org, osmocom-net-gprs@lists.osmocom.org,
- davem@davemloft.net, pablo@netfilter.org, laforge@gnumonks.org
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ laforge@gnumonks.org, davem@davemloft.net, pablo@netfilter.org
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-On Wed, 11 Dec 2019 08:22:43 +0000, Taehee Yoo wrote:
-> This patchset fixes several bugs in the GTP module.
+On Sun, Jan 05, 2020 at 06:36:07PM +0100, Christophe JAILLET wrote:
+> 'gtp_encap_disable_sock(sk)' handles the case where sk is NULL, so there
+> is no need to test it before calling the function.
 > 
-> 1. Do not allow adding duplicate TID and ms_addr pdp context.
-> In the current code, duplicate TID and ms_addr pdp context could be added.
-> So, RX and TX path could find correct pdp context.
+> This saves a few line of code.
 > 
-> 2. Fix wrong condition in ->dumpit() callback.
-> ->dumpit() callback is re-called if dump packet size is too big.  
-> So, before return, it saves last position and then restart from
-> last dump position.
-> TID value is used to find last dump position.
-> GTP module allows adding zero TID value. But ->dumpit() callback ignores
-> zero TID value.
-> So, dump would not work correctly if dump packet size too big.
-> 
-> 3. Fix use-after-free in ipv4_pdp_find().
-> RX and TX patch always uses gtp->tid_hash and gtp->addr_hash.
-> but while packet processing, these hash pointer would be freed.
-> So, use-after-free would occur.
-> 
-> 4. Fix panic because of zero size hashtable
-> GTP hashtable size could be set by user-space.
-> If hashsize is set to 0, hashtable will not work and panic will occur.
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 
-Looks good to me, thank you, applied and queued for stable.
+Reviewed-by: Simon Horman <simon.horman@netronome.com>
