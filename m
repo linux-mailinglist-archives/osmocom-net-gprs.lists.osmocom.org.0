@@ -2,39 +2,64 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CEFE19C3D4
-	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  2 Apr 2020 16:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C45411B478B
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 22 Apr 2020 16:42:36 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 89FE5108B0D;
-	Thu,  2 Apr 2020 14:20:16 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=osmocom.org
+	by lists.osmocom.org (Postfix) with ESMTP id 4AE7712018F;
+	Wed, 22 Apr 2020 14:42:26 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: lists.osmocom.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=ph90rjLP
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
- envelope-from=laforge@osmocom.org; receiver=<UNKNOWN> 
+ client-ip=2607:f8b0:4864:20::1044; helo=mail-pj1-x1044.google.com;
+ envelope-from=ahochauwaaaaa@gmail.com; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=osmocom.org
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
- [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
- by lists.osmocom.org (Postfix) with ESMTP id 2C91F108AF9
- for <osmocom-net-gprs@lists.osmocom.org>; Thu,  2 Apr 2020 14:20:11 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
- (envelope-from <laforge@osmocom.org>)
- id 1jK0hX-0001wn-5v; Thu, 02 Apr 2020 16:20:11 +0200
-Received: from laforge by localhost.localdomain with local (Exim 4.93)
- (envelope-from <laforge@osmocom.org>)
- id 1jK0a1-00DqOC-Uw; Thu, 02 Apr 2020 16:12:25 +0200
-Date: Thu, 2 Apr 2020 16:12:25 +0200
-From: Harald Welte <laforge@osmocom.org>
-To: Mirko Kovacevic <northmirko@gmail.com>
-Subject: Re: TTCN3 3G/2G Authentication using SIM card/SIM card reader
-Message-ID: <20200402141225.GF3286233@nataraja>
-References: <CAMYWRL8ObijbKULOVspvvUSqwwhzgOAymN7S1qsfGTDZ0qUyxA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMYWRL8ObijbKULOVspvvUSqwwhzgOAymN7S1qsfGTDZ0qUyxA@mail.gmail.com>
+ dmarc=pass (p=none dis=none) header.from=gmail.com
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com
+ [IPv6:2607:f8b0:4864:20::1044])
+ by lists.osmocom.org (Postfix) with ESMTP id C369D12017C
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 22 Apr 2020 14:42:19 +0000 (UTC)
+Received: by mail-pj1-x1044.google.com with SMTP id ms17so1070480pjb.0
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 22 Apr 2020 07:42:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=THgk2o3Aj3nTpBaIGZNekzgL+pBqc2fk9J4yq2Ttug4=;
+ b=ph90rjLPHXzgGuqJg9ks87YYhDAZmLFVBD+dImnlqjE5a9eVd/G7ZGLFPzZ8xTYcwB
+ Ng3GbjqKq06JR34vJFynTFS8ZNPJAEnA+PmIOacUo+k2oqhGMFmaS1MkdROv/W/Tz4+Q
+ j5fvkjXfOC8I1eDPK1QkKlFiP8kFmcsJDg5ZO1xpFx2J7wNhBHFmhkmfKuXeg0CVRwwn
+ R9aBj9zsVMvHcVAbjj7hV4Q2kGkSO1M1CQ8tbLmJbIldQPH3ovsDIQzxQ1Scz5Ycd/VN
+ Z0mUYcAWQmGRMg9dazjHFUd4h1SGNmfKJPIoyhSeZja12Mc05ijCGhko5iqsrkzPFrmC
+ fxwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=THgk2o3Aj3nTpBaIGZNekzgL+pBqc2fk9J4yq2Ttug4=;
+ b=SXQCjbQBoUwhGCOzBQn35Svnnh67AQj6FMfiLaTZm0GHk094CQ7YNsEtsAy+xLuWjf
+ xxDRsg4lG2zVuj6A65Pg39WWx97RV92+KIgyDd+vNk6MEERVjcIJTDApT6tBXZV1YL8J
+ 5T3gMWOKW5HmUd1UVcgLQhPyrMINmiOa+TBuQjsGDyP/Hk1GbET9f7AMjFkZSghAW/mP
+ //DUYN37ZtXWPAZHBSi0/wae3vwo5dyGulkQBdpq8zc3oAILn9eDJIteSc3JBcYfEpmt
+ lhskIQcmKG8peLmmWZeotokhXrw2ys3f2K7VraDf0R9cyfzwlv+XhLdUgi1tJrRyiyRP
+ oNTA==
+X-Gm-Message-State: AGi0PuYjrWdb7KvrlERKoru7+m5f4mFNI1/HbwmPisNaQkBjfK9DDAzO
+ 6uhxANFSTHwT6O0jM+lH6vE=
+X-Google-Smtp-Source: APiQypJ+jZejoy3h/r/mDMDEr6y+t3wXsGYb1Cdqi/NW1D43ObIVCgWZbF5rz3Cy9ZCre7TjCJDLjw==
+X-Received: by 2002:a17:90a:dc01:: with SMTP id
+ i1mr12241425pjv.166.1587566538918; 
+ Wed, 22 Apr 2020 07:42:18 -0700 (PDT)
+Received: from localhost.localdomain (fp98a56d27.tkyc502.ap.nuro.jp.
+ [152.165.109.39])
+ by smtp.gmail.com with ESMTPSA id z5sm2520298pfn.142.2020.04.22.07.42.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 22 Apr 2020 07:42:17 -0700 (PDT)
+From: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>
+To: pablo@netfilter.org,
+	laforge@gnumonks.org
+Subject: [PATCH] gtp: set NLM_F_MULTI flag in gtp_genl_dump_pdp()
+Date: Wed, 22 Apr 2020 23:42:11 +0900
+Message-Id: <20200422144211.28756-1-ahochauwaaaaa@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,55 +72,67 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
-Cc: osmocom-net-gprs@lists.osmocom.org
+Cc: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>,
+ osmocom-net-gprs@lists.osmocom.org
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Hi Mirko,
+In drivers/net/gtp.c, gtp_genl_dump_pdp() should set NLM_F_MULTI
+flag since it returns multipart message.
+This patch adds a new arg "flags" in gtp_genl_fill_info() so that
+flags can be set by the callers.
 
-thanks for reaching out and for your kind words.
+Signed-off-by: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>
+---
+ drivers/net/gtp.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-On Wed, Apr 01, 2020 at 11:20:38PM +0200, Mirko Kovacevic wrote:
-> I ran your TTCN3 tests for OsmoSGSN and get loved on a first sight.
-> You did amazing job and made countless possibilities. Thank for that.
-
-Happy to see at least somebody out there recognizes the work we do :)
-
-> I know you have C code support in libosmocore library for 3g/2g auth.
-> *Can we use SIM card reader in TTCN3 as an option to evaluate
-> authentication ?!*
-
-This is not implemented, as in general the target of our TTCN-3 test suites for
-core network interfaces is to run fully virtualized, i.e. not to have a dependency
-on any given hardware.
-
-Having said this, TTCN-3 is a programming language, and there are multiple
-methods by which a physical card reader could be integrated into a test suite.
-
-a) by means of a "Native Function" (i.e. exposing PC/SC API functions to the
-   test).  IMHO a bad choice
-
-b) by means of a test port implemented in C++ which one can send APDUs to,
-   and receives APDUs back.  So the message interface between the actual test case
-   and the card reader would be a TTCH3 test port sending/receiving ISO7816 APDUs.
-   The C++ implementation of that test port would the nin turn use pcsc-lite to
-   talk to a card reader.
-
-c) by means of the USB test port I wrote (exposing libusb to TITAN), and the
-   TTCN-3 implementation of the USB-CCID protocol on top.  This was originally
-   developed to test the CCID compliance of card reader firmware, but it could
-   of course also used in this context.  This means more code in TTCN-3 and less
-   in C++ compared to method 'b' above.
-
-> *Did you ever tried?!*
-
-No, as stated above, it's quite different from what we are using the code for.
-
-Kind regards,
-	Harald
-
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index 672cd2caf2fb..10fa731bae6d 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -1097,7 +1097,7 @@ static int gtp_genl_new_pdp(struct sk_buff *skb, struct genl_info *info)
+ }
+ 
+ static struct pdp_ctx *gtp_find_pdp_by_link(struct net *net,
+-					    struct nlattr *nla[])
++						struct nlattr *nla[])
+ {
+ 	struct gtp_dev *gtp;
+ 
+@@ -1169,11 +1169,11 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
+ static struct genl_family gtp_genl_family;
+ 
+ static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
+-			      u32 type, struct pdp_ctx *pctx)
++			      int flags, u32 type, struct pdp_ctx *pctx)
+ {
+ 	void *genlh;
+ 
+-	genlh = genlmsg_put(skb, snd_portid, snd_seq, &gtp_genl_family, 0,
++	genlh = genlmsg_put(skb, snd_portid, snd_seq, &gtp_genl_family, flags,
+ 			    type);
+ 	if (genlh == NULL)
+ 		goto nlmsg_failure;
+@@ -1227,8 +1227,8 @@ static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
+ 		goto err_unlock;
+ 	}
+ 
+-	err = gtp_genl_fill_info(skb2, NETLINK_CB(skb).portid,
+-				 info->snd_seq, info->nlhdr->nlmsg_type, pctx);
++	err = gtp_genl_fill_info(skb2, NETLINK_CB(skb).portid, info->snd_seq,
++				info->nlhdr->nlmsg_flags, info->nlhdr->nlmsg_type, pctx);
+ 	if (err < 0)
+ 		goto err_unlock_free;
+ 
+@@ -1271,6 +1271,7 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb,
+ 				    gtp_genl_fill_info(skb,
+ 					    NETLINK_CB(cb->skb).portid,
+ 					    cb->nlh->nlmsg_seq,
++					    NLM_F_MULTI,
+ 					    cb->nlh->nlmsg_type, pctx)) {
+ 					cb->args[0] = i;
+ 					cb->args[1] = j;
 -- 
-- Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.org/
-============================================================================
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
+2.17.1
+
