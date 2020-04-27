@@ -2,62 +2,63 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 178A41BA154
-	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 27 Apr 2020 12:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC5E21BA1F5
+	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 27 Apr 2020 13:09:37 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 961FE124152;
-	Mon, 27 Apr 2020 10:32:31 +0000 (UTC)
+	by lists.osmocom.org (Postfix) with ESMTP id 9052E1241BC;
+	Mon, 27 Apr 2020 11:09:30 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: lists.osmocom.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=BNHofljb
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=FenwKMLP
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2a00:1450:4864:20::244; helo=mail-lj1-x244.google.com;
+ client-ip=2607:f8b0:4864:20::1041; helo=mail-pj1-x1041.google.com;
  envelope-from=ahochauwaaaaa@gmail.com; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
  dmarc=pass (p=none dis=none) header.from=gmail.com
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com
- [IPv6:2a00:1450:4864:20::244])
- by lists.osmocom.org (Postfix) with ESMTP id B29AB12413B
- for <osmocom-net-gprs@lists.osmocom.org>; Mon, 27 Apr 2020 10:32:23 +0000 (UTC)
-Received: by mail-lj1-x244.google.com with SMTP id b2so16969747ljp.4
- for <osmocom-net-gprs@lists.osmocom.org>; Mon, 27 Apr 2020 03:32:23 -0700 (PDT)
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com
+ [IPv6:2607:f8b0:4864:20::1041])
+ by lists.osmocom.org (Postfix) with ESMTP id 6EE9E1241A9
+ for <osmocom-net-gprs@lists.osmocom.org>; Mon, 27 Apr 2020 11:09:25 +0000 (UTC)
+Received: by mail-pj1-x1041.google.com with SMTP id ms17so7324527pjb.0
+ for <osmocom-net-gprs@lists.osmocom.org>; Mon, 27 Apr 2020 04:09:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BKNc/3TplWvoBD2/aAQTmbqywzfmckKf75wRdrnKAMc=;
- b=BNHofljbnK9vENeH4j26c9djt6K5q7YdUY5LcwzCEfEUXBD4DJ2tQh2jyzVovKaz1M
- GWULFIA4jCORDoLUeLJnOMa+dEKfRRE1pvXnufvhpzBam1k+hTaGnNbqNdDusq9+81cV
- pOQKfv/qcrvcw9wi3a/L98OASNWX/bqTzGWKf55IHZUuGFcJ2zyAKs7DZnknTsrEUN0a
- 0WHM6/zUawheLJVqXy2qGYNrIfq6Rc987OgT0g02XvD94b7R5JD4NjlFU1ovUq5OqE2I
- TfBI8DA/mtQxfVsnewlZ6lExPIBn9Nj9meZdU/s5JPQ9ZR/YnmtgNE/8zzVhA155HqZp
- VeLQ==
+ h=from:to:cc:subject:date:message-id;
+ bh=amsR6fKfRr2MWIQ/OWsdu5esmwGJH8U8a3u3xAw5fqo=;
+ b=FenwKMLPioQFrtZqDOGf85TTCcbIURhdUoplogS46KWGL6OlHFudyg+rjNH2SjP41R
+ pdqXtOnXxTUfJdMylEDQORXVqxOsSPqi1ILvBFhI/BUpt3PgyrB5EWfcZO2PQZkgd1Ma
+ 6f0UKjdXWAxskSTOvtAsnBw9kEM1Ev/Bml8iA7HsZjrMuGoirkBajGA29caU9qEPBH7D
+ qcm18pkDCPTB0fQJYFfs05tPUMxlk5BsvvacV7YK7M5SKWVYYd2QfSob85gJPG3w//hl
+ MVB+qiVec+/wRFj7dPrajlwA5XhJlKnzivGQisLaz26913kW7Aqa0NUxTf4654dWAWLY
+ 7Z6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=BKNc/3TplWvoBD2/aAQTmbqywzfmckKf75wRdrnKAMc=;
- b=lbSlma+dleoummcghqtK1OvbYCpeI9fdTrc6yBKLtdDU/iYjAbBgfip/mXwCTF/gZl
- dFERKsQ59C21Gu+/9BHxoWkF8E9dr971q61M9V7hn0R7uRWL4hASYZybnL8nKwXJ4CQa
- T7yW5txeHkd5y6gC/fE+URGeBiJmn430eV44hl3uR5kGny1NCmjzL2thM4WhbAPweXVM
- PmXukv1YjL/Q4tTdeTKE+iRpt5dkU8EzqaYdEvcVHidmZhKB42L3YRvH2YQNT2Uw8SXQ
- o5jNAPED54eaqqiRm+4eyyKeSJAmFOQHoSGgG/V+pEjbKYr/eunKQmlrLbgWMmi8fKGv
- PIFw==
-X-Gm-Message-State: AGi0PuanNpUrVQflwKcNLTbHu8dNHrxZ8A4OXlFV7ruH5w3AGuJSwthg
- BOyAvx8J3N9tfr7j3tMY54dxbyvTDi3wJMpH09BdLEro7LU=
-X-Google-Smtp-Source: APiQypJ1ODgYOaF5Q7JKFVdpoXvRRbjEOhQxuYF7ltPpVkBx35AafXmme7LiQNTqza2eLM4l1u99Uv6jH8lQLQu7HDQ=
-X-Received: by 2002:a2e:888f:: with SMTP id k15mr13327188lji.198.1587983542430; 
- Mon, 27 Apr 2020 03:32:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200422144211.28756-1-ahochauwaaaaa@gmail.com>
- <20200426102955.GA16734@salvia>
-In-Reply-To: <20200426102955.GA16734@salvia>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=amsR6fKfRr2MWIQ/OWsdu5esmwGJH8U8a3u3xAw5fqo=;
+ b=LSZZAmq7OmdL6hdNRJ7FKVEtA9crLVWBBTC+MjA04u3SkOi/SYd4GrLb21L9IdjbQp
+ jBbl0ki40NcvcuTjxASf2tknf5Su3N7IoJ6oMf5ytsBHlxcwLbU/aoJSuGd2+rvDrn56
+ Ihj9LyEqTQpMFMZ0Lo6dycKxJ3gq6NMJzM98IbhiKFkjWhhxsaRk24O+SNj1uaILZjrz
+ CIUplsvY64UGQ/w7ND4rKBu0+3N+DGmsejyWQHtwfpsO3pu7H4Jgu3XLWPqg64X04po0
+ pmpDAq6HdwV2bkl6o9CHiI/D2j9r7YEuxDEmI2NISWuUy4Wm1DL/DbgVRNEmxWb6sDkR
+ my1g==
+X-Gm-Message-State: AGi0PuZFCyXsH+Gs5UMxzmz8lHKKHV8eEyz0w1fVP8QL93rHq9c9eRoB
+ 0NleoNOozluYh+wHNT6SB8U=
+X-Google-Smtp-Source: APiQypKC+llTbQFDNjzBHTs05UAQ6IANrpfD3kJk4DOLtX32/cnysjO9LpHzSHiCF3eyy1Z7ya6F/w==
+X-Received: by 2002:a17:90a:ee84:: with SMTP id
+ i4mr23214040pjz.71.1587985764318; 
+ Mon, 27 Apr 2020 04:09:24 -0700 (PDT)
+Received: from localhost.localdomain (fp98a56d27.tkyc502.ap.nuro.jp.
+ [152.165.109.39])
+ by smtp.gmail.com with ESMTPSA id p66sm12062418pfb.65.2020.04.27.04.09.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Apr 2020 04:09:23 -0700 (PDT)
 From: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>
-Date: Mon, 27 Apr 2020 19:32:10 +0900
-Message-ID: <CALJqYvWW4BAu1GgrR1s+j4dWBjOYLs0ex2gVjh3vPNJpRSKqrQ@mail.gmail.com>
-Subject: Re: [PATCH] gtp: set NLM_F_MULTI flag in gtp_genl_dump_pdp()
-To: Pablo Neira Ayuso <pablo@netfilter.org>
-Content-Type: multipart/alternative; boundary="000000000000f4b22f05a4433a42"
+To: pablo@netfilter.org
+Subject: [PATCH] gtp: set NLM_F_MULTI flag in gtp_genl_dump_pdp()
+Date: Mon, 27 Apr 2020 20:08:14 +0900
+Message-Id: <20200427110814.10896-1-ahochauwaaaaa@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,229 +71,58 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
-Cc: osmocom-net-gprs@lists.osmocom.org, laforge@gnumonks.org
+Cc: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>,
+ osmocom-net-gprs@lists.osmocom.org, laforge@gnumonks.org
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
---000000000000f4b22f05a4433a42
-Content-Type: text/plain; charset="UTF-8"
+In drivers/net/gtp.c, gtp_genl_dump_pdp() should set NLM_F_MULTI
+flag since it returns multipart message.
+This patch adds a new arg "flags" in gtp_genl_fill_info() so that
+flags can be set by the callers.
 
-Hi,
+Signed-off-by: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>
+---
+ drivers/net/gtp.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-> This should be 0 instead, not sure why using info->nlhdr->nlmsg_flags
-> for this netlink GET operation.
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index 672cd2caf2fb..21640a035d7d 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -1169,11 +1169,11 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
+ static struct genl_family gtp_genl_family;
+ 
+ static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
+-			      u32 type, struct pdp_ctx *pctx)
++			      int flags, u32 type, struct pdp_ctx *pctx)
+ {
+ 	void *genlh;
+ 
+-	genlh = genlmsg_put(skb, snd_portid, snd_seq, &gtp_genl_family, 0,
++	genlh = genlmsg_put(skb, snd_portid, snd_seq, &gtp_genl_family, flags,
+ 			    type);
+ 	if (genlh == NULL)
+ 		goto nlmsg_failure;
+@@ -1227,8 +1227,8 @@ static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
+ 		goto err_unlock;
+ 	}
+ 
+-	err = gtp_genl_fill_info(skb2, NETLINK_CB(skb).portid,
+-				 info->snd_seq, info->nlhdr->nlmsg_type, pctx);
++	err = gtp_genl_fill_info(skb2, NETLINK_CB(skb).portid, info->snd_seq,
++				 0, info->nlhdr->nlmsg_type, pctx);
+ 	if (err < 0)
+ 		goto err_unlock_free;
+ 
+@@ -1271,6 +1271,7 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb,
+ 				    gtp_genl_fill_info(skb,
+ 					    NETLINK_CB(cb->skb).portid,
+ 					    cb->nlh->nlmsg_seq,
++					    NLM_F_MULTI,
+ 					    cb->nlh->nlmsg_type, pctx)) {
+ 					cb->args[0] = i;
+ 					cb->args[1] = j;
+-- 
+2.17.1
 
-That's just my mistake, thank you for your review.
-I'll send a revised patch again later today.
-
-BR,
-Yoshiyuki
-
-On Sun, Apr 26, 2020 at 7:29 PM Pablo Neira Ayuso <pablo@netfilter.org>
-wrote:
-
-> Hi,
->
-> On Wed, Apr 22, 2020 at 11:42:11PM +0900, Yoshiyuki Kurauchi wrote:
-> > In drivers/net/gtp.c, gtp_genl_dump_pdp() should set NLM_F_MULTI
-> > flag since it returns multipart message.
-> > This patch adds a new arg "flags" in gtp_genl_fill_info() so that
-> > flags can be set by the callers.
-> >
-> > Signed-off-by: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>
-> > ---
-> >  drivers/net/gtp.c | 11 ++++++-----
-> >  1 file changed, 6 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-> > index 672cd2caf2fb..10fa731bae6d 100644
-> > --- a/drivers/net/gtp.c
-> > +++ b/drivers/net/gtp.c
-> > @@ -1097,7 +1097,7 @@ static int gtp_genl_new_pdp(struct sk_buff *skb,
-> struct genl_info *info)
-> >  }
-> >
-> >  static struct pdp_ctx *gtp_find_pdp_by_link(struct net *net,
-> > -                                         struct nlattr *nla[])
-> > +                                             struct nlattr *nla[])
-> >  {
-> >       struct gtp_dev *gtp;
-> >
-> > @@ -1169,11 +1169,11 @@ static int gtp_genl_del_pdp(struct sk_buff *skb,
-> struct genl_info *info)
-> >  static struct genl_family gtp_genl_family;
-> >
-> >  static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32
-> snd_seq,
-> > -                           u32 type, struct pdp_ctx *pctx)
-> > +                           int flags, u32 type, struct pdp_ctx *pctx)
-> >  {
-> >       void *genlh;
-> >
-> > -     genlh = genlmsg_put(skb, snd_portid, snd_seq, &gtp_genl_family, 0,
-> > +     genlh = genlmsg_put(skb, snd_portid, snd_seq, &gtp_genl_family,
-> flags,
-> >                           type);
-> >       if (genlh == NULL)
-> >               goto nlmsg_failure;
-> > @@ -1227,8 +1227,8 @@ static int gtp_genl_get_pdp(struct sk_buff *skb,
-> struct genl_info *info)
-> >               goto err_unlock;
-> >       }
-> >
-> > -     err = gtp_genl_fill_info(skb2, NETLINK_CB(skb).portid,
-> > -                              info->snd_seq, info->nlhdr->nlmsg_type,
-> pctx);
-> > +     err = gtp_genl_fill_info(skb2, NETLINK_CB(skb).portid,
-> info->snd_seq,
-> > +                             info->nlhdr->nlmsg_flags,
-> info->nlhdr->nlmsg_type, pctx);
->
-> This should be 0 instead, not sure why using info->nlhdr->nlmsg_flags
-> for this netlink GET operation.
->
-> >       if (err < 0)
-> >               goto err_unlock_free;
-> >
-> > @@ -1271,6 +1271,7 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb,
-> >                                   gtp_genl_fill_info(skb,
-> >                                           NETLINK_CB(cb->skb).portid,
-> >                                           cb->nlh->nlmsg_seq,
-> > +                                         NLM_F_MULTI,
->
-> This one looks fine to me.
->
-> >                                           cb->nlh->nlmsg_type, pctx)) {
-> >                                       cb->args[0] = i;
-> >                                       cb->args[1] = j;
-> > --
-> > 2.17.1
-> >
->
-
---000000000000f4b22f05a4433a42
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>&gt; This should be 0 in=
-stead, not sure why using info-&gt;nlhdr-&gt;nlmsg_flags<br>
-&gt; for this netlink GET operation.<span class=3D"gmail-im"><br></span></d=
-iv><div><br></div><div>That&#39;s just my mistake, thank you for your revie=
-w.</div><div>I&#39;ll send a revised patch again later today.<br></div><div=
-><br></div><div>BR,</div><div>Yoshiyuki<br></div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 26, 2020 at 7:=
-29 PM Pablo Neira Ayuso &lt;<a href=3D"mailto:pablo@netfilter.org">pablo@ne=
-tfilter.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">Hi,<br>
-<br>
-On Wed, Apr 22, 2020 at 11:42:11PM +0900, Yoshiyuki Kurauchi wrote:<br>
-&gt; In drivers/net/gtp.c, gtp_genl_dump_pdp() should set NLM_F_MULTI<br>
-&gt; flag since it returns multipart message.<br>
-&gt; This patch adds a new arg &quot;flags&quot; in gtp_genl_fill_info() so=
- that<br>
-&gt; flags can be set by the callers.<br>
-&gt; <br>
-&gt; Signed-off-by: Yoshiyuki Kurauchi &lt;<a href=3D"mailto:ahochauwaaaaa@=
-gmail.com" target=3D"_blank">ahochauwaaaaa@gmail.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/net/gtp.c | 11 ++++++-----<br>
-&gt;=C2=A0 1 file changed, 6 insertions(+), 5 deletions(-)<br>
-&gt; <br>
-&gt; diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c<br>
-&gt; index 672cd2caf2fb..10fa731bae6d 100644<br>
-&gt; --- a/drivers/net/gtp.c<br>
-&gt; +++ b/drivers/net/gtp.c<br>
-&gt; @@ -1097,7 +1097,7 @@ static int gtp_genl_new_pdp(struct sk_buff *skb,=
- struct genl_info *info)<br>
-&gt;=C2=A0 }<br>
-&gt;=C2=A0 <br>
-&gt;=C2=A0 static struct pdp_ctx *gtp_find_pdp_by_link(struct net *net,<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0struct nlattr *nla[])<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0struct nlattr *nla[])<br>
-&gt;=C2=A0 {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct gtp_dev *gtp;<br>
-&gt;=C2=A0 <br>
-&gt; @@ -1169,11 +1169,11 @@ static int gtp_genl_del_pdp(struct sk_buff *sk=
-b, struct genl_info *info)<br>
-&gt;=C2=A0 static struct genl_family gtp_genl_family;<br>
-&gt;=C2=A0 <br>
-&gt;=C2=A0 static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_porti=
-d, u32 snd_seq,<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0u32 type, struct pdp_ctx *pctx)<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0int flags, u32 type, struct pdp_ctx *pctx)<br>
-&gt;=C2=A0 {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0void *genlh;<br>
-&gt;=C2=A0 <br>
-&gt; -=C2=A0 =C2=A0 =C2=A0genlh =3D genlmsg_put(skb, snd_portid, snd_seq, &=
-amp;gtp_genl_family, 0,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0genlh =3D genlmsg_put(skb, snd_portid, snd_seq, &=
-amp;gtp_genl_family, flags,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0type);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (genlh =3D=3D NULL)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0goto nlmsg_failu=
-re;<br>
-&gt; @@ -1227,8 +1227,8 @@ static int gtp_genl_get_pdp(struct sk_buff *skb,=
- struct genl_info *info)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0goto err_unlock;=
-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 <br>
-&gt; -=C2=A0 =C2=A0 =C2=A0err =3D gtp_genl_fill_info(skb2, NETLINK_CB(skb).=
-portid,<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 info-&gt;snd_seq, info-&gt;nlhdr-&gt;nl=
-msg_type, pctx);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0err =3D gtp_genl_fill_info(skb2, NETLINK_CB(skb).=
-portid, info-&gt;snd_seq,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0info-&gt;nlhdr-&gt;nlmsg_flags, info-&gt=
-;nlhdr-&gt;nlmsg_type, pctx);<br>
-<br>
-This should be 0 instead, not sure why using info-&gt;nlhdr-&gt;nlmsg_flags=
-<br>
-for this netlink GET operation.<br>
-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (err &lt; 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0goto err_unlock_=
-free;<br>
-&gt;=C2=A0 <br>
-&gt; @@ -1271,6 +1271,7 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb=
-,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gtp_genl_fill_info(s=
-kb,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0NETLINK_CB(cb-&gt;skb).portid,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0cb-&gt;nlh-&gt;nlmsg_seq,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0NLM_F_MULTI,<br>
-<br>
-This one looks fine to me.<br>
-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0cb-&gt;nlh-&gt;nlmsg_type, pctx)) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cb-&gt=
-;args[0] =3D i;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cb-&gt=
-;args[1] =3D j;<br>
-&gt; -- <br>
-&gt; 2.17.1<br>
-&gt; <br>
-</blockquote></div>
-
---000000000000f4b22f05a4433a42--
