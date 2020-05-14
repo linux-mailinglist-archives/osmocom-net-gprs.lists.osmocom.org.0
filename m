@@ -2,14 +2,14 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 6522D1D3AE8
-	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 14 May 2020 21:00:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 280E31D3AE4
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 14 May 2020 21:00:21 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 1AC1D10B54C;
-	Thu, 14 May 2020 19:00:29 +0000 (UTC)
+	by lists.osmocom.org (Postfix) with ESMTP id 9451810B540;
+	Thu, 14 May 2020 19:00:17 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: lists.osmocom.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b=W1fuO2Ck
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b=mDG88Ryy
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=198.145.29.99;
@@ -17,31 +17,31 @@ Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=198.145.29.99;
 Authentication-Results: lists.osmocom.org;
  dmarc=pass (p=none dis=none) header.from=kernel.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by lists.osmocom.org (Postfix) with ESMTP id 773D910B511
+ by lists.osmocom.org (Postfix) with ESMTP id 60A2210B510
  for <osmocom-net-gprs@lists.osmocom.org>; Thu, 14 May 2020 19:00:12 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 525E4206A5;
- Thu, 14 May 2020 18:53:45 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 35FEC207C3;
+ Thu, 14 May 2020 18:54:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1589482426;
- bh=xeJ2ECU7Qx48Ub97ytePlggsxZwFe2Tx3MOdswpDz1A=;
+ s=default; t=1589482481;
+ bh=8KlB2x7zdgWe+41cQlvrcNbGg18v0TILNkAfbnWJb+g=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=W1fuO2CkkwWp/d6jdjqxULTSKnEOHDdqYOmWPP4Z7ukUPXUgqcoEwoqNUu6bnVhuE
- P0q+yJkQHYcQqczgdNlEjFGoGfD0nCcMz0OnHe5J6wNvXfSJgSzAyh43XcfAsk3GOj
- bzogSWu+3D0FJHRvn/avkHS0Dn+OP/06cGjRA7h4=
+ b=mDG88Ryybolc8kJMG69COUJ7S2JuOAF0zuYQCS6gn4Zr8S2X6/nwCrbIP7ZvKi25k
+ Q+S1gtDg7E895N54iGogcghYuUtwn2KuR4ozUe3Legpzon42X2IZdzQ18osDiaB2D6
+ zVsS3TelbDOu8ysa1St8iHr7F70jCLsNhEbfCmWY=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 28/49] gtp: set NLM_F_MULTI flag in
+Subject: [PATCH AUTOSEL 4.19 21/31] gtp: set NLM_F_MULTI flag in
  gtp_genl_dump_pdp()
-Date: Thu, 14 May 2020 14:52:49 -0400
-Message-Id: <20200514185311.20294-28-sashal@kernel.org>
+Date: Thu, 14 May 2020 14:54:03 -0400
+Message-Id: <20200514185413.20755-21-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200514185311.20294-1-sashal@kernel.org>
-References: <20200514185311.20294-1-sashal@kernel.org>
+In-Reply-To: <20200514185413.20755-1-sashal@kernel.org>
+References: <20200514185413.20755-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -82,10 +82,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index 3a53d222bfcc1..d89ec99abcd63 100644
+index eab9984f73a88..d73850ebb671f 100644
 --- a/drivers/net/gtp.c
 +++ b/drivers/net/gtp.c
-@@ -1172,11 +1172,11 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
+@@ -1177,11 +1177,11 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
  static struct genl_family gtp_genl_family;
  
  static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
@@ -99,7 +99,7 @@ index 3a53d222bfcc1..d89ec99abcd63 100644
  			    type);
  	if (genlh == NULL)
  		goto nlmsg_failure;
-@@ -1230,8 +1230,8 @@ static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
+@@ -1235,8 +1235,8 @@ static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
  		goto err_unlock;
  	}
  
@@ -110,7 +110,7 @@ index 3a53d222bfcc1..d89ec99abcd63 100644
  	if (err < 0)
  		goto err_unlock_free;
  
-@@ -1274,6 +1274,7 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb,
+@@ -1279,6 +1279,7 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb,
  				    gtp_genl_fill_info(skb,
  					    NETLINK_CB(cb->skb).portid,
  					    cb->nlh->nlmsg_seq,
