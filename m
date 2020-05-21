@@ -1,40 +1,38 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 622C41DCEB7
-	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 21 May 2020 15:57:27 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id D729E1163D7;
-	Thu, 21 May 2020 13:57:26 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTP id 9170F1DCED8
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 21 May 2020 16:02:32 +0200 (CEST)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id 3CAAE1163EF;
+	Thu, 21 May 2020 14:02:26 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=sysmocom.de
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-X-Greylist: delayed 312 seconds by postgrey-1.37 at lists.osmocom.org;
- Thu, 21 May 2020 13:57:23 UTC
-Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=sysmocom.de
 Received-SPF: Pass (mailfrom) identity=mailfrom;
  client-ip=2a01:4f8:191:444c::2:4; helo=mail.sysmocom.de;
  envelope-from=pespin@sysmocom.de; receiver=<UNKNOWN> 
+Authentication-Results: lists.osmocom.org;
+ dmarc=none (p=none dis=none) header.from=sysmocom.de
 Received: from mail.sysmocom.de (mail.sysmocom.de
  [IPv6:2a01:4f8:191:444c::2:4])
- by lists.osmocom.org (Postfix) with ESMTP id 5D1C71163C2
- for <osmocom-net-gprs@lists.osmocom.org>; Thu, 21 May 2020 13:57:23 +0000 (UTC)
+ by lists.osmocom.org (Postfix) with ESMTP id 560FF1163DA
+ for <osmocom-net-gprs@lists.osmocom.org>; Thu, 21 May 2020 14:02:23 +0000 (UTC)
 Received: from public-mail (mail.sysmocom.de [144.76.43.93])
- by mail.sysmocom.de (Postfix) with ESMTP id 5702C634AAC;
- Thu, 21 May 2020 13:51:40 +0000 (UTC)
+ by mail.sysmocom.de (Postfix) with ESMTP id 97587634B1F
+ for <osmocom-net-gprs@lists.osmocom.org>; Thu, 21 May 2020 13:55:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at sysmocom.de
 Received: from mail.sysmocom.de ([144.76.43.93])
  by public-mail (mail.sysmocom.de [144.76.43.93]) (amavisd-new, port 10024)
- with ESMTP id vYd-2iovLbDv; Thu, 21 May 2020 13:51:39 +0000 (UTC)
+ with ESMTP id rFQrjwvRekUi for <osmocom-net-gprs@lists.osmocom.org>;
+ Thu, 21 May 2020 13:55:40 +0000 (UTC)
 Received: from [192.168.1.135] (unknown [93.176.188.130])
- by mail.sysmocom.de (Postfix) with ESMTPSA id 78058634A9A;
- Thu, 21 May 2020 13:51:39 +0000 (UTC)
+ by mail.sysmocom.de (Postfix) with ESMTPSA id E3E32634B0A
+ for <osmocom-net-gprs@lists.osmocom.org>; Thu, 21 May 2020 13:55:39 +0000 (UTC)
 Subject: Re: Compilation of TTCN3 tests for SGSN failed
-To: Mirko Kovacevic <northmirko@gmail.com>, osmocom-net-gprs@lists.osmocom.org
+To: osmocom-net-gprs@lists.osmocom.org
 References: <CAMYWRL93tWfcNcw-jO=qRYCE2nZDKRijP+qMbg1UsBLQdwe6cQ@mail.gmail.com>
- <CAMYWRL8e-fMNiooHCm22Em-ASdievW1BHZHjBLAwAgRr6KRiOA@mail.gmail.com>
 From: Pau Espin Pedrol <pespin@sysmocom.de>
 Autocrypt: addr=pespin@sysmocom.de; keydata=
  mQENBEyY/q8BCAC5xl9nRLQTspgT1rZAvcDYJXLbXdYvJ54bqKns0wv8akF0OyWuhT+me4bV
@@ -60,12 +58,12 @@ Autocrypt: addr=pespin@sysmocom.de; keydata=
  soOHxc/G4ZEdrEsV5Dopx4UJeOmmywFpVstcvB7EctQb8nk+PEV1wtUwGSp7M9gf4lCeSPle
  XC9SENRy7pFmoRtE6o4LBFmrWSBsrwM2izP3KNtw5M56zUVpLQC0mwgjFySwKFh8ryURkBI1
  Sqp+/hKID+0ivlyS
-Message-ID: <e1bf2f7d-d337-a825-ac3f-134879268e6b@sysmocom.de>
-Date: Thu, 21 May 2020 15:51:38 +0200
+Message-ID: <e4646377-af68-82dd-d4a0-5fa66021bbe1@sysmocom.de>
+Date: Thu, 21 May 2020 15:55:39 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAMYWRL8e-fMNiooHCm22Em-ASdievW1BHZHjBLAwAgRr6KRiOA@mail.gmail.com>
+In-Reply-To: <CAMYWRL93tWfcNcw-jO=qRYCE2nZDKRijP+qMbg1UsBLQdwe6cQ@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -86,11 +84,16 @@ Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
 Hi,
 
-to me it looks like you are using a version of TITAN too old. Support
-for CSN L/H bits was addded recently, and that's why we switched also
-recently to TITAN version 6.6.1 to be able to use it.
+Forgot to mention your comments regarding build:
 
-Regards,
+* I think we add SGSN_Tests.ttcn first explicitly because it is relevant
+for some reason I forgot. Maybe to generate correct binary file name?
+
+* If you want to build the SGSN, simply run "make sgsn" from the topdir
+of the git repo and you should be done.
+
+* Have a look at docker-playground.git in git.osmocom.org for already
+prepared containerized setup to run it (ttcn3-sgsn-tests/jenkins.sh).
 
 -- 
 - Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
