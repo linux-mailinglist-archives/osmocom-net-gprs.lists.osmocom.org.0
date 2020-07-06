@@ -1,51 +1,53 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id D10C51F233C
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue,  9 Jun 2020 01:14:51 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 75B17131018;
-	Mon,  8 Jun 2020 23:14:43 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.lfdr.de (Postfix) with ESMTP id 6B91C215B75
+	for <lists+osmocom-net-gprs@lfdr.de>; Mon,  6 Jul 2020 18:08:09 +0200 (CEST)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id 85CCF13A278;
+	Mon,  6 Jul 2020 16:08:01 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=itu.edu.tr
 Authentication-Results: lists.osmocom.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b=EeTMlYmx
+	dkim=pass (1024-bit key; unprotected) header.d=itu.edu.tr header.i=@itu.edu.tr header.b=pD99ibdy
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=198.145.29.99;
- helo=mail.kernel.org; envelope-from=sashal@kernel.org; receiver=<UNKNOWN> 
+X-Greylist: delayed 449 seconds by postgrey-1.37 at lists.osmocom.org;
+ Mon, 06 Jul 2020 16:07:56 UTC
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=kernel.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by lists.osmocom.org (Postfix) with ESMTP id 8031A130FEE
- for <osmocom-net-gprs@lists.osmocom.org>; Mon,  8 Jun 2020 23:14:37 +0000 (UTC)
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 9ED1D20B80;
- Mon,  8 Jun 2020 23:14:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1591658076;
- bh=0wblg+mjV7gSWmz93T+E11WB/Wjp2kweRBmGDzFdv/k=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=EeTMlYmxgc6x5QU2HfYUqodcuqRsNx3/5S0LAkjDT4nuJar5H4MXstYQ5hDzwaucT
- i5yOFqgHIPa1K8jiCUS/X6Sib5tntLnhPc01NYcY42HvhGpAtCPeWbg7OrQvnammSP
- mIzhVLVhQugDKe+OARX4w8KZa3EPJUXz4uQsZ1WM=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.6 121/606] gtp: set NLM_F_MULTI flag in
- gtp_genl_dump_pdp()
-Date: Mon,  8 Jun 2020 19:04:06 -0400
-Message-Id: <20200608231211.3363633-121-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200608231211.3363633-1-sashal@kernel.org>
-References: <20200608231211.3363633-1-sashal@kernel.org>
+ dmarc=none (p=none dis=none) header.from=itu.edu.tr
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=160.75.25.118;
+ helo=duman1.cc.itu.edu.tr; envelope-from=avatli@itu.edu.tr;
+ receiver=<UNKNOWN> 
+Received: from duman1.cc.itu.edu.tr (duman1.cc.itu.edu.tr [160.75.25.118])
+ by lists.osmocom.org (Postfix) with ESMTP id 79EDD13A259
+ for <osmocom-net-gprs@lists.osmocom.org>; Mon,  6 Jul 2020 16:07:55 +0000 (UTC)
+Received: from itu.edu.tr
+ (authenticated aid=ITUec8aa06da52a8f1ebd017cfae50385f2  bits=0)
+ by duman1.cc.itu.edu.tr with ESMTP id 066G0OHa001502
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
+ Mon, 6 Jul 2020 19:00:24 +0300
+DKIM-Filter: OpenDKIM Filter v2.11.0 duman1.cc.itu.edu.tr 066G0OHa001502
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=itu.edu.tr; s=itu;
+ t=1594051224; bh=iNsErhmdTo519FNVz6zJE24qqjrJkLgI984VivFdgBU=;
+ h=Date:From:To:Subject:From;
+ b=pD99ibdyQYsB79IEemiub1kYDz63+m2bt0/Z2ayoWNXdQCbjr0uev+yUfZl+W65Am
+ D71DUFfNgfw3tU/4XqCvuIAMonhAF+sOAwqZd8RTU5G+XvxV3VL//Ohcxbmm/Sm7ZU
+ bP/c0PoznNFJ8eX0zq8U3Zvb6Za4FuHCjPPmiwjY=
+Received: from 78.171.145.185.dynamic.ttnet.com.tr
+ (78.171.145.185.dynamic.ttnet.com.tr [78.171.145.185]) by webmail.itu.edu.tr
+ (Horde Framework) with HTTPS; Mon, 06 Jul 2020 19:00:24 +0300
+Date: Mon, 06 Jul 2020 19:00:24 +0300
+Message-ID: <20200706190024.Horde.A9x9JusmIIuO_9QOsdjLPRD@webmail.itu.edu.tr>
+From: avatli@itu.edu.tr
+To: osmocom-net-gprs@lists.osmocom.org
+Subject: Network is unreachable error for GTP interface
+User-Agent: Horde Application Framework 5
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Disposition: inline
+X-Virus-Scanned: clamav-milter 0.101.5 at duman1.cc.itu.edu.tr
+X-Virus-Status: Clean
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,66 +60,92 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>,
- Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>,
- osmocom-net-gprs@lists.osmocom.org, "David S . Miller" <davem@davemloft.net>,
- netdev@vger.kernel.org
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-From: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>
 
-[ Upstream commit 846c68f7f1ac82c797a2f1db3344a2966c0fe2e1 ]
+Hi
 
-In drivers/net/gtp.c, gtp_genl_dump_pdp() should set NLM_F_MULTI
-flag since it returns multipart message.
-This patch adds a new arg "flags" in gtp_genl_fill_info() so that
-flags can be set by the callers.
+I'm trying to build a setup by using GTP module and libgtpnl tools on  
+Centos 7 but I haven't been successful yet. Worse, I don't know how to  
+debug the problem. I also stopped firewall and iptables.
 
-Signed-off-by: Yoshiyuki Kurauchi <ahochauwaaaaa@gmail.com>
-Signed-off-by: David S. Miller <davem@davemloft.net>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/gtp.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+How can I debug/solve, I will be very glad if you help. dmesg or  
+system messages show show nothing. Why is GTP interface (link) is  
+unreachable.
 
-diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index 672cd2caf2fb..21640a035d7d 100644
---- a/drivers/net/gtp.c
-+++ b/drivers/net/gtp.c
-@@ -1169,11 +1169,11 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
- static struct genl_family gtp_genl_family;
- 
- static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
--			      u32 type, struct pdp_ctx *pctx)
-+			      int flags, u32 type, struct pdp_ctx *pctx)
- {
- 	void *genlh;
- 
--	genlh = genlmsg_put(skb, snd_portid, snd_seq, &gtp_genl_family, 0,
-+	genlh = genlmsg_put(skb, snd_portid, snd_seq, &gtp_genl_family, flags,
- 			    type);
- 	if (genlh == NULL)
- 		goto nlmsg_failure;
-@@ -1227,8 +1227,8 @@ static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
- 		goto err_unlock;
- 	}
- 
--	err = gtp_genl_fill_info(skb2, NETLINK_CB(skb).portid,
--				 info->snd_seq, info->nlhdr->nlmsg_type, pctx);
-+	err = gtp_genl_fill_info(skb2, NETLINK_CB(skb).portid, info->snd_seq,
-+				 0, info->nlhdr->nlmsg_type, pctx);
- 	if (err < 0)
- 		goto err_unlock_free;
- 
-@@ -1271,6 +1271,7 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb,
- 				    gtp_genl_fill_info(skb,
- 					    NETLINK_CB(cb->skb).portid,
- 					    cb->nlh->nlmsg_seq,
-+					    NLM_F_MULTI,
- 					    cb->nlh->nlmsg_type, pctx)) {
- 					cb->args[0] = i;
- 					cb->args[1] = j;
--- 
-2.25.1
+Thanks in advance
+
+- Volkan
+
+
+$ modinfo gtp
+filename:        
+/lib/modules/5.7.7-1.el7.elrepo.x86_64/kernel/drivers/net/gtp.ko
+alias:          net-pf-16-proto-16-family-gtp
+alias:          rtnl-link-gtp
+description:    Interface driver for GTP encapsulated traffic
+author:         Harald Welte <hwelte@sysmocom.de>
+license:        GPL
+srcversion:     191407DA5399304D93D62C7
+depends:        udp_tunnel
+retpoline:      Y
+intree:         Y
+name:           gtp
+vermagic:       5.7.7-1.el7.elrepo.x86_64 SMP mod_unload modversions
+
+$ modinfo udp_tunnel
+filename:        
+/lib/modules/5.7.7-1.el7.elrepo.x86_64/kernel/net/ipv4/udp_tunnel.ko
+license:        GPL
+srcversion:     0A315BA6124B0664F4D23FB
+depends:
+retpoline:      Y
+intree:         Y
+name:           udp_tunnel
+vermagic:       5.7.7-1.el7.elrepo.x86_64 SMP mod_unload modversions
+
+$ ip addr add 172.0.0.1/24 dev enp9s0
+$ ip addr add 172.99.0.1/32 dev lo
+
+$ ./gtp-link add gtp1
+WARNING: attaching dummy socket descriptors. Keep this process running  
+for testing purposes.
+
+$ ./gtp-tunnel add gtp1 v1 200 100 172.99.0.2 172.0.0.2
+$ ip route add 172.99.0.2/32 dev gtp1
+
+$ ./gtp-tunnel list
+version 1 tei 200/100 ms_addr 172.99.0.2 sgsn_addr 172.0.0.2
+
+$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN  
+group default qlen 1000
+     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+     inet 127.0.0.1/8 scope host lo
+        valid_lft forever preferred_lft forever
+     inet 172.99.0.1/32 scope global lo
+        valid_lft forever preferred_lft forever
+     inet6 ::1/128 scope host
+        valid_lft forever preferred_lft forever
+7: enp9s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state  
+UP group default qlen 1000
+     link/ether 08:35:71:ab:54:5f brd ff:ff:ff:ff:ff:ff
+     inet 172.0.0.1/24 scope global enp9s0
+        valid_lft forever preferred_lft forever
+8: gtp1: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 0 qdisc noqueue  
+state UNKNOWN group default qlen 1000
+     link/none
+
+$ ip route
+default via 192.168.1.1 dev enp2s0 proto static metric 100
+172.0.0.0/24 dev enp9s0 proto kernel scope link src 172.0.0.1
+172.99.0.2 dev gtp1 scope link
+
+$ ping 172.99.0.2
+PING 172.99.0.2 (172.99.0.2) 56(84) bytes of data.
+ping: sendmsg: Network is unreachable
+ping: sendmsg: Network is unreachable
+ping: sendmsg: Network is unreachable
+
 
