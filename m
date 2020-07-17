@@ -2,50 +2,70 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 547ED223F96
-	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 17 Jul 2020 17:30:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F439224026
+	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 17 Jul 2020 18:06:20 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 58C6714AADC;
-	Fri, 17 Jul 2020 15:30:02 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=itu.edu.tr
-Authentication-Results: lists.osmocom.org;
-	dkim=pass (1024-bit key; unprotected) header.d=itu.edu.tr header.i=@itu.edu.tr header.b=h0nitmnl
+	by lists.osmocom.org (Postfix) with ESMTP id 9C6C614AB74;
+	Fri, 17 Jul 2020 16:06:13 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=sysmocom.de
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=160.75.25.118;
- helo=duman1.cc.itu.edu.tr; envelope-from=avatli@itu.edu.tr;
- receiver=<UNKNOWN> 
+Received-SPF: Pass (mailfrom) identity=mailfrom;
+ client-ip=2a01:4f8:191:444c::2:4; helo=mail.sysmocom.de;
+ envelope-from=pespin@sysmocom.de; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=itu.edu.tr
-Received: from duman1.cc.itu.edu.tr (duman1.cc.itu.edu.tr [160.75.25.118])
- by lists.osmocom.org (Postfix) with ESMTP id ECB9214AACA
- for <osmocom-net-gprs@lists.osmocom.org>; Fri, 17 Jul 2020 15:29:55 +0000 (UTC)
-Received: from itu.edu.tr
- (authenticated aid=ITUec8aa06da52a8f1ebd017cfae50385f2  bits=0)
- by duman1.cc.itu.edu.tr with ESMTP id 06HFTpWq015759
- (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
- Fri, 17 Jul 2020 18:29:51 +0300
-DKIM-Filter: OpenDKIM Filter v2.11.0 duman1.cc.itu.edu.tr 06HFTpWq015759
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=itu.edu.tr; s=itu;
- t=1594999791; bh=JyB4enO3MBVyzPwZWmCxACf43ufJXSASGW8WEnt84lY=;
- h=Date:From:To:Subject:From;
- b=h0nitmnlZ5vkgZFZpU0ODzGtiT0NXNbJMkaS0Hz/w7jlOMs0rGMYVUG1b0dXmlZTK
- 7qR7llLszw+k5v/TEeaoPS7BtPTZCXCHVQ9O918AtnCZfpLmk4TDT092FI1QrdrPVZ
- jRKU//uOEHrZ3W3NN4LXa+f2RpLIJ2n7j7OncVu0=
-Received: from 78.171.145.185.dynamic.ttnet.com.tr
- (78.171.145.185.dynamic.ttnet.com.tr [78.171.145.185]) by webmail.itu.edu.tr
- (Horde Framework) with HTTPS; Fri, 17 Jul 2020 18:29:51 +0300
-Date: Fri, 17 Jul 2020 18:29:51 +0300
-Message-ID: <20200717182951.Horde.SCRWaPhfXt3AnkA8s-Tl05G@webmail.itu.edu.tr>
-From: avatli@itu.edu.tr
-To: osmocom-net-gprs@lists.osmocom.org
-Subject: Basic testing for Kernel GTP-U is not up to date
-User-Agent: Horde Application Framework 5
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+ dmarc=none (p=none dis=none) header.from=sysmocom.de
+Received: from mail.sysmocom.de (mail.sysmocom.de
+ [IPv6:2a01:4f8:191:444c::2:4])
+ by lists.osmocom.org (Postfix) with ESMTP id 8EAF914AB61
+ for <osmocom-net-gprs@lists.osmocom.org>; Fri, 17 Jul 2020 16:06:07 +0000 (UTC)
+Received: from public-mail (mail.sysmocom.de [144.76.43.93])
+ by mail.sysmocom.de (Postfix) with ESMTP id BF675668266;
+ Fri, 17 Jul 2020 16:06:07 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at sysmocom.de
+Received: from mail.sysmocom.de ([144.76.43.93])
+ by public-mail (mail.sysmocom.de [144.76.43.93]) (amavisd-new, port 10024)
+ with ESMTP id GO54bftH9p0s; Fri, 17 Jul 2020 16:06:06 +0000 (UTC)
+Received: from [192.168.1.130] (unknown [213.195.111.77])
+ by mail.sysmocom.de (Postfix) with ESMTPSA id BA7F0668253;
+ Fri, 17 Jul 2020 16:06:06 +0000 (UTC)
+Subject: Re: Basic testing for Kernel GTP-U is not up to date
+To: avatli@itu.edu.tr, osmocom-net-gprs@lists.osmocom.org
+References: <20200717182951.Horde.SCRWaPhfXt3AnkA8s-Tl05G@webmail.itu.edu.tr>
+From: Pau Espin Pedrol <pespin@sysmocom.de>
+Autocrypt: addr=pespin@sysmocom.de; keydata=
+ mQENBEyY/q8BCAC5xl9nRLQTspgT1rZAvcDYJXLbXdYvJ54bqKns0wv8akF0OyWuhT+me4bV
+ LnksGhhHWKmCJgprDlt9XZ/jPUKwBX9vX48B+XxSmQ3HvFJE67HFJAtj7CIK81+BuV5YoPNJ
+ h6XiIqiv3BCrsvQg0pnP4GWlaA+DC818vk61WzekOJxx7voi7UOZIgyQ8zXkRKHygfQ+6myk
+ jqY0/v7bvAy9bg3zyYI9MgXnLJ+9e7XJ1zmtdwAoU9ks0KVcpKi2uMd+ctcRGEhUI4kPR2BO
+ WpvQwy8gAUoVXO6+T+aK/4DK+MmGbgEfiVro1tjnpIdeGkVIcic9L9peVSq0gPsEc1CXABEB
+ AAG0MVBhdSBFc3BpbiBQZWRyb2wgKHBlc3BpbikgPHBlc3Bpbi5zaGFyQGdtYWlsLmNvbT6J
+ ATgEEwECACIFAkyY/q8CGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEOpAdL3zrPYP
+ hn0H/25exWBCI7ziVDKdrosWgSsTFfgA0GhLl4nD16Bg7ou685yYqqRNyczu1Lj+50f9/aMG
+ 1yHhKOhHD/CmwviQDGejqksUnQojfBJnyfZE+jIz9RPm60PwYaukL9E8lhbWJagunGHq2+Xl
+ 6DmoFEYBDZ77jkZ/xviLTUof/9/KAK+7PldCsVJ/Z9RINBDKobXPnaISUYsf29b9Gwc0QVdW
+ nUt6tLSrMIi+8Q7qZIALuVTZIfLbK0//wX9YzTKxxm0xZKs0dyCSxwcRK3Ru3z72/diBs1jy
+ n9sPX4hKJWMNkqX1f675n9CV5yh1l1WjoUeWHLqu87a6VVTuNVTTGnD8sQK5AQ0ETJj+rwEI
+ AMMFhCM2ACj0DVFYl3npR6fbzTFgetO5nYOOh+YGD+Fjj5GZ3XxdJvv0k3fZRsFnc1CYNnuB
+ SdI21WlTrzrK8+dqOn8N83aq5y/vezha9kZU0shuA0LKFJMROCGfkSCXsmvrWiCjA7goyHOE
+ pHeOZcBq93crGgoiCMiAN0ToAb88LWtWg5IxcfdhtVdfWnzSAQVoLbdIVth7xueLRF/oRPe7
+ T/sUUjMORvHF+S0L2D9Rc7MQTApNRwUrlWPz5+gEtZDJ+WMC0QOpACofCWQ0CWBmUft0c8hh
+ Ar9JT5j4fI3DCDdM4cWNI9FTYaWwkcjlK+OajrJxTLnXt7S7n5/ihLkAEQEAAYkBHwQYAQIA
+ CQUCTJj+rwIbDAAKCRDqQHS986z2D1FeB/9stgex4eBqf7D+8a3I7UkpwaIsaeRCdJf8VAvS
+ fMB7Z+ez3UTr7IAql24/tgcTy2ofrdsiS88BCGRBM0eC2tTyH8hHWVN6wcB7DF8HXv4PhL1O
+ TKmgSm5YiEDpxzZMd2cNH0onjHg4fSJue7C6bsGGQYMre7Akaze6gMaO7qLeIhsduDPwrwwi
+ soOHxc/G4ZEdrEsV5Dopx4UJeOmmywFpVstcvB7EctQb8nk+PEV1wtUwGSp7M9gf4lCeSPle
+ XC9SENRy7pFmoRtE6o4LBFmrWSBsrwM2izP3KNtw5M56zUVpLQC0mwgjFySwKFh8ryURkBI1
+ Sqp+/hKID+0ivlyS
+Message-ID: <069b60bd-5208-b3d3-b272-32974af07d60@sysmocom.de>
+Date: Fri, 17 Jul 2020 18:06:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Virus-Scanned: clamav-milter 0.101.5 at duman1.cc.itu.edu.tr
-X-Virus-Status: Clean
+In-Reply-To: <20200717182951.Horde.SCRWaPhfXt3AnkA8s-Tl05G@webmail.itu.edu.tr>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,26 +81,16 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Hello
+Hi,
 
+what to do mean with the "there is not any GTP tunel"?
+How is the PDP context created if it is not negotiated inside the tunnel?
 
-I tried to follow the steps in the basic testing below but it is not  
-up-to-date
-
-https://osmocom.org/projects/linux-kernel-gtp-u/wiki/Basic_Testing
-
-To make the setup work, I execute the GGSN on the host by using  
-osmo-ggsn/doc/examples/osmo-ggsn.cfg. I changed the "gtp bind-ip" to  
-172.31.1.1, "ip prefix dynamic" to 192.168.71.0/24, "ip ifconfig" to  
-192.168.71.0/24 and then execute the emulated SGSN inside the sgsn  
-namespace (ip netns exec sgsn sgsnemu -d -r 172.31.1.1 -l 172.31.1.2  
---defaultroute --createif). In this case; GGSN can create PDP Context  
-successful but there is not any GTP tunnel. How can I get the  
-up-to-date version of this document? or how can I run the basic  
-testing steps?
-
-Thanks in advance.
-
-- Volkan
-
-
+-- 
+- Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
+=======================================================================
+* sysmocom - systems for mobile communications GmbH
+* Alt-Moabit 93
+* 10559 Berlin, Germany
+* Sitz / Registered office: Berlin, HRB 134158 B
+* Geschaeftsfuehrer / Managing Director: Harald Welte
