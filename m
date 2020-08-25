@@ -2,11 +2,11 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id DA961252F1D
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Aug 2020 14:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86D54252F1E
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Aug 2020 14:58:41 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id B879A155A36;
-	Wed, 26 Aug 2020 12:58:34 +0000 (UTC)
+	by lists.osmocom.org (Postfix) with ESMTP id 9DD99155A3D;
+	Wed, 26 Aug 2020 12:58:40 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=6wind.com
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
@@ -16,21 +16,23 @@ Authentication-Results: lists.osmocom.org;
  dmarc=none (p=none dis=none) header.from=6wind.com
 Received: from proxy.6wind.com (host.76.145.23.62.rev.coltfrance.com
  [62.23.145.76])
- by lists.osmocom.org (Postfix) with ESMTP id 093AE154087
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 25 Aug 2020 14:36:09 +0000 (UTC)
+ by lists.osmocom.org (Postfix) with ESMTP id 15A5515427B
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 25 Aug 2020 15:57:18 +0000 (UTC)
 Received: from bretzel.dev.6wind.com (unknown [10.16.0.19])
- by proxy.6wind.com (Postfix) with ESMTPS id E9866445324;
- Tue, 25 Aug 2020 16:36:08 +0200 (CEST)
+ by proxy.6wind.com (Postfix) with ESMTPS id DA1B04453FF;
+ Tue, 25 Aug 2020 17:57:17 +0200 (CEST)
 Received: from dichtel by bretzel.dev.6wind.com with local (Exim 4.92)
  (envelope-from <dichtel@bretzel.dev.6wind.com>)
- id 1kAa3U-0006Cd-NT; Tue, 25 Aug 2020 16:36:08 +0200
+ id 1kAbK1-0002gi-Hw; Tue, 25 Aug 2020 17:57:17 +0200
 From: Nicolas Dichtel <nicolas.dichtel@6wind.com>
 To: davem@davemloft.net, kuba@kernel.org, pablo@netfilter.org,
  laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
-Subject: [PATCH net-next] gtp: add notification mechnism
-Date: Tue, 25 Aug 2020 16:35:56 +0200
-Message-Id: <20200825143556.23766-1-nicolas.dichtel@6wind.com>
+Subject: [PATCH net-next v2] gtp: add notification mechanism
+Date: Tue, 25 Aug 2020 17:57:15 +0200
+Message-Id: <20200825155715.24006-1-nicolas.dichtel@6wind.com>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200825143556.23766-1-nicolas.dichtel@6wind.com>
+References: <20200825143556.23766-1-nicolas.dichtel@6wind.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 26 Aug 2020 12:58:23 +0000
@@ -57,12 +59,17 @@ deletion.
 Signed-off-by: Nicolas Dichtel <nicolas.dichtel@6wind.com>
 Tested-by: Gabriel Ganne <gabriel.ganne@6wind.com>
 ---
+
+v1 -> v2:
+ - fix typo in the commit title
+ - fix indentation of GTP_GENL_MCGRP
+
  drivers/net/gtp.c        | 58 +++++++++++++++++++++++++++++++++-------
  include/uapi/linux/gtp.h |  2 ++
  2 files changed, 51 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index 8e47d0112e5d..360c1dc9381e 100644
+index 8e47d0112e5d..76fd87a44fdf 100644
 --- a/drivers/net/gtp.c
 +++ b/drivers/net/gtp.c
 @@ -928,8 +928,8 @@ static void ipv4_pdp_fill(struct pdp_ctx *pctx, struct genl_info *info)
@@ -158,7 +165,7 @@ index 8e47d0112e5d..360c1dc9381e 100644
  static struct genl_family gtp_genl_family;
  
 +enum gtp_multicast_groups {
-+        GTP_GENL_MCGRP,
++	GTP_GENL_MCGRP,
 +};
 +
 +static const struct genl_multicast_group gtp_genl_mcgrps[] = {
