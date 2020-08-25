@@ -1,41 +1,41 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
+Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
+	by mail.lfdr.de (Postfix) with ESMTP id 09884252F1B
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Aug 2020 14:58:34 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 33236251DD7
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 25 Aug 2020 19:10:22 +0200 (CEST)
-Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 806D41543E7;
-	Tue, 25 Aug 2020 17:10:15 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=gnumonks.org
+	by lists.osmocom.org (Postfix) with ESMTP id BE007155A30;
+	Wed, 26 Aug 2020 12:58:28 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=6wind.com
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
- envelope-from=laforge@gnumonks.org; receiver=<UNKNOWN> 
+X-Greylist: delayed 422 seconds by postgrey-1.37 at lists.osmocom.org;
+ Tue, 25 Aug 2020 13:06:50 UTC
 Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=gnumonks.org
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
- [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
- by lists.osmocom.org (Postfix) with ESMTP id 521D31543D5
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 25 Aug 2020 17:10:08 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
- (envelope-from <laforge@gnumonks.org>)
- id 1kAcSS-0003kQ-8a; Tue, 25 Aug 2020 19:10:04 +0200
-Received: from laforge by localhost.localdomain with local (Exim 4.94)
- (envelope-from <laforge@gnumonks.org>)
- id 1kAcJp-00Gb9n-CY; Tue, 25 Aug 2020 19:01:09 +0200
-Date: Tue, 25 Aug 2020 19:01:09 +0200
-From: Harald Welte <laforge@gnumonks.org>
-To: Nicolas Dichtel <nicolas.dichtel@6wind.com>
-Subject: Re: [PATCH net-next v2] gtp: add notification mechanism
-Message-ID: <20200825170109.GH3822842@nataraja>
-References: <20200825143556.23766-1-nicolas.dichtel@6wind.com>
- <20200825155715.24006-1-nicolas.dichtel@6wind.com>
+ dmarc=none (p=none dis=none) header.from=6wind.com
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=62.23.145.76;
+ helo=proxy.6wind.com; envelope-from=dichtel@6wind.com; receiver=<UNKNOWN> 
+Received: from proxy.6wind.com (host.76.145.23.62.rev.coltfrance.com
+ [62.23.145.76])
+ by lists.osmocom.org (Postfix) with ESMTP id C2F4C153E7E
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 25 Aug 2020 13:06:49 +0000 (UTC)
+Received: from bretzel.dev.6wind.com (unknown [10.16.0.19])
+ by proxy.6wind.com (Postfix) with ESMTPS id B4A67445186;
+ Tue, 25 Aug 2020 14:59:45 +0200 (CEST)
+Received: from dichtel by bretzel.dev.6wind.com with local (Exim 4.92)
+ (envelope-from <dichtel@bretzel.dev.6wind.com>)
+ id 1kAYYD-0005Xw-Gu; Tue, 25 Aug 2020 14:59:45 +0200
+From: Nicolas Dichtel <nicolas.dichtel@6wind.com>
+To: davem@davemloft.net, kuba@kernel.org, pablo@netfilter.org,
+ laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
+Subject: [PATCH net] gtp: add GTPA_LINK info to msg sent to userspace
+Date: Tue, 25 Aug 2020 14:59:40 +0200
+Message-Id: <20200825125940.21238-1-nicolas.dichtel@6wind.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200825155715.24006-1-nicolas.dichtel@6wind.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 26 Aug 2020 12:58:23 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,33 +48,37 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, osmocom-net-gprs@lists.osmocom.org,
- Gabriel Ganne <gabriel.ganne@6wind.com>, kuba@kernel.org, davem@davemloft.net,
- pablo@netfilter.org
+Cc: netdev@vger.kernel.org, Nicolas Dichtel <nicolas.dichtel@6wind.com>,
+ Gabriel Ganne <gabriel.ganne@6wind.com>
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Hi Nicolas,
+During a dump, this attribute is essential, it enables the userspace to
+know on which interface the context is linked to.
 
-thanks a lot for your patch.
+Fixes: 459aa660eb1d ("gtp: add initial driver for datapath of GPRS Tunneling Protocol (GTP-U)")
+Signed-off-by: Nicolas Dichtel <nicolas.dichtel@6wind.com>
+Tested-by: Gabriel Ganne <gabriel.ganne@6wind.com>
+---
 
-On Tue, Aug 25, 2020 at 05:57:15PM +0200, Nicolas Dichtel wrote:
-> Like all other network functions, let's notify gtp context on creation and
-> deletion.
+I target this to net, because I think this is a bug fix. The dump result cannot
+be used if there is more than one gtp interface on the system.
 
-While this may be in-line with typical kernel tunnel device practises, I am not
-convinced it is the right way to go for GTP.
+ drivers/net/gtp.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Contrary to other tunneling mechansims, GTP doesn't have a 1:1 rlationship between
-tunnels and netdev's.  You can easily have tens of thousands - or even many more -
-PDP contexts (at least one per subscriber) within one "gtp0" netdev.  Also, the state
-is highly volatile.  Every time a subscriber registers/deregisters, goes in or out of
-coverage, in or out of airplane mode, etc. those PDP contexts go up and down.
-
-Sending (unsolicited) notifications about all of those seems quite heavyweight to me.
-
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index 21640a035d7d..8e47d0112e5d 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -1179,6 +1179,7 @@ static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
+ 		goto nlmsg_failure;
+ 
+ 	if (nla_put_u32(skb, GTPA_VERSION, pctx->gtp_version) ||
++	    nla_put_u32(skb, GTPA_LINK, pctx->dev->ifindex) ||
+ 	    nla_put_be32(skb, GTPA_PEER_ADDRESS, pctx->peer_addr_ip4.s_addr) ||
+ 	    nla_put_be32(skb, GTPA_MS_ADDRESS, pctx->ms_addr_ip4.s_addr))
+ 		goto nla_put_failure;
 -- 
-- Harald Welte <laforge@gnumonks.org>           http://laforge.gnumonks.org/
-============================================================================
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
+2.26.2
+
