@@ -1,37 +1,35 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 09884252F1B
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Aug 2020 14:58:34 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id BE007155A30;
-	Wed, 26 Aug 2020 12:58:28 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTP id DA961252F1D
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Aug 2020 14:58:39 +0200 (CEST)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id B879A155A36;
+	Wed, 26 Aug 2020 12:58:34 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=6wind.com
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-X-Greylist: delayed 422 seconds by postgrey-1.37 at lists.osmocom.org;
- Tue, 25 Aug 2020 13:06:50 UTC
-Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=6wind.com
 Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=62.23.145.76;
  helo=proxy.6wind.com; envelope-from=dichtel@6wind.com; receiver=<UNKNOWN> 
+Authentication-Results: lists.osmocom.org;
+ dmarc=none (p=none dis=none) header.from=6wind.com
 Received: from proxy.6wind.com (host.76.145.23.62.rev.coltfrance.com
  [62.23.145.76])
- by lists.osmocom.org (Postfix) with ESMTP id C2F4C153E7E
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 25 Aug 2020 13:06:49 +0000 (UTC)
+ by lists.osmocom.org (Postfix) with ESMTP id 093AE154087
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 25 Aug 2020 14:36:09 +0000 (UTC)
 Received: from bretzel.dev.6wind.com (unknown [10.16.0.19])
- by proxy.6wind.com (Postfix) with ESMTPS id B4A67445186;
- Tue, 25 Aug 2020 14:59:45 +0200 (CEST)
+ by proxy.6wind.com (Postfix) with ESMTPS id E9866445324;
+ Tue, 25 Aug 2020 16:36:08 +0200 (CEST)
 Received: from dichtel by bretzel.dev.6wind.com with local (Exim 4.92)
  (envelope-from <dichtel@bretzel.dev.6wind.com>)
- id 1kAYYD-0005Xw-Gu; Tue, 25 Aug 2020 14:59:45 +0200
+ id 1kAa3U-0006Cd-NT; Tue, 25 Aug 2020 16:36:08 +0200
 From: Nicolas Dichtel <nicolas.dichtel@6wind.com>
 To: davem@davemloft.net, kuba@kernel.org, pablo@netfilter.org,
  laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
-Subject: [PATCH net] gtp: add GTPA_LINK info to msg sent to userspace
-Date: Tue, 25 Aug 2020 14:59:40 +0200
-Message-Id: <20200825125940.21238-1-nicolas.dichtel@6wind.com>
+Subject: [PATCH net-next] gtp: add notification mechnism
+Date: Tue, 25 Aug 2020 16:35:56 +0200
+Message-Id: <20200825143556.23766-1-nicolas.dichtel@6wind.com>
 X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -53,32 +51,172 @@ Cc: netdev@vger.kernel.org, Nicolas Dichtel <nicolas.dichtel@6wind.com>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-During a dump, this attribute is essential, it enables the userspace to
-know on which interface the context is linked to.
+Like all other network functions, let's notify gtp context on creation and
+deletion.
 
-Fixes: 459aa660eb1d ("gtp: add initial driver for datapath of GPRS Tunneling Protocol (GTP-U)")
 Signed-off-by: Nicolas Dichtel <nicolas.dichtel@6wind.com>
 Tested-by: Gabriel Ganne <gabriel.ganne@6wind.com>
 ---
-
-I target this to net, because I think this is a bug fix. The dump result cannot
-be used if there is more than one gtp interface on the system.
-
- drivers/net/gtp.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/gtp.c        | 58 +++++++++++++++++++++++++++++++++-------
+ include/uapi/linux/gtp.h |  2 ++
+ 2 files changed, 51 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index 21640a035d7d..8e47d0112e5d 100644
+index 8e47d0112e5d..360c1dc9381e 100644
 --- a/drivers/net/gtp.c
 +++ b/drivers/net/gtp.c
-@@ -1179,6 +1179,7 @@ static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
- 		goto nlmsg_failure;
+@@ -928,8 +928,8 @@ static void ipv4_pdp_fill(struct pdp_ctx *pctx, struct genl_info *info)
+ 	}
+ }
  
- 	if (nla_put_u32(skb, GTPA_VERSION, pctx->gtp_version) ||
-+	    nla_put_u32(skb, GTPA_LINK, pctx->dev->ifindex) ||
- 	    nla_put_be32(skb, GTPA_PEER_ADDRESS, pctx->peer_addr_ip4.s_addr) ||
- 	    nla_put_be32(skb, GTPA_MS_ADDRESS, pctx->ms_addr_ip4.s_addr))
- 		goto nla_put_failure;
+-static int gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
+-		       struct genl_info *info)
++static struct pdp_ctx *gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
++				   struct genl_info *info)
+ {
+ 	struct pdp_ctx *pctx, *pctx_tid = NULL;
+ 	struct net_device *dev = gtp->dev;
+@@ -956,12 +956,12 @@ static int gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
+ 
+ 	if (found) {
+ 		if (info->nlhdr->nlmsg_flags & NLM_F_EXCL)
+-			return -EEXIST;
++			return ERR_PTR(-EEXIST);
+ 		if (info->nlhdr->nlmsg_flags & NLM_F_REPLACE)
+-			return -EOPNOTSUPP;
++			return ERR_PTR(-EOPNOTSUPP);
+ 
+ 		if (pctx && pctx_tid)
+-			return -EEXIST;
++			return ERR_PTR(-EEXIST);
+ 		if (!pctx)
+ 			pctx = pctx_tid;
+ 
+@@ -974,13 +974,13 @@ static int gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
+ 			netdev_dbg(dev, "GTPv1-U: update tunnel id = %x/%x (pdp %p)\n",
+ 				   pctx->u.v1.i_tei, pctx->u.v1.o_tei, pctx);
+ 
+-		return 0;
++		return pctx;
+ 
+ 	}
+ 
+ 	pctx = kmalloc(sizeof(*pctx), GFP_ATOMIC);
+ 	if (pctx == NULL)
+-		return -ENOMEM;
++		return ERR_PTR(-ENOMEM);
+ 
+ 	sock_hold(sk);
+ 	pctx->sk = sk;
+@@ -1018,7 +1018,7 @@ static int gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
+ 		break;
+ 	}
+ 
+-	return 0;
++	return pctx;
+ }
+ 
+ static void pdp_context_free(struct rcu_head *head)
+@@ -1036,9 +1036,12 @@ static void pdp_context_delete(struct pdp_ctx *pctx)
+ 	call_rcu(&pctx->rcu_head, pdp_context_free);
+ }
+ 
++static int gtp_tunnel_notify(struct pdp_ctx *pctx, u8 cmd);
++
+ static int gtp_genl_new_pdp(struct sk_buff *skb, struct genl_info *info)
+ {
+ 	unsigned int version;
++	struct pdp_ctx *pctx;
+ 	struct gtp_dev *gtp;
+ 	struct sock *sk;
+ 	int err;
+@@ -1088,7 +1091,13 @@ static int gtp_genl_new_pdp(struct sk_buff *skb, struct genl_info *info)
+ 		goto out_unlock;
+ 	}
+ 
+-	err = gtp_pdp_add(gtp, sk, info);
++	pctx = gtp_pdp_add(gtp, sk, info);
++	if (IS_ERR(pctx)) {
++		err = PTR_ERR(pctx);
++	} else {
++		gtp_tunnel_notify(pctx, GTP_CMD_NEWPDP);
++		err = 0;
++	}
+ 
+ out_unlock:
+ 	rcu_read_unlock();
+@@ -1159,6 +1168,7 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
+ 		netdev_dbg(pctx->dev, "GTPv1-U: deleting tunnel id = %x/%x (pdp %p)\n",
+ 			   pctx->u.v1.i_tei, pctx->u.v1.o_tei, pctx);
+ 
++	gtp_tunnel_notify(pctx, GTP_CMD_DELPDP);
+ 	pdp_context_delete(pctx);
+ 
+ out_unlock:
+@@ -1168,6 +1178,14 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
+ 
+ static struct genl_family gtp_genl_family;
+ 
++enum gtp_multicast_groups {
++        GTP_GENL_MCGRP,
++};
++
++static const struct genl_multicast_group gtp_genl_mcgrps[] = {
++	[GTP_GENL_MCGRP] = { .name = GTP_GENL_MCGRP_NAME },
++};
++
+ static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
+ 			      int flags, u32 type, struct pdp_ctx *pctx)
+ {
+@@ -1205,6 +1223,26 @@ static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
+ 	return -EMSGSIZE;
+ }
+ 
++static int gtp_tunnel_notify(struct pdp_ctx *pctx, u8 cmd)
++{
++	struct sk_buff *msg;
++	int ret;
++
++	msg = nlmsg_new(NLMSG_DEFAULT_SIZE, GFP_ATOMIC);
++	if (!msg)
++		return -ENOMEM;
++
++	ret = gtp_genl_fill_info(msg, 0, 0, 0, cmd, pctx);
++	if (ret < 0) {
++		nlmsg_free(msg);
++		return ret;
++	}
++
++	ret = genlmsg_multicast_netns(&gtp_genl_family, dev_net(pctx->dev), msg,
++				      0, GTP_GENL_MCGRP, GFP_ATOMIC);
++	return ret;
++}
++
+ static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
+ {
+ 	struct pdp_ctx *pctx = NULL;
+@@ -1335,6 +1373,8 @@ static struct genl_family gtp_genl_family __ro_after_init = {
+ 	.module		= THIS_MODULE,
+ 	.ops		= gtp_genl_ops,
+ 	.n_ops		= ARRAY_SIZE(gtp_genl_ops),
++	.mcgrps		= gtp_genl_mcgrps,
++	.n_mcgrps	= ARRAY_SIZE(gtp_genl_mcgrps),
+ };
+ 
+ static int __net_init gtp_net_init(struct net *net)
+diff --git a/include/uapi/linux/gtp.h b/include/uapi/linux/gtp.h
+index c7d66755d212..79f9191bbb24 100644
+--- a/include/uapi/linux/gtp.h
++++ b/include/uapi/linux/gtp.h
+@@ -2,6 +2,8 @@
+ #ifndef _UAPI_LINUX_GTP_H_
+ #define _UAPI_LINUX_GTP_H_
+ 
++#define GTP_GENL_MCGRP_NAME	"gtp"
++
+ enum gtp_genl_cmds {
+ 	GTP_CMD_NEWPDP,
+ 	GTP_CMD_DELPDP,
 -- 
 2.26.2
 
