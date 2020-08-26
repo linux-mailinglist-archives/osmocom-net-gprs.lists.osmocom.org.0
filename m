@@ -1,39 +1,77 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
+Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
+	by mail.lfdr.de (Postfix) with ESMTP id 6648F252F1F
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Aug 2020 14:58:43 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 86D54252F1E
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Aug 2020 14:58:41 +0200 (CEST)
-Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 9DD99155A3D;
-	Wed, 26 Aug 2020 12:58:40 +0000 (UTC)
+	by lists.osmocom.org (Postfix) with ESMTP id C8838155A43;
+	Wed, 26 Aug 2020 12:58:42 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=6wind.com
+Authentication-Results: lists.osmocom.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=6wind.com header.i=@6wind.com header.b=XOqPh+Ng
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=62.23.145.76;
- helo=proxy.6wind.com; envelope-from=dichtel@6wind.com; receiver=<UNKNOWN> 
+Received-SPF: Pass (mailfrom) identity=mailfrom;
+ client-ip=2a00:1450:4864:20::342; helo=mail-wm1-x342.google.com;
+ envelope-from=nicolas.dichtel@6wind.com; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
  dmarc=none (p=none dis=none) header.from=6wind.com
-Received: from proxy.6wind.com (host.76.145.23.62.rev.coltfrance.com
- [62.23.145.76])
- by lists.osmocom.org (Postfix) with ESMTP id 15A5515427B
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 25 Aug 2020 15:57:18 +0000 (UTC)
-Received: from bretzel.dev.6wind.com (unknown [10.16.0.19])
- by proxy.6wind.com (Postfix) with ESMTPS id DA1B04453FF;
- Tue, 25 Aug 2020 17:57:17 +0200 (CEST)
-Received: from dichtel by bretzel.dev.6wind.com with local (Exim 4.92)
- (envelope-from <dichtel@bretzel.dev.6wind.com>)
- id 1kAbK1-0002gi-Hw; Tue, 25 Aug 2020 17:57:17 +0200
-From: Nicolas Dichtel <nicolas.dichtel@6wind.com>
-To: davem@davemloft.net, kuba@kernel.org, pablo@netfilter.org,
- laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
-Subject: [PATCH net-next v2] gtp: add notification mechanism
-Date: Tue, 25 Aug 2020 17:57:15 +0200
-Message-Id: <20200825155715.24006-1-nicolas.dichtel@6wind.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200825143556.23766-1-nicolas.dichtel@6wind.com>
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by lists.osmocom.org (Postfix) with ESMTP id 0FBE0155137
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 26 Aug 2020 07:47:56 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id a65so753217wme.5
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 26 Aug 2020 00:47:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6wind.com; s=google;
+ h=reply-to:subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=A7vR2LD4lvtbA3/ZJYKkFyETwCKd8pN+h2F64pD/NX4=;
+ b=XOqPh+NgKql/Mv2a2cBkxxMoMmFiEkRHXN1lfg159DrVZZxU95KL+M5R6CtM1Nhlix
+ HqGzjkEp4uaf+0Os0jYiFL4m/16PmHUTbTxfic5XjadZjA5xSRkAwDnZDkejGPIF1jVd
+ 0OqhraIR4FDjgR3CBj/rn5BN7c9ggmP42K/wPsn2TIpN4vx55x/13rJoABvY7sV1XQr0
+ G7c6uvb3pqpiMrUOz+WiF2wt+yGCqt3gRbObzvUXTZXuexN7wArj50jCGv50huW+CJWk
+ KNlPezxHCgaZOU8aUAc++WkqZhf9FP/fqKDr05aPeoWcguHMi14nXtQ/+19e4GD6Mkbt
+ T4pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=A7vR2LD4lvtbA3/ZJYKkFyETwCKd8pN+h2F64pD/NX4=;
+ b=FLI6k7p7bMvX6e2iB8by4fwMkHjKyimLOwCVwPcKKyrJhQI5cqaJqR+rS7CmCD9r9D
+ bi1oN9UEQITC3sVqK1RTMyDUARaUrH/UQCprCYbH/tUG0YrEuI+BsZpXym6zpndgV9Bi
+ IXOwxxP+E5clhx6eeZM1mM3TntF+JLP4UqxFlXRbGD41A4mLom/aIAeow0nUhNkS/5Oq
+ vZl0kp618FLv/P4frasnBeoRstomGF2ATAYbKII/56s0E6NlkLSG7STVQ9amMjeZXd0X
+ FY7RzRyH+WWxCdDuhH3bGWWZxIjbBcGadClHwf6AQ5v4iBMhbXn9K1m+SkGii5S60cHs
+ tjtg==
+X-Gm-Message-State: AOAM531u1Y8fzwIsCF7FnSZ5gIQOZnPfI/NFNNbLkRToot9gJJXU85sr
+ svdOK0N0SuZwC/ks2HsXbVDSmQ==
+X-Google-Smtp-Source: ABdhPJyeSS3dMl9hAnA02SlmnrDf9cvFg175LneIQbQBmBWImTeppF1RJJxaJwZDRm3ddlq6gt7RdA==
+X-Received: by 2002:a05:600c:21cd:: with SMTP id
+ x13mr6038791wmj.155.1598428076245; 
+ Wed, 26 Aug 2020 00:47:56 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:410:bb00:304d:64e9:99ee:68e4?
+ ([2a01:e0a:410:bb00:304d:64e9:99ee:68e4])
+ by smtp.gmail.com with ESMTPSA id u6sm3320011wrn.95.2020.08.26.00.47.55
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 26 Aug 2020 00:47:55 -0700 (PDT)
+Subject: Re: [PATCH net-next v2] gtp: add notification mechanism
+To: Harald Welte <laforge@gnumonks.org>
 References: <20200825143556.23766-1-nicolas.dichtel@6wind.com>
+ <20200825155715.24006-1-nicolas.dichtel@6wind.com>
+ <20200825170109.GH3822842@nataraja>
+From: Nicolas Dichtel <nicolas.dichtel@6wind.com>
+Organization: 6WIND
+Message-ID: <bd834ad7-b06e-69f0-40a6-5f4a21a1eba2@6wind.com>
+Date: Wed, 26 Aug 2020 09:47:54 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20200825170109.GH3822842@nataraja>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 26 Aug 2020 12:58:23 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
@@ -48,182 +86,33 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, Nicolas Dichtel <nicolas.dichtel@6wind.com>,
- Gabriel Ganne <gabriel.ganne@6wind.com>
+Reply-To: nicolas.dichtel@6wind.com
+Cc: netdev@vger.kernel.org, osmocom-net-gprs@lists.osmocom.org,
+ Gabriel Ganne <gabriel.ganne@6wind.com>, kuba@kernel.org, davem@davemloft.net,
+ pablo@netfilter.org
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Like all other network functions, let's notify gtp context on creation and
-deletion.
-
-Signed-off-by: Nicolas Dichtel <nicolas.dichtel@6wind.com>
-Tested-by: Gabriel Ganne <gabriel.ganne@6wind.com>
----
-
-v1 -> v2:
- - fix typo in the commit title
- - fix indentation of GTP_GENL_MCGRP
-
- drivers/net/gtp.c        | 58 +++++++++++++++++++++++++++++++++-------
- include/uapi/linux/gtp.h |  2 ++
- 2 files changed, 51 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index 8e47d0112e5d..76fd87a44fdf 100644
---- a/drivers/net/gtp.c
-+++ b/drivers/net/gtp.c
-@@ -928,8 +928,8 @@ static void ipv4_pdp_fill(struct pdp_ctx *pctx, struct genl_info *info)
- 	}
- }
- 
--static int gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
--		       struct genl_info *info)
-+static struct pdp_ctx *gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
-+				   struct genl_info *info)
- {
- 	struct pdp_ctx *pctx, *pctx_tid = NULL;
- 	struct net_device *dev = gtp->dev;
-@@ -956,12 +956,12 @@ static int gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
- 
- 	if (found) {
- 		if (info->nlhdr->nlmsg_flags & NLM_F_EXCL)
--			return -EEXIST;
-+			return ERR_PTR(-EEXIST);
- 		if (info->nlhdr->nlmsg_flags & NLM_F_REPLACE)
--			return -EOPNOTSUPP;
-+			return ERR_PTR(-EOPNOTSUPP);
- 
- 		if (pctx && pctx_tid)
--			return -EEXIST;
-+			return ERR_PTR(-EEXIST);
- 		if (!pctx)
- 			pctx = pctx_tid;
- 
-@@ -974,13 +974,13 @@ static int gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
- 			netdev_dbg(dev, "GTPv1-U: update tunnel id = %x/%x (pdp %p)\n",
- 				   pctx->u.v1.i_tei, pctx->u.v1.o_tei, pctx);
- 
--		return 0;
-+		return pctx;
- 
- 	}
- 
- 	pctx = kmalloc(sizeof(*pctx), GFP_ATOMIC);
- 	if (pctx == NULL)
--		return -ENOMEM;
-+		return ERR_PTR(-ENOMEM);
- 
- 	sock_hold(sk);
- 	pctx->sk = sk;
-@@ -1018,7 +1018,7 @@ static int gtp_pdp_add(struct gtp_dev *gtp, struct sock *sk,
- 		break;
- 	}
- 
--	return 0;
-+	return pctx;
- }
- 
- static void pdp_context_free(struct rcu_head *head)
-@@ -1036,9 +1036,12 @@ static void pdp_context_delete(struct pdp_ctx *pctx)
- 	call_rcu(&pctx->rcu_head, pdp_context_free);
- }
- 
-+static int gtp_tunnel_notify(struct pdp_ctx *pctx, u8 cmd);
-+
- static int gtp_genl_new_pdp(struct sk_buff *skb, struct genl_info *info)
- {
- 	unsigned int version;
-+	struct pdp_ctx *pctx;
- 	struct gtp_dev *gtp;
- 	struct sock *sk;
- 	int err;
-@@ -1088,7 +1091,13 @@ static int gtp_genl_new_pdp(struct sk_buff *skb, struct genl_info *info)
- 		goto out_unlock;
- 	}
- 
--	err = gtp_pdp_add(gtp, sk, info);
-+	pctx = gtp_pdp_add(gtp, sk, info);
-+	if (IS_ERR(pctx)) {
-+		err = PTR_ERR(pctx);
-+	} else {
-+		gtp_tunnel_notify(pctx, GTP_CMD_NEWPDP);
-+		err = 0;
-+	}
- 
- out_unlock:
- 	rcu_read_unlock();
-@@ -1159,6 +1168,7 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
- 		netdev_dbg(pctx->dev, "GTPv1-U: deleting tunnel id = %x/%x (pdp %p)\n",
- 			   pctx->u.v1.i_tei, pctx->u.v1.o_tei, pctx);
- 
-+	gtp_tunnel_notify(pctx, GTP_CMD_DELPDP);
- 	pdp_context_delete(pctx);
- 
- out_unlock:
-@@ -1168,6 +1178,14 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
- 
- static struct genl_family gtp_genl_family;
- 
-+enum gtp_multicast_groups {
-+	GTP_GENL_MCGRP,
-+};
-+
-+static const struct genl_multicast_group gtp_genl_mcgrps[] = {
-+	[GTP_GENL_MCGRP] = { .name = GTP_GENL_MCGRP_NAME },
-+};
-+
- static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
- 			      int flags, u32 type, struct pdp_ctx *pctx)
- {
-@@ -1205,6 +1223,26 @@ static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
- 	return -EMSGSIZE;
- }
- 
-+static int gtp_tunnel_notify(struct pdp_ctx *pctx, u8 cmd)
-+{
-+	struct sk_buff *msg;
-+	int ret;
-+
-+	msg = nlmsg_new(NLMSG_DEFAULT_SIZE, GFP_ATOMIC);
-+	if (!msg)
-+		return -ENOMEM;
-+
-+	ret = gtp_genl_fill_info(msg, 0, 0, 0, cmd, pctx);
-+	if (ret < 0) {
-+		nlmsg_free(msg);
-+		return ret;
-+	}
-+
-+	ret = genlmsg_multicast_netns(&gtp_genl_family, dev_net(pctx->dev), msg,
-+				      0, GTP_GENL_MCGRP, GFP_ATOMIC);
-+	return ret;
-+}
-+
- static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
- {
- 	struct pdp_ctx *pctx = NULL;
-@@ -1335,6 +1373,8 @@ static struct genl_family gtp_genl_family __ro_after_init = {
- 	.module		= THIS_MODULE,
- 	.ops		= gtp_genl_ops,
- 	.n_ops		= ARRAY_SIZE(gtp_genl_ops),
-+	.mcgrps		= gtp_genl_mcgrps,
-+	.n_mcgrps	= ARRAY_SIZE(gtp_genl_mcgrps),
- };
- 
- static int __net_init gtp_net_init(struct net *net)
-diff --git a/include/uapi/linux/gtp.h b/include/uapi/linux/gtp.h
-index c7d66755d212..79f9191bbb24 100644
---- a/include/uapi/linux/gtp.h
-+++ b/include/uapi/linux/gtp.h
-@@ -2,6 +2,8 @@
- #ifndef _UAPI_LINUX_GTP_H_
- #define _UAPI_LINUX_GTP_H_
- 
-+#define GTP_GENL_MCGRP_NAME	"gtp"
-+
- enum gtp_genl_cmds {
- 	GTP_CMD_NEWPDP,
- 	GTP_CMD_DELPDP,
--- 
-2.26.2
-
+Le 25/08/2020 à 19:01, Harald Welte a écrit :
+> Hi Nicolas,
+> 
+> thanks a lot for your patch.
+> 
+> On Tue, Aug 25, 2020 at 05:57:15PM +0200, Nicolas Dichtel wrote:
+>> Like all other network functions, let's notify gtp context on creation and
+>> deletion.
+> 
+> While this may be in-line with typical kernel tunnel device practises, I am not
+> convinced it is the right way to go for GTP.
+> 
+> Contrary to other tunneling mechansims, GTP doesn't have a 1:1 rlationship between
+> tunnels and netdev's.  You can easily have tens of thousands - or even many more -
+> PDP contexts (at least one per subscriber) within one "gtp0" netdev.  Also, the state
+> is highly volatile.  Every time a subscriber registers/deregisters, goes in or out of
+> coverage, in or out of airplane mode, etc. those PDP contexts go up and down.
+> 
+> Sending (unsolicited) notifications about all of those seems quite heavyweight to me.
+There is no 'unsolicited' notifications with this patch. Notifications are sent
+only if a userspace application has subscribed to the gtp mcast group.
+ip routes or conntrack entries are notified in the same way and there could a
+lot of them also (more than 100k conntrack entries for example).
