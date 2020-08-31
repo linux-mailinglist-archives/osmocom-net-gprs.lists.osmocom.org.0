@@ -2,39 +2,43 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 15EC7255B3D
-	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 28 Aug 2020 15:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A7312581B8
+	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 31 Aug 2020 21:25:12 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 3F9F51396AA;
-	Fri, 28 Aug 2020 13:31:21 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=6wind.com
+	by lists.osmocom.org (Postfix) with ESMTP id 52452140913;
+	Mon, 31 Aug 2020 19:25:05 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=davemloft.net
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=62.23.145.76;
- helo=proxy.6wind.com; envelope-from=dichtel@6wind.com; receiver=<UNKNOWN> 
+Received-SPF: None (mailfrom) identity=mailfrom; client-ip=2620:137:e000::1:9;
+ helo=shards.monkeyblade.net; envelope-from=davem@davemloft.net;
+ receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=6wind.com
-Received: from proxy.6wind.com (host.76.145.23.62.rev.coltfrance.com
- [62.23.145.76])
- by lists.osmocom.org (Postfix) with ESMTP id 5088913966F
- for <osmocom-net-gprs@lists.osmocom.org>; Fri, 28 Aug 2020 13:31:07 +0000 (UTC)
-Received: from bretzel.dev.6wind.com (unknown [10.16.0.19])
- by proxy.6wind.com (Postfix) with ESMTPS id 905F944A9B6;
- Fri, 28 Aug 2020 15:31:07 +0200 (CEST)
-Received: from dichtel by bretzel.dev.6wind.com with local (Exim 4.92)
- (envelope-from <dichtel@bretzel.dev.6wind.com>)
- id 1kBeTD-0005xA-FX; Fri, 28 Aug 2020 15:31:07 +0200
-From: Nicolas Dichtel <nicolas.dichtel@6wind.com>
-To: davem@davemloft.net, kuba@kernel.org, pablo@netfilter.org,
- laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
-Subject: [PATCH net-next 2/2] gtp: relax alloc constraint when adding a pdp
-Date: Fri, 28 Aug 2020 15:30:56 +0200
-Message-Id: <20200828133056.22751-3-nicolas.dichtel@6wind.com>
-X-Mailer: git-send-email 2.26.2
+ dmarc=none (p=none dis=none) header.from=davemloft.net
+Received: from shards.monkeyblade.net (shards.monkeyblade.net
+ [IPv6:2620:137:e000::1:9])
+ by lists.osmocom.org (Postfix) with ESMTP id 26B391408F9
+ for <osmocom-net-gprs@lists.osmocom.org>; Mon, 31 Aug 2020 19:24:55 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id 74ACC12889EDE;
+ Mon, 31 Aug 2020 12:08:02 -0700 (PDT)
+Date: Mon, 31 Aug 2020 12:24:48 -0700 (PDT)
+Message-Id: <20200831.122448.218384742586415389.davem@davemloft.net>
+To: nicolas.dichtel@6wind.com
+Subject: Re: [PATCH net-next 0/2] gtp: minor enhancements
+From: David Miller <davem@davemloft.net>
 In-Reply-To: <20200828133056.22751-1-nicolas.dichtel@6wind.com>
 References: <20200828133056.22751-1-nicolas.dichtel@6wind.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mailer: Mew version 6.8 on Emacs 26.3
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [149.20.54.216]);
+ Mon, 31 Aug 2020 12:08:02 -0700 (PDT)
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,64 +51,15 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, Nicolas Dichtel <nicolas.dichtel@6wind.com>
+Cc: kuba@kernel.org, osmocom-net-gprs@lists.osmocom.org, laforge@gnumonks.org,
+ pablo@netfilter.org, netdev@vger.kernel.org
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-When a PDP context is added, the rtnl lock is held, thus no need to force
-a GFP_ATOMIC.
+From: Nicolas Dichtel <nicolas.dichtel@6wind.com>
+Date: Fri, 28 Aug 2020 15:30:54 +0200
 
-Signed-off-by: Nicolas Dichtel <nicolas.dichtel@6wind.com>
----
- drivers/net/gtp.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+> The first patch removes a useless rcu lock and the second relax alloc
+> constraints when a PDP context is added.
 
-diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index 6f871ec31393..2ed1e82a8ad8 100644
---- a/drivers/net/gtp.c
-+++ b/drivers/net/gtp.c
-@@ -1036,7 +1036,7 @@ static void pdp_context_delete(struct pdp_ctx *pctx)
- 	call_rcu(&pctx->rcu_head, pdp_context_free);
- }
- 
--static int gtp_tunnel_notify(struct pdp_ctx *pctx, u8 cmd);
-+static int gtp_tunnel_notify(struct pdp_ctx *pctx, u8 cmd, gfp_t allocation);
- 
- static int gtp_genl_new_pdp(struct sk_buff *skb, struct genl_info *info)
- {
-@@ -1094,7 +1094,7 @@ static int gtp_genl_new_pdp(struct sk_buff *skb, struct genl_info *info)
- 	if (IS_ERR(pctx)) {
- 		err = PTR_ERR(pctx);
- 	} else {
--		gtp_tunnel_notify(pctx, GTP_CMD_NEWPDP);
-+		gtp_tunnel_notify(pctx, GTP_CMD_NEWPDP, GFP_KERNEL);
- 		err = 0;
- 	}
- 
-@@ -1166,7 +1166,7 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
- 		netdev_dbg(pctx->dev, "GTPv1-U: deleting tunnel id = %x/%x (pdp %p)\n",
- 			   pctx->u.v1.i_tei, pctx->u.v1.o_tei, pctx);
- 
--	gtp_tunnel_notify(pctx, GTP_CMD_DELPDP);
-+	gtp_tunnel_notify(pctx, GTP_CMD_DELPDP, GFP_ATOMIC);
- 	pdp_context_delete(pctx);
- 
- out_unlock:
-@@ -1220,12 +1220,12 @@ static int gtp_genl_fill_info(struct sk_buff *skb, u32 snd_portid, u32 snd_seq,
- 	return -EMSGSIZE;
- }
- 
--static int gtp_tunnel_notify(struct pdp_ctx *pctx, u8 cmd)
-+static int gtp_tunnel_notify(struct pdp_ctx *pctx, u8 cmd, gfp_t allocation)
- {
- 	struct sk_buff *msg;
- 	int ret;
- 
--	msg = nlmsg_new(NLMSG_DEFAULT_SIZE, GFP_ATOMIC);
-+	msg = nlmsg_new(NLMSG_DEFAULT_SIZE, allocation);
- 	if (!msg)
- 		return -ENOMEM;
- 
--- 
-2.26.2
-
+Series applied, thanks.
