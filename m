@@ -1,12 +1,12 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 215BA25E1C2
-	for <lists+osmocom-net-gprs@lfdr.de>; Fri,  4 Sep 2020 21:10:26 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 9F727146B94;
-	Fri,  4 Sep 2020 19:10:21 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DAFE2707F1
+	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 18 Sep 2020 23:15:41 +0200 (CEST)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id C21D31415E0;
+	Fri, 18 Sep 2020 21:15:36 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=osmocom.org
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
@@ -17,24 +17,25 @@ Authentication-Results: lists.osmocom.org;
  dmarc=none (p=none dis=none) header.from=osmocom.org
 Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
  [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
- by lists.osmocom.org (Postfix) with ESMTP id 1BBE7146A29;
- Fri,  4 Sep 2020 19:08:27 +0000 (UTC)
+ by lists.osmocom.org (Postfix) with ESMTP id 312F51415C6
+ for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Sep 2020 21:15:32 +0000 (UTC)
 Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
  (envelope-from <laforge@osmocom.org>)
- id 1kEH4V-0007il-MP; Fri, 04 Sep 2020 21:08:27 +0200
+ id 1kJNjA-0007rA-E3; Fri, 18 Sep 2020 23:15:32 +0200
 Received: from laforge by localhost.localdomain with local (Exim 4.94)
  (envelope-from <laforge@osmocom.org>)
- id 1kEH4O-002qx7-HS; Fri, 04 Sep 2020 21:08:20 +0200
-Date: Fri, 4 Sep 2020 21:08:20 +0200
+ id 1kJNiw-008Dcz-54; Fri, 18 Sep 2020 23:15:18 +0200
+Date: Fri, 18 Sep 2020 23:15:18 +0200
 From: Harald Welte <laforge@osmocom.org>
-To: openbsc@lists.osmocom.org
-Subject: OsmoDevCon  / COVID-19
-Message-ID: <20200904190820.GA609235@nataraja>
+To: osmocom-net-gprs@lists.osmocom.org
+Cc: Alexander Couzens <acouzens@sysmocom.de>
+Subject: ns2 thoughts
+Message-ID: <20200918211518.GI1611880@nataraja>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
-X-Mailman-Version: 2.1.29
+X-Mailman-Version: 2.1.34
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU,
  OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
@@ -45,51 +46,59 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>, 
  <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=subscribe>
-Reply-To: openbsc@lists.osmocom.org
-Cc: baseband-devel@lists.osmocom.org, simtrace@lists.osmocom.org,
- osmocom-sdr@lists.osmocom.org, osmocom-net-gprs@lists.osmocom.org,
- gr-gsm@lists.osmocom.org, gmr@lists.osmocom.org, tetra@lists.osmocom.org
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Dear fellow Osmocom developers,
+Hi List and Lynxis,
 
-as you all know, we've sadly had to postpone OsmoDevCon 2020 back in
-April this year.  At the time, we discussed to re-visit the situation
-in October 2020.
+I've been reading through the ns2 code more thoroughly and had some thoughts
+for improvement.  As we have no users yet, and the code is unreleased, we
+can still make changes now.
 
-While legally it is no problem at all to host an event with ~ 20
-participants in Berlin/Germany (specific regulations really only start
-from 50+ participants) - I'm not entirely convinced it would be the
-smartest move.
+== unused argument in ns2_recv_vc
 
-Legality and public health regulations are only one part of the equation
-- common sense and profound care for the key members of our community
-for sure are more relevant considerations to me.
+int ns2_recv_vc(struct gprs_ns2_inst *nsi,
+                struct gprs_ns2_vc *nsvc,
+                struct msgb *msg)
 
-I'm not 100% in favour and not 100% against.  Hence, I would like to get
-your input.  Should we
+The 'nsi' is not used and should be redundant, as the nsvc has a back-pointer anyway, right?
 
-a) try to get an event organized on-site in Berlin?  We'd have to move
-   to a larger venue than IN-Berlin with proper ventilation and sufficient
-   space so we can keep physical distance, but I think that's
-   manageable for sysmocom as organizer.
 
-b) simply postpone to 2021?  I'm convinced the situation will not change
-   significantly (in a positive way) until late April 2021, so it's not
-   really a "solution" as it will likely mean we have to think of late
-   2021 or 2022.
+== consider using an osmo_ prefix to all symbols / types
 
-c) plan some kind of online conference?  To be honest, I think this
-   model works fine for events where a single speaker wants to give
-   lectures to hundreds or thousands of participants.  But OsmoDevCon
-   is much more interactive.  We could record or live-stream some talks
-   or screencasts from home, sure.  But that only captures one part of
-   the event.  We could also try to set a date for a collaborative
-   mumble, or the like - for the "hallway track".
+The fact that the old code doesn't have that is a tribute to its age, and not
+something we need to keep.  The current code has quite a bit of 'gprs_ns2' prefixing for
+types, but not for the symbols/functions.  At least that inconsistency should be resolved,
+so all have the same prefix, even if it is without osmo.
 
-What are your thoughts?  Let's avoid cross-posting the discussion to all
-of the mailing lists and simply have it on openbsc@lists.osmocom.org.
+
+== const-ify input arguments
+
+If arguments pointing to data are used read-only, let's express that by
+the const qualifier.  The easy ones are the likes of
+"gprs_ns2_is_frgre_bind(struct gprs_ns2_vc_bind *bind)",
+but there are definitely many more.
+
+
+== use of msgb->dst
+
+In several other osmocom implementations we use msgb->dst to point to the
+underlying element receiving or transmitting a message.  So I could imagine
+ns2_recv_vc() not only without the 'nsi' argument, but also without the
+'nsvc' argument, if we introduce the convention that msgb->dst would always
+point to the ns-vc.
+
+Not sure here, it has pros and cons.  Just brainstorming.
+
+
+== output arguments vs. return value
+
+There are functions like gprs_ns2_find_vc_by_sockaddr() where the result
+is not returned, but rather a **pointer output argument is used.  What
+is the rationale here?   I don't understand what benefit the extra 0/1
+return value gives.  The only other return value is -EINVAL if the **ptr
+was NULL - an error situation that wouldn't exist if we simply returned
+the pointer from the function.
 
 Regards,
 	Harald
