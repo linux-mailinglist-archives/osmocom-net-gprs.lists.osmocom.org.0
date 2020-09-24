@@ -2,34 +2,34 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AFDC290DD5
-	for <lists+osmocom-net-gprs@lfdr.de>; Sat, 17 Oct 2020 00:43:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B0C8290EFB
+	for <lists+osmocom-net-gprs@lfdr.de>; Sat, 17 Oct 2020 07:01:20 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 771ED18E688;
-	Fri, 16 Oct 2020 22:43:37 +0000 (UTC)
+	by lists.osmocom.org (Postfix) with ESMTP id C435E18EB81;
+	Sat, 17 Oct 2020 05:01:14 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=pass (p=reject dis=none) header.from=btinternet.com
 Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=btinternet.com header.i=@btinternet.com header.b=VYEj14M8
+	dkim=pass (2048-bit key; unprotected) header.d=btinternet.com header.i=@btinternet.com header.b=V6LYn+Nf
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=213.120.69.14;
- helo=sa-prd-fep-044.btinternet.com;
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=213.120.69.35;
+ helo=sa-prd-fep-047.btinternet.com;
  envelope-from=richard_c_haines@btinternet.com; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org; dmarc=pass (p=reject dis=none)
  header.from=btinternet.com
-Received: from sa-prd-fep-044.btinternet.com (mailomta8-sa.btinternet.com
- [213.120.69.14])
- by lists.osmocom.org (Postfix) with ESMTP id CA00118E666
- for <osmocom-net-gprs@lists.osmocom.org>; Fri, 16 Oct 2020 22:43:30 +0000 (UTC)
+Received: from sa-prd-fep-047.btinternet.com (mailomta29-sa.btinternet.com
+ [213.120.69.35])
+ by lists.osmocom.org (Postfix) with ESMTP id B315B18EB6F
+ for <osmocom-net-gprs@lists.osmocom.org>; Sat, 17 Oct 2020 05:01:05 +0000 (UTC)
 Received: from sa-prd-rgout-003.btmx-prd.synchronoss.net ([10.2.38.6])
- by sa-prd-fep-046.btinternet.com with ESMTP id
- <20200924085108.BRXF4114.sa-prd-fep-046.btinternet.com@sa-prd-rgout-003.btmx-prd.synchronoss.net>;
+ by sa-prd-fep-045.btinternet.com with ESMTP id
+ <20200924085108.YTZV4112.sa-prd-fep-045.btinternet.com@sa-prd-rgout-003.btmx-prd.synchronoss.net>;
  Thu, 24 Sep 2020 09:51:08 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=btinternet.com;
  s=btmx201904; t=1600937468; 
- bh=vTnmokXIBzkZXHYrLM+LF+a2TNPM2QjsiABAPz1KhKw=;
+ bh=gfshxmOa7pyOBPfnZC73Pf8y0/WY1PIHuQRoM6dbw24=;
  h=From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:References:MIME-Version;
- b=VYEj14M8rpCFdDJIclcCCkuhgwR3INdIWlObzgcq6o2AY02Pr4KHaOkmz8uAnvTNZe6RBgoXu26+MXMgDCflAcYSjDJ/N1ddOpLbL4C5m1B/mQybUtMszqW1r9Dr6MrbGqMu4WOApte/nefqfJTgEsS0TN3XS4mxCodfxiF/OCPpWdBXGWIJEU48A/wZbYZhipX6jM4vXTmWkDha1Ii3J0zhlNLjFyCNmRXCYa7iHtOiu6B3FtRQ4s5ptDdhxmzLaVC+35qZiMO10AfTAS/oiBkH2cGW3F/beDq+Ls9uOzsueNWx78NOr1kXnhEFMmOGttYhczyqrPUgZaFm2RGPjA==
+ b=V6LYn+NfiFITNcFXv8whY2tH2EpAa3w91PxQlayp+kzA4aPUH2m8EWuZYscF6TN/0RI0Fu/yz3KLhnheEYiLRs49qcTVMrre4ZG27Nr6/I6QqBF1pi32jUL+/CYYWoW7iQuSqNrwT4vAIHgHzykN7iqjO5XBncmoVF+NrJyc0TVfOyBp5jmQ8nOrBGsI5HfhLFM+umx0UwPAM9cJN2SlfCJ8IK+hY8Q/91o/35ZRB+UGR1baeO8s+x7lzBWsNQ2GJALCYbGwKsW97+p+MN2G0P82hy0rfPvvIPy8N7tX++v9+/ZV3pjjmMZkFt9lXN6h9MUdqy1Iq4QSlBe/ISphAA==
 Authentication-Results: btinternet.com; none
 X-Originating-IP: [86.146.219.130]
 X-OWM-Source-IP: 86.146.219.130 (GB)
@@ -43,17 +43,16 @@ X-SNCR-hdrdom: btinternet.com
 Received: from localhost.localdomain (86.146.219.130) by
  sa-prd-rgout-003.btmx-prd.synchronoss.net (5.8.340) (authenticated as
  richard_c_haines@btinternet.com)
- id 5ED9AFBE1282CF0E; Thu, 24 Sep 2020 09:51:08 +0100
+ id 5ED9AFBE1282CF1D; Thu, 24 Sep 2020 09:51:08 +0100
 From: Richard Haines <richard_c_haines@btinternet.com>
 To: selinux@vger.kernel.org, linux-security-module@vger.kernel.org,
  osmocom-net-gprs@lists.osmocom.org
 Cc: stephen.smalley.work@gmail.com, paul@paul-moore.com, pablo@netfilter.org,
  laforge@gnumonks.org, jmorris@namei.org,
  Richard Haines <richard_c_haines@btinternet.com>
-Subject: [RFC PATCH 1/3] security: Add GPRS Tunneling Protocol (GTP) security
- hooks
-Date: Thu, 24 Sep 2020 09:51:00 +0100
-Message-Id: <20200924085102.5960-2-richard_c_haines@btinternet.com>
+Subject: [RFC PATCH 2/3] gtp: Add LSM hooks to GPRS Tunneling Protocol (GTP)
+Date: Thu, 24 Sep 2020 09:51:01 +0100
+Message-Id: <20200924085102.5960-3-richard_c_haines@btinternet.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200924085102.5960-1-richard_c_haines@btinternet.com>
 References: <20200924085102.5960-1-richard_c_haines@btinternet.com>
@@ -74,188 +73,137 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-The GTP security hooks are explained in:
-Documentation/security/GTP.rst
+Add security hooks to allow security modules to exercise access control
+over GTP.
 
 Signed-off-by: Richard Haines <richard_c_haines@btinternet.com>
 ---
- Documentation/security/GTP.rst   | 39 ++++++++++++++++++++++++++++++++
- Documentation/security/index.rst |  1 +
- include/linux/lsm_hook_defs.h    |  3 +++
- include/linux/lsm_hooks.h        | 16 +++++++++++++
- include/linux/security.h         | 19 ++++++++++++++++
- security/security.c              | 18 +++++++++++++++
- 6 files changed, 96 insertions(+)
- create mode 100644 Documentation/security/GTP.rst
+ drivers/net/gtp.c | 49 ++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 48 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/security/GTP.rst b/Documentation/security/GTP.rst
-new file mode 100644
-index 000000000..e307d0b59
---- /dev/null
-+++ b/Documentation/security/GTP.rst
-@@ -0,0 +1,39 @@
-+.. SPDX-License-Identifier: GPL-2.0
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index 21640a035..ee00b12ab 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -73,6 +73,8 @@ struct gtp_dev {
+ 	unsigned int		hash_size;
+ 	struct hlist_head	*tid_hash;
+ 	struct hlist_head	*addr_hash;
 +
-+=============================
-+GPRS Tunneling Protocol (GTP)
-+=============================
-+
-+GTP LSM Support
-+===============
-+
-+Security Hooks
-+--------------
-+For security module support, three GTP specific hooks have been implemented::
-+
-+    security_gtp_dev_add()
-+    security_gtp_dev_del()
-+    security_gtp_dev_cmd()
-+
-+
-+security_gtp_dev_add()
-+~~~~~~~~~~~~~~~~~~~~~~
-+Allows a module to allocate a security structure for a GTP device. Returns a
-+zero on success, negative values on failure.
-+If successful the GTP device ``struct gtp_dev`` will hold the allocated
-+pointer in ``void *security;``.
-+
-+
-+security_gtp_dev_del()
-+~~~~~~~~~~~~~~~~~~~~~~
-+Allows a module to free the security structure for a GTP device. Returns a
-+zero on success, negative values on failure.
-+
-+
-+security_gtp_dev_cmd()
-+~~~~~~~~~~~~~~~~~~~~~~
-+Allows a module to validate a command for the selected GTP device. Returns a
-+zero on success, negative values on failure. The commands are based on values
-+from ``include/uapi/linux/gtp.h`` as follows::
-+
-+``enum gtp_genl_cmds { GTP_CMD_NEWPDP, GTP_CMD_DELPDP, GTP_CMD_GETPDP };``
-diff --git a/Documentation/security/index.rst b/Documentation/security/index.rst
-index 8129405eb..cdbdaa83b 100644
---- a/Documentation/security/index.rst
-+++ b/Documentation/security/index.rst
-@@ -16,3 +16,4 @@ Security Documentation
-    siphash
-    tpm/index
-    digsig
-+   GTP
-diff --git a/include/linux/lsm_hook_defs.h b/include/linux/lsm_hook_defs.h
-index 2a8c74d99..a994417fb 100644
---- a/include/linux/lsm_hook_defs.h
-+++ b/include/linux/lsm_hook_defs.h
-@@ -322,6 +322,9 @@ LSM_HOOK(int, 0, sctp_bind_connect, struct sock *sk, int optname,
- 	 struct sockaddr *address, int addrlen)
- LSM_HOOK(void, LSM_RET_VOID, sctp_sk_clone, struct sctp_endpoint *ep,
- 	 struct sock *sk, struct sock *newsk)
-+LSM_HOOK(int, 0, gtp_dev_add, void **security)
-+LSM_HOOK(int, 0, gtp_dev_del, void *security)
-+LSM_HOOK(int, 0, gtp_dev_cmd, void *security, enum gtp_genl_cmds cmd)
- #endif /* CONFIG_SECURITY_NETWORK */
++	void			*security;
+ };
  
- #ifdef CONFIG_SECURITY_INFINIBAND
-diff --git a/include/linux/lsm_hooks.h b/include/linux/lsm_hooks.h
-index 9e2e3e637..3d6888d51 100644
---- a/include/linux/lsm_hooks.h
-+++ b/include/linux/lsm_hooks.h
-@@ -982,6 +982,22 @@
-  *	This hook can be used by the module to update any security state
-  *	associated with the TUN device's security structure.
-  *	@security pointer to the TUN devices's security structure.
-+ * @gtp_dev_add:
-+ *	This hook allows a module to allocate a security structure for a GTP
-+ *	device.
-+ *	@security pointer to a security structure pointer.
-+ *	Returns a zero on success, negative values on failure.
-+ * @gtp_dev_del:
-+ *	This hook allows a module to free the security structure for a GTP
-+ *	device.
-+ *	@security pointer to the GTP device's security structure.
-+ *	Returns a zero on success, negative values on failure.
-+ * @gtp_dev_cmd:
-+ *	This hook allows a module to free the security structure for a GTP
-+ *	device.
-+ *	@security pointer to the GTP device's security structure.
-+ *	@cmd contains the GTP command.
-+ *	Returns a zero on success, negative values on failure.
-  *
-  * Security hooks for SCTP
-  *
-diff --git a/include/linux/security.h b/include/linux/security.h
-index 0a0a03b36..67ff43afa 100644
---- a/include/linux/security.h
-+++ b/include/linux/security.h
-@@ -30,6 +30,7 @@
- #include <linux/err.h>
- #include <linux/string.h>
- #include <linux/mm.h>
-+#include <linux/gtp.h>
+ static unsigned int gtp_net_id __read_mostly;
+@@ -663,6 +665,12 @@ static int gtp_newlink(struct net *src_net, struct net_device *dev,
  
- struct linux_binprm;
- struct cred;
-@@ -1365,6 +1366,9 @@ int security_sctp_bind_connect(struct sock *sk, int optname,
- 			       struct sockaddr *address, int addrlen);
- void security_sctp_sk_clone(struct sctp_endpoint *ep, struct sock *sk,
- 			    struct sock *newsk);
-+int security_gtp_dev_add(void **security);
-+int security_gtp_dev_del(void *security);
-+int security_gtp_dev_cmd(void *security, enum gtp_genl_cmds cmd);
+ 	gtp = netdev_priv(dev);
  
- #else	/* CONFIG_SECURITY_NETWORK */
- static inline int security_unix_stream_connect(struct sock *sock,
-@@ -1582,6 +1586,21 @@ static inline void security_sctp_sk_clone(struct sctp_endpoint *ep,
- 					  struct sock *newsk)
++	err = security_gtp_dev_add(&gtp->security);
++	pr_debug("security_gtp_dev_add() ptr: %p err: %d\n",
++		 gtp->security, err);
++	if (err < 0)
++		return err;
++
+ 	err = gtp_encap_enable(gtp, data);
+ 	if (err < 0)
+ 		return err;
+@@ -705,7 +713,15 @@ static void gtp_dellink(struct net_device *dev, struct list_head *head)
  {
- }
+ 	struct gtp_dev *gtp = netdev_priv(dev);
+ 	struct pdp_ctx *pctx;
+-	int i;
++	int i, err;
 +
-+static inline int security_gtp_dev_add(void **security)
-+{
-+	return 0;
-+}
-+
-+static inline int security_gtp_dev_del(void *security)
-+{
-+	return 0;
-+}
-+
-+static inline int security_gtp_dev_cmd(void *security, enum gtp_genl_cmds cmd)
-+{
-+	return 0;
-+}
- #endif	/* CONFIG_SECURITY_NETWORK */
++	err = security_gtp_dev_del(gtp->security);
++	pr_debug("security_gtp_dev_del() ptr: %p err: %d\n",
++		 gtp->security, err);
++	if (err < 0) {
++		pr_err("Failed security_gtp_dev_del_link() err: %d\n", err);
++		return;
++	}
  
- #ifdef CONFIG_SECURITY_INFINIBAND
-diff --git a/security/security.c b/security/security.c
-index 70a7ad357..63b656848 100644
---- a/security/security.c
-+++ b/security/security.c
-@@ -2304,6 +2304,24 @@ void security_sctp_sk_clone(struct sctp_endpoint *ep, struct sock *sk,
- }
- EXPORT_SYMBOL(security_sctp_sk_clone);
+ 	for (i = 0; i < gtp->hash_size; i++)
+ 		hlist_for_each_entry_rcu(pctx, &gtp->tid_hash[i], hlist_tid)
+@@ -1076,6 +1092,12 @@ static int gtp_genl_new_pdp(struct sk_buff *skb, struct genl_info *info)
+ 		goto out_unlock;
+ 	}
  
-+int security_gtp_dev_add(void **security)
-+{
-+	return call_int_hook(gtp_dev_add, 0, security);
-+}
-+EXPORT_SYMBOL(security_gtp_dev_add);
++	err = security_gtp_dev_cmd(gtp->security, GTP_CMD_NEWPDP);
++	pr_debug("security_gtp_dev_cmd(GTP_CMD_NEWPDP) ptr: %p err: %d\n",
++		 gtp->security, err);
++	if (err < 0)
++		goto out_unlock;
 +
-+int security_gtp_dev_del(void *security)
-+{
-+	return call_int_hook(gtp_dev_del, 0, security);
-+}
-+EXPORT_SYMBOL(security_gtp_dev_del);
-+
-+int security_gtp_dev_cmd(void *security, enum gtp_genl_cmds cmd)
-+{
-+	return call_int_hook(gtp_dev_cmd, 0, security, cmd);
-+}
-+EXPORT_SYMBOL(security_gtp_dev_cmd);
-+
- #endif	/* CONFIG_SECURITY_NETWORK */
+ 	if (version == GTP_V0)
+ 		sk = gtp->sk0;
+ 	else if (version == GTP_V1)
+@@ -1139,6 +1161,7 @@ static struct pdp_ctx *gtp_find_pdp(struct net *net, struct nlattr *nla[])
+ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
+ {
+ 	struct pdp_ctx *pctx;
++	struct gtp_dev *gtp;
+ 	int err = 0;
  
- #ifdef CONFIG_SECURITY_INFINIBAND
+ 	if (!info->attrs[GTPA_VERSION])
+@@ -1152,6 +1175,13 @@ static int gtp_genl_del_pdp(struct sk_buff *skb, struct genl_info *info)
+ 		goto out_unlock;
+ 	}
+ 
++	gtp = netdev_priv(pctx->dev);
++	err = security_gtp_dev_cmd(gtp->security, GTP_CMD_DELPDP);
++	pr_debug("security_gtp_dev_cmd(GTP_CMD_DELPDP) ptr: %p err: %d\n",
++		 gtp->security, err);
++	if (err < 0)
++		goto out_unlock;
++
+ 	if (pctx->gtp_version == GTP_V0)
+ 		netdev_dbg(pctx->dev, "GTPv0-U: deleting tunnel id = %llx (pdp %p)\n",
+ 			   pctx->u.v0.tid, pctx);
+@@ -1208,6 +1238,7 @@ static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
+ {
+ 	struct pdp_ctx *pctx = NULL;
+ 	struct sk_buff *skb2;
++	struct gtp_dev *gtp;
+ 	int err;
+ 
+ 	if (!info->attrs[GTPA_VERSION])
+@@ -1221,6 +1252,13 @@ static int gtp_genl_get_pdp(struct sk_buff *skb, struct genl_info *info)
+ 		goto err_unlock;
+ 	}
+ 
++	gtp = netdev_priv(pctx->dev);
++	err = security_gtp_dev_cmd(gtp->security, GTP_CMD_GETPDP);
++	pr_debug("security_gtp_dev_cmd(GTP_CMD_GETPDP) ptr: %p err: %d\n",
++		 gtp->security, err);
++	if (err < 0)
++		goto err_unlock;
++
+ 	skb2 = genlmsg_new(NLMSG_GOODSIZE, GFP_ATOMIC);
+ 	if (skb2 == NULL) {
+ 		err = -ENOMEM;
+@@ -1250,6 +1288,7 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb,
+ 	struct net *net = sock_net(skb->sk);
+ 	struct pdp_ctx *pctx;
+ 	struct gtp_net *gn;
++	int err;
+ 
+ 	gn = net_generic(net, gtp_net_id);
+ 
+@@ -1263,6 +1302,14 @@ static int gtp_genl_dump_pdp(struct sk_buff *skb,
+ 		else
+ 			last_gtp = NULL;
+ 
++		err = security_gtp_dev_cmd(gtp->security, GTP_CMD_GETPDP);
++		pr_debug("security_gtp_dev_cmd(GTP_CMD_GETPDP) ptr: %p err: %d\n",
++			 gtp->security, err);
++		if (err < 0) {
++			rcu_read_unlock();
++			return err;
++		}
++
+ 		for (i = bucket; i < gtp->hash_size; i++) {
+ 			j = 0;
+ 			hlist_for_each_entry_rcu(pctx, &gtp->tid_hash[i],
 -- 
 2.26.2
 
