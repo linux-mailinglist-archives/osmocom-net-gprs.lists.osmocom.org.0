@@ -1,67 +1,81 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
+Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
+	by mail.lfdr.de (Postfix) with ESMTP id A9FF627FBA4
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  1 Oct 2020 10:40:23 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id A89AB27FBA3
-	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  1 Oct 2020 10:40:20 +0200 (CEST)
-Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id D49BB160620;
-	Thu,  1 Oct 2020 08:40:19 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=reject dis=none) header.from=btinternet.com
+	by lists.osmocom.org (Postfix) with ESMTP id 4A535160625;
+	Thu,  1 Oct 2020 08:40:23 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=schaufler-ca.com
 Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=btinternet.com header.i=@btinternet.com header.b=eH9wjcha
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b=YREuWAA9
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=213.120.69.118;
- helo=re-prd-fep-046.btinternet.com;
- envelope-from=richard_c_haines@btinternet.com; receiver=<UNKNOWN> 
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=reject dis=none)
- header.from=btinternet.com
-Received: from re-prd-fep-046.btinternet.com (mailomta25-re.btinternet.com
- [213.120.69.118])
- by lists.osmocom.org (Postfix) with ESMTP id 473D315D550
- for <osmocom-net-gprs@lists.osmocom.org>; Wed, 30 Sep 2020 12:25:28 +0000 (UTC)
-Received: from re-prd-rgout-005.btmx-prd.synchronoss.net ([10.2.54.8])
- by re-prd-fep-046.btinternet.com with ESMTP id
- <20200930122528.LKFI4657.re-prd-fep-046.btinternet.com@re-prd-rgout-005.btmx-prd.synchronoss.net>;
- Wed, 30 Sep 2020 13:25:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=btinternet.com;
- s=btmx201904; t=1601468728; 
- bh=He3ZtxOHYvntd/R39t6Gn9zL395jrRUUUHVz9mi1hac=;
- h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:MIME-Version;
- b=eH9wjcha8BwbeVvRIfr8Lao8j0me5TljlX59UK2B0WBBD6MJ2tYLUQpBYl0z4tJVOky3YtI10bFEeAIwK/UI16m7oSZq9CrRdX2U4IF4+NIWytefqk+BBo7pMhqhzXbZbEGrIOfwKq5PYmxHH11Agzw8L7isEA8z+zJaELANxxlx4UNVUU9gnWoNE8F4p0tIVYheUzAypjMnyaIV+OkrlbQ1FXDYosrmQysvOnmHzBeEynMuZcoFn4jr1Zt28HjSSytgAWlO6vgZXUj2hXCS/lHR/ojFeCF7HTsRbiGX+7Ghkrxx8x2d3ZC9xueCzot4g2FazP2i5Bp/S7zpDCwCFg==
-Authentication-Results: btinternet.com;
- auth=pass (LOGIN) smtp.auth=richard_c_haines@btinternet.com
-X-Originating-IP: [81.141.56.129]
-X-OWM-Source-IP: 81.141.56.129 (GB)
-X-OWM-Env-Sender: richard_c_haines@btinternet.com
-X-VadeSecure-score: verdict=clean score=0/300, class=clean
-X-RazorGate-Vade: gggruggvucftvghtrhhoucdtuddrgedujedrfedvgdeglecutefuodetggdotefrodftvfcurfhrohhfihhlvgemuceutffkvffkuffjvffgnffgvefqofdpqfgfvfenuceurghilhhouhhtmecufedtudenucenucfjughrpefkuffhvfffjghftggfggfgsehtjeertddtreejnecuhfhrohhmpeftihgthhgrrhguucfjrghinhgvshcuoehrihgthhgrrhgupggtpghhrghinhgvshessghtihhnthgvrhhnvghtrdgtohhmqeenucggtffrrghtthgvrhhnpeekgeeftdffkeeikedugedvkeejheeiffevveelgedtleduteevudelffdugffgieenucfkphepkedurddugedurdehiedruddvleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhinhgvthepkedurddugedurdehiedruddvledpmhgrihhlfhhrohhmpeeorhhitghhrghruggptggphhgrihhnvghssegsthhinhhtvghrnhgvthdrtghomhequceuqfffjgepkeeukffvoffkoffgpdhrtghpthhtohepoehjmhhorhhrihhssehnrghmvghirdhorhhgqedprhgtphhtthhopeeolhgrfhhorhhgvgesghhnuhhmohhnkhhsrdhorhhgqedprhgtphhtthhopeeolhhinhhugidqshgvtghurhhithihqdhmohguuhhlvgesvhhgvghrrdhkvghrnhgvlhdrohhrgheqpdhrtghpthhtohepoehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrgheqpdhrtghpthhtohep
- oehoshhmohgtohhmqdhnvghtqdhgphhrsheslhhishhtshdrohhsmhhotghomhdrohhrgheqpdhrtghpthhtohepoehprggslhhosehnvghtfhhilhhtvghrrdhorhhgqedprhgtphhtthhopeeophgruhhlsehprghulhdqmhhoohhrvgdrtghomheqpdhrtghpthhtohepoehsvghlihhnuhigsehvghgvrhdrkhgvrhhnvghlrdhorhhgqedprhgtphhtthhopeeoshhtvghphhgvnhdrshhmrghllhgvhidrfihorhhksehgmhgrihhlrdgtohhmqe
-X-RazorGate-Vade-Verdict: clean 0
-X-RazorGate-Vade-Classification: clean
-X-SNCR-hdrdom: btinternet.com
-Received: from localhost.localdomain (81.141.56.129) by
- re-prd-rgout-005.btmx-prd.synchronoss.net (5.8.340) (authenticated as
- richard_c_haines@btinternet.com)
- id 5ED9C74D136677D7; Wed, 30 Sep 2020 13:25:28 +0100
-Message-ID: <33cf57c9599842247c45c92aa22468ec89f7ba64.camel@btinternet.com>
-Subject: Re: [PATCH 3/3] selinux: Add SELinux GTP support
-From: Richard Haines <richard_c_haines@btinternet.com>
-To: Harald Welte <laforge@gnumonks.org>
-Cc: selinux@vger.kernel.org, linux-security-module@vger.kernel.org, 
- osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org, 
- stephen.smalley.work@gmail.com, paul@paul-moore.com, pablo@netfilter.org, 
+Received-SPF: None (mailfrom) identity=mailfrom; client-ip=66.163.184.49;
+ helo=sonic317-38.consmr.mail.ne1.yahoo.com;
+ envelope-from=casey@schaufler-ca.com; receiver=<UNKNOWN> 
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none)
+ header.from=schaufler-ca.com
+Received: from sonic317-38.consmr.mail.ne1.yahoo.com
+ (sonic317-38.consmr.mail.ne1.yahoo.com [66.163.184.49])
+ by lists.osmocom.org (Postfix) with ESMTP id E15BF15D6F2
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 30 Sep 2020 15:56:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1601481383; bh=RELQ6zEaKUzKotEk3T33ncEVq3IqazKA87XFz5LBnDQ=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From:Subject;
+ b=YREuWAA9BgI+sDAXKonin6pM1Z6JePzC6H3DozvvlkI+8QHbUk9L3rRz9ws+XDtHxxv7UNK1rVRsBfNsGGOXW//b2pTVzyoS2lIWVWe4J1CLCT50niU8+Y2iEckvaG0lqXd6soJ6q1YR0hzEgNHuEaix5ICY5te/1bSI6+mvrjO3LV5z3QsmrMAWLVvDBN5b/omKVXI38VRnFDwYCbrwc6iaD2IuBxxnjl3yhvHXlwnBqBhNMCRur5Kbjd7P55VIjr8sqm6wqSOt9xAJHrj0BcR3wN5knxcpyXtgH6upgkfNSA+Rcp+x2fIRUeYlvBfwXfKIKazk3ggYjdJpgd3Yog==
+X-YMail-OSG: DlAYhWIVM1nEoZgQ.gTV2uevcLhaWDdPyQW7eTYyCPW.jtc_Xu7KWxL9.P7S5JI
+ OIspIMKrRxqo92PuCKA2P4pOLQ3jXgs3axUgZL_rQdDkVJrM2YnUQBOh6aPGVRdxm3ELchi8QYd0
+ VzXFpJ221xM.VNOta15KkE98zc1HPI4Z_JOqkHqOHDPbcV22wCNOpnWX8jysDi06jjUkMtsTCivc
+ Vnd9CK2en9c9YFUNZgElmz4lAbvQ8582O0bs2RGrglrBIFWfIeMYUvoUVQ37SjzLaAI1kfc2LPrq
+ fL_VJYV4xDqWzCVE2R_Y2L5b.7R1OsHL7o9jrUTgwxZXqfkcLf5xDBtKrqBrSaUcXQXtsmA1utLM
+ vgiRzU3JQvVJEOCSCy3HcvJSy2tQGhD9NZkuCnK7BpY3IT5oYc8QhmYICDeF3.DrJHaoPYkVQsql
+ c69aZPDEU.T9nZkjfd59MzUFgt65aehOplaqyv_o1Zc9wJw3Py6EMt9zXCFtd.MsQ58A5n0vcqAd
+ r3gRZ_YmLC4wd7KOTl5JuNKolNyuN6WIg3NdOjKAGALXKxZbu2ABQUmioO5rKjF1WE7HboTRITGd
+ _WIDGbAlIjOadwWpdy0YM8qPANZMApoZH8DA9xgFh7NQcEVadDoq15603Q9NK5SolEb_YHPcwA6C
+ rh.GAJ4_zbR_Tfs8iYBWs1atyE5xKQ87eDL0kxD6AOj8DAfTpbOgsiTCoXHb2ujrEKJHb8WR58rP
+ WxBCyUiSNWB22C3a9dtVozf.OEgLTNH4YL58UbwDvxb5Odcvuh1Kji5L3B1fMhtM.SX.L0WDarZh
+ nPoMYPpegkyD97yMs4AomVfmxMGHbP1GvY6d_GHXUUy4auENbEmTs1YymA7J7iyoQWwDGdW6g5V1
+ C.xLx_itN09.R.cP6v7OIArQjZzXIyQOsfnM7.x212204byEtvY3gxuyQG1pB4bmQ1JEbiFgPlzQ
+ XJ8YAgXDRgJC44c_NlBqxiGfEx5NTpKLOiMIW39LwIV10Ht7TQOUhI6FJ75wVdIAMABtbUXS9EN2
+ Edk80ao1jic82hiS7Cb519pAi066.pU.Vqujy7WM0_EHFPrska4gmmUGi9mNo4kqka9kOVsd2ZYg
+ iP_MFLE30z7rkNfHYkcyC1Sh_dFeXHnonGjE47kdO.fzXDz6xn1nz2kTh1WUJPN.q7giwTbjePoG
+ 6BtF6hIf7I.z0XO1RTdZ1MD_b8J6c4AdHFpDMGQz.jYKZmSFgqKO4MSCbqCNlI.n3LJCiFcGjzDO
+ tBNQVQriJJ0fFmv9QGtrpNxnm0b15r2DkG6nJaW6a_0Y.zOyUVVCTuYL.vqgMOhlpE0R.Sjge5cl
+ Cza3l6Ad_DEUx1yJnWM7jTZ.jKuP01CzfiYOvMTHHYn6aLdZwS.kIP3TuV1JL50vgkJ13oZ3dXTX
+ oJq4Q6gULZ18tuTgTioj2igkfsuKOKsRKSCXLWK4hqs5ja9Octq23Iym4t.QglT8HZeJ0oYXGxLf
+ ayXIcuHJz3B5KVhPsH5QcU1C3qcSzVSZ30nwi5Ab4P9kVLhwqOKZyI7Mk2AEMGpj.TVmTUL1GXbL
+ SlMxMW6Polw--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic317.consmr.mail.ne1.yahoo.com with HTTP; Wed, 30 Sep 2020 15:56:23 +0000
+Received: by smtp418.mail.gq1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
+ ID 8a38d755fdf2675bafdb143cab02cede; 
+ Wed, 30 Sep 2020 15:56:22 +0000 (UTC)
+Subject: Re: [PATCH 0/3] Add LSM/SELinux support for GPRS Tunneling Protocol
+ (GTP)
+To: Richard Haines <richard_c_haines@btinternet.com>,
+ Pablo Neira Ayuso <pablo@netfilter.org>
+Cc: selinux@vger.kernel.org, linux-security-module@vger.kernel.org,
+ osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org,
+ stephen.smalley.work@gmail.com, paul@paul-moore.com, laforge@gnumonks.org,
  jmorris@namei.org
-Date: Wed, 30 Sep 2020 13:25:27 +0100
-In-Reply-To: <20200930110153.GT3871@nataraja>
 References: <20200930094934.32144-1-richard_c_haines@btinternet.com>
- <20200930094934.32144-4-richard_c_haines@btinternet.com>
- <20200930110153.GT3871@nataraja>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+ <20200930101736.GA18687@salvia>
+ <0a5e4f19d7bb5c61985dece7614dc33329858f36.camel@btinternet.com>
+From: Casey Schaufler <casey@schaufler-ca.com>
+Message-ID: <c075cd58-983f-0386-4281-6ff1edb6920c@schaufler-ca.com>
+Date: Wed, 30 Sep 2020 08:56:22 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
+In-Reply-To: <0a5e4f19d7bb5c61985dece7614dc33329858f36.camel@btinternet.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Mailer: WebService/1.1.16718
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+ Apache-HttpAsyncClient/4.1.4 (Java/11.0.7)
 X-Mailman-Approved-At: Thu, 01 Oct 2020 08:39:59 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
@@ -78,57 +92,16 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-On Wed, 2020-09-30 at 13:01 +0200, Harald Welte wrote:
-> Hi Richard,
-> 
-> I don't fully understand in which context you need / use those
-> SELinux GTP hooks,
+On 9/30/2020 5:20 AM, Richard Haines wrote:
+> On Wed, 2020-09-30 at 12:17 +0200, Pablo Neira Ayuso wrote:
+> ....
+>> Why do you need this?
+> I don't actually have a use for this, I only did it out of idle
+> curiosity. If it is useful to the community then okay. Given the
+> attemped move to Open 5G I thought adding MAC support might be useful
+> somewhere along the line.
 
-As in the reply to Pablo, I did it for no particular reason other than
-idle curiosity, and given the attempted move to Open 5G I thought
-adding MAC support might be useful somewhere along the line.
-
-> however one comment from the point of view of somebody who is working
-> on GGSN/P-GW
-> software using the GTP kernel module:
-> 
-> On Wed, Sep 30, 2020 at 10:49:34AM +0100, Richard Haines wrote:
-> > +selinux_gtp_dev_cmd()
-> > +~~~~~~~~~~~~~~~~~~~~~
-> > +Validate if the caller (current SID) and the GTP device SID have
-> > the required
-> > +permission to perform the operation. The GTP/SELinux permission
-> > map is
-> > +as follow::
-> > +
-> > +    GTP_CMD_NEWPDP = gtp { add }
-> > +    GTP_CMD_DELPDP = gtp { del }
-> > +    GTP_CMD_GETPDP = gtp { get }
-> 
-> Wouldn't it make sense to differentiate between:
-> 
-> a) add/del/get on the GTP netdev
-> b) add/del/get on the indivudual PDP wihin the GTP netdev
-> 
-> 'a' is typically only created once at startup of a GGSN/P-GW
-> software, or is
-> done even at system stat-up time.
-> 
-> 'b' is performed frequently during runtime as the GGSN/P-GW function
-> runs, as
-> subscribers attach to / detach from the cellular network.
-> 
-> By differentiating between those two, one could further constrain the
-> permissions
-> required at runtime.
-
-Yes, at first I did separate them (add_dev, del_dev, add_pkt, del_pkt,
-get_pkt), so if this patchset goes anywhere then I can change it no
-problem. I guess the '*_pkt' permissions would cover PDP for 3G and PDR
-& FAR for 5G ?.
-I didn't implement 'get_dev' but thought it could be useful for
-retrieving the security context of a device, but that requires passing
-it back via netlink so thought I would leave it until later.
-
-> 
+I am not a fan of adding code that "might be useful someday".
+There's no way to determine if it's been done correctly and
+may interfere with a "real" implementation later.
 
