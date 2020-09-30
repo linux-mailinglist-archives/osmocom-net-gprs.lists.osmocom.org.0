@@ -1,47 +1,70 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
+Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
+	by mail.lfdr.de (Postfix) with ESMTP id 1E11427FBA2
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  1 Oct 2020 10:40:19 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id DA09A27EA18
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 30 Sep 2020 15:39:24 +0200 (CEST)
-Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 49D6E15D5F1;
-	Wed, 30 Sep 2020 13:39:16 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=gnumonks.org
+	by lists.osmocom.org (Postfix) with ESMTP id DE41F16061B;
+	Thu,  1 Oct 2020 08:40:04 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=pass (p=reject dis=none) header.from=btinternet.com
+Authentication-Results: lists.osmocom.org;
+	dkim=pass (2048-bit key; unprotected) header.d=btinternet.com header.i=@btinternet.com header.b=ONV17LLn
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
- envelope-from=laforge@gnumonks.org; receiver=<UNKNOWN> 
-Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=gnumonks.org
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
- [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
- by lists.osmocom.org (Postfix) with ESMTP id 522F815D5DF
- for <osmocom-net-gprs@lists.osmocom.org>; Wed, 30 Sep 2020 13:39:04 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
- (envelope-from <laforge@gnumonks.org>)
- id 1kNcJy-0000MR-98; Wed, 30 Sep 2020 15:39:02 +0200
-Received: from laforge by localhost.localdomain with local (Exim 4.94)
- (envelope-from <laforge@gnumonks.org>)
- id 1kNcJj-0010WT-W4; Wed, 30 Sep 2020 15:38:48 +0200
-Date: Wed, 30 Sep 2020 15:38:47 +0200
-From: Harald Welte <laforge@gnumonks.org>
-To: Richard Haines <richard_c_haines@btinternet.com>
-Cc: selinux@vger.kernel.org, linux-security-module@vger.kernel.org,
- osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org,
- stephen.smalley.work@gmail.com, paul@paul-moore.com,
- pablo@netfilter.org, jmorris@namei.org
-Subject: Re: [PATCH 3/3] selinux: Add SELinux GTP support
-Message-ID: <20200930133847.GD238904@nataraja>
+X-Greylist: delayed 9065 seconds by postgrey-1.37 at lists.osmocom.org;
+ Wed, 30 Sep 2020 12:20:44 UTC
+Authentication-Results: lists.osmocom.org; dmarc=pass (p=reject dis=none)
+ header.from=btinternet.com
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=213.120.69.35;
+ helo=sa-prd-fep-049.btinternet.com;
+ envelope-from=richard_c_haines@btinternet.com; receiver=<UNKNOWN> 
+Received: from sa-prd-fep-049.btinternet.com (mailomta29-sa.btinternet.com
+ [213.120.69.35])
+ by lists.osmocom.org (Postfix) with ESMTP id A27D515D534
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 30 Sep 2020 12:20:42 +0000 (UTC)
+Received: from sa-prd-rgout-001.btmx-prd.synchronoss.net ([10.2.38.4])
+ by sa-prd-fep-049.btinternet.com with ESMTP id
+ <20200930122042.JNQP4195.sa-prd-fep-049.btinternet.com@sa-prd-rgout-001.btmx-prd.synchronoss.net>;
+ Wed, 30 Sep 2020 13:20:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=btinternet.com;
+ s=btmx201904; t=1601468442; 
+ bh=N2PlVmDmQq+mimAvy1l4FC9v2FD6b1mekfDBGXdjrRw=;
+ h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:MIME-Version;
+ b=ONV17LLnDd9uTfWDWzzPPDMfwOcx1Edn+BRlkh/TPvl14XPepJ//qj9e4Wvyj7hDB3JVMREbKqbTjDau+Lac0ixEd2sYJwju6u/jcT4UOslSrmHRPmkEDgJy9dc5sLLeOgIfbCFvxCzsVrGdPVoNXOytPXvI1ssDV3bPyEPPY9j7BxM8I83DUGuHmgaKAmWbl7o5/CNjoG8zEtg9nv7THua5N/Y+FodaTqmRj8XFH6ynXLlht2yIoySzHeUh7aPhZnIugAD9UVBmT/hyJ+aD313K0ZUzzE2PdLj60Ls9prsYwlUEaZ4fdeIH6kIynfnRYQikY68ckAKeCAGr7Q/hfA==
+Authentication-Results: btinternet.com;
+ auth=pass (LOGIN) smtp.auth=richard_c_haines@btinternet.com
+X-Originating-IP: [81.141.56.129]
+X-OWM-Source-IP: 81.141.56.129 (GB)
+X-OWM-Env-Sender: richard_c_haines@btinternet.com
+X-VadeSecure-score: verdict=clean score=0/300, class=clean
+X-RazorGate-Vade: gggruggvucftvghtrhhoucdtuddrgedujedrfedvgdegkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemuceutffkvffkuffjvffgnffgvefqofdpqfgfvfenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkffuhffvffgjfhgtfggggfesthejredttderjeenucfhrhhomheptfhitghhrghrugcujfgrihhnvghsuceorhhitghhrghruggptggphhgrihhnvghssegsthhinhhtvghrnhgvthdrtghomheqnecuggftrfgrthhtvghrnhepteetveegheevieeifeekvdeiheejvedtieelfffffeevleeijeevvdejvdduudegnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfkphepkedurddugedurdehiedruddvleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhinhgvthepkedurddugedurdehiedruddvledpmhgrihhlfhhrohhmpeeorhhitghhrghruggptggphhgrihhnvghssegsthhinhhtvghrnhgvthdrtghomhequceuqfffjgepkeeukffvoffkoffgpdhrtghpthhtohepoehjmhhorhhrihhssehnrghmvghirdhorhhgqedprhgtphhtthhopeeolhgrfhhorhhgvgesghhnuhhmohhnkhhsrdhorhhgqedprhgtphhtthhopeeolhhinhhugidqshgvtghurhhithihqdhmohguuhhlvgesvhhgvghrrdhkvghrnhgvlhdrohhrgheqpdhr
+ tghpthhtohepoehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrgheqpdhrtghpthhtohepoehoshhmohgtohhmqdhnvghtqdhgphhrsheslhhishhtshdrohhsmhhotghomhdrohhrgheqpdhrtghpthhtohepoehprggslhhosehnvghtfhhilhhtvghrrdhorhhgqedprhgtphhtthhopeeophgruhhlsehprghulhdqmhhoohhrvgdrtghomheqpdhrtghpthhtohepoehsvghlihhnuhigsehvghgvrhdrkhgvrhhnvghlrdhorhhgqedprhgtphhtthhopeeoshhtvghphhgvnhdrshhmrghllhgvhidrfihorhhksehgmhgrihhlrdgtohhmqe
+X-RazorGate-Vade-Verdict: clean 0
+X-RazorGate-Vade-Classification: clean
+X-SNCR-hdrdom: btinternet.com
+Received: from localhost.localdomain (81.141.56.129) by
+ sa-prd-rgout-001.btmx-prd.synchronoss.net (5.8.340) (authenticated as
+ richard_c_haines@btinternet.com)
+ id 5ED99EC9137BA842; Wed, 30 Sep 2020 13:20:42 +0100
+Message-ID: <0a5e4f19d7bb5c61985dece7614dc33329858f36.camel@btinternet.com>
+Subject: Re: [PATCH 0/3] Add LSM/SELinux support for GPRS Tunneling Protocol
+ (GTP)
+From: Richard Haines <richard_c_haines@btinternet.com>
+To: Pablo Neira Ayuso <pablo@netfilter.org>
+Cc: selinux@vger.kernel.org, linux-security-module@vger.kernel.org, 
+ osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org, 
+ stephen.smalley.work@gmail.com, paul@paul-moore.com, laforge@gnumonks.org, 
+ jmorris@namei.org
+Date: Wed, 30 Sep 2020 13:20:41 +0100
+In-Reply-To: <20200930101736.GA18687@salvia>
 References: <20200930094934.32144-1-richard_c_haines@btinternet.com>
- <20200930094934.32144-4-richard_c_haines@btinternet.com>
- <20200930110153.GT3871@nataraja>
- <33cf57c9599842247c45c92aa22468ec89f7ba64.camel@btinternet.com>
+ <20200930101736.GA18687@salvia>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <33cf57c9599842247c45c92aa22468ec89f7ba64.camel@btinternet.com>
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 01 Oct 2020 08:39:59 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -57,48 +80,53 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Hi Richard,
+On Wed, 2020-09-30 at 12:17 +0200, Pablo Neira Ayuso wrote:
+> On Wed, Sep 30, 2020 at 10:49:31AM +0100, Richard Haines wrote:
+> > These patches came about after looking at 5G open source in
+> > particular
+> > the updated 5G GTP driver at [1]. As this driver is still under
+> > development, added the LSM/SELinux hooks to the current stable GTP
+> > version in kernel selinux-next [2]. Similar hooks have also been
+> > implemented in [1] as it uses the same base code as the current 3G
+> > version (except that it handles different packet types).
+> 
+> Yes, [1] looks like it is based on the existing 3G driver in the
+> Linux
+> tree.
 
-On Wed, Sep 30, 2020 at 01:25:27PM +0100, Richard Haines wrote:
+After a few fixes to [1], I now have the gtp5g version driver running
+on 5.9 with security hooks and passing their couple of tests.
 
-> As in the reply to Pablo, I did it for no particular reason other than
-> idle curiosity, and given the attempted move to Open 5G I thought
-> adding MAC support might be useful somewhere along the line.
+> 
+> > To test the 3G GTP driver there is an RFC patch for the selinux-
+> > testsuite
+> > at [3].
+> > 
+> > To enable the selinux-testsuite GTP tests, the libgtpnl [4] library
+> > and
+> > tools needed to be modified to:
+> > Return ERRNO on error to detect EACCES, Add gtp_match_tunnel
+> > function,
+> > Allow gtp-link to specify port numbers for multiple instances to
+> > run in the same namespace.
+> > 
+> > A patch for libgtpnl is supplied in the selinux-testsuite patch as
+> > well
+> > as setup/test instructions (libgtpnl is not packaged by Fedora)
+> > 
+> > These patches were tested on Fedora 32 with kernel [2] using the
+> > 'targeted' policy. Also ran the Linux Kernel GTP-U basic tests [5].
+> 
+> I don't remember to have seen anything similar in the existing tunnel
+> net_devices.
+> 
+> Why do you need this?
 
-thanks, I only saw your related mail earlier today.
+I don't actually have a use for this, I only did it out of idle
+curiosity. If it is useful to the community then okay. Given the
+attemped move to Open 5G I thought adding MAC support might be useful
+somewhere along the line.
 
-Unfortunately there's a lot of talk about "open source" in the context of 5G
-but as far as I can tell (and I'm involved in open source cellular full-time
-for a decade now) it's mostly marketing.  And if something is relased, it's
-some shared source license that doesn't pass the OSI OSD nor DFSG, ...
+> 
+> > [1] https://github.com/PrinzOwO/gtp5g
 
-In any case, this is off-topic here.
-
-I think it would not be the best idea to merge SELinux support patches for the
-GTP kernel driver without thoroughly understanding the use case, and/or having
-some actual userspace implementations that make use of them.  In the end, we may
-be introducing code that nobody uses, and which only turns out to be insufficient
-for what later actual users may want.
-
-So like Pablo suggested, it would probably be best to focus on
-submitting / merging features for things that are either well-defined (e.g.
-specified in a standerd), and/or have existing userspace implementations.
-
-> I guess the '*_pkt' permissions would cover PDP for 3G and PDR
-> & FAR for 5G ?.
-
-The permissions would probably cover those two items, yes.  As you
-probably know, we currently don't have any ability in the kernel GTP
-driver to map "external" IP traffic to TEID based on anything except the
-destination IP address.  This is sufficient for all 2G and 3G use cases,
-and should also cover many 4G use cases.  However, if you want to go for
-different dedicated bearers and QoS classes, for sure you need something
-more advanced in terms of classification of packets.
-
-Regards,
-	Harald
--- 
-- Harald Welte <laforge@gnumonks.org>           http://laforge.gnumonks.org/
-============================================================================
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
