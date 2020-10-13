@@ -1,56 +1,60 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
+Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
+	by mail.lfdr.de (Postfix) with ESMTP id 268F028D25C
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 13 Oct 2020 18:38:31 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 43ED328CF9D
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 13 Oct 2020 15:56:12 +0200 (CEST)
-Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id C89A81896DE;
-	Tue, 13 Oct 2020 13:56:04 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=paul-moore.com
+	by lists.osmocom.org (Postfix) with ESMTP id 4BA521897FF;
+	Tue, 13 Oct 2020 16:38:29 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=pass (p=reject dis=none) header.from=btinternet.com
 Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=paul-moore-com.20150623.gappssmtp.com header.i=@paul-moore-com.20150623.gappssmtp.com header.b=fsKgrx1n
+	dkim=pass (2048-bit key; unprotected) header.d=btinternet.com header.i=@btinternet.com header.b=RKTqQ+oO
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: None (mailfrom) identity=mailfrom;
- client-ip=2a00:1450:4864:20::544; helo=mail-ed1-x544.google.com;
- envelope-from=paul@paul-moore.com; receiver=<UNKNOWN> 
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none)
- header.from=paul-moore.com
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
- [IPv6:2a00:1450:4864:20::544])
- by lists.osmocom.org (Postfix) with ESMTP id A48B81896CB
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 13 Oct 2020 13:55:56 +0000 (UTC)
-Received: by mail-ed1-x544.google.com with SMTP id l16so21027686eds.3
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 13 Oct 2020 06:55:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paul-moore-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=2DKMoCh7i0xXAWOnYeO6FL9jlempYdRNzXVQVsNyqDY=;
- b=fsKgrx1nEp+1zchBFjTXcKd5V+R173W0PhVeHFHzr9UIGmX3MklhJFXn4qfqDfr9Wj
- M1q9af5G/pwZETq9WS174yp7qv8oxPxJDa5PtmhUiDPn1MYom3w2nac2S9MYTO+rn1gM
- 0+zDNYuAkmMqx0p0crmRnaFlMMNn0zlvO8I0gAmub3bgGzFzc8cUfeYIewe5hP+37f8D
- sDAzTfzD+/hytUKJl++0KWGnJFOLQr8YBmFtuOIvF311sMne2ArIczKOgqF6/6QXM0TJ
- O0drHevOIsrkeWKH1j5vXcCeQDElotKIrg/YMioV+/hZvXeEgJ6F8cO1eVJtOAF85FKA
- itSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=2DKMoCh7i0xXAWOnYeO6FL9jlempYdRNzXVQVsNyqDY=;
- b=MX4JHq0RCZ3MxmtbTYbMXrxOPTJNYHI8Vojsb6Bv5Id+6EBvI/3AdGRQtWzxlHyKKl
- 7xRVwllOvOk6udlZUHzYaSvB7r1d3XLFIodT++Q1ayJokQGM756d/Ai0UEMKVgfaX3Gv
- i3IVS8yj88Xd2SUvHBfZagPlll6WeTTuurQotBYI82+UItsQQMW5PXKfizp/gpe9Mjlp
- hA1ovFPc/MKCZL8AOVEL7sP0g/iwKxPC9QMCMosJGXKRegx65Fzjvd8LZVSi58N2LKjb
- ROkFB3CDM3NKyiA+b+fSTbEujc7PoO9bTquG+EHaRRxjW7UmHPLGYuuPMdnWAMwgNXya
- 95/A==
-X-Gm-Message-State: AOAM533/jMkLYCQo2GVzrX080not/gmtzu84KMME9pYMDIc1VEgey6RU
- hFyRTM1g1NY5toOozzP1cV/4jui6QFJzPXyBEvUZobXCrAbJ
-X-Google-Smtp-Source: ABdhPJz4mWBTImguVLP1oOYwD74t1j+Rz05Yi+H2J8qQGgIbt2DJB2D6fzj+alkUR+BDXvSGkJshtQiiAMzkKwjckkw=
-X-Received: by 2002:a17:906:c444:: with SMTP id
- ck4mr31616284ejb.398.1602597352084; 
- Tue, 13 Oct 2020 06:55:52 -0700 (PDT)
-MIME-Version: 1.0
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=213.120.69.11;
+ helo=sa-prd-fep-047.btinternet.com;
+ envelope-from=richard_c_haines@btinternet.com; receiver=<UNKNOWN> 
+Authentication-Results: lists.osmocom.org; dmarc=pass (p=reject dis=none)
+ header.from=btinternet.com
+Received: from sa-prd-fep-047.btinternet.com (mailomta5-sa.btinternet.com
+ [213.120.69.11])
+ by lists.osmocom.org (Postfix) with ESMTP id 3BCEB1897ED
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 13 Oct 2020 16:38:24 +0000 (UTC)
+Received: from sa-prd-rgout-004.btmx-prd.synchronoss.net ([10.2.38.7])
+ by sa-prd-fep-047.btinternet.com with ESMTP id
+ <20201013163824.GNHU4609.sa-prd-fep-047.btinternet.com@sa-prd-rgout-004.btmx-prd.synchronoss.net>;
+ Tue, 13 Oct 2020 17:38:24 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=btinternet.com;
+ s=btmx201904; t=1602607104; 
+ bh=wACf3Mpnrb86ay9KbtonDAJZf/90XXOvVorm3FbySaE=;
+ h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:MIME-Version;
+ b=RKTqQ+oOwL2NjtW18VBTcqLkuibQyXNmit/VqWooqgrxDhlXqqR9HB16m5ApYY6/p3NWlrhrJQZ7cafem+mRbGty2Mgm+tdakbKjU5EJWx3TBsuxKk5sasRL9ktyzUKSzP+s3iToVhgrAgx5xWwfNqx5NwAuLgnZWmj1u7hYh1zMwPmxnwoMbfYxHZl12GyIZq7pYtnZsHYqUKySdjUm+1m5NRabDC1qoL+1lfL6Ef9mCEic6FnIrfzD/scYIHmShqf/ubz41UPPmR7/gjei/kBd8lSNmvw8Z2Yqaf24W8ltPY98rM5C8AKlX1WZcfKbwsggFkJih+BepUdWNuiZBg==
+Authentication-Results: btinternet.com;
+ auth=pass (LOGIN) smtp.auth=richard_c_haines@btinternet.com
+X-Originating-IP: [81.147.56.93]
+X-OWM-Source-IP: 81.147.56.93 (GB)
+X-OWM-Env-Sender: richard_c_haines@btinternet.com
+X-VadeSecure-score: verdict=clean score=0/300, class=clean
+X-RazorGate-Vade: gggruggvucftvghtrhhoucdtuddrgedujedrheelgddutdegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuueftkffvkffujffvgffngfevqffopdfqfgfvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkuffhvfffjghftggfggfgsehtjeertddtreejnecuhfhrohhmpeftihgthhgrrhguucfjrghinhgvshcuoehrihgthhgrrhgupggtpghhrghinhgvshessghtihhnthgvrhhnvghtrdgtohhmqeenucggtffrrghtthgvrhhnpeetteevgeehveeiieefkedvieehjeevtdeileffffefveelieejvedvjedvuddugeenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppeekuddrudegjedrheeirdelfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhinhgvthepkedurddugeejrdehiedrleefpdhmrghilhhfrhhomhepoehrihgthhgrrhgupggtpghhrghinhgvshessghtihhnthgvrhhnvghtrdgtohhmqecuuefqffgjpeekuefkvffokffogfdprhgtphhtthhopeeojhhmohhrrhhishesnhgrmhgvihdrohhrgheqpdhrtghpthhtohepoehlrghfohhrghgvsehgnhhumhhonhhkshdrohhrgheqpdhrtghpthhtohepoehlihhnuhigqdhsvggtuhhrihhthidqmhhoughulhgvsehvghgvrhdrkhgvrhhnvghlrdhorhhgqedprhgt
+ phhtthhopeeonhgvthguvghvsehvghgvrhdrkhgvrhhnvghlrdhorhhgqedprhgtphhtthhopeeoohhsmhhotghomhdqnhgvthdqghhprhhssehlihhsthhsrdhoshhmohgtohhmrdhorhhgqedprhgtphhtthhopeeophgrsghlohesnhgvthhfihhlthgvrhdrohhrgheqpdhrtghpthhtohepoehprghulhesphgruhhlqdhmohhorhgvrdgtohhmqedprhgtphhtthhopeeoshgvlhhinhhugiesvhhgvghrrdhkvghrnhgvlhdrohhrgheqpdhrtghpthhtohepoehsthgvphhhvghnrdhsmhgrlhhlvgihrdifohhrkhesghhmrghilhdrtghomheq
+X-RazorGate-Vade-Verdict: clean 0
+X-RazorGate-Vade-Classification: clean
+X-SNCR-hdrdom: btinternet.com
+Received: from localhost.localdomain (81.147.56.93) by
+ sa-prd-rgout-004.btmx-prd.synchronoss.net (5.8.340) (authenticated as
+ richard_c_haines@btinternet.com)
+ id 5ED9B66115DDE5BF; Tue, 13 Oct 2020 17:38:24 +0100
+Message-ID: <77226ae9dc60113d1953c1f957849d6460c5096f.camel@btinternet.com>
+Subject: Re: [PATCH 3/3] selinux: Add SELinux GTP support
+From: Richard Haines <richard_c_haines@btinternet.com>
+To: Paul Moore <paul@paul-moore.com>, Harald Welte <laforge@gnumonks.org>
+Cc: pablo@netfilter.org, selinux@vger.kernel.org, 
+ linux-security-module@vger.kernel.org, osmocom-net-gprs@lists.osmocom.org, 
+ netdev@vger.kernel.org, Stephen Smalley <stephen.smalley.work@gmail.com>, 
+ James Morris <jmorris@namei.org>
+Date: Tue, 13 Oct 2020 17:38:16 +0100
+In-Reply-To: <CAHC9VhTrSBsm-qVh95J2SzUq5=_pESwTUBRmVSjXOoyG+97jYA@mail.gmail.com>
 References: <20200930094934.32144-1-richard_c_haines@btinternet.com>
  <20200930094934.32144-4-richard_c_haines@btinternet.com>
  <20200930110153.GT3871@nataraja>
@@ -58,18 +62,11 @@ References: <20200930094934.32144-1-richard_c_haines@btinternet.com>
  <20200930133847.GD238904@nataraja>
  <CAHC9VhT5HahBhow0RzWHs1yAh5qQw2dZ-3vgJv5GuyFWrXau1A@mail.gmail.com>
  <20201012093851.GF947663@nataraja>
-In-Reply-To: <20201012093851.GF947663@nataraja>
-From: Paul Moore <paul@paul-moore.com>
-Date: Tue, 13 Oct 2020 09:55:40 -0400
-Message-ID: <CAHC9VhTrSBsm-qVh95J2SzUq5=_pESwTUBRmVSjXOoyG+97jYA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] selinux: Add SELinux GTP support
-To: Harald Welte <laforge@gnumonks.org>
-Cc: pablo@netfilter.org, Richard Haines <richard_c_haines@btinternet.com>, 
- selinux@vger.kernel.org, linux-security-module@vger.kernel.org, 
- osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org, 
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- James Morris <jmorris@namei.org>
+ <CAHC9VhTrSBsm-qVh95J2SzUq5=_pESwTUBRmVSjXOoyG+97jYA@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,31 +82,55 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-On Mon, Oct 12, 2020 at 5:40 AM Harald Welte <laforge@gnumonks.org> wrote:
->
-> Hi Paul,
->
-> On Sun, Oct 11, 2020 at 10:09:11PM -0400, Paul Moore wrote:
-> > Harald, Pablo - I know you both suggested taking a slow iterative
-> > approach to merging functionality, perhaps you could also help those
-> > of us on the SELinux side better understand some of the common GTP use
-> > cases?
->
-> There really only is one use case for this code:  The GGSN or P-GW function
-> in the 3GPP network architecture ...
->
-> Hope this helps,
->         Harald
+On Tue, 2020-10-13 at 09:55 -0400, Paul Moore wrote:
+> On Mon, Oct 12, 2020 at 5:40 AM Harald Welte <laforge@gnumonks.org>
+> wrote:
+> > Hi Paul,
+> > 
+> > On Sun, Oct 11, 2020 at 10:09:11PM -0400, Paul Moore wrote:
+> > > Harald, Pablo - I know you both suggested taking a slow iterative
+> > > approach to merging functionality, perhaps you could also help
+> > > those
+> > > of us on the SELinux side better understand some of the common
+> > > GTP use
+> > > cases?
+> > 
+> > There really only is one use case for this code:  The GGSN or P-GW
+> > function
+> > in the 3GPP network architecture ...
+> > 
+> > Hope this helps,
+> >         Harald
+> 
+> It does, thank you.
+> 
+> It looks like this patchset is not really a candidate for merging in
+> its current form, but I didn't want to lose this information (both
+> the
+> patches and Harald's comments) so I created a GH issue to track this
+> at the URL below.
+> 
+> * https://github.com/SELinuxProject/selinux-kernel/issues/54
+> 
 
-It does, thank you.
+While I was not expecting these patches to be excepted for the current
+version, the main aim was to see what LSM security services could be
+implemented on possible 5G components, bearing in mind the DARPA Open
+Programmable Secure 5G (OPS-5G) initiative (probably 'jumping the gun'
+here a bit though). 
 
-It looks like this patchset is not really a candidate for merging in
-its current form, but I didn't want to lose this information (both the
-patches and Harald's comments) so I created a GH issue to track this
-at the URL below.
+There is in development a 5G version of GTP at [1]. I have added the
+enhanced hooks to this (plus retrieve contexts via call-backs etc.),
+and have it running on 5.9, passing their tests. I'm not sure how far
+this development will go, but a starter ??.
 
-* https://github.com/SELinuxProject/selinux-kernel/issues/54
+The other component that seems to be widely used in these systems is
+SCTP that I added hooks to a few years ago, also TCP/UDP etc. that are
+already well catered for. Also there would be a large amount of
+userspace code ....
 
--- 
-paul moore
-www.paul-moore.com
+Anyway food for thought.
+
+[1] https://github.com/PrinzOwO/gtp5g
+
+
