@@ -1,49 +1,61 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
+Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
+	by mail.lfdr.de (Postfix) with ESMTP id 353B6294960
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 21 Oct 2020 10:35:40 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AA1428FC40
-	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 16 Oct 2020 03:32:14 +0200 (CEST)
-Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id B09D018D25D;
-	Fri, 16 Oct 2020 01:32:07 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=fail (p=none dis=none) header.from=fe80.eu
+	by lists.osmocom.org (Postfix) with ESMTP id A42CF195A01;
+	Wed, 21 Oct 2020 08:35:32 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: lists.osmocom.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=fe80.eu header.i=@fe80.eu header.b=jBxu4boF
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=CEonMAol
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2001:67c:2050:320::77; helo=mail.base45.de;
- envelope-from=lynxis@fe80.eu; receiver=<UNKNOWN> 
+ client-ip=2607:f8b0:4864:20::836; helo=mail-qt1-x836.google.com;
+ envelope-from=ejeakaz@gmail.com; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=fe80.eu
-Received: from mail.base45.de (mail.base45.de [IPv6:2001:67c:2050:320::77])
- by lists.osmocom.org (Postfix) with ESMTP id 9431818D247
- for <osmocom-net-gprs@lists.osmocom.org>; Fri, 16 Oct 2020 01:32:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fe80.eu;
- s=20190804; h=Content-Type:MIME-Version:Message-ID:Subject:To:From:Date:
- Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=D1suJFbUn9JPoVt+0mt546evcgvuC1BZRcYZMpmZ7hE=; b=jBxu4boFah3GunTSdSaDJpYjck
- ho1l/ZsdTrq44qr+7alfTyW1Sdrd6/Q7wG3QfwWKTjkbxztMWalKzN+t+AxYaGa4mGdj9r2FQbQmB
- YmmVnLmDDOkg7IKmz9jeVzd2t9PW47LezIx8/TdYw1NWYLi6cd5z0WoUqvdzH2JEVpNRDIAXMB1V0
- 9B2QN0jvK/d9F3gvMfGYEtsdEFb0xlI+ABAEmRieBA9Cw5L74iRC55NoG7s4ahZ25yKyxsbJ2+mFs
- 9EfQoIL3SWWX+XJepx2xtaXKgU9A7eNiiTIQSEg6lFQaIq9kRDEbjxsKfVi6U6KqfNvVGAoI8MwIX
- 59N8o6Yg==;
-Received: from [92.206.250.226] (helo=lazus.yip)
- by mail.base45.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <lynxis@fe80.eu>) id 1kTEbB-0000oo-4h
- for osmocom-net-gprs@lists.osmocom.org; Fri, 16 Oct 2020 01:32:01 +0000
-Date: Fri, 16 Oct 2020 03:31:55 +0200
-From: Alexander 'lynxis' Couzens <lynxis@fe80.eu>
-To: osmocom-net-gprs@lists.osmocom.org
-Subject: [RFC] NS VTY interface
-Message-ID: <20201016033155.17172a96@lazus.yip>
+ dmarc=pass (p=none dis=none) header.from=gmail.com
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com
+ [IPv6:2607:f8b0:4864:20::836])
+ by lists.osmocom.org (Postfix) with ESMTP id 2BEEE194DCE
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 20 Oct 2020 19:19:04 +0000 (UTC)
+Received: by mail-qt1-x836.google.com with SMTP id j62so2113179qtd.0
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 20 Oct 2020 12:19:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=Zz2JkaE4HLxsBFqGVX9rvA3hzlJK04XDyrxxDSWuwXE=;
+ b=CEonMAol5+LJtkTBy862+ZsVmiOyrBnhysrlyC4txt16Zpq1yaFHDfjsVYPKaj6k/9
+ U5CfouO9zwu4nVQyCMw2+/gU//r4CBGMSMy7il6F7AjOnC3t48ecC9bKonG5R78jZUQg
+ Dqu1h7P5QQSBWsjELUWaX3MmqA11eLoo7VEpf9czdOe4f1fHhAmGekwKdUwP54XCXu3Y
+ L1QZrltknODq31z+jGRk5X6Sr0osk3euqfmEX9Pw4hXrHFJ76W+8MDcz8d3OLh6VgdRS
+ qtT0A4WtKtwIrfn31w9iM1cbsPOaqTLERpUnJUpcel33RrigCmdVcd9Tt+B3/lwukL44
+ QGvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=Zz2JkaE4HLxsBFqGVX9rvA3hzlJK04XDyrxxDSWuwXE=;
+ b=kGEuAxnV0zD3wqX8Ks+R4K7syqvKfGIzlo5PKTl6sVwt/tKnJaBOlfGPEESyzmmD2t
+ NUbeKLeJPPYm0knv51MB+AgnWT2ZdEaxtKuS+5rAO5d5XviX2G415jpfHdGX+ERA/lBL
+ BAmCFQ2SbDm1LvSASKomVrPsJTfrniWpIrrge2qI25ak2ZgZzr7zDiIfYrj20s94zspP
+ z6yA1uKWVn5WzLCWeL3eRbsz4OtWJ6/qZf4Nt93QC0mkDciVJ9pYDWcFJLJ746iGLrWG
+ VW+cooo9NmCf64aMwaGFuimX6C6h5Gw6xiU6IP+SITU3rzuBJp18Y0z1a3VBSCyEteb0
+ 6itw==
+X-Gm-Message-State: AOAM5316EM7hXbiEHgMq7nV/OU0VskUsXK+84BPq3XYqCiy+IxdQPEC3
+ wNRMb4kpmWW2by8loIgHGpcC3t2700yGB0+IRPpAKdH1CEnA5w==
+X-Google-Smtp-Source: ABdhPJxonY0CLC5hRqidgi3BpsUoUPdLFXZiJwWKaUUR6RlRDU5uOZNk12NDDkpKwuFR0j7gmx0B4Ym0DcqlqSnvcKc=
+X-Received: by 2002:a05:622a:104:: with SMTP id
+ u4mr3910941qtw.163.1603221543682; 
+ Tue, 20 Oct 2020 12:19:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/c_10IjBBze3FKd6CySqY6Wp";
- protocol="application/pgp-signature"; micalg=pgp-sha512
+From: Jean-Marc Katembwe <ejeakaz@gmail.com>
+Date: Tue, 20 Oct 2020 21:18:52 +0200
+Message-ID: <CABrMUE5i+8tkibSd+AYuHkiwVavUtKxazxOkvKGgXhup3BrV_Q@mail.gmail.com>
+Subject: IPv6 PDP type support
+To: osmocom-net-gprs@lists.osmocom.org
+Content-Type: multipart/alternative; boundary="0000000000009b865005b21f1ac7"
+X-Mailman-Approved-At: Wed, 21 Oct 2020 08:35:28 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -59,138 +71,25 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
---Sig_/c_10IjBBze3FKd6CySqY6Wp
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+--0000000000009b865005b21f1ac7
+Content-Type: text/plain; charset="UTF-8"
 
 Hi,
+I would like to know if the current OsmoSGSN version can support IPv6 PDP
+type.
+Thanks,
+Jean-Marc
 
-with the new NS2 code [1] the vty keep compatible. However the new NS2
-code is more flexible and support more use cases except the old vty
-doesn't allow it.
+--0000000000009b865005b21f1ac7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I've created an osmocom ticket [2] to experiment and write a draft of
-the new VTY commands.
-I would be nice if you can give me some feedback here.
+<div dir=3D"ltr"><font face=3D"verdana, sans-serif">Hi,</font><div><font fa=
+ce=3D"verdana, sans-serif">I would like to know if the current=C2=A0<span s=
+tyle=3D"color:rgb(51,51,51);font-size:12px">OsmoSGSN version can support IP=
+v6 PDP type.</span></font></div><div><span style=3D"color:rgb(51,51,51);fon=
+t-size:12px"><font face=3D"verdana, sans-serif">Thanks,</font></span></div>=
+<div><span style=3D"color:rgb(51,51,51);font-size:12px"><font face=3D"verda=
+na, sans-serif">Jean-Marc</font></span></div></div>
 
-Best,
-lynxis
-
-[1] NS <> NS2. it's still the same protocol, just a second
-implementation of NS.
-
-[2] https://osmocom.org/issues/4770
-
-new vty example:
-
-1.1. sgsn with udp bind - ipa style
-1.2. sgsn with udp bind - with persistent nsvc
-1.3. sgsn with sns listen on all interfaces
-1.4. sgsn with sns listen on specific interface
-1.5. sgsn with fr
-
-2.1. TODO: pcu with binds to use when receiving info ind
-2.2. TODO: pcu with static configuration
-
-<pre>
-;; 1.1. sgsn with udp bind - dynamic with ipa style
-
-ns
- bind udp some
-  listen 192.168.0.2 23000
-  allow-block-reset-nsvci
-</pre>
-
-<pre>
-;; 1.2. sgsn with udp bind - no dynamic connection - only vty
-configured NSE (persistent)
-
-ns
- bind udp some
-  listen 192.168.0.2 23000
- nsei 1001
-  nsvc udp some 10.0.1.2 23000
-</pre>
-
-<pre>
-;; 1.2. sgsn with udp bind - no dynamic connection - only vty
-configured NSE (persistent)
-
-ns
- bind udp some
-  listen 192.168.0.2 23000
- bind udp other
-  listen 192.168.1.2 23000
- nsei 1001
-  ;; will use all bindings
-  nsvc udp * 10.0.1.2 23000
- nsei 1002
-  nsvc udp other 10.0.1.3 23000
-  nsvc udp some 10.0.1.3 23000
-</pre>
-
-<pre>
-;; 1.3. sgsn with sns listen on all interfaces
-ns
- bind udp some
-  listen 192.168.0.2 23000
-  allow-sns group all
- bind udp other
-  listen 192.168.1.2 23000
-  allow-sns group all
-</pre>
-
-<pre>
-;; 1.4. sgsn with sns listen on specific interface
-
-ns
- bind udp some
-  listen 192.168.0.2 23000
-  allow-sns group alice
- bind udp other
-  listen 192.168.1.2 23000
-  allow-sns group bob
-</pre>
-
-<pre>
-;; 1.5. sgsn with fr
-
-fr
- link hdlc1
- link hdlc2
-
-ns
- nsei 1002
-  nsvc fr hdlc1 dlci 10
-  nsvc fr hdlc2 dlci 10
-</pre>
-
---=20
-Alexander Couzens
-
-mail: lynxis@fe80.eu
-jabber: lynxis@fe80.eu
-gpg: 390D CF78 8BF9 AA50 4F8F  F1E2 C29E 9DA6 A0DF 8604
-
---Sig_/c_10IjBBze3FKd6CySqY6Wp
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEOQ3PeIv5qlBPj/Hiwp6dpqDfhgQFAl+I+AsACgkQwp6dpqDf
-hgQyRQ/+JG/6xGvxBVqEX4pjQdRpGOBxWWrLcT48usw/uHC4RCdAc1PpZ6sfj4Zh
-/XvoBse4nQsfyORZBY+n34JUGU5cOzq7ZqIX9xvBZi6tpJf4JUJ513HreasHr42g
-+kBH9KLXOvD+MeqWGht+43N7uE1VJRLf9o1SevJvPh400mzjgp02fszLcwxsMqAJ
-tlJsVw58NocsXRADsziKvEzSyZ1r3Hw7axCgpkAo1XJxzdjVOGYyREf/t7W/2e3p
-hXLUEJT1dxZu0JN6TC6szgpMu0AWbMHBIi2/P3OloLZgmPh29+0PQloLY67Kb+mK
-FZlgSqIs5a20VYxc8O5l0w43b/++PlgifNf0z3EshSEKvGpwMdlPAPVsro4V1FNt
-0GEmv8rvOJC8B3JSF5ZW2iaBZQdgspZUgrSL6EB0G0/szIVMfYiNXwTorn54tzeC
-m5ghRIqJdtjISPCngm7QdHuMyU7qH8nH73MOsvrvP3GgrB9WlIMVw/2PVncbwzus
-Ei21dwZO9ifxUVbddfTj8OLXN+QfpzrVPbN4b/1sFg4GSyVdvM33UGOnPQ1zLuTt
-zRixMz0CujxivqBFmKNG5ZkgEpSqokWDZ9nL6Gl+GXZb21IRtbghOZL1YbYlIrFM
-QAgJodJh17iaQ8wxYxMfh+i8yteO3m9ExLuHFydRqLJrj37tl5w=
-=O+vb
------END PGP SIGNATURE-----
-
---Sig_/c_10IjBBze3FKd6CySqY6Wp--
+--0000000000009b865005b21f1ac7--
