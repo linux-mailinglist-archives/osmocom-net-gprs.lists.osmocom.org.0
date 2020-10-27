@@ -2,59 +2,58 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id D674729AAB7
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 27 Oct 2020 12:30:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB6FA29AB22
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 27 Oct 2020 12:49:26 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 9118B1A0830;
-	Tue, 27 Oct 2020 11:30:44 +0000 (UTC)
+	by lists.osmocom.org (Postfix) with ESMTP id BEEAA1A0884;
+	Tue, 27 Oct 2020 11:49:22 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=pFRPSL+G
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=fDFh/AAh
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2607:f8b0:4864:20::1044; helo=mail-pj1-x1044.google.com;
+ client-ip=2607:f8b0:4864:20::541; helo=mail-pg1-x541.google.com;
  envelope-from=fujiwara.masahiro@gmail.com; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
  dmarc=pass (p=none dis=none) header.from=gmail.com
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com
- [IPv6:2607:f8b0:4864:20::1044])
- by lists.osmocom.org (Postfix) with ESMTP id 112EB1A0816
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 27 Oct 2020 11:30:34 +0000 (UTC)
-Received: by mail-pj1-x1044.google.com with SMTP id g16so622452pjv.3
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 27 Oct 2020 04:30:34 -0700 (PDT)
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com
+ [IPv6:2607:f8b0:4864:20::541])
+ by lists.osmocom.org (Postfix) with ESMTP id 1C96B1A0871
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 27 Oct 2020 11:49:17 +0000 (UTC)
+Received: by mail-pg1-x541.google.com with SMTP id h6so644231pgk.4
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 27 Oct 2020 04:49:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=mgmaXaSSxDiV1b+vN33kB7/M7evqK+m/IRdQHJNh9jk=;
- b=pFRPSL+GSCzBQDKauwbGT6fQCTggPxcs6myOc39+QrHiAEc6OuJx36gjiOuDt6wAmc
- oLgBdbCAMFPK315jRpNz5EpcvNVfgX1MBVloYI1s1Pdr51JyqVRQx9ee1F94TNlYb8Bx
- ErXcZ1iUTwVyFIas59jyygcX+hXBjHq07yvxpnkB9drXLXIOUG1YEjHe2Yng5c32szOE
- gThDTkEcGAenGz4hq7uC3LREMabLk1fUJYMk5i/ceAUNlUsv5hoeXbk2Rc1S+0YSSvek
- zEU11/PBq4nJtK6D2qlrSPF8DzvMNKDAt7NEYvGfVKjqncdUSIuh91klphYhGj0nsdt4
- iVBw==
+ bh=rk5GCZpD9PCj2iyqscZfor3nW5DfrrFKBppKxz2Jmb0=;
+ b=fDFh/AAhwP0W04FLbvoHj52pYu3vB3Z88L2TXS56y4zF+4xOHAxxmkIRfJethc5FYj
+ aYgEOesBInYainijVgDBiBYJJBSBnZ7UF/h88bMqR/kKnVjI3WrwveoWPfFJfNXfL1nY
+ ujVW5iPaAO7pM2IfA9Vgh/G7iMVaDVzTfNraWWpPNXB6sVq/OHchKlysFihzVO8DINpw
+ RvdEBOl/qj7g1XIBHTy3dMxRU4+UTGlp+DWTTzmK50WVu9xFqDVjpTNCOk3j/A0vJUkD
+ tksNVgKwwoG8fJM5TmUyymappf/dZLGWNoBht71b30tv+H6F46cHLPW7c7FkIbRgUS69
+ wXfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=mgmaXaSSxDiV1b+vN33kB7/M7evqK+m/IRdQHJNh9jk=;
- b=UYCV9vTuvOknAxULMB2PAcmKmzZMFb6ERg+nbLmn+ZgjNJPv7EkiRpjUmTgSXvEgII
- hFr0g74UHY2NigOyt+PuEs42xNjdJY5Z312XIrM1caEL6maql/mpol8qblBYqURusM72
- nQrOWH5yQcr5aqy6RZNaynxlujGfywUBoYJlq4Alz3mLdk3enXSDkqEgABGP+8tTH88W
- uvyJG94a+eXRIPpsQYnE/ZEeuQvyu63QapR0BgwEn5OsVb3hhx2V3Hj99EZiTAEiyhRm
- 6gRtZa7hdSDBw6ikXjDx95dh4YGsWtekNrNPy10gbRJnm9ZOLrvCdT/fOhfBVOUgIHLp
- VegQ==
-X-Gm-Message-State: AOAM5306qUK0mXFu4VHZnB4Q2k9EGM/RJbmFhBGPHdKyKImjh5b+0Yzt
- AgViyiMgeGebORFZu01voAk=
-X-Google-Smtp-Source: ABdhPJwsqWSwXmygTrmntcqynMZDWqdNru0B16qHE/XYS3+TXU2exIp7TDeoTYcfbjfH8CjS6AuBQA==
-X-Received: by 2002:a17:902:7046:b029:d5:a5e3:4701 with SMTP id
- h6-20020a1709027046b02900d5a5e34701mr1819449plt.57.1603798233456; 
- Tue, 27 Oct 2020 04:30:33 -0700 (PDT)
-Received: from lte-devbox.localdomain (KD106154081201.au-net.ne.jp.
- [106.154.81.201])
- by smtp.googlemail.com with ESMTPSA id v1sm1536951pjt.2.2020.10.27.04.30.29
+ bh=rk5GCZpD9PCj2iyqscZfor3nW5DfrrFKBppKxz2Jmb0=;
+ b=cmRnbtiE1rwI7lDixgsyeyQzmLEirhiR3eieb71+LxwimqqsAvCWb6uHN/Cr7bgqp6
+ pHlLt6iQ0LZkaJcaCH43IKPDoB8rUbiejQfHjrZ51bBxGIfgfGKhoGiC08qY8GPpFI47
+ IulanQEhTBTNObmrKd33+dEI4u66sttgLQ5cYW80o43JQHHzvkYpLS5qFnW1/CYvWOmh
+ Q32cAnS0OoWEpzcSu/1S8E5RR4+lVrDyRi9HAixm1w7QnT2vcgZmH33waGaI5KHqSDSG
+ z0o31Nug6HJKQGBbQQAArD8VP53Pk/iGNjeBXzXjlFJ4SiazaZbN6j+b95NsND1tzWnp
+ 51wQ==
+X-Gm-Message-State: AOAM532+7Zi3dWldGsP+iSAdeipjzYNaKU1T/YHSZ5UdTcmkamxxxhme
+ uNBUEWFGhMCZgP+voPTpWRU=
+X-Google-Smtp-Source: ABdhPJxKev2KUWiebl9RTKYGaGqAMLRldMwQYqeZ6injRTwGOuZyeQ+1DBykfREtgV3hW3z4PgzmWw==
+X-Received: by 2002:a63:fc09:: with SMTP id j9mr1517574pgi.388.1603799356430; 
+ Tue, 27 Oct 2020 04:49:16 -0700 (PDT)
+Received: from lte-devbox.localdomain (KD106154098026.au-net.ne.jp.
+ [106.154.98.26])
+ by smtp.googlemail.com with ESMTPSA id n19sm2082760pfu.24.2020.10.27.04.49.13
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 27 Oct 2020 04:30:32 -0700 (PDT)
+ Tue, 27 Oct 2020 04:49:15 -0700 (PDT)
 From: Masahiro Fujiwara <fujiwara.masahiro@gmail.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>,
  Harald Welte <laforge@gnumonks.org>
@@ -62,9 +61,9 @@ Cc: fujiwara.masahiro@gmail.com, "David S. Miller" <davem@davemloft.net>,
  Jakub Kicinski <kuba@kernel.org>, Andreas Schultz <aschultz@tpip.net>,
  osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v3] gtp: fix an use-before-init in gtp_newlink()
-Date: Tue, 27 Oct 2020 20:30:21 +0900
-Message-Id: <20201027113021.3581-1-fujiwara.masahiro@gmail.com>
+Subject: [PATCH v3 net] gtp: fix an use-before-init in gtp_newlink()
+Date: Tue, 27 Oct 2020 20:48:46 +0900
+Message-Id: <20201027114846.3924-1-fujiwara.masahiro@gmail.com>
 X-Mailer: git-send-email 2.24.3
 In-Reply-To: <20201026114633.1b2628ae@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
 References: <20201026114633.1b2628ae@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
@@ -106,10 +105,6 @@ Call Trace:
 
 gtp_encap_enable() should be called after gtp_hastable_new() otherwise
 *_pdp_find() will access the uninitialized hash table.
-
-v2:
- - Leave out_hashtable: label for clarity (Jakub).
- - Fix code and comment styles.
 
 Fixes: 1e3a3abd8b28 ("gtp: make GTP sockets in gtp_newlink optional")
 Signed-off-by: Masahiro Fujiwara <fujiwara.masahiro@gmail.com>
