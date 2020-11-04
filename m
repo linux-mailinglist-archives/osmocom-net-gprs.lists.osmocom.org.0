@@ -2,84 +2,70 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 186842A7937
-	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  5 Nov 2020 09:28:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E81A2A793B
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  5 Nov 2020 09:28:13 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id DA86718C5E1;
-	Thu,  5 Nov 2020 08:28:02 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	by lists.osmocom.org (Postfix) with ESMTP id 09E4018C5E6;
+	Thu,  5 Nov 2020 08:28:06 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=zx2c4.com
 Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=Gfkh6YfC
+	dkim=pass (2048-bit key; unprotected) header.d=zx2c4.com header.i=@zx2c4.com header.b=YZ0TuiB2
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2a00:1450:4864:20::42f; helo=mail-wr1-x42f.google.com;
- envelope-from=hkallweit1@gmail.com; receiver=<UNKNOWN> 
+X-Greylist: delayed 400 seconds by postgrey-1.37 at lists.osmocom.org;
+ Wed, 04 Nov 2020 19:53:15 UTC
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=gmail.com
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by lists.osmocom.org (Postfix) with ESMTP id 1953218B592
- for <osmocom-net-gprs@lists.osmocom.org>; Wed,  4 Nov 2020 14:31:47 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id y12so22263752wrp.6
- for <osmocom-net-gprs@lists.osmocom.org>; Wed, 04 Nov 2020 06:31:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:from:to:cc:references:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=K0xwbWgfzNb+siGOnTIoHV8a22y8LDX4Jm2bW67sNRs=;
- b=Gfkh6YfCE72+ydlSJ/wl7fWmXAUOkTbF24ca29DtpQjcRnzH2tuzCLv3xTT37WI3E1
- ADY32e7KnYdz09JC2n7Ffr6URAzF0HDjz3MxA71JqOiTjEJKepuLYN7K9nZmvk90RRF5
- bZvEQXcMAZxU5w4Fq/D2ZYzLxto9L/ffmiYoUHwmxRx3xQJCsnyQm0R1J82N+6Qv96lg
- 4L6uz/yaCUq28ORAzFXzKYqwYUAI4KFP3Xe+fN5bYN+SO0YZxbxQqMmXL0vXA4KoP5PA
- iu5k47/kJGsNgbsFX6Pl/x+Ll9JjfG9MKhHtPAPufCLMKlT9HNlOfqHZVL1eALx65NZ8
- TmZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:cc:references:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=K0xwbWgfzNb+siGOnTIoHV8a22y8LDX4Jm2bW67sNRs=;
- b=VfaGJfJlM7mJLLjMNIzxxAHX1Y/qK0RRJu10tcCnKZ1v661YutI9mA7zKzjY+JzvTK
- hIktEnEehHU4WKzb1VGY8hYcCl6aNfDevpJwX2HAPo0n8EQ0VYzezpSGFZCeu6dkRmZf
- Z47Q0DjUJGRbv5SDE07T9hmZUIuLyTfCtevB9rNAZPhxTHVUsGuGwc0vRD7DMgPoUetx
- hphL423XU4fpg9mn2k90Y/42wuKZSRAGDwMxfUMf4aVymXxM0SY0sscBoqI/pUdSRHe6
- r3WdD5KbyiaA0H6/9Xn1pYA5nPACwzV0EeyeXH9ajuydWC4lhflqEFNvNganThET+jH8
- rimw==
-X-Gm-Message-State: AOAM533J/BiWSc1TuuTg2ZcELimiMpLI4q/MUOep0altIeZ978eCEH7R
- HAMnw7QOisKEiaM8w63aySc=
-X-Google-Smtp-Source: ABdhPJwl5X8jvdS+mUXZcO0Nb3rEd3NCzr93XMi5XApyMil2tE6bG73j3OHe5qt6fBIyVpvdh0u7gw==
-X-Received: by 2002:a5d:474f:: with SMTP id o15mr5595878wrs.100.1604500307652; 
- Wed, 04 Nov 2020 06:31:47 -0800 (PST)
-Received: from ?IPv6:2003:ea:8f23:2800:d177:63da:d01d:cf70?
- (p200300ea8f232800d17763dad01dcf70.dip0.t-ipconnect.de.
- [2003:ea:8f23:2800:d177:63da:d01d:cf70])
- by smtp.googlemail.com with ESMTPSA id k84sm2508318wmf.42.2020.11.04.06.31.46
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 04 Nov 2020 06:31:47 -0800 (PST)
-Subject: [PATCH net-next v2 10/10] net: remove ip_tunnel_get_stats64
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Jakub Kicinski <kuba@kernel.org>, David Miller <davem@davemloft.net>,
- Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
- Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Andrew Lunn <andrew@lunn.ch>,
- Vivien Didelot <vivien.didelot@gmail.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
- <olteanv@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Pablo Neira Ayuso <pablo@netfilter.org>, Harald Welte
- <laforge@gnumonks.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Herbert Xu <herbert@gondor.apana.org.au>
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- osmocom-net-gprs@lists.osmocom.org, wireguard@lists.zx2c4.com,
- Steffen Klassert <steffen.klassert@secunet.com>
-References: <059fcb95-fba8-673e-0cd6-fb26e8ed4861@gmail.com>
-Message-ID: <1d40c040-7b4b-9531-2cb0-0e8e3f954e25@gmail.com>
-Date: Wed, 4 Nov 2020 15:31:02 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+ dmarc=pass (p=none dis=none) header.from=zx2c4.com
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=192.95.5.64;
+ helo=mail.zx2c4.com; envelope-from=jason@zx2c4.com; receiver=<UNKNOWN> 
+Received: from mail.zx2c4.com (mail.zx2c4.com [192.95.5.64])
+ by lists.osmocom.org (Postfix) with ESMTP id D7C2A18BCDF
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed,  4 Nov 2020 19:53:14 +0000 (UTC)
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 5fac69ff
+ for <osmocom-net-gprs@lists.osmocom.org>;
+ Wed, 4 Nov 2020 19:44:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
+ :references:in-reply-to:from:date:message-id:subject:to:cc
+ :content-type; s=mail; bh=A3txSEFLmhKqctZhBsIbAmC27m4=; b=YZ0Tui
+ B294RZlMp3QLM3Ri3JNXVOGFuWXm59fll9PFQbjflCH4iIqHSuP9Z8petTgmMsoa
+ SYbiicDRJ07VU2USeeAHNCxPXmve1Apkqxc2QSqq56SCB5oDAhRL9G8qX5ELPRAl
+ 54WzpqWLpl51bZ18F02TkblOIVULgtTHAnmPCkQj7KUZEp1nFOpeB7z7821tZ+Cs
+ d4R9vFfZ9lrK8MTI1fhIo66OpbCgYcENeFySwtOV6gsfTWVeMOqVYmJVQde4Dmq/
+ 7KXYw7NydK/I3c7Kc51z6FfX96jcuI8qpyujURHaLwNUi72UpnTdRv8h0yarEddf
+ MIBiq3jLEgYQu1Rw==
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 88391be6
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO)
+ for <osmocom-net-gprs@lists.osmocom.org>;
+ Wed, 4 Nov 2020 19:44:21 +0000 (UTC)
+Received: by mail-yb1-f180.google.com with SMTP id h196so19069193ybg.4
+ for <osmocom-net-gprs@lists.osmocom.org>; Wed, 04 Nov 2020 11:46:32 -0800 (PST)
+X-Gm-Message-State: AOAM532LkLcREpHgulMYUSH3WjaUANxKM/0Fkze8GzfSKmLZx6FVWCA9
+ qp4XdaTPPmy/VAOqgOzmI3cf21HePqqDr/6N+yE=
+X-Google-Smtp-Source: ABdhPJwrKS1Qe6FXigKFOooqaDL+07TCiLCBrWPsMRVnWDv3P9m/KovJNUleFszPuWdGWRHEv9qhIoS2MVT6MLp9zZs=
+X-Received: by 2002:a25:4943:: with SMTP id w64mr27765905yba.178.1604519191132; 
+ Wed, 04 Nov 2020 11:46:31 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <059fcb95-fba8-673e-0cd6-fb26e8ed4861@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <059fcb95-fba8-673e-0cd6-fb26e8ed4861@gmail.com>
+ <4f731535-2a51-a673-5daf-d9ec2536a8f8@gmail.com>
+In-Reply-To: <4f731535-2a51-a673-5daf-d9ec2536a8f8@gmail.com>
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Wed, 4 Nov 2020 20:46:20 +0100
+X-Gmail-Original-Message-ID: <CAHmME9qkPLwO4+H=+GAvWXDMQz-tHhyK1mmmtmb5Waph7fTiCw@mail.gmail.com>
+Message-ID: <CAHmME9qkPLwO4+H=+GAvWXDMQz-tHhyK1mmmtmb5Waph7fTiCw@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 07/10] wireguard: switch to dev_get_tstats64
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, David Miller <davem@davemloft.net>, 
+ Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
+ Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, 
+ Andrew Lunn <andrew@lunn.ch>, Vivien Didelot <vivien.didelot@gmail.com>, 
+ Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, Pablo Neira Ayuso <pablo@netfilter.org>, 
+ Harald Welte <laforge@gnumonks.org>, Herbert Xu <herbert@gondor.apana.org.au>, 
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ osmocom-net-gprs@lists.osmocom.org, 
+ WireGuard mailing list <wireguard@lists.zx2c4.com>,
+ Steffen Klassert <steffen.klassert@secunet.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Thu, 05 Nov 2020 08:27:23 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
@@ -96,48 +82,32 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-After having migrated all users remove ip_tunnel_get_stats64().
+On Wed, Nov 4, 2020 at 3:31 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>
+> Replace ip_tunnel_get_stats64() with the new identical core fucntion
+> dev_get_tstats64().
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  drivers/net/wireguard/device.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/wireguard/device.c b/drivers/net/wireguard/device.c
+> index c9f65e96c..a3ed49cd9 100644
+> --- a/drivers/net/wireguard/device.c
+> +++ b/drivers/net/wireguard/device.c
+> @@ -215,7 +215,7 @@ static const struct net_device_ops netdev_ops = {
+>         .ndo_open               = wg_open,
+>         .ndo_stop               = wg_stop,
+>         .ndo_start_xmit         = wg_xmit,
+> -       .ndo_get_stats64        = ip_tunnel_get_stats64
+> +       .ndo_get_stats64        = dev_get_tstats64
+>  };
+>
+>  static void wg_destruct(struct net_device *dev)
+> --
+> 2.29.2
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- include/net/ip_tunnels.h  | 2 --
- net/ipv4/ip_tunnel_core.c | 9 ---------
- 2 files changed, 11 deletions(-)
+Looks fine to me.
 
-diff --git a/include/net/ip_tunnels.h b/include/net/ip_tunnels.h
-index 02ccd3254..1b7905eb7 100644
---- a/include/net/ip_tunnels.h
-+++ b/include/net/ip_tunnels.h
-@@ -274,8 +274,6 @@ int ip_tunnel_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd);
- int __ip_tunnel_change_mtu(struct net_device *dev, int new_mtu, bool strict);
- int ip_tunnel_change_mtu(struct net_device *dev, int new_mtu);
- 
--void ip_tunnel_get_stats64(struct net_device *dev,
--			   struct rtnl_link_stats64 *tot);
- struct ip_tunnel *ip_tunnel_lookup(struct ip_tunnel_net *itn,
- 				   int link, __be16 flags,
- 				   __be32 remote, __be32 local,
-diff --git a/net/ipv4/ip_tunnel_core.c b/net/ipv4/ip_tunnel_core.c
-index 25f1caf5a..923a9fa2e 100644
---- a/net/ipv4/ip_tunnel_core.c
-+++ b/net/ipv4/ip_tunnel_core.c
-@@ -429,15 +429,6 @@ int skb_tunnel_check_pmtu(struct sk_buff *skb, struct dst_entry *encap_dst,
- }
- EXPORT_SYMBOL(skb_tunnel_check_pmtu);
- 
--/* Often modified stats are per cpu, other are shared (netdev->stats) */
--void ip_tunnel_get_stats64(struct net_device *dev,
--			   struct rtnl_link_stats64 *tot)
--{
--	netdev_stats_to_stats64(tot, &dev->stats);
--	dev_fetch_sw_netstats(tot, dev->tstats);
--}
--EXPORT_SYMBOL_GPL(ip_tunnel_get_stats64);
--
- static const struct nla_policy ip_tun_policy[LWTUNNEL_IP_MAX + 1] = {
- 	[LWTUNNEL_IP_UNSPEC]	= { .strict_start_type = LWTUNNEL_IP_OPTS },
- 	[LWTUNNEL_IP_ID]	= { .type = NLA_U64 },
--- 
-2.29.2
-
-
+Reviewed-by: Jason A. Donenfeld <Jason@zx2c4.com>
