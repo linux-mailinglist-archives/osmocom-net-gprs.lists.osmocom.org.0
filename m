@@ -1,71 +1,53 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E81A2A793B
-	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  5 Nov 2020 09:28:13 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 09E4018C5E6;
-	Thu,  5 Nov 2020 08:28:06 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=zx2c4.com
-Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=zx2c4.com header.i=@zx2c4.com header.b=YZ0TuiB2
+	by mail.lfdr.de (Postfix) with ESMTP id 2109F2A7940
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  5 Nov 2020 09:28:17 +0100 (CET)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id 886DE18C5EA;
+	Thu,  5 Nov 2020 08:28:07 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=gnumonks.org
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-X-Greylist: delayed 400 seconds by postgrey-1.37 at lists.osmocom.org;
- Wed, 04 Nov 2020 19:53:15 UTC
+Received-SPF: Pass (mailfrom) identity=mailfrom;
+ client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
+ envelope-from=laforge@gnumonks.org; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=zx2c4.com
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=192.95.5.64;
- helo=mail.zx2c4.com; envelope-from=jason@zx2c4.com; receiver=<UNKNOWN> 
-Received: from mail.zx2c4.com (mail.zx2c4.com [192.95.5.64])
- by lists.osmocom.org (Postfix) with ESMTP id D7C2A18BCDF
- for <osmocom-net-gprs@lists.osmocom.org>; Wed,  4 Nov 2020 19:53:14 +0000 (UTC)
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 5fac69ff
- for <osmocom-net-gprs@lists.osmocom.org>;
- Wed, 4 Nov 2020 19:44:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
- :references:in-reply-to:from:date:message-id:subject:to:cc
- :content-type; s=mail; bh=A3txSEFLmhKqctZhBsIbAmC27m4=; b=YZ0Tui
- B294RZlMp3QLM3Ri3JNXVOGFuWXm59fll9PFQbjflCH4iIqHSuP9Z8petTgmMsoa
- SYbiicDRJ07VU2USeeAHNCxPXmve1Apkqxc2QSqq56SCB5oDAhRL9G8qX5ELPRAl
- 54WzpqWLpl51bZ18F02TkblOIVULgtTHAnmPCkQj7KUZEp1nFOpeB7z7821tZ+Cs
- d4R9vFfZ9lrK8MTI1fhIo66OpbCgYcENeFySwtOV6gsfTWVeMOqVYmJVQde4Dmq/
- 7KXYw7NydK/I3c7Kc51z6FfX96jcuI8qpyujURHaLwNUi72UpnTdRv8h0yarEddf
- MIBiq3jLEgYQu1Rw==
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 88391be6
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO)
- for <osmocom-net-gprs@lists.osmocom.org>;
- Wed, 4 Nov 2020 19:44:21 +0000 (UTC)
-Received: by mail-yb1-f180.google.com with SMTP id h196so19069193ybg.4
- for <osmocom-net-gprs@lists.osmocom.org>; Wed, 04 Nov 2020 11:46:32 -0800 (PST)
-X-Gm-Message-State: AOAM532LkLcREpHgulMYUSH3WjaUANxKM/0Fkze8GzfSKmLZx6FVWCA9
- qp4XdaTPPmy/VAOqgOzmI3cf21HePqqDr/6N+yE=
-X-Google-Smtp-Source: ABdhPJwrKS1Qe6FXigKFOooqaDL+07TCiLCBrWPsMRVnWDv3P9m/KovJNUleFszPuWdGWRHEv9qhIoS2MVT6MLp9zZs=
-X-Received: by 2002:a25:4943:: with SMTP id w64mr27765905yba.178.1604519191132; 
- Wed, 04 Nov 2020 11:46:31 -0800 (PST)
-MIME-Version: 1.0
-References: <059fcb95-fba8-673e-0cd6-fb26e8ed4861@gmail.com>
- <4f731535-2a51-a673-5daf-d9ec2536a8f8@gmail.com>
-In-Reply-To: <4f731535-2a51-a673-5daf-d9ec2536a8f8@gmail.com>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Wed, 4 Nov 2020 20:46:20 +0100
-X-Gmail-Original-Message-ID: <CAHmME9qkPLwO4+H=+GAvWXDMQz-tHhyK1mmmtmb5Waph7fTiCw@mail.gmail.com>
-Message-ID: <CAHmME9qkPLwO4+H=+GAvWXDMQz-tHhyK1mmmtmb5Waph7fTiCw@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 07/10] wireguard: switch to dev_get_tstats64
+ dmarc=none (p=none dis=none) header.from=gnumonks.org
+Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
+ [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
+ by lists.osmocom.org (Postfix) with ESMTP id 26BB518C481
+ for <osmocom-net-gprs@lists.osmocom.org>; Thu,  5 Nov 2020 08:00:11 +0000 (UTC)
+Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
+ (envelope-from <laforge@gnumonks.org>)
+ id 1kaaBh-00065B-1j; Thu, 05 Nov 2020 09:00:05 +0100
+Received: from laforge by localhost.localdomain with local (Exim 4.94)
+ (envelope-from <laforge@gnumonks.org>)
+ id 1kaaAB-004eo7-DZ; Thu, 05 Nov 2020 08:58:31 +0100
+Date: Thu, 5 Nov 2020 08:58:31 +0100
+From: Harald Welte <laforge@gnumonks.org>
 To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, David Miller <davem@davemloft.net>, 
+Cc: Jakub Kicinski <kuba@kernel.org>, David Miller <davem@davemloft.net>,
  Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
- Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, 
- Andrew Lunn <andrew@lunn.ch>, Vivien Didelot <vivien.didelot@gmail.com>, 
- Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, Pablo Neira Ayuso <pablo@netfilter.org>, 
- Harald Welte <laforge@gnumonks.org>, Herbert Xu <herbert@gondor.apana.org.au>, 
+ Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Andrew Lunn <andrew@lunn.ch>,
+ Vivien Didelot <vivien.didelot@gmail.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Pablo Neira Ayuso <pablo@netfilter.org>,
+ "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
  "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- osmocom-net-gprs@lists.osmocom.org, 
- WireGuard mailing list <wireguard@lists.zx2c4.com>,
+ osmocom-net-gprs@lists.osmocom.org, wireguard@lists.zx2c4.com,
  Steffen Klassert <steffen.klassert@secunet.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH net-next v2 06/10] gtp: switch to dev_get_tstats64
+Message-ID: <20201105075831.GD1078888@nataraja>
+References: <059fcb95-fba8-673e-0cd6-fb26e8ed4861@gmail.com>
+ <52d228fe-9ed3-7cd0-eebc-051c38b5e45f@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <52d228fe-9ed3-7cd0-eebc-051c38b5e45f@gmail.com>
 X-Mailman-Approved-At: Thu, 05 Nov 2020 08:27:23 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
@@ -82,32 +64,18 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-On Wed, Nov 4, 2020 at 3:31 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
+Looks good to me.
+
+On Wed, Nov 04, 2020 at 03:27:47PM +0100, Heiner Kallweit wrote:
 > Replace ip_tunnel_get_stats64() with the new identical core fucntion
 > dev_get_tstats64().
->
+> 
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  drivers/net/wireguard/device.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/net/wireguard/device.c b/drivers/net/wireguard/device.c
-> index c9f65e96c..a3ed49cd9 100644
-> --- a/drivers/net/wireguard/device.c
-> +++ b/drivers/net/wireguard/device.c
-> @@ -215,7 +215,7 @@ static const struct net_device_ops netdev_ops = {
->         .ndo_open               = wg_open,
->         .ndo_stop               = wg_stop,
->         .ndo_start_xmit         = wg_xmit,
-> -       .ndo_get_stats64        = ip_tunnel_get_stats64
-> +       .ndo_get_stats64        = dev_get_tstats64
->  };
->
->  static void wg_destruct(struct net_device *dev)
-> --
-> 2.29.2
 
-Looks fine to me.
+Acked-by: Harald Welte <laforge@gnumonks.org>
 
-Reviewed-by: Jason A. Donenfeld <Jason@zx2c4.com>
+-- 
+- Harald Welte <laforge@gnumonks.org>           http://laforge.gnumonks.org/
+============================================================================
+"Privacy in residential applications is a desirable marketing option."
+                                                  (ETSI EN 300 175-7 Ch. A6)
