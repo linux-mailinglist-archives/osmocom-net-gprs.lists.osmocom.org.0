@@ -1,62 +1,63 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 98B372AB5C9
-	for <lists+osmocom-net-gprs@lfdr.de>; Mon,  9 Nov 2020 12:05:23 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 4D80118F966;
-	Mon,  9 Nov 2020 11:05:23 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTP id AA1012AB5CD
+	for <lists+osmocom-net-gprs@lfdr.de>; Mon,  9 Nov 2020 12:05:24 +0100 (CET)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id 5F01718F96B;
+	Mon,  9 Nov 2020 11:05:24 +0000 (UTC)
 Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=dFGiGENB
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=R9SDmQWk
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2a00:1450:4864:20::431; helo=mail-wr1-x431.google.com;
+ client-ip=2a00:1450:4864:20::344; helo=mail-wm1-x344.google.com;
  envelope-from=hkallweit1@gmail.com; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
  dmarc=pass (p=none dis=none) header.from=gmail.com
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by lists.osmocom.org (Postfix) with ESMTP id 7D8B518E772
- for <osmocom-net-gprs@lists.osmocom.org>; Sat,  7 Nov 2020 20:48:18 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id b8so4821670wrn.0
- for <osmocom-net-gprs@lists.osmocom.org>; Sat, 07 Nov 2020 12:48:18 -0800 (PST)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by lists.osmocom.org (Postfix) with ESMTP id 5103D18E78C
+ for <osmocom-net-gprs@lists.osmocom.org>; Sat,  7 Nov 2020 20:56:03 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id c16so4484377wmd.2
+ for <osmocom-net-gprs@lists.osmocom.org>; Sat, 07 Nov 2020 12:56:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:subject:to:cc:message-id:date:user-agent:mime-version
- :content-transfer-encoding;
- bh=B8uI3ib+ND1jWJ9Vi+AOa576ZDPXSgB4pgJH3bG+/sA=;
- b=dFGiGENB8xjIgJjYbC6FXqkzDs/gQ4N8cNUMLJdCGqTIJ83/Os/XwDLFblGezOnkHH
- ND+nGjkGHhzw/ry0Y0gADRSczNt++LkTmgJdIJP9WYimw9mPJ47STOFygWAwitDwLBZt
- uUaipIz314tT0+cgsmSlOz7AzRd1tf5uM0fgVG1qXbLW2gNEOMChThJOmgFHAzlawxOE
- CEjH106Kg3p8KLepzkprIy18AfE//xB/S9TYodexOlTFObFhZxfkUheipXSbi9+Wr7NR
- Ddkb00j0xmAfUOb+NZv6pko4K2agJ7FhfPY7dF121lt5aXI3WPvb4uAK7c41eZENJFX9
- HN/g==
+ h=subject:from:to:cc:references:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding;
+ bh=DYRIQMTMgtclfC11ma0PcCZtnRPkZKmVXTdnNGEHpbU=;
+ b=R9SDmQWkuWHnfgtqv7Ufkk2HRy0GaLhEEYkHaTvRjlowbgX0La+ML68VcuQOHxhjNN
+ PcX5tkZKLnlrWLIN6Q6IcrTUrWcOyWc60GQNr4LVonFEBgs1nDaNFHJ9pIIeJRb5vS5+
+ pc1oWRBO4ZPnGcw+xeRIXW8hCRBqVEMvp/nPFe3p1S0H5nknnXRVx1aMl+B6SMeU5zUS
+ r79fPNCRov3Y10SRZt9msJhE1PeaPBSHnGb33PZK3RosLrWEOK0XMP8sMac68OtNHIJV
+ PxcNkv+P4097VC9S2B4s0j93aTrSv7sliC1kuodARUkD9K0dfgR76eWjlsKAysUYcbXn
+ EL2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:subject:to:cc:message-id:date:user-agent
- :mime-version:content-transfer-encoding;
- bh=B8uI3ib+ND1jWJ9Vi+AOa576ZDPXSgB4pgJH3bG+/sA=;
- b=o0ufRlWE4Vw+ErSBCBGcdJe1zIJ2st0s7OlupZGYqMDtaZWrDHrjWhl5wmJqF3brhO
- 1+3X7k5t9YCTXN4fU7wzV5hyyJqNoWd/9UIabEz8z8bKDYfySRTXiPFgc+75OIS7tFyP
- mFechkfl9QhRMCaMPCOj9kbfcWBvV0lrBHXGIxdGG6CCNEcE3K39MFz41saDBZvLLQ6U
- tvwI8a1eOizwvAZdoaQ5LjNcMcJpJShEIC+1X1DXPNwrwaQdTUWLmxFY5j508AtK6Vuh
- TZFanKlWBSyKEzGZijax3yvNyyB3zAjq2cA3DXFW6aUkJBJnJQkfRNFMRF1pkJYp6fWg
- ZZFw==
-X-Gm-Message-State: AOAM530zpzMIVEN/4C8AQhbmLhmOVDD3fR4fKw7ROygAA4QrDrSQUcSj
- Aec5qdjsp0cM+/v9J+zXfhY=
-X-Google-Smtp-Source: ABdhPJxQRIASrUDnVmJ4/YlnJY9R1ijNwNhlwQ9sKCsI/bMFlpH9zvDMMWsE3RFv0AWYqQC7sqv8Og==
-X-Received: by 2002:a5d:6689:: with SMTP id l9mr3723656wru.134.1604782098173; 
- Sat, 07 Nov 2020 12:48:18 -0800 (PST)
+ h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding;
+ bh=DYRIQMTMgtclfC11ma0PcCZtnRPkZKmVXTdnNGEHpbU=;
+ b=QPombuDLo1z/3KHtuUfuVs+q7CNZkHa4bPTR9+qUPA7c0Spek07YJtn0NrnhzbaLas
+ xODG60moHHokNCvRSAT4IZMQrpRR8gr0KV59WbfhlSVY5PYbmf6J89ue0NjmUiDY9j8C
+ +OIUak/q/xxICHEzARv2WIVj3v+dQ15+xOt13hz2hsuctLBfLQLHcUyA9T192WtiTg7/
+ zz4Rn9gKzJwzUH8Z9Mv9MDY9eQVb62HlTUw4kQu9ibq4ejvyMbGrw5SA0lgy+yd8iguT
+ zsG+naXQmlJ7efJOpUksrAJvRMHYsAYfas/dFcJWa+7YuJBtYAKoBci5g7XHDQDjECjz
+ chLQ==
+X-Gm-Message-State: AOAM5327sIKffTvxYnCbmOEGPi3QkAoTD6jh0v97vj+c+o4V6zPCnRen
+ KpC3eVPJvbe3+Mc0oykFOUs=
+X-Google-Smtp-Source: ABdhPJwZYHop1A1l8S0GAY1Ccs9RLvW4wC3U+CFi/wgoe1MRqwMrnejznW8okpPfxgKH5UbwYcLWOw==
+X-Received: by 2002:a1c:6284:: with SMTP id w126mr6532465wmb.145.1604782563027; 
+ Sat, 07 Nov 2020 12:56:03 -0800 (PST)
 Received: from ?IPv6:2003:ea:8f23:2800:7051:31d:251f:edd6?
  (p200300ea8f2328007051031d251fedd6.dip0.t-ipconnect.de.
  [2003:ea:8f23:2800:7051:31d:251f:edd6])
- by smtp.googlemail.com with ESMTPSA id n15sm2157030wrq.48.2020.11.07.12.48.17
+ by smtp.googlemail.com with ESMTPSA id p4sm7611551wrm.51.2020.11.07.12.56.02
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 07 Nov 2020 12:48:17 -0800 (PST)
+ Sat, 07 Nov 2020 12:56:02 -0800 (PST)
+Subject: [PATCH net-next v3 01/10] net: core: add dev_get_tstats64 as a
+ ndo_get_stats64 implementation
 From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH net-next v3 00/10] net: add and use dev_get_tstats64
 To: Jakub Kicinski <kuba@kernel.org>, David Miller <davem@davemloft.net>,
  Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
  Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Andrew Lunn <andrew@lunn.ch>,
@@ -69,11 +70,13 @@ To: Jakub Kicinski <kuba@kernel.org>, David Miller <davem@davemloft.net>,
 Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
  osmocom-net-gprs@lists.osmocom.org, wireguard@lists.zx2c4.com,
  Steffen Klassert <steffen.klassert@secunet.com>
-Message-ID: <99273e2f-c218-cd19-916e-9161d8ad8c56@gmail.com>
-Date: Sat, 7 Nov 2020 21:48:13 +0100
+References: <99273e2f-c218-cd19-916e-9161d8ad8c56@gmail.com>
+Message-ID: <484218db-e035-dba4-dfb7-93c2cf177cec@gmail.com>
+Date: Sat, 7 Nov 2020 21:49:07 +0100
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.4.1
 MIME-Version: 1.0
+In-Reply-To: <99273e2f-c218-cd19-916e-9161d8ad8c56@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 09 Nov 2020 11:05:13 +0000
@@ -95,51 +98,54 @@ Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 It's a frequent pattern to use netdev->stats for the less frequently
 accessed counters and per-cpu counters for the frequently accessed
 counters (rx/tx bytes/packets). Add a default ndo_get_stats64()
-implementation for this use case. Subsequently switch more drivers
-to use this pattern.
+implementation for this use case.
 
-v2:
-- add patches for replacing ip_tunnel_get_stats64
-  Requested additional migrations will come in a separate series.
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ include/linux/netdevice.h |  1 +
+ net/core/dev.c            | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+)
 
-v3:
-- add atomic_long_t member rx_frame_errors in patch 3 for making
-  counter updates atomic
-
-Heiner Kallweit (10):
-  net: core: add dev_get_tstats64 as a ndo_get_stats64 implementation
-  net: dsa: use net core stats64 handling
-  tun: switch to net core provided statistics counters
-  ip6_tunnel: use ip_tunnel_get_stats64 as ndo_get_stats64 callback
-  net: switch to dev_get_tstats64
-  gtp: switch to dev_get_tstats64
-  wireguard: switch to dev_get_tstats64
-  vti: switch to dev_get_tstats64
-  ipv4/ipv6: switch to dev_get_tstats64
-  net: remove ip_tunnel_get_stats64
-
- drivers/net/bareudp.c          |   2 +-
- drivers/net/geneve.c           |   2 +-
- drivers/net/gtp.c              |   2 +-
- drivers/net/tun.c              | 121 +++++++++------------------------
- drivers/net/vxlan.c            |   4 +-
- drivers/net/wireguard/device.c |   2 +-
- include/linux/netdevice.h      |   1 +
- include/net/ip_tunnels.h       |   2 -
- net/core/dev.c                 |  15 ++++
- net/dsa/dsa.c                  |   7 +-
- net/dsa/dsa_priv.h             |   2 -
- net/dsa/slave.c                |  29 ++------
- net/ipv4/ip_gre.c              |   6 +-
- net/ipv4/ip_tunnel_core.c      |   9 ---
- net/ipv4/ip_vti.c              |   2 +-
- net/ipv4/ipip.c                |   2 +-
- net/ipv6/ip6_gre.c             |   6 +-
- net/ipv6/ip6_tunnel.c          |  32 +--------
- net/ipv6/ip6_vti.c             |   2 +-
- net/ipv6/sit.c                 |   2 +-
- 20 files changed, 75 insertions(+), 175 deletions(-)
-
+diff --git a/include/linux/netdevice.h b/include/linux/netdevice.h
+index a53ed2d1e..7ce648a56 100644
+--- a/include/linux/netdevice.h
++++ b/include/linux/netdevice.h
+@@ -4527,6 +4527,7 @@ void netdev_stats_to_stats64(struct rtnl_link_stats64 *stats64,
+ 			     const struct net_device_stats *netdev_stats);
+ void dev_fetch_sw_netstats(struct rtnl_link_stats64 *s,
+ 			   const struct pcpu_sw_netstats __percpu *netstats);
++void dev_get_tstats64(struct net_device *dev, struct rtnl_link_stats64 *s);
+ 
+ extern int		netdev_max_backlog;
+ extern int		netdev_tstamp_prequeue;
+diff --git a/net/core/dev.c b/net/core/dev.c
+index bd6100da6..60d325bda 100644
+--- a/net/core/dev.c
++++ b/net/core/dev.c
+@@ -10366,6 +10366,21 @@ void dev_fetch_sw_netstats(struct rtnl_link_stats64 *s,
+ }
+ EXPORT_SYMBOL_GPL(dev_fetch_sw_netstats);
+ 
++/**
++ *	dev_get_tstats64 - ndo_get_stats64 implementation
++ *	@dev: device to get statistics from
++ *	@s: place to store stats
++ *
++ *	Populate @s from dev->stats and dev->tstats. Can be used as
++ *	ndo_get_stats64() callback.
++ */
++void dev_get_tstats64(struct net_device *dev, struct rtnl_link_stats64 *s)
++{
++	netdev_stats_to_stats64(s, &dev->stats);
++	dev_fetch_sw_netstats(s, dev->tstats);
++}
++EXPORT_SYMBOL_GPL(dev_get_tstats64);
++
+ struct netdev_queue *dev_ingress_queue_create(struct net_device *dev)
+ {
+ 	struct netdev_queue *queue = dev_ingress_queue(dev);
 -- 
 2.29.2
+
 
