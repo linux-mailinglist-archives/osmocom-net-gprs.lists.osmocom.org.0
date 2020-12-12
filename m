@@ -2,57 +2,37 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 500CC2AD25C
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 10 Nov 2020 10:23:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9584E2D864D
+	for <lists+osmocom-net-gprs@lfdr.de>; Sat, 12 Dec 2020 12:52:03 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 328391907EB;
-	Tue, 10 Nov 2020 09:23:13 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=kernel.org
-Authentication-Results: lists.osmocom.org;
-	dkim=pass (1024-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b=PeG9ireB
+	by lists.osmocom.org (Postfix) with ESMTP id 85C0618C0FF;
+	Sat, 12 Dec 2020 11:51:59 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=gnumonks.org
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=198.145.29.99;
- helo=mail.kernel.org; envelope-from=kuba@kernel.org; receiver=<UNKNOWN> 
+Received-SPF: Pass (mailfrom) identity=mailfrom;
+ client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
+ envelope-from=laforge@gnumonks.org; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=kernel.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by lists.osmocom.org (Postfix) with ESMTP id A7E31190503
- for <osmocom-net-gprs@lists.osmocom.org>; Tue, 10 Nov 2020 03:58:14 +0000 (UTC)
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
- [163.114.132.5])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id DC48B2054F;
- Tue, 10 Nov 2020 03:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1604980693;
- bh=LYd6sGtqAyllUZ+TrvpQ0ZyMTLKy+YxG+IC0lRSP0tg=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=PeG9ireBIMzUv7Q12nrOYnN4Q8LVc3jZHg2H91I8KoS4gDGeTGasfMomSW9KGU4zm
- PriQL/3QKFPXnDXQAPN8fZzHi6/H5q39LcJ68hn9LVI5dYFWE0um2AkZsH5pcX0q5v
- cGixoTXrRdTRFjj/0r+ZKnEplwPxM7H1iEuSDhkU=
-Date: Mon, 9 Nov 2020 19:58:11 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: David Miller <davem@davemloft.net>, Alexey Kuznetsov
- <kuznet@ms2.inr.ac.ru>, Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Andrew
- Lunn <andrew@lunn.ch>, Vivien Didelot <vivien.didelot@gmail.com>, Florian
- Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Pablo Neira Ayuso
- <pablo@netfilter.org>, Harald Welte <laforge@gnumonks.org>, "Jason A.
- Donenfeld" <Jason@zx2c4.com>, Herbert Xu <herbert@gondor.apana.org.au>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- osmocom-net-gprs@lists.osmocom.org, wireguard@lists.zx2c4.com, Steffen
- Klassert <steffen.klassert@secunet.com>
-Subject: Re: [PATCH net-next v3 00/10] net: add and use dev_get_tstats64
-Message-ID: <20201109195811.7be5882c@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <99273e2f-c218-cd19-916e-9161d8ad8c56@gmail.com>
-References: <99273e2f-c218-cd19-916e-9161d8ad8c56@gmail.com>
+ dmarc=none (p=none dis=none) header.from=gnumonks.org
+Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
+ [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
+ by lists.osmocom.org (Postfix) with ESMTP id C0FFC18C0DB
+ for <osmocom-net-gprs@lists.osmocom.org>; Sat, 12 Dec 2020 11:51:53 +0000 (UTC)
+Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
+ (envelope-from <laforge@gnumonks.org>) id 1ko3RJ-0000mK-J3
+ for osmocom-net-gprs@lists.osmocom.org; Sat, 12 Dec 2020 12:51:53 +0100
+Received: from laforge by localhost.localdomain with local (Exim 4.94)
+ (envelope-from <laforge@gnumonks.org>) id 1ko3RC-003t57-0e
+ for osmocom-net-gprs@lists.osmocom.org; Sat, 12 Dec 2020 12:51:46 +0100
+Date: Sat, 12 Dec 2020 12:51:45 +0100
+From: Harald Welte <laforge@gnumonks.org>
+To: osmocom-net-gprs@lists.osmocom.org
+Subject: GTP kernel module patchset discussion on netdev
+Message-ID: <X9Su0XEuNnomR9WA@nataraja>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 10 Nov 2020 09:23:08 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,19 +48,20 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-On Sat, 7 Nov 2020 21:48:13 +0100 Heiner Kallweit wrote:
-> It's a frequent pattern to use netdev->stats for the less frequently
-> accessed counters and per-cpu counters for the frequently accessed
-> counters (rx/tx bytes/packets). Add a default ndo_get_stats64()
-> implementation for this use case. Subsequently switch more drivers
-> to use this pattern.
-> 
-> v2:
-> - add patches for replacing ip_tunnel_get_stats64
->   Requested additional migrations will come in a separate series.
-> 
-> v3:
-> - add atomic_long_t member rx_frame_errors in patch 3 for making
->   counter updates atomic
+In case anyone is interested, there's two larger patches/patchsets
+for the Linux kernel GTP module currently submitted and under discussion
+on the netdev mailing list.
 
-Applied, thank you!
+I'm not sure why this list was not copied, despite it being listed in
+the MAINTAINERS file.
+
+See https://lore.kernel.org/netdev/20201211122612.869225-1-jonas@norrbonn.se/T/#t
+and https://lore.kernel.org/netdev/20201212044017.55865-1-pbshelar@fb.com/T/#u
+
+Any feedback / comments / review or even testing is appreciated.
+
+-- 
+- Harald Welte <laforge@gnumonks.org>           http://laforge.gnumonks.org/
+============================================================================
+"Privacy in residential applications is a desirable marketing option."
+                                                  (ETSI EN 300 175-7 Ch. A6)
