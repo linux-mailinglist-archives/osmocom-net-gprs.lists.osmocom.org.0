@@ -1,38 +1,46 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
+Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
+	by mail.lfdr.de (Postfix) with ESMTP id 3A264326597
+	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 26 Feb 2021 17:34:44 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 4069631AD5E
-	for <lists+osmocom-net-gprs@lfdr.de>; Sat, 13 Feb 2021 18:20:13 +0100 (CET)
-Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 0E09A1C59D4;
-	Sat, 13 Feb 2021 17:20:09 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=osmocom.org
+	by lists.osmocom.org (Postfix) with ESMTP id 62FE61CA4DE;
+	Fri, 26 Feb 2021 16:34:39 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=sysmocom.de
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
- envelope-from=laforge@osmocom.org; receiver=<UNKNOWN> 
+ client-ip=2a01:4f8:191:444c::2:4; helo=mail.sysmocom.de;
+ envelope-from=pespin@sysmocom.de; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=osmocom.org
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
- [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
- by lists.osmocom.org (Postfix) with ESMTP id 7C3C01C59C1
- for <osmocom-net-gprs@lists.osmocom.org>; Sat, 13 Feb 2021 17:20:03 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
- (envelope-from <laforge@osmocom.org>) id 1lAyaR-0002wX-Ov
- for osmocom-net-gprs@lists.osmocom.org; Sat, 13 Feb 2021 18:20:03 +0100
-Received: from laforge by localhost.localdomain with local (Exim 4.94)
- (envelope-from <laforge@osmocom.org>) id 1lAyXD-00GqUA-NP
- for osmocom-net-gprs@lists.osmocom.org; Sat, 13 Feb 2021 18:16:43 +0100
-Date: Sat, 13 Feb 2021 18:16:43 +0100
-From: Harald Welte <laforge@osmocom.org>
-To: osmocom-net-gprs@lists.osmocom.org
-Subject: Very useful wireshark fix for NS / BSSGP decoding
-Message-ID: <YCgJexYGwGMwcsPu@nataraja>
+ dmarc=none (p=none dis=none) header.from=sysmocom.de
+Received: from mail.sysmocom.de (mail.sysmocom.de
+ [IPv6:2a01:4f8:191:444c::2:4])
+ by lists.osmocom.org (Postfix) with ESMTP id DD9F21CA4B4;
+ Fri, 26 Feb 2021 16:34:19 +0000 (UTC)
+Received: from public-mail (mail.sysmocom.de [144.76.43.93])
+ by mail.sysmocom.de (Postfix) with ESMTP id 94AA74D08F6;
+ Fri, 26 Feb 2021 16:33:49 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at sysmocom.de
+Received: from mail.sysmocom.de ([144.76.43.93])
+ by public-mail (mail.sysmocom.de [144.76.43.93]) (amavisd-new, port 10024)
+ with ESMTP id PpMZdN67DB41; Fri, 26 Feb 2021 16:33:48 +0000 (UTC)
+Received: from [192.168.1.140] (unknown [213.195.109.89])
+ by mail.sysmocom.de (Postfix) with ESMTPSA id 09E594D08E5;
+ Fri, 26 Feb 2021 16:33:47 +0000 (UTC)
+To: OpenBSC <openbsc@lists.osmocom.org>,
+ "osmocom-net-gprs@lists.osmocom.org" <osmocom-net-gprs@lists.osmocom.org>
+From: Pau Espin Pedrol <pespin@sysmocom.de>
+Subject: Osmocom CNI release 202102
+Message-ID: <0c5afc56-951f-c8a5-39fe-5da1a5af46c8@sysmocom.de>
+Date: Fri, 26 Feb 2021 17:33:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -48,29 +56,32 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-In case anyone has been annoyed by this before:
+Dear all,
 
-wireshark so far always showed _only_ the BSSGP decode in the Information column
-of a Gb interface pcap file, even if that BSSGP was contained in the "erroneous
-message" IE of a NS-STATUS message.
+I am pleased to announce new tagged releases for Osmocom Cellular 
+Network Infrastructure components.
 
-This made it particularly difficult to spot NS-STATUS, and without custom
-coloring rules or search filters, a protocol trace would just look fine - except
-that in reality it isn't.
+Find more information about the release here [1].
 
-I've now found out what's the proper method to resolve this and submitted
-a patch to wireshark, which was merged very quickly:
-	https://gitlab.com/wireshark/wireshark/-/merge_requests/2081
+Osmocom "Latest" repositories in OBS [2] should already contain packages 
+for the new versions.
 
-After this change, the Information column in the packet list will show
-NS-STATUS with the human-redaable cause value for the reject, rather than
-displaying BSSGP as if nothing odd happened.
+OpenEmbedded related meta-layers such as meta-telephony usual 
+stable/testing branch "201705" [3] have also been updated to build 
+recipes for new versions.
 
 Regards,
-	Harald
+Pau
+
+[1] https://osmocom.org/news/132
+[2] https://osmocom.org/projects/cellular-infrastructure/wiki/Latest_Builds
+[3] https://git.osmocom.org/meta-telephony/log/?h=201705
 
 -- 
-- Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.org/
-============================================================================
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
+- Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
+=======================================================================
+* sysmocom - systems for mobile communications GmbH
+* Alt-Moabit 93
+* 10559 Berlin, Germany
+* Sitz / Registered office: Berlin, HRB 134158 B
+* Geschaeftsfuehrer / Managing Director: Harald Welte
