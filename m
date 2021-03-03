@@ -1,40 +1,48 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id B092E32B612
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed,  3 Mar 2021 10:12:29 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 0212D1B82A6;
-	Wed,  3 Mar 2021 09:12:25 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=osmocom.org
+	by mail.lfdr.de (Postfix) with ESMTP id C6B2B32BA3E
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed,  3 Mar 2021 20:43:52 +0100 (CET)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id 7D8F21B91BF;
+	Wed,  3 Mar 2021 19:43:44 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=sysmocom.de
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
- envelope-from=laforge@osmocom.org; receiver=<UNKNOWN> 
+ client-ip=2a01:4f8:191:444c::2:4; helo=mail.sysmocom.de;
+ envelope-from=nhofmeyr@sysmocom.de; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=osmocom.org
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
- [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
- by lists.osmocom.org (Postfix) with ESMTP id BF30D1B81F2;
- Wed,  3 Mar 2021 09:10:04 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
- (envelope-from <laforge@osmocom.org>)
- id 1lHNW8-0008Ix-9W; Wed, 03 Mar 2021 10:10:04 +0100
-Received: from laforge by localhost.localdomain with local (Exim 4.94)
- (envelope-from <laforge@osmocom.org>)
- id 1lHNMU-005dRO-Cp; Wed, 03 Mar 2021 10:00:06 +0100
-Date: Wed, 3 Mar 2021 10:00:06 +0100
-From: Harald Welte <laforge@osmocom.org>
-To: openbsc@lists.osmocom.org
-Cc: baseband-devel@lists.osmocom.org, simtrace@lists.osmocom.org,
- osmodevcon@lists.osmocom.org, osmocom-net-gprs@lists.osmocom.org
-Subject: Osmocom Mailing List re-organization
-Message-ID: <YD9QFn3y8ZxcTHTH@nataraja>
+ dmarc=none (p=none dis=none) header.from=sysmocom.de
+Received: from mail.sysmocom.de (mail.sysmocom.de
+ [IPv6:2a01:4f8:191:444c::2:4])
+ by lists.osmocom.org (Postfix) with ESMTP id 865391B9150;
+ Wed,  3 Mar 2021 19:42:01 +0000 (UTC)
+Received: from public-mail (mail.sysmocom.de [144.76.43.93])
+ by mail.sysmocom.de (Postfix) with ESMTP id E6DE9503A1D;
+ Wed,  3 Mar 2021 19:42:00 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at sysmocom.de
+Received: from mail.sysmocom.de ([144.76.43.93])
+ by public-mail (mail.sysmocom.de [144.76.43.93]) (amavisd-new, port 10024)
+ with ESMTP id wtkGk6d2-OPL; Wed,  3 Mar 2021 19:41:58 +0000 (UTC)
+Received: from my.box (p2e505ba3.dip0.t-ipconnect.de [46.80.91.163])
+ by mail.sysmocom.de (Postfix) with ESMTPSA id E80E9503A0C;
+ Wed,  3 Mar 2021 19:41:56 +0000 (UTC)
+Date: Wed, 3 Mar 2021 20:41:07 +0100
+From: Neels Hofmeyr <nhofmeyr@sysmocom.de>
+To: Harald Welte <laforge@osmocom.org>
+Cc: openbsc@lists.osmocom.org, baseband-devel@lists.osmocom.org,
+ simtrace@lists.osmocom.org, osmodevcon@lists.osmocom.org,
+ osmocom-net-gprs@lists.osmocom.org
+Subject: Re: Osmocom Mailing List re-organization
+Message-ID: <20210303194107.GC1166@my.box>
+References: <YD9QFn3y8ZxcTHTH@nataraja>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <YD9QFn3y8ZxcTHTH@nataraja>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -50,66 +58,10 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Dear Osmocom community,
+I think we also could change jenkins-notifications and/or gerrit-log, IIRC one
+of those was once named "the high noise mailing list" and catches more than
+just what the name says, currently don't remember which/both of them?
 
-This topic has been past due for way too many years by now:
-A re-organization of our major mailing lists.
-
-I would like to propose the following changes.  Pleas let me know if you
-have any comments or feedback.  I'm aware that renaming will mean people
-have to update their mail filter rules, but I think we're long past the
-point where the names of some of our lists started to confuse users.
-
-== openbsc@lists.osmocom.org ==
-
-* openbsc doesn't exist anymore since OsmoNITB, which is also obsolete
-* does already cover anything "Osmocom CNI" related
-* Proposed new name: osmocom-cni@lists.osmocom.org
-
-
-== osmocom-net-gprs@lists.osmocom.org ==
-
-This date back to when GPRS was a highly experimental add-on to our GSM
-code base.  This list should simply be merged with openbsc@ as osmocom-cni@lists.osmocom.org
-
-
-== simtrace@lists.osmocom.org ==
-
-Historically was created to cover only the simtrace project.
-
-We should rename this to osmocom-simcard@lists.osmocom.org or something
-along those lines.  
-
-I would like to suggest it covers
-
-* SIMtrace / SIMtrace2  hardware + firmware
-* pySim and related tools for working with SIM/USIM/UICC cards
-* any other information / discussion related to SIM/USIM/UICC cards,
-  like OTA, ARA-M, ...
-
-
-== osmodevcon@lists.osmocom.org ==
-
-This has been a private list for people attending OsmoDevCon
-
-I would like to open up list membership to the general public, and ensure
-it also covers the new OsmoDevCall.  We could then have discussions regarding
-feedback, topics, scheduling, etc. on that list.
-
-Maybe rename it to osmocom-events@lists.osmocom.org instead?
-
-To differentiate: osmocom-event-orga@lists.osmocom.org should remain a
-private list related to organizational / administrative topics of those
-involved with organizing future events.
-
-
-== nextepc@lists.osmocom.org ==
-
-Should have been renamed to open5gs@lists.osmocom.org quite some time
-ago, I simply forgot about it. My apologies.
-
--- 
-- Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.org/
-============================================================================
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
+builds@ ?
+noise@ ?
+build-noise@ ?
