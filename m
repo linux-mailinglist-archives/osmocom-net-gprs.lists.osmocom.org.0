@@ -1,51 +1,68 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
+Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
+	by mail.lfdr.de (Postfix) with ESMTP id 6612A33D7B7
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 16 Mar 2021 16:37:43 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E26033C5A1
-	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 15 Mar 2021 19:28:55 +0100 (CET)
-Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id DC23A1B0C76;
-	Mon, 15 Mar 2021 18:28:47 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=kernel.org
+	by lists.osmocom.org (Postfix) with ESMTP id 483E21B6910;
+	Tue, 16 Mar 2021 15:37:35 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b=nlP01otv
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=nkbMim4b
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-X-Greylist: delayed 500 seconds by postgrey-1.37 at lists.osmocom.org;
- Mon, 15 Mar 2021 18:28:44 UTC
+Received-SPF: Pass (mailfrom) identity=mailfrom;
+ client-ip=2607:f8b0:4864:20::42c; helo=mail-pf1-x42c.google.com;
+ envelope-from=chinmayishetty359@gmail.com; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=kernel.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=198.145.29.99;
- helo=mail.kernel.org; envelope-from=kuba@kernel.org; receiver=<UNKNOWN> 
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by lists.osmocom.org (Postfix) with ESMTP id 35FE11B0C63
- for <osmocom-net-gprs@lists.osmocom.org>; Mon, 15 Mar 2021 18:28:43 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DEC6D64F3F;
- Mon, 15 Mar 2021 18:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1615832422;
- bh=GYYv+MsheeXWjs0+8ccatBH06Jins/lXZch2vvJxfDc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=nlP01otv8chY6yQnAiYzsKkjEp7SjIcJdLFSf68T3YHedu61/ntLE8BuQHcWdA4Xb
- KFnBgfGSYttVY015OFKatx9Zy2XovB2KMnwUw+Dj93r4COslZ7WL6RorQ9CT3MM7oC
- 9VkfyWFtuPYwJPgdWi46c77dmJIfKVokn38xcSNBMtQBg7MIu6F5D8d1dlM4P045O1
- hmck8MfuBt2wKE+8q6qJ9o7fQa5Jq9HEC7eHfMcanhUOO5LWbmirSBV3OmfiXDcpqx
- jc2x8SGSCNPKgrc0cwWI6HG74cqcyJzAm39DAY2CkaY/HVINEbG2zzEK9JQp+gyxXF
- 1PY1yZoH072kQ==
-Date: Mon, 15 Mar 2021 11:20:21 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Chinmayi Shetty <chinmayishetty359@gmail.com>
-Cc: pablo@netfilter.org, laforge@gnumonks.org, davem@davemloft.net,
- osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, bkkarthik@pesu.pes.edu
-Subject: Re: [PATCH] Net: gtp: Fixed missing blank line after declaration
-Message-ID: <20210315112021.0278875d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20210313165128.jc2u2pnpm3enbx2h@client-VirtualBox>
-References: <20210313165128.jc2u2pnpm3enbx2h@client-VirtualBox>
+ dmarc=pass (p=none dis=none) header.from=gmail.com
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com
+ [IPv6:2607:f8b0:4864:20::42c])
+ by lists.osmocom.org (Postfix) with ESMTP id E453E1A1A0C
+ for <osmocom-net-gprs@lists.osmocom.org>; Sat, 13 Mar 2021 15:45:13 +0000 (UTC)
+Received: by mail-pf1-x42c.google.com with SMTP id x21so2560564pfa.3
+ for <osmocom-net-gprs@lists.osmocom.org>; Sat, 13 Mar 2021 07:45:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:subject:message-id:mime-version:content-disposition;
+ bh=S9+2IFN1dv7+M9NnZ3JAWoiEoZQsQf5Cgay5lNY5ss4=;
+ b=nkbMim4bUAwn0PZUvZ0bcKau1AndWHfcZsw9+A6a3p/EcsX6hOxZzahMXoOZV4TN3h
+ Z0wjMdKucuiiEDyA51FyjurwfLCX7lvfe3NI5sKRnoL5KsJvmt6LiTdXRd6lwTehwzAV
+ iTTUxfxj4xqaZZaroyB4HUplmkQQwFxV487hLoLOVIhAu5rtepkCpPbc4kw9ijqHoqHl
+ NnxK6r3ipW81SM6yCwbLs46g4AMpkYUOVTnWo/2mRolWh1AF+ZDC6mZeGxpoowa4pHGB
+ /JiSzH6OPwXUZge/KB1qyIZWK3XZFNk8L1a0u2rl29j9jQYBvHN/XLVr38JqDmIHjvPP
+ HgFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+ :content-disposition;
+ bh=S9+2IFN1dv7+M9NnZ3JAWoiEoZQsQf5Cgay5lNY5ss4=;
+ b=g9Bq+WwMgZFtiUL1SRZW3tkdxVmnX1c3Ur3rsH6a6a+TLMlqP+tQmbcs67K9K37sm4
+ OHTstDotDD/p67SkDaNa+Zro4TigJxAMGNGh7UsCItTHgTgM+1X6gdz6rT3xzKWLzqVF
+ Unj4PvSF76c9smRMqyYgM5n3iakl05qVEX1S3AxOWwruQc09MA/vKXJ5cmHAeYc7tMnL
+ moYjMLQj1rwocU4NsgQqU7v9QXzA6UQbydkxXHdFX2/VZHv+OxN7mx13rG7iSjQ3FYu4
+ n+fUH0H7Y+JAbi4vgvWtjWXctNKhKbeVxP/roVXY+Z5y6NfxyOQRMynDR+DfRYgM6uCW
+ j+VA==
+X-Gm-Message-State: AOAM531tuZnHiJXvJkMm6UVvjg8gSqiYRYMWfD17OTql0iX4GZnmFoa2
+ fVS+QDD5lJNtLIrId0vSCPwDvBSYBqhESxvE
+X-Google-Smtp-Source: ABdhPJwGrY1scXKJ2QkQoihOTydIoIeU7OCTD0or4qa1MtSSiOpgtOiQcWQhAFjl1yELW6FnqnlPQw==
+X-Received: by 2002:a62:7594:0:b029:203:2d6c:cea1 with SMTP id
+ q142-20020a6275940000b02902032d6ccea1mr3314398pfc.33.1615650311758; 
+ Sat, 13 Mar 2021 07:45:11 -0800 (PST)
+Received: from client-VirtualBox ([223.186.9.86])
+ by smtp.gmail.com with ESMTPSA id j5sm8200714pgl.55.2021.03.13.07.45.10
+ for <osmocom-net-gprs@lists.osmocom.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 13 Mar 2021 07:45:11 -0800 (PST)
+Date: Sat, 13 Mar 2021 21:15:03 +0530
+From: Chinmayi Shetty <chinmayishetty359@gmail.com>
+To: osmocom-net-gprs@lists.osmocom.org
+Subject: [PATCH] Net: gtp: Fixed missing blank line after declaration
+Message-ID: <20210313154503.nrz3bzrdy4hw4ypk@client-VirtualBox>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 16 Mar 2021 15:37:30 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,24 +78,24 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-On Sat, 13 Mar 2021 22:21:28 +0530 Chinmayi Shetty wrote:
-> Signed-off-by: Chinmayi Shetty <chinmayishetty359@gmail.com>
-> ---
->  drivers/net/gtp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-> index efe5247d8c42..79998f4394e5 100644
-> --- a/drivers/net/gtp.c
-> +++ b/drivers/net/gtp.c
-> @@ -437,7 +437,7 @@ static inline void gtp1_push_header(struct sk_buff *skb, struct pdp_ctx *pctx)
->  	gtp1->length	= htons(payload_len);
->  	gtp1->tid	= htonl(pctx->u.v1.o_tei);
->  
-> -	/* TODO: Suppport for extension header, sequence number and N-PDU.
-> +	/* TODO: Support for extension header, sequence number and N-PDU.
->  	 *	 Update the length field if any of them is available.
->  	 */
->  }
+Signed-off-by: Chinmayi Shetty <chinmayishetty359@gmail.com>
+---
+ drivers/net/gtp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Subject does not match the patch.
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index efe5247d8c42..79998f4394e5 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -437,7 +437,7 @@ static inline void gtp1_push_header(struct sk_buff *skb, struct pdp_ctx *pctx)
+ 	gtp1->length	= htons(payload_len);
+ 	gtp1->tid	= htonl(pctx->u.v1.o_tei);
+ 
+-	/* TODO: Suppport for extension header, sequence number and N-PDU.
++	/* TODO: Support for extension header, sequence number and N-PDU.
+ 	 *	 Update the length field if any of them is available.
+ 	 */
+ }
+-- 
+2.25.1
+
