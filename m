@@ -2,47 +2,50 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id C6B2B32BA3E
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed,  3 Mar 2021 20:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E26033C5A1
+	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 15 Mar 2021 19:28:55 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 7D8F21B91BF;
-	Wed,  3 Mar 2021 19:43:44 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=sysmocom.de
+	by lists.osmocom.org (Postfix) with ESMTP id DC23A1B0C76;
+	Mon, 15 Mar 2021 18:28:47 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=kernel.org
+Authentication-Results: lists.osmocom.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b=nlP01otv
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2a01:4f8:191:444c::2:4; helo=mail.sysmocom.de;
- envelope-from=nhofmeyr@sysmocom.de; receiver=<UNKNOWN> 
+X-Greylist: delayed 500 seconds by postgrey-1.37 at lists.osmocom.org;
+ Mon, 15 Mar 2021 18:28:44 UTC
 Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=sysmocom.de
-Received: from mail.sysmocom.de (mail.sysmocom.de
- [IPv6:2a01:4f8:191:444c::2:4])
- by lists.osmocom.org (Postfix) with ESMTP id 865391B9150;
- Wed,  3 Mar 2021 19:42:01 +0000 (UTC)
-Received: from public-mail (mail.sysmocom.de [144.76.43.93])
- by mail.sysmocom.de (Postfix) with ESMTP id E6DE9503A1D;
- Wed,  3 Mar 2021 19:42:00 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at sysmocom.de
-Received: from mail.sysmocom.de ([144.76.43.93])
- by public-mail (mail.sysmocom.de [144.76.43.93]) (amavisd-new, port 10024)
- with ESMTP id wtkGk6d2-OPL; Wed,  3 Mar 2021 19:41:58 +0000 (UTC)
-Received: from my.box (p2e505ba3.dip0.t-ipconnect.de [46.80.91.163])
- by mail.sysmocom.de (Postfix) with ESMTPSA id E80E9503A0C;
- Wed,  3 Mar 2021 19:41:56 +0000 (UTC)
-Date: Wed, 3 Mar 2021 20:41:07 +0100
-From: Neels Hofmeyr <nhofmeyr@sysmocom.de>
-To: Harald Welte <laforge@osmocom.org>
-Cc: openbsc@lists.osmocom.org, baseband-devel@lists.osmocom.org,
- simtrace@lists.osmocom.org, osmodevcon@lists.osmocom.org,
- osmocom-net-gprs@lists.osmocom.org
-Subject: Re: Osmocom Mailing List re-organization
-Message-ID: <20210303194107.GC1166@my.box>
-References: <YD9QFn3y8ZxcTHTH@nataraja>
+ dmarc=pass (p=none dis=none) header.from=kernel.org
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=198.145.29.99;
+ helo=mail.kernel.org; envelope-from=kuba@kernel.org; receiver=<UNKNOWN> 
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by lists.osmocom.org (Postfix) with ESMTP id 35FE11B0C63
+ for <osmocom-net-gprs@lists.osmocom.org>; Mon, 15 Mar 2021 18:28:43 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DEC6D64F3F;
+ Mon, 15 Mar 2021 18:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1615832422;
+ bh=GYYv+MsheeXWjs0+8ccatBH06Jins/lXZch2vvJxfDc=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=nlP01otv8chY6yQnAiYzsKkjEp7SjIcJdLFSf68T3YHedu61/ntLE8BuQHcWdA4Xb
+ KFnBgfGSYttVY015OFKatx9Zy2XovB2KMnwUw+Dj93r4COslZ7WL6RorQ9CT3MM7oC
+ 9VkfyWFtuPYwJPgdWi46c77dmJIfKVokn38xcSNBMtQBg7MIu6F5D8d1dlM4P045O1
+ hmck8MfuBt2wKE+8q6qJ9o7fQa5Jq9HEC7eHfMcanhUOO5LWbmirSBV3OmfiXDcpqx
+ jc2x8SGSCNPKgrc0cwWI6HG74cqcyJzAm39DAY2CkaY/HVINEbG2zzEK9JQp+gyxXF
+ 1PY1yZoH072kQ==
+Date: Mon, 15 Mar 2021 11:20:21 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Chinmayi Shetty <chinmayishetty359@gmail.com>
+Cc: pablo@netfilter.org, laforge@gnumonks.org, davem@davemloft.net,
+ osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bkkarthik@pesu.pes.edu
+Subject: Re: [PATCH] Net: gtp: Fixed missing blank line after declaration
+Message-ID: <20210315112021.0278875d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20210313165128.jc2u2pnpm3enbx2h@client-VirtualBox>
+References: <20210313165128.jc2u2pnpm3enbx2h@client-VirtualBox>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YD9QFn3y8ZxcTHTH@nataraja>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -58,10 +61,24 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-I think we also could change jenkins-notifications and/or gerrit-log, IIRC one
-of those was once named "the high noise mailing list" and catches more than
-just what the name says, currently don't remember which/both of them?
+On Sat, 13 Mar 2021 22:21:28 +0530 Chinmayi Shetty wrote:
+> Signed-off-by: Chinmayi Shetty <chinmayishetty359@gmail.com>
+> ---
+>  drivers/net/gtp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+> index efe5247d8c42..79998f4394e5 100644
+> --- a/drivers/net/gtp.c
+> +++ b/drivers/net/gtp.c
+> @@ -437,7 +437,7 @@ static inline void gtp1_push_header(struct sk_buff *skb, struct pdp_ctx *pctx)
+>  	gtp1->length	= htons(payload_len);
+>  	gtp1->tid	= htonl(pctx->u.v1.o_tei);
+>  
+> -	/* TODO: Suppport for extension header, sequence number and N-PDU.
+> +	/* TODO: Support for extension header, sequence number and N-PDU.
+>  	 *	 Update the length field if any of them is available.
+>  	 */
+>  }
 
-builds@ ?
-noise@ ?
-build-noise@ ?
+Subject does not match the patch.
