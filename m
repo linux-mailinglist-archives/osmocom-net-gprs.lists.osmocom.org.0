@@ -2,69 +2,41 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by mail.lfdr.de (Postfix) with ESMTP id D928333D7B8
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 16 Mar 2021 16:37:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7E5133DE6E
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 16 Mar 2021 21:08:22 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 289591B692E;
-	Tue, 16 Mar 2021 15:37:44 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=BD6P9vK8
+	by lists.osmocom.org (Postfix) with ESMTP id A4C6D1B934B;
+	Tue, 16 Mar 2021 20:08:13 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=gnumonks.org
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
 Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2607:f8b0:4864:20::1031; helo=mail-pj1-x1031.google.com;
- envelope-from=chinmayishetty359@gmail.com; receiver=<UNKNOWN> 
+ client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
+ envelope-from=laforge@gnumonks.org; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=gmail.com
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com
- [IPv6:2607:f8b0:4864:20::1031])
- by lists.osmocom.org (Postfix) with ESMTP id C85451A1D4C
- for <osmocom-net-gprs@lists.osmocom.org>; Sat, 13 Mar 2021 16:51:41 +0000 (UTC)
-Received: by mail-pj1-x1031.google.com with SMTP id gb6so6676460pjb.0
- for <osmocom-net-gprs@lists.osmocom.org>; Sat, 13 Mar 2021 08:51:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
- bh=S9+2IFN1dv7+M9NnZ3JAWoiEoZQsQf5Cgay5lNY5ss4=;
- b=BD6P9vK8aJUvG4QnoR3Puj8kvKseW+6o55j/P82M88x02I+JmcKr0kc3RGQsZ37JnF
- TpAsEmNKWLD8YcrY1wJOrOaJth1XufxoyCEXfxwFdsxgKUKYZZtWWBJmNpnispcNGt2p
- PqOZpRCAZAYCByrvhSWdqpYAjP8DW0Lo/GmzX+O/Ffo3uNXGi2hgeJmmx0j8E+bzFZXe
- Ul5IFFt6mJqynovKGjmk0NFGAz3Lrw6VZE0wb6YDCFxj7HgcbaIG3sEkPOeXEVOgBYTw
- KfU5povOAaC0mN3ZNhPy4cibPnvN0xRuGA2k4NL60Fv8NBSNN5PKWktHs3qf/X7CEPTr
- kDag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition;
- bh=S9+2IFN1dv7+M9NnZ3JAWoiEoZQsQf5Cgay5lNY5ss4=;
- b=uZSOE0yUeWjwhzw4Gpl12yoB19C/XKb5WW2C+0H4Zv8Zy7yPVDTBS8S+fYUoD4L89q
- ej2QiZ0k2Kbxy58ek+PPORBqHd7tQ+j+zV8f3AYbGnmPPX8b4hfwRCvzbxVG97tqHbaz
- jscPieIf+Pm2q3xIKCv+ENXJYxOB6LdC1gD4vrcHL1/pBaXjeOkSHhbSXfhTwpQ2Vwtp
- 9cieLs/rL1a8r4jkhX24CoWTgh+Y89rriWsRcBaTCNJXq1rDyvkdy9+/6qz16dxtdso+
- E+xYnUK9fB1m3KKezCWPjA1oQ1FYxpdBdl5ZIE+Y6ttMr3zR2epDsYiJl0AJpVb10eui
- 2OZg==
-X-Gm-Message-State: AOAM530yzfoCCTk1cqGYUlDKuowtVEmfKaDc34pSRjFm9XTokWWH0rPp
- INAqYi9dFoEGBPSC/S2syRw=
-X-Google-Smtp-Source: ABdhPJyhUajGkXVqVI+2w2kKBevWnt3jZ2LBA6OEJfupov4wAmkSuPaGY7mKMoi4jniZ4t/uSUzXRQ==
-X-Received: by 2002:a17:90a:bb91:: with SMTP id
- v17mr4287638pjr.24.1615654300218; 
- Sat, 13 Mar 2021 08:51:40 -0800 (PST)
-Received: from client-VirtualBox ([223.186.9.86])
- by smtp.gmail.com with ESMTPSA id a70sm8572800pfa.202.2021.03.13.08.51.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 13 Mar 2021 08:51:39 -0800 (PST)
-Date: Sat, 13 Mar 2021 22:21:28 +0530
-From: Chinmayi Shetty <chinmayishetty359@gmail.com>
-To: pablo@netfilter.org, laforge@gnumonks.org, davem@davemloft.net,
- kuba@kernel.org, osmocom-net-gprs@lists.osmocom.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: bkkarthik@pesu.pes.edu
-Subject: [PATCH] Net: gtp: Fixed missing blank line after declaration
-Message-ID: <20210313165128.jc2u2pnpm3enbx2h@client-VirtualBox>
+ dmarc=none (p=none dis=none) header.from=gnumonks.org
+Received: from ganesha.gnumonks.org (unknown
+ [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
+ by lists.osmocom.org (Postfix) with ESMTP id 5D6241B9339
+ for <osmocom-net-gprs@lists.osmocom.org>; Tue, 16 Mar 2021 20:08:06 +0000 (UTC)
+Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
+ (envelope-from <laforge@gnumonks.org>)
+ id 1lMFyg-0006zJ-EN; Tue, 16 Mar 2021 21:07:42 +0100
+Received: from laforge by localhost.localdomain with local (Exim 4.94)
+ (envelope-from <laforge@gnumonks.org>)
+ id 1lMFyW-005XoK-8W; Tue, 16 Mar 2021 21:07:32 +0100
+Date: Tue, 16 Mar 2021 21:07:32 +0100
+From: Harald Welte <laforge@gnumonks.org>
+To: Jonas Bonn <jonas@norrbonn.se>
+Cc: Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+ Pablo Neira Ayuso <pablo@netfilter.org>,
+ osmocom-net-gprs@lists.osmocom.org, Oliver Smith <osmith@sysmocom.de>,
+ Pravin Shelar <pravin.ovn@gmail.com>
+Subject: Automatic testing for kernel GTP tunnel driver
+Message-ID: <YFEQBFnqH21kEzeN@nataraja>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailman-Approved-At: Tue, 16 Mar 2021 15:37:30 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,24 +52,104 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Signed-off-by: Chinmayi Shetty <chinmayishetty359@gmail.com>
----
- drivers/net/gtp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi all,
 
-diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index efe5247d8c42..79998f4394e5 100644
---- a/drivers/net/gtp.c
-+++ b/drivers/net/gtp.c
-@@ -437,7 +437,7 @@ static inline void gtp1_push_header(struct sk_buff *skb, struct pdp_ctx *pctx)
- 	gtp1->length	= htons(payload_len);
- 	gtp1->tid	= htonl(pctx->u.v1.o_tei);
- 
--	/* TODO: Suppport for extension header, sequence number and N-PDU.
-+	/* TODO: Support for extension header, sequence number and N-PDU.
- 	 *	 Update the length field if any of them is available.
- 	 */
- }
+in recent months - after many years of no patches at all - the kernel
+GTP driver has received significant interest in terms of contributions.
+
+Given the presumed few users of the GTP tunnel driver, as well as the
+tendency to use super ancient versions of software in the telecom world,
+I think that the usual "let's have the users test -rcX kernels" approach
+is unlikely going to work.
+
+Within Osmocom (a group of FOSS projects implementing various cellular
+standards, protocol stacks and network elements) we are used to rather
+comprehensive functional test suites that we execute automatically
+at least once per 24 hours.  That is for the 99% of our software that is
+userspace code.
+
+For the kernel GTP code, it's of course not that simple, and we never
+had any related testing so far.
+
+In 2021, 5 years after the GTP kernel driver was merged mainline, we now
+finally have set up some test jobs for kernel GTP.
+
+Those jobs execute the same GGSN test suite that we run against the userspace
+dataplane (handling GTP-U and GTP-C in a userspace program "osmo-ggsn").  The
+only difference is that they configure osmo-ggsn to use the kernel GTP driver
+for GTP-U.
+
+Those tests are executed by jenkins, in the following jobs:
+
+* ttcn3-ggsn-test-kernel-latest-torvalds
+  https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-kernel-latest-torvalds/
+  runs GGSN test suite against latest released osmo-ggsn version with
+  kernel-gtp of torvalds/linux.git test results at
+  https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-kernel-latest-torvalds/test_results_analyzer/
+  (make sure to click "Expand All")
+
+* ttcn3-ggsn-test-kernel-latest-torvalds
+  https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-kernel-latest-net-next/
+  runs GGSN test suite against latest released osmo-ggsn version with
+  kernel-gtp of net-next.git
+  test results at https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-kernel-latest-net-next/test_results_analyzer/ (make sure to click "Expand All")
+
+* ttcn3-ggsn-test-kernel-latest
+  https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-kernel-latest/
+  runs GGSN test suite against latest released osmo-ggsn version with
+  kernel-gtp of Debian 10 kernel package
+  test results at https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-kernel-latest/test_results_analyzer/ (make sure to click "Expand All")
+
+* ttcn3-ggsn-test-latest
+  https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-latest/
+  runs GGSN test suite against latest released osmo-ggsn version with
+  userspace GTP-U, not using any kernel GTP driver
+  test results at https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-latest/test_results_analyzer/
+  this serves as a base line that shows the test suite can fully pass,
+  and any failures in the aove are either bugs or lack of features (like
+  IPv6)
+
+Contrary to the above jenkins jobs which all run automatically once
+every 24 hours, there is also one jenkins job for manual execution:
+
+* ttcn3-ggsn-test-kernel-git
+  https://jenkins.osmocom.org/jenkins/view/TTCN3/job/ttcn3-ggsn-test-kernel-git/
+  this is the same test suite and osmo-ggsn as above, but a developer
+  can manually trigger the job and specify
+  * URL of the kernel git repo to build
+  * branch of the kernel git repo to build
+  * whether to use osmo-ggsn latest tag or master
+
+If any one is working on the kernel GTP driver and wants to get access
+to triggering that jenkins job in order to test your patches/branches
+before submission, please register an account at
+https://jenkins.osmocom.org/ and contact me privately.
+
+We are always happy about any contributions in terms of extending test
+coverage.  This could be done by e.g. adding jobs using other P-GW/GGSN
+software than osmo-ggsn, or by extending the coverage of the test cases
+of the test suite.
+
+For anyone interested in more details, please see our redmine issue
+https://osmocom.org/issues/3208 tracks the development of the tests.
+
+The test suite source code (in TTCN-3) is at
+https://git.osmocom.org/osmo-ttcn3-hacks/tree/ggsn_tests
+with containerization + configs at
+https://git.osmocom.org/docker-playground/tree/ttcn3-ggsn-test
+
+I'd like to thank Oliver Smith <osmith@sysmocom.de> for creating the
+above automatic test CI integration.  Development of this was funded
+by sysmocom (https://sysmocom.de/)
+
+If you have any questions, please feel free to reach out to Oliver
+and/or me.
+
+Regards,
+	Harald
+
 -- 
-2.25.1
-
+- Harald Welte <laforge@gnumonks.org>           http://laforge.gnumonks.org/
+============================================================================
+"Privacy in residential applications is a desirable marketing option."
+                                                  (ETSI EN 300 175-7 Ch. A6)
