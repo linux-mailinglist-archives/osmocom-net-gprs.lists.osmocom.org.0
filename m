@@ -1,57 +1,39 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 72CE5439B2F
-	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 25 Oct 2021 18:06:28 +0200 (CEST)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 30C62218021;
-	Mon, 25 Oct 2021 16:06:28 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=kernel.org
-Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b=FKU2kqr8
+	by mail.lfdr.de (Postfix) with ESMTP id 8B73643D0CA
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 27 Oct 2021 20:33:34 +0200 (CEST)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id 23F7B20C0FE;
+	Wed, 27 Oct 2021 18:33:26 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=osmocom.org
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-X-Greylist: delayed 379 seconds by postgrey-1.37 at lists.osmocom.org;
- Wed, 06 Oct 2021 14:26:35 UTC
+Received-SPF: Pass (mailfrom) identity=mailfrom;
+ client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
+ envelope-from=laforge@osmocom.org; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=kernel.org
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=198.145.29.99;
- helo=mail.kernel.org; envelope-from=patchwork-bot+netdevbpf@kernel.org;
- receiver=<UNKNOWN> 
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by lists.osmocom.org (Postfix) with ESMTP id AA25420DBCB
- for <osmocom-net-gprs@lists.osmocom.org>; Wed,  6 Oct 2021 14:26:35 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id F380A61212;
- Wed,  6 Oct 2021 14:20:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1633530008;
- bh=DfS+HcRP041Um9Ci6sK0gVX3hcF+M1et5Y57ysL+ngY=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=FKU2kqr8iRFyCKVM+qo4HUkri2RBoS9gJGjKcdHaCHU09TFxVWGqb1myvQnxG2Qnx
- QPkF4ryLw6GUi1abmZ/9KM2QHkOMU2YadqwyTk7hF9ourGYGD69gV3+yPkOn7SpQx0
- DYYBru8khcGzLLqfsTzJl8xHEvEjbC0gPHSASiAipwfa7ikfLLlVQWVt2W44X9nWQU
- a1PH3lV59LNGZjVoJDR5sU7K1pOSfdoNsEly7FVTJi0sI9Wcy1U3I5wBMGBYvuGBAW
- AqQhtgXBusOqE1a/iNssWpLeRtVFNJB7X10tc9xc5tztoUte5D+RbARu4pJyjaB9dp
- 5qsy4EIQkwTqg==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id EE78E609F4;
- Wed,  6 Oct 2021 14:20:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ dmarc=none (p=none dis=none) header.from=osmocom.org
+Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
+ [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
+ by lists.osmocom.org (Postfix) with ESMTP id 0926620C0CA;
+ Wed, 27 Oct 2021 18:33:10 +0000 (UTC)
+Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
+ (envelope-from <laforge@osmocom.org>)
+ id 1mfnjY-0000ka-GX; Wed, 27 Oct 2021 20:33:08 +0200
+Received: from laforge by localhost.localdomain with local (Exim 4.95)
+ (envelope-from <laforge@osmocom.org>) id 1mfnjT-00Eg1e-3s;
+ Wed, 27 Oct 2021 20:33:03 +0200
+Date: Wed, 27 Oct 2021 20:33:03 +0200
+From: Harald Welte <laforge@osmocom.org>
+To: openbsc@lists.osmocom.org
+Cc: simtrace@lists.osmocom.org, osmocom-net-gprs@lists.osmocom.org
+Subject: Osmocom redmine upgrade / Let me know if something broke
+Message-ID: <YXmbX3UH0UXTFxHL@nataraja>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] gtp: use skb_dst_update_pmtu_no_confirm()
- instead of direct call
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163353000797.15249.17539810847769225450.git-patchwork-notify@kernel.org>
-Date: Wed, 06 Oct 2021 14:20:07 +0000
-References: <20211006035739.5377-1-kyeongun15@gmail.com>
-In-Reply-To: <20211006035739.5377-1-kyeongun15@gmail.com>
-To: Gyeongun Kang <kyeongun15@gmail.com>
-Cc: davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
- pablo@netfilter.org, laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
-X-Mailman-Approved-At: Mon, 25 Oct 2021 16:06:23 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,26 +49,35 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Hello:
+Dear Osmocom community,
 
-This patch was applied to netdev/net-next.git (refs/heads/master):
+today we finally upgraded our redmine installation from the unmaintained
+3.4.x to the latest 4.2.3.  The upgrade had been overdue for years,
+but today we (actually, Kevin) finally managed to find out how to make
+the openid_provider plugin to work with modern rails 5.x.
 
-On Wed,  6 Oct 2021 03:57:39 +0000 you wrote:
-> skb_dst_update_pmtu_no_confirm() is a just wrapper function of
-> ->update_pmtu(). So, it doesn't change logic
-> 
-> Signed-off-by: Gyeongun Kang <kyeongun15@gmail.com>
-> ---
->  drivers/net/gtp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+In any case, I'm just informing you in case there is some unexpected fallout.
 
-Here is the summary with links:
-  - [net-next] gtp: use skb_dst_update_pmtu_no_confirm() instead of direct call
-    https://git.kernel.org/netdev/net-next/c/5b71131b795f
+I've verified that at least the following appears working:
+* logging into redmine
+* openid authentication from gerrit.osmocom.org (also after logout/relogin)
+* graphviz rendering
+* mscgen rendering
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+There could however still be unexpected problems, particularly in features
+such as
+* e-mail notifications from redmine
+* updating redmine issues via e-mail
+* git integration ("Closes: OS#xxxx")
 
+If you run into any troubles, pleas report to https://osmocom.org/projects/osmocom-servers
+or if that also fails, feel free to send e-mails.
 
+Regards,
+	Harald
+
+-- 
+- Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.org/
+============================================================================
+"Privacy in residential applications is a desirable marketing option."
+                                                  (ETSI EN 300 175-7 Ch. A6)
