@@ -1,66 +1,53 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id A694E442B99
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue,  2 Nov 2021 11:24:39 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id E4FBC221160;
-	Tue,  2 Nov 2021 10:24:38 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: lists.osmocom.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b=djfpg6Sn
+	by mail.lfdr.de (Postfix) with ESMTP id 1E413444337
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed,  3 Nov 2021 15:16:18 +0100 (CET)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id F0D4E20F66A;
+	Wed,  3 Nov 2021 14:16:16 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=sysmocom.de
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2607:f8b0:4864:20::b2d; helo=mail-yb1-xb2d.google.com;
- envelope-from=246tnt@gmail.com; receiver=<UNKNOWN> 
+X-Greylist: delayed 413 seconds by postgrey-1.37 at lists.osmocom.org;
+ Wed, 03 Nov 2021 14:15:09 UTC
 Authentication-Results: lists.osmocom.org;
- dmarc=pass (p=none dis=none) header.from=gmail.com
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com
- [IPv6:2607:f8b0:4864:20::b2d])
- by lists.osmocom.org (Postfix) with ESMTP id 198F422105D;
- Tue,  2 Nov 2021 10:22:05 +0000 (UTC)
-Received: by mail-yb1-xb2d.google.com with SMTP id v64so45336399ybi.5;
- Tue, 02 Nov 2021 03:22:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=fRJpnUZWvaLOj4B+LwFt1V/51HJtG0G9EDH7TiHz3sI=;
- b=djfpg6SnWVklRoUale1OieRIk6D33hc48SMbV+PXbTAcg0n4jVlhAGMv0mxnT1YNzb
- aBd1pZQJ0Is/v2stA8jb2XN7XAfdPVS8ko8GtHh9WV8TDbQUganLp2wxtL8RoUOZkvY8
- UNp8LR1Wu1qvBvgpmKARJKenHw01tEOlYEugXaHEYRK0Nc4u8LGN1wdsq9spxeh9w1+D
- bJi0mMu/Jdw3B2L1+6upzYH+NQVjtB4uXM3RukfCW4gv72G9hpiuPrsUDdTgoNtr8wFT
- fmyfVODaXJuJBToTlxHB6/rc6c8PYlTym61Ra5A/8uTvMHfsz+oFOeuQuNPVXNajxSrv
- jPjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=fRJpnUZWvaLOj4B+LwFt1V/51HJtG0G9EDH7TiHz3sI=;
- b=F/3Zcs1UTIy8DEHdfLhFm3j1eiKFkPGQWaFVq5bpQegxQrvmpImngPa/Zgu672TcEO
- Gzu+q8g94TtldX2uSiN5OTFuwWaD0tVvL5rhIZei6XVlsZUVWzXwwRIZKD4it0BvtWKG
- RxwPwhrxojmbFc6BGIEpauD/9KqRjZBH1u/JXEwNIFzLAOHBs41Fd85TumUKiw3e9vyM
- Xp8GQuB39VQTCCfWaum5Y2uOrdJ0DyS/5H7j/+pjDfhL0kPWw0mLaul968BXB2tTzgn3
- ve1YvwAb+JSCfGSj2K9oPMxgLcBSZCcM2115/48AYmGGm+Z0kANYF82mj9VsfdgX3jLO
- juBw==
-X-Gm-Message-State: AOAM530e3hW7LoP35x7iJDVyUOwDuLM855ODoWOzUqxfbQoBppdIsBwZ
- +pupfXHPJBP3a0fS/rIV5sl0ep52EqW2jrkdJsRYHyIg
-X-Google-Smtp-Source: ABdhPJwNBpVC8q/hBzsrAr+qux2XNUF5QvEkCPFJK2HT3xYrH6D6I7JQf4mFXlF+WYxKidw1piZIIELvglMAb7df4gk=
-X-Received: by 2002:a25:4008:: with SMTP id n8mr28350966yba.371.1635848524665; 
- Tue, 02 Nov 2021 03:22:04 -0700 (PDT)
+ dmarc=none (p=none dis=none) header.from=sysmocom.de
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=176.9.212.161;
+ helo=mail.sysmocom.de; envelope-from=pespin@sysmocom.de; receiver=<UNKNOWN> 
+Received: from mail.sysmocom.de (mail.sysmocom.de [176.9.212.161])
+ by lists.osmocom.org (Postfix) with ESMTP id 44EF920F538;
+ Wed,  3 Nov 2021 14:15:08 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.sysmocom.de (Postfix) with ESMTP id 2D2C719805FB;
+ Wed,  3 Nov 2021 14:08:10 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at sysmocom.de
+Received: from mail.sysmocom.de ([127.0.0.1])
+ by localhost (mail.sysmocom.de [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 0Jo1fW-Q0H4X; Wed,  3 Nov 2021 14:08:09 +0000 (UTC)
+Received: from [192.168.182.158] (unknown [31.221.177.36])
+ by mail.sysmocom.de (Postfix) with ESMTPSA id 95A68198016A;
+ Wed,  3 Nov 2021 14:08:08 +0000 (UTC)
+Message-ID: <7d108ef3-07ae-2aa0-f995-1cb3fd747100@sysmocom.de>
+Date: Wed, 3 Nov 2021 15:08:07 +0100
 MIME-Version: 1.0
-References: <YYEEG5iH/7FxvHLc@nataraja>
-In-Reply-To: <YYEEG5iH/7FxvHLc@nataraja>
-From: Sylvain Munaut <246tnt@gmail.com>
-Date: Tue, 2 Nov 2021 11:22:21 +0100
-Message-ID: <CAHL+j0_oB_1GKDT+n2PNV0y2PyxMxjPLnDjpBU_irpe_0hf1JQ@mail.gmail.com>
-Subject: Re: OsmoDevCon 2022 ?
-To: "openbsc@lists.osmocom.org" <openbsc@lists.osmocom.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: Sylvain Munaut <246tnt@gmail.com>,
+ "openbsc@lists.osmocom.org" <openbsc@lists.osmocom.org>
 Cc: baseband-devel <baseband-devel@lists.osmocom.org>,
- simtrace@lists.osmocom.org, 
- osmocom-sdr@lists.osmocom.org, osmocom-net-gprs@lists.osmocom.org, 
- gmr@lists.osmocom.org, tetra@lists.osmocom.org, gr-gsm@lists.osmocom.org
-Content-Type: text/plain; charset="UTF-8"
+ simtrace@lists.osmocom.org, osmocom-sdr@lists.osmocom.org,
+ osmocom-net-gprs@lists.osmocom.org, gmr@lists.osmocom.org,
+ tetra@lists.osmocom.org, gr-gsm@lists.osmocom.org
+References: <YYEEG5iH/7FxvHLc@nataraja>
+ <CAHL+j0_oB_1GKDT+n2PNV0y2PyxMxjPLnDjpBU_irpe_0hf1JQ@mail.gmail.com>
+From: Pau Espin Pedrol <pespin@sysmocom.de>
+Subject: Re: OsmoDevCon 2022 ?
+In-Reply-To: <CAHL+j0_oB_1GKDT+n2PNV0y2PyxMxjPLnDjpBU_irpe_0hf1JQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,32 +63,58 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Hi Harald,
 
-I'm definitely for it and would attend and the usual timeframe sounds good.
 
-As for the modalities.
- - Vaccinated : Sure.
- - Self Test : Although a test before departure sounds like a good
-idea, I'm not really sure of the need / efficacy of a day to day test.
-But I also have no issue taking one if people are more comfortable
-that way or think it's worth it.
- - Venue : Obvious questions is what are the alternatives :)
- - Ventilation : I honestly have no idea on the efficacy of that, but
-if you got filters for the sysmocom office, I guess you did some
-research and if they are movable and not obnoxiously loud, that can't
-hurt.
- - Masks : You didn't mention it in your original email, but
-personally I think in this context ( low number of people, but quite
-extended period of time, + meals / drinks ), their efficacy would be
-negligible. But again, if the consensus is to wear them, I have no
-issues with that.
+On 11/2/21 11:22, Sylvain Munaut wrote:
+> Hi Harald,
+> 
+> I'm definitely for it and would attend and the usual timeframe sounds good.
+> 
+> As for the modalities.
+>   - Vaccinated : Sure.
 
-This is of course just my 2ct and also for my personal situation (like
-for instance I know I can easily have a week "buffer" before/after the
-event where I'll have virtually no contacts).
-Looking forward to hear what others think.
+Agree, I consider this a must (or some sort of equivalent certificate).
 
-Cheers,
 
-    Sylvain
+>   - Self Test : Although a test before departure sounds like a good
+> idea, I'm not really sure of the need / efficacy of a day to day test.
+> But I also have no issue taking one if people are more comfortable
+> that way or think it's worth it.
+
+I'd say at least providing a PCR/antigen test over last 24-48h is 
+enough, given that I expect no much social interaction with third 
+parties once OsmoDevCon starts, since we'll be most part of the day 
+together. That'd be fine for me. Maybe one can be enforced during the 
+first day at start of the event.
+
+
+>   - Venue : Obvious questions is what are the alternatives :)
+
+While in general I like being at IN Berlin during the conferences, it 
+would be a good idea to explore other venues for this year, were we can 
+have a bit more space between people and a bigger volume of ventilated 
+air, maybe also with some extra place outside.
+
+
+>   - Masks : You didn't mention it in your original email, but
+> personally I think in this context ( low number of people, but quite
+> extended period of time, + meals / drinks ), their efficacy would be
+> negligible. But again, if the consensus is to wear them, I have no
+> issues with that.
+
+The specific rules regarding this topic can probably be 
+discussed/announced a few days/weeks before the event, to take into 
+account current legislation, epidemic numbers, etc. since it doesn't 
+involve any kind of organization ahead.
+
+Regards,
+Pau
+
+-- 
+- Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
+=======================================================================
+* sysmocom - systems for mobile communications GmbH
+* Alt-Moabit 93
+* 10559 Berlin, Germany
+* Sitz / Registered office: Berlin, HRB 134158 B
+* Geschaeftsfuehrer / Managing Director: Harald Welte
