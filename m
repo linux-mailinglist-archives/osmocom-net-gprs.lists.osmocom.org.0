@@ -1,49 +1,51 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 388F844575A
-	for <lists+osmocom-net-gprs@lfdr.de>; Thu,  4 Nov 2021 17:39:33 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id 0B3942004C2;
-	Thu,  4 Nov 2021 16:39:26 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=sysmocom.de
+	by mail.lfdr.de (Postfix) with ESMTP id 1135C446774
+	for <lists+osmocom-net-gprs@lfdr.de>; Fri,  5 Nov 2021 17:59:12 +0100 (CET)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id 8F58A21766A;
+	Fri,  5 Nov 2021 16:59:07 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=mail.tsaitgaist.info
+Authentication-Results: lists.osmocom.org;
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=tsaitgaist.info header.i=@tsaitgaist.info header.b=TLORY/O6
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-X-Greylist: delayed 303 seconds by postgrey-1.37 at lists.osmocom.org;
- Thu, 04 Nov 2021 16:39:20 UTC
-Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=sysmocom.de
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=176.9.212.161;
- helo=mail.sysmocom.de; envelope-from=nhofmeyr@sysmocom.de; receiver=<UNKNOWN> 
-Received: from mail.sysmocom.de (mail.sysmocom.de [176.9.212.161])
- by lists.osmocom.org (Postfix) with ESMTP id 88C1F200444;
- Thu,  4 Nov 2021 16:39:19 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by mail.sysmocom.de (Postfix) with ESMTP id 44A201980AE5;
- Thu,  4 Nov 2021 16:34:15 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at sysmocom.de
-Received: from mail.sysmocom.de ([127.0.0.1])
- by localhost (mail.sysmocom.de [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id a9dB17Er8rbE; Thu,  4 Nov 2021 16:34:15 +0000 (UTC)
-Received: from my.box (p54a4f11e.dip0.t-ipconnect.de [84.164.241.30])
- by mail.sysmocom.de (Postfix) with ESMTPSA id BD3F01980742;
- Thu,  4 Nov 2021 16:34:14 +0000 (UTC)
-Date: Thu, 4 Nov 2021 17:34:14 +0100
-From: Neels Hofmeyr <nhofmeyr@sysmocom.de>
+X-Greylist: delayed 376 seconds by postgrey-1.37 at lists.osmocom.org;
+ Fri, 05 Nov 2021 13:24:35 UTC
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none)
+ header.from=mail.tsaitgaist.info
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=37.187.20.133;
+ helo=ns3078383.ip-37-187-20.eu; envelope-from=ml@mail.tsaitgaist.info;
+ receiver=<UNKNOWN> 
+Received: from ns3078383.ip-37-187-20.eu (tsaitgaist.info [37.187.20.133])
+ by lists.osmocom.org (Postfix) with ESMTP id A9AAF213A78;
+ Fri,  5 Nov 2021 13:24:35 +0000 (UTC)
+Received: from diode (mue-88-130-48-186.dsl.tropolys.de [88.130.48.186])
+ by ns3078383.ip-37-187-20.eu (Postfix) with ESMTPSA id 370FC8E009C;
+ Fri,  5 Nov 2021 14:18:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=tsaitgaist.info;
+ s=default; t=1636118296;
+ bh=PKxl6Omiq/T7Ssn37enufcJ7WNWj535YSF/EKSdG7vI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=TLORY/O6DYtpQtbsqflbdRvM7h2Jt8iIXeN34PvH+0U/AnHeJMwwXGyEEoiokDwWC
+ 9r6UYVpW7P5E23mjBFoek6BBP3hA0/R7+/Ci4n/UJnNyAw8DmUlTCAF7ktaYwTrVJz
+ 52bYqZhI8dFnBpcuHCRgHuygioOpfWHVnilbAVXw=
+Date: Fri, 5 Nov 2021 14:18:14 +0100
+From: =?iso-8859-1?Q?K=E9vin?= Redon <ml@mail.tsaitgaist.info>
 To: openbsc@lists.osmocom.org
 Cc: baseband-devel@lists.osmocom.org, simtrace@lists.osmocom.org,
  osmocom-sdr@lists.osmocom.org, osmocom-net-gprs@lists.osmocom.org,
  gmr@lists.osmocom.org, tetra@lists.osmocom.org, gr-gsm@lists.osmocom.org
 Subject: Re: OsmoDevCon 2022 ?
-Message-ID: <20211104163414.GB26052@my.box>
+Message-ID: <YYUvFrK4JWLI0EwH@diode>
 References: <YYEEG5iH/7FxvHLc@nataraja>
- <20211104160735.GA26052@my.box>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211104160735.GA26052@my.box>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <YYEEG5iH/7FxvHLc@nataraja>
+X-Mailman-Approved-At: Fri, 05 Nov 2021 16:59:02 +0000
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -59,24 +61,17 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-> requiring vaccination to attend by default. Maybe with the option for attendees
-> to request attendance despite no vaccination, and then see whether we can
-> unanimously agree on that?
+On Tue, Nov 02, 2021 at 10:25:47AM +0100, Harald Welte wrote:
+> I personally would say let's plan for the usual late April 2022 time frame,
+> and if the pandemic situation deteriorates, we can still cancel it with
+> something like one month lead time.
 
-I'd like to add that I find it should also be sufficient to have recovered from
-COVID. This is a common rule in schools in Berlin that does relieve teachers
-from the need to test regularly (called 2G, incidentally).
+I'm also happy to help with the recording and streaming of the public talks for those not able to join on site.
+sure, it would not cover all other aspects of a gathering, but provides a light way of participation.
 
-Another question is whether we play by RKI rules and not accept certain
-vaccines.
+> I would also personally suggest to limit attendance to people who are fully
+> vaccinated, and in addition do a self-test for all participants every
+> morning.
 
-I guess we should first see whether anyone would be refused attendance based on
-these rules and take it from there?
-
-Here is a dudle to anonymously figure out the current vaccination status. Feel
-free to enter your current status, especially if you're not fully vaccinated
-and would like to attend. This is just to get a basis for discussion:
-
-https://dudle.inf.tu-dresden.de/w93G6NPqfA/
-
-I guess we need to repeat such poll in early '22.
+I don't mind self-testing, particularly for "larger" venues with plenty of prolonged contacts.
+they're easy to make and inexpensive, a relative small constraint if it allows to have such an event again.
