@@ -1,46 +1,44 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from lists.osmocom.org (lists.osmocom.org [IPv6:2a01:4f8:191:444b::2:7])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A6B446D36
-	for <lists+osmocom-net-gprs@lfdr.de>; Sat,  6 Nov 2021 10:23:21 +0100 (CET)
 Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
-	by lists.osmocom.org (Postfix) with ESMTP id C843921EABD;
-	Sat,  6 Nov 2021 09:23:19 +0000 (UTC)
-Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=osmocom.org
+	by mail.lfdr.de (Postfix) with ESMTP id B1F7F4571E0
+	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 19 Nov 2021 16:42:27 +0100 (CET)
+Received: from lists.osmocom.org (lists.osmocom.org [144.76.43.76])
+	by lists.osmocom.org (Postfix) with ESMTP id D9337226DFB;
+	Fri, 19 Nov 2021 15:42:25 +0000 (UTC)
+Authentication-Results: lists.osmocom.org; dmarc=none (p=none dis=none) header.from=sysmocom.de
 X-Original-To: osmocom-net-gprs@lists.osmocom.org
 Delivered-To: osmocom-net-gprs@lists.osmocom.org
-Received-SPF: Pass (mailfrom) identity=mailfrom;
- client-ip=2001:780:45:1d:225:90ff:fe52:c662; helo=ganesha.gnumonks.org;
- envelope-from=laforge@osmocom.org; receiver=<UNKNOWN> 
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=176.9.212.161;
+ helo=mail.sysmocom.de; envelope-from=pespin@sysmocom.de; receiver=<UNKNOWN> 
 Authentication-Results: lists.osmocom.org;
- dmarc=none (p=none dis=none) header.from=osmocom.org
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org
- [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
- by lists.osmocom.org (Postfix) with ESMTP id C06D521E900;
- Sat,  6 Nov 2021 09:20:05 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.89)
- (envelope-from <laforge@osmocom.org>)
- id 1mjHro-00072d-LF; Sat, 06 Nov 2021 10:20:04 +0100
-Received: from laforge by localhost.localdomain with local (Exim 4.95)
- (envelope-from <laforge@osmocom.org>) id 1mjHj6-002rmG-Ij;
- Sat, 06 Nov 2021 10:11:04 +0100
-Date: Sat, 6 Nov 2021 10:11:04 +0100
-From: Harald Welte <laforge@osmocom.org>
-To: =?iso-8859-1?Q?K=E9vin?= Redon <ml@mail.tsaitgaist.info>
-Cc: openbsc@lists.osmocom.org, baseband-devel@lists.osmocom.org,
- simtrace@lists.osmocom.org, osmocom-sdr@lists.osmocom.org,
- osmocom-net-gprs@lists.osmocom.org, gmr@lists.osmocom.org,
- tetra@lists.osmocom.org, gr-gsm@lists.osmocom.org
-Subject: Re: OsmoDevCon 2022 ?
-Message-ID: <YYZGqJ9/vOeFmpWJ@nataraja>
-References: <YYEEG5iH/7FxvHLc@nataraja>
- <YYUvFrK4JWLI0EwH@diode>
+ dmarc=none (p=none dis=none) header.from=sysmocom.de
+Received: from mail.sysmocom.de (mail.sysmocom.de [176.9.212.161])
+ by lists.osmocom.org (Postfix) with ESMTP id 78453226DCB;
+ Fri, 19 Nov 2021 15:42:11 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.sysmocom.de (Postfix) with ESMTP id 9447119803CC;
+ Fri, 19 Nov 2021 15:42:09 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at sysmocom.de
+Received: from mail.sysmocom.de ([127.0.0.1])
+ by localhost (mail.sysmocom.de [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 3wuG9O-ZxE4J; Fri, 19 Nov 2021 15:42:09 +0000 (UTC)
+Received: from [192.168.1.138] (unknown [207.188.170.201])
+ by mail.sysmocom.de (Postfix) with ESMTPSA id 3D3EF198021D;
+ Fri, 19 Nov 2021 15:42:09 +0000 (UTC)
+Message-ID: <017f28c3-76e9-aa9f-e701-d746838cabde@sysmocom.de>
+Date: Fri, 19 Nov 2021 16:42:08 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YYUvFrK4JWLI0EwH@diode>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: OpenBSC <openbsc@lists.osmocom.org>,
+ osmocom-net-gprs <osmocom-net-gprs@lists.osmocom.org>
+From: Pau Espin Pedrol <pespin@sysmocom.de>
+Subject: Osmocom CNI release 202111
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -56,15 +54,31 @@ List-Subscribe: <https://lists.osmocom.org/mailman/listinfo/osmocom-net-gprs>,
 Errors-To: osmocom-net-gprs-bounces@lists.osmocom.org
 Sender: "osmocom-net-gprs" <osmocom-net-gprs-bounces@lists.osmocom.org>
 
-Hi Kevin,
+Dear all,
 
-On Fri, Nov 05, 2021 at 02:18:14PM +0100, Kévin Redon wrote:
-> I'm also happy to help with the recording and streaming of the public talks for those not able to join on site.
+I am pleased to announce new tagged releases for Osmocom Cellular 
+Network Infrastructure components.
 
-thanks for that, as usual.
+Find more information about the release here [1].
 
+Osmocom "Latest" repositories in OBS [2] should already contain packages 
+for the new versions.
+
+OpenEmbedded related meta-layers such as meta-telephony usual 
+stable/testing branch "201705" [3] have also been updated to build 
+recipes for new versions.
+
+Regards,
+Pau
+
+[1] https://osmocom.org/news/152
+[2] https://osmocom.org/projects/cellular-infrastructure/wiki/Latest_Builds
+[3] https://git.osmocom.org/meta-telephony/log/?h=201705
 -- 
-- Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.org/
-============================================================================
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
+- Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
+=======================================================================
+* sysmocom - systems for mobile communications GmbH
+* Alt-Moabit 93
+* 10559 Berlin, Germany
+* Sitz / Registered office: Berlin, HRB 134158 B
+* Geschaeftsfuehrer / Managing Director: Harald Welte
