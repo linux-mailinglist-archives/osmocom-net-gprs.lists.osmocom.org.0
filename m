@@ -2,76 +2,58 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB2D4A9D32
-	for <lists+osmocom-net-gprs@lfdr.de>; Fri,  4 Feb 2022 17:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 096854AAA34
+	for <lists+osmocom-net-gprs@lfdr.de>; Sat,  5 Feb 2022 17:40:27 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 06D46283B1;
-	Fri,  4 Feb 2022 16:54:22 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id B5FBA2839F;
+	Sat,  5 Feb 2022 16:40:26 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8jms57XaNx3Q; Fri,  4 Feb 2022 16:54:21 +0000 (UTC)
+	with ESMTP id B_Y-0k_KCRxJ; Sat,  5 Feb 2022 16:40:26 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 61B95282E5;
-	Fri,  4 Feb 2022 16:54:20 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id AF45B28388;
+	Sat,  5 Feb 2022 16:40:23 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id E746338A008F
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri,  4 Feb 2022 16:54:12 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id F306938A0028
+	for <osmocom-net-gprs@lists.osmocom.org>; Sat,  5 Feb 2022 16:40:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id CA8B92839E
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri,  4 Feb 2022 16:54:12 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id C7BB928388
+	for <osmocom-net-gprs@lists.osmocom.org>; Sat,  5 Feb 2022 16:40:20 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Aow6wEYk9z06 for <osmocom-net-gprs@lists.osmocom.org>;
-	Fri,  4 Feb 2022 16:54:11 +0000 (UTC)
-Received: from mga01.intel.com (unknown [192.55.52.88])
-	by mail.osmocom.org (Postfix) with ESMTPS id 9038F2838C
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri,  4 Feb 2022 16:54:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1643993649; x=1675529649;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=W6Z2hTqpTwJmxAmL9WZGv3EtNn3yR19SmpsVjDa05vU=;
-  b=FL9u9tBujQecdXBV8SoS2wpSsPakTCi+3s0YQwijYTxJLhGV1Kvi446d
-   OZJ9wtx3Xfg1q8Af7pitDm5ujDxPV5F6N/0H5N7xOks5Ai2tw7k3L/2bb
-   VbPKHdArPLRX+qLcanTH1MWjou4RGkSRcSG9pj2xxmcrg2uEVAq6WcuTq
-   OA4rtqzjy8hOFHnqDs2Ixx+McYsfjUFukaDxrgMlzOdWYRc/cIo6t8Erq
-   m6H28k7wtNeydOsw1zzGh8yYSNDYhacSmErYeYoFjntmyK8dNWovwCQIn
-   yH8BsKpINT1L3XUpuba4YUytrYyL9p0Vl0prowdtWUU5F09Ht/mWMp2Fy
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="272901091"
-X-IronPort-AV: E=Sophos;i="5.88,343,1635231600";
-   d="scan'208";a="272901091"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2022 08:54:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,343,1635231600";
-   d="scan'208";a="600278307"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
-  by fmsmga004.fm.intel.com with ESMTP; 04 Feb 2022 08:54:04 -0800
-Received: from switcheroo.igk.intel.com (switcheroo.igk.intel.com [172.22.229.137])
-	by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id 214Gs32D026658;
-	Fri, 4 Feb 2022 16:54:03 GMT
-From: Marcin Szycik <marcin.szycik@linux.intel.com>
-To: netdev@vger.kernel.org
-Subject: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
-Date: Fri,  4 Feb 2022 17:51:01 +0100
-Message-Id: <20220204165101.10673-1-marcin.szycik@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220204164929.10356-1-marcin.szycik@linux.intel.com>
-References: <20220204164929.10356-1-marcin.szycik@linux.intel.com>
+	with ESMTP id ckcms0pOZI4f for <osmocom-net-gprs@lists.osmocom.org>;
+	Sat,  5 Feb 2022 16:40:19 +0000 (UTC)
+Received: from ganesha.gnumonks.org (ganesha.gnumonks.org [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
+	by mail.osmocom.org (Postfix) with ESMTPS id EB445282E5
+	for <osmocom-net-gprs@lists.osmocom.org>; Sat,  5 Feb 2022 16:40:18 +0000 (UTC)
+Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.94.2)
+	(envelope-from <laforge@osmocom.org>)
+	id 1nGO6W-008YXJ-4Z; Sat, 05 Feb 2022 17:40:04 +0100
+Received: from laforge by localhost.localdomain with local (Exim 4.95)
+	(envelope-from <laforge@osmocom.org>)
+	id 1nGO0q-003EQf-Pp;
+	Sat, 05 Feb 2022 17:34:12 +0100
+Date: Sat, 5 Feb 2022 17:34:12 +0100
+From: Harald Welte <laforge@osmocom.org>
+To: Marcin Szycik <marcin.szycik@linux.intel.com>
+Subject: Re: [RFC PATCH net-next v3 1/5] gtp: Allow to create GTP device
+ without FDs
+Message-ID: <Yf6nBDg/v1zuTf8l@nataraja>
+References: <20220127163749.374283-1-marcin.szycik@linux.intel.com>
+ <20220127163900.374645-1-marcin.szycik@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: SAY32TIITBYD5A5RKNK6KNQYO5SZVXCK
-X-Message-ID-Hash: SAY32TIITBYD5A5RKNK6KNQYO5SZVXCK
-X-MailFrom: marcin.szycik@linux.intel.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-CC: michal.swiatkowski@linux.intel.com, wojciech.drewek@intel.com, davem@davemloft.net, kuba@kernel.org, pablo@netfilter.org, laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220127163900.374645-1-marcin.szycik@linux.intel.com>
+Message-ID-Hash: URVIFRN4XG3LFMX5LLROYL37NBJTFDAQ
+X-Message-ID-Hash: URVIFRN4XG3LFMX5LLROYL37NBJTFDAQ
+X-MailFrom: laforge@osmocom.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: netdev@vger.kernel.org, michal.swiatkowski@linux.intel.com, wojciech.drewek@intel.com, davem@davemloft.net, kuba@kernel.org, pablo@netfilter.org, osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/SAY32TIITBYD5A5RKNK6KNQYO5SZVXCK/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/URVIFRN4XG3LFMX5LLROYL37NBJTFDAQ/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -79,405 +61,42 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-From: Wojciech Drewek <wojciech.drewek@intel.com>
+Hi Marcin, Wojciech,
 
-Adding GTP device through ip link creates the situation where
-there is no userspace daemon which would handle GTP messages
-(Echo Request for example). GTP-U instance which would not respond
-to echo requests would violate GTP specification.
+thanks for the revised patch. In general it looks fine to me.
 
-When GTP packet arrives with GTP_ECHO_REQ message type,
-GTP_ECHO_RSP is send to the sender. GTP_ECHO_RSP message
-should contain information element with GTPIE_RECOVERY tag and
-restart counter value. For GTPv1 restart counter is not used
-and should be equal to 0, for GTPv0 restart counter contains
-information provided from userspace(IFLA_GTP_RESTART_COUNT).
+Do you have a public git tree with your patchset applied?  I'm asking as
+we do have automatic testing in place at https://jenkins.osmocom.org/ where I
+just need to specify a remote git repo andit will build this kernel and
+run the test suite.
 
-Signed-off-by: Wojciech Drewek <wojciech.drewek@intel.com>
----
- drivers/net/gtp.c            | 212 ++++++++++++++++++++++++++++++++---
- include/net/gtp.h            |  31 +++++
- include/uapi/linux/if_link.h |   1 +
- 3 files changed, 228 insertions(+), 16 deletions(-)
+Some minor remarks below, all not critical, just some thoughts.
 
-diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index 6fa1cfe023ef..d20bc272ff6c 100644
---- a/drivers/net/gtp.c
-+++ b/drivers/net/gtp.c
-@@ -75,6 +75,8 @@ struct gtp_dev {
- 	unsigned int		hash_size;
- 	struct hlist_head	*tid_hash;
- 	struct hlist_head	*addr_hash;
-+
-+	u8			restart_count;
- };
-=20
- static unsigned int gtp_net_id __read_mostly;
-@@ -217,6 +219,106 @@ static int gtp_rx(struct pdp_ctx *pctx, struct sk_b=
-uff *skb,
- 	return -1;
- }
-=20
-+static struct rtable *ip4_route_output_gtp(struct flowi4 *fl4,
-+					   const struct sock *sk,
-+					   __be32 daddr, __be32 saddr)
-+{
-+	memset(fl4, 0, sizeof(*fl4));
-+	fl4->flowi4_oif		=3D sk->sk_bound_dev_if;
-+	fl4->daddr		=3D daddr;
-+	fl4->saddr		=3D saddr;
-+	fl4->flowi4_tos		=3D RT_CONN_FLAGS(sk);
-+	fl4->flowi4_proto	=3D sk->sk_protocol;
-+
-+	return ip_route_output_key(sock_net(sk), fl4);
-+}
-+
-+/* GSM TS 09.60. 7.3
-+ * In all Path Management messages:
-+ * - TID: is not used and shall be set to 0.
-+ * - Flow Label is not used and shall be set to 0
-+ * In signalling messages:
-+ * - number: this field is not yet used in signalling messages.
-+ *   It shall be set to 255 by the sender and shall be ignored
-+ *   by the receiver
-+ * Returns true if the echo req was correct, false otherwise.
-+ */
-+static bool gtp0_validate_echo_req(struct gtp0_header *gtp0)
-+{
-+	return !(gtp0->tid || (gtp0->flags ^ 0x1e) ||
-+		gtp0->number !=3D 0xff || gtp0->flow);
-+}
-+
-+static int gtp0_echo_resp(struct gtp_dev *gtp, struct sk_buff *skb)
-+{
-+	struct gtp0_packet *gtp_pkt;
-+	struct gtp0_header *gtp0;
-+	struct rtable *rt;
-+	struct flowi4 fl4;
-+	struct iphdr *iph;
-+	__be16 seq;
-+
-+	gtp0 =3D (struct gtp0_header *)(skb->data + sizeof(struct udphdr));
-+
-+	if (!gtp0_validate_echo_req(gtp0))
-+		return -1;
-+
-+	seq =3D gtp0->seq;
-+
-+	/* pull GTP and UDP headers */
-+	skb_pull_data(skb, sizeof(struct gtp0_header) + sizeof(struct udphdr));
-+
-+	gtp_pkt =3D skb_push(skb, sizeof(struct gtp0_packet));
-+	memset(gtp_pkt, 0, sizeof(struct gtp0_packet));
-+
-+	gtp_pkt->gtp0_h.flags =3D 0x1e; /* v0, GTP-non-prime. */
-+	gtp_pkt->gtp0_h.type =3D GTP_ECHO_RSP;
-+	gtp_pkt->gtp0_h.length =3D
-+		htons(sizeof(struct gtp0_packet) - sizeof(struct gtp0_header));
-+
-+	/* GSM TS 09.60. 7.3 The Sequence Number in a signalling response
-+	 * message shall be copied from the signalling request message
-+	 * that the GSN is replying to.
-+	 */
-+	gtp_pkt->gtp0_h.seq =3D seq;
-+
-+	/* GSM TS 09.60. 7.3 In all Path Management Flow Label and TID
-+	 * are not used and shall be set to 0.
-+	 */
-+	gtp_pkt->gtp0_h.flow =3D 0;
-+	gtp_pkt->gtp0_h.tid =3D 0;
-+	gtp_pkt->gtp0_h.number =3D 0xff;
-+	gtp_pkt->gtp0_h.spare[0] =3D 0xff;
-+	gtp_pkt->gtp0_h.spare[1] =3D 0xff;
-+	gtp_pkt->gtp0_h.spare[2] =3D 0xff;
-+
-+	gtp_pkt->ie.tag =3D GTPIE_RECOVERY;
-+	gtp_pkt->ie.val =3D gtp->restart_count;
-+
-+	iph =3D ip_hdr(skb);
-+
-+	/* find route to the sender,
-+	 * src address becomes dst address and vice versa.
-+	 */
-+	rt =3D ip4_route_output_gtp(&fl4, gtp->sk0, iph->saddr, iph->daddr);
-+	if (IS_ERR(rt)) {
-+		netdev_dbg(gtp->dev, "no route for echo response from %pI4\n",
-+			   &iph->saddr);
-+		return -1;
-+	}
-+
-+	udp_tunnel_xmit_skb(rt, gtp->sk0, skb,
-+			    fl4.saddr, fl4.daddr,
-+			    iph->tos,
-+			    ip4_dst_hoplimit(&rt->dst),
-+			    0,
-+			    htons(GTP0_PORT), htons(GTP0_PORT),
-+			    !net_eq(sock_net(gtp->sk1u),
-+				    dev_net(gtp->dev)),
-+			    false);
-+	return 0;
-+}
-+
- /* 1 means pass up to the stack, -1 means drop and 0 means decapsulated.=
- */
- static int gtp0_udp_encap_recv(struct gtp_dev *gtp, struct sk_buff *skb)
- {
-@@ -233,6 +335,13 @@ static int gtp0_udp_encap_recv(struct gtp_dev *gtp, =
-struct sk_buff *skb)
- 	if ((gtp0->flags >> 5) !=3D GTP_V0)
- 		return 1;
-=20
-+	/* If the sockets were created in kernel, it means that
-+	 * there is no daemon running in userspace which would
-+	 * handle echo request.
-+	 */
-+	if (gtp0->type =3D=3D GTP_ECHO_REQ && gtp->sk_created)
-+		return gtp0_echo_resp(gtp, skb);
-+
- 	if (gtp0->type !=3D GTP_TPDU)
- 		return 1;
-=20
-@@ -245,6 +354,74 @@ static int gtp0_udp_encap_recv(struct gtp_dev *gtp, =
-struct sk_buff *skb)
- 	return gtp_rx(pctx, skb, hdrlen, gtp->role);
- }
-=20
-+static int gtp1u_echo_resp(struct gtp_dev *gtp, struct sk_buff *skb)
-+{
-+	struct gtp1_header_long *gtp1u;
-+	struct gtp1u_packet *gtp_pkt;
-+	struct rtable *rt;
-+	struct flowi4 fl4;
-+	struct iphdr *iph;
-+
-+	gtp1u =3D (struct gtp1_header_long *)(skb->data + sizeof(struct udphdr)=
-);
-+
-+	/* 3GPP TS 29.281 5.1 - For the Echo Request, Echo Response,
-+	 * Error Indication and Supported Extension Headers Notification
-+	 * messages, the S flag shall be set to 1 and TEID shall be set to 0.
-+	 */
-+	if (!(gtp1u->flags & GTP1_F_SEQ) || gtp1u->tid)
-+		return -1;
-+
-+	/* pull GTP and UDP headers */
-+	skb_pull_data(skb, sizeof(struct gtp1_header_long) + sizeof(struct udph=
-dr));
-+
-+	gtp_pkt =3D skb_push(skb, sizeof(struct gtp1u_packet));
-+	memset(gtp_pkt, 0, sizeof(struct gtp1u_packet));
-+
-+	/* S flag must be set to 1 */
-+	gtp_pkt->gtp1u_h.flags =3D 0x32;
-+	gtp_pkt->gtp1u_h.type =3D GTP_ECHO_RSP;
-+	/* seq, npdu and next should be counted to the length of the GTP packet
-+	 * that's why szie of gtp1_header should be subtracted,
-+	 * not why szie of gtp1_header_long.
-+	 */
-+	gtp_pkt->gtp1u_h.length =3D
-+		htons(sizeof(struct gtp1u_packet) - sizeof(struct gtp1_header));
-+	/* 3GPP TS 29.281 5.1 - TEID has to be set to 0 */
-+	gtp_pkt->gtp1u_h.tid =3D 0;
-+
-+	/* 3GPP TS 29.281 7.7.2 - The Restart Counter value in the
-+	 * Recovery information element shall not be used, i.e. it shall
-+	 * be set to zero by the sender and shall be ignored by the receiver.
-+	 * The Recovery information element is mandatory due to backwards
-+	 * compatibility reasons.
-+	 */
-+	gtp_pkt->ie.tag =3D GTPIE_RECOVERY;
-+	gtp_pkt->ie.val =3D 0;
-+
-+	iph =3D ip_hdr(skb);
-+
-+	/* find route to the sender,
-+	 * src address becomes dst address and vice versa.
-+	 */
-+	rt =3D ip4_route_output_gtp(&fl4, gtp->sk1u, iph->saddr, iph->daddr);
-+	if (IS_ERR(rt)) {
-+		netdev_dbg(gtp->dev, "no route for echo response from %pI4\n",
-+			   &iph->saddr);
-+		return -1;
-+	}
-+
-+	udp_tunnel_xmit_skb(rt, gtp->sk1u, skb,
-+			    fl4.saddr, fl4.daddr,
-+			    iph->tos,
-+			    ip4_dst_hoplimit(&rt->dst),
-+			    0,
-+			    htons(GTP1U_PORT), htons(GTP1U_PORT),
-+			    !net_eq(sock_net(gtp->sk1u),
-+				    dev_net(gtp->dev)),
-+			    false);
-+	return 0;
-+}
-+
- static int gtp1u_udp_encap_recv(struct gtp_dev *gtp, struct sk_buff *skb=
-)
- {
- 	unsigned int hdrlen =3D sizeof(struct udphdr) +
-@@ -260,6 +437,13 @@ static int gtp1u_udp_encap_recv(struct gtp_dev *gtp,=
- struct sk_buff *skb)
- 	if ((gtp1->flags >> 5) !=3D GTP_V1)
- 		return 1;
-=20
-+	/* If the sockets were created in kernel, it means that
-+	 * there is no daemon running in userspace which would
-+	 * handle echo request.
-+	 */
-+	if (gtp1->type =3D=3D GTP_ECHO_REQ && gtp->sk_created)
-+		return gtp1u_echo_resp(gtp, skb);
-+
- 	if (gtp1->type !=3D GTP_TPDU)
- 		return 1;
-=20
-@@ -398,20 +582,6 @@ static void gtp_dev_uninit(struct net_device *dev)
- 	free_percpu(dev->tstats);
- }
-=20
--static struct rtable *ip4_route_output_gtp(struct flowi4 *fl4,
--					   const struct sock *sk,
--					   __be32 daddr)
--{
--	memset(fl4, 0, sizeof(*fl4));
--	fl4->flowi4_oif		=3D sk->sk_bound_dev_if;
--	fl4->daddr		=3D daddr;
--	fl4->saddr		=3D inet_sk(sk)->inet_saddr;
--	fl4->flowi4_tos		=3D RT_CONN_FLAGS(sk);
--	fl4->flowi4_proto	=3D sk->sk_protocol;
--
--	return ip_route_output_key(sock_net(sk), fl4);
--}
--
- static inline void gtp0_push_header(struct sk_buff *skb, struct pdp_ctx =
-*pctx)
- {
- 	int payload_len =3D skb->len;
-@@ -517,7 +687,8 @@ static int gtp_build_skb_ip4(struct sk_buff *skb, str=
-uct net_device *dev,
- 	}
- 	netdev_dbg(dev, "found PDP context %p\n", pctx);
-=20
--	rt =3D ip4_route_output_gtp(&fl4, pctx->sk, pctx->peer_addr_ip4.s_addr)=
-;
-+	rt =3D ip4_route_output_gtp(&fl4, pctx->sk, pctx->peer_addr_ip4.s_addr,
-+				  inet_sk(pctx->sk)->inet_saddr);
- 	if (IS_ERR(rt)) {
- 		netdev_dbg(dev, "no route to SSGN %pI4\n",
- 			   &pctx->peer_addr_ip4.s_addr);
-@@ -684,6 +855,11 @@ static int gtp_newlink(struct net *src_net, struct n=
-et_device *dev,
- 			hashsize =3D 1024;
- 	}
-=20
-+	if (!data[IFLA_GTP_RESTART_COUNT])
-+		gtp->restart_count =3D 0;
-+	else
-+		gtp->restart_count =3D nla_get_u8(data[IFLA_GTP_RESTART_COUNT]);
-+
- 	gtp->net =3D src_net;
-=20
- 	err =3D gtp_hashtable_new(gtp, hashsize);
-@@ -735,6 +911,7 @@ static const struct nla_policy gtp_policy[IFLA_GTP_MA=
-X + 1] =3D {
- 	[IFLA_GTP_FD1]			=3D { .type =3D NLA_U32 },
- 	[IFLA_GTP_PDP_HASHSIZE]		=3D { .type =3D NLA_U32 },
- 	[IFLA_GTP_ROLE]			=3D { .type =3D NLA_U32 },
-+	[IFLA_GTP_RESTART_COUNT]	=3D { .type =3D NLA_U8 },
- };
-=20
- static int gtp_validate(struct nlattr *tb[], struct nlattr *data[],
-@@ -749,7 +926,8 @@ static int gtp_validate(struct nlattr *tb[], struct n=
-lattr *data[],
- static size_t gtp_get_size(const struct net_device *dev)
- {
- 	return nla_total_size(sizeof(__u32)) + /* IFLA_GTP_PDP_HASHSIZE */
--		nla_total_size(sizeof(__u32)); /* IFLA_GTP_ROLE */
-+		nla_total_size(sizeof(__u32)) + /* IFLA_GTP_ROLE */
-+		nla_total_size(sizeof(__u8)); /* IFLA_GTP_RESTART_COUNT */
- }
-=20
- static int gtp_fill_info(struct sk_buff *skb, const struct net_device *d=
-ev)
-@@ -760,6 +938,8 @@ static int gtp_fill_info(struct sk_buff *skb, const s=
-truct net_device *dev)
- 		goto nla_put_failure;
- 	if (nla_put_u32(skb, IFLA_GTP_ROLE, gtp->role))
- 		goto nla_put_failure;
-+	if (nla_put_u8(skb, IFLA_GTP_RESTART_COUNT, gtp->restart_count))
-+		goto nla_put_failure;
-=20
- 	return 0;
-=20
-diff --git a/include/net/gtp.h b/include/net/gtp.h
-index c78702e3d663..53a712f73b13 100644
---- a/include/net/gtp.h
-+++ b/include/net/gtp.h
-@@ -7,8 +7,13 @@
- #define GTP0_PORT	3386
- #define GTP1U_PORT	2152
-=20
-+/* GTP messages types */
-+#define GTP_ECHO_REQ	1	/* Echo Request */
-+#define GTP_ECHO_RSP	2	/* Echo Response */
- #define GTP_TPDU	255
-=20
-+#define GTPIE_RECOVERY	14
-+
- struct gtp0_header {	/* According to GSM TS 09.60. */
- 	__u8	flags;
- 	__u8	type;
-@@ -27,11 +32,37 @@ struct gtp1_header {	/* According to 3GPP TS 29.060. =
-*/
- 	__be32	tid;
- } __attribute__ ((packed));
-=20
-+struct gtp1_header_long {	/* According to 3GPP TS 29.060. */
-+	__u8	flags;
-+	__u8	type;
-+	__be16	length;
-+	__be32	tid;
-+	__be16	seq;
-+	__u8	npdu;
-+	__u8	next;
-+} __packed;
-+
- struct gtp_pdu_session_info {	/* According to 3GPP TS 38.415. */
- 	u8	pdu_type;
- 	u8	qfi;
- };
-=20
-+/* GTP Information Element */
-+struct gtp_ie {
-+	__u8	tag;
-+	__u8	val;
-+} __packed;
-+
-+struct gtp0_packet {
-+	struct gtp0_header gtp0_h;
-+	struct gtp_ie ie;
-+} __packed;
-+
-+struct gtp1u_packet {
-+	struct gtp1_header_long gtp1u_h;
-+	struct gtp_ie ie;
-+} __packed;
-+
- static inline bool netif_is_gtp(const struct net_device *dev)
- {
- 	return dev->rtnl_link_ops &&
-diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
-index 6218f93f5c1a..2fc5a0371283 100644
---- a/include/uapi/linux/if_link.h
-+++ b/include/uapi/linux/if_link.h
-@@ -822,6 +822,7 @@ enum {
- 	IFLA_GTP_FD1,
- 	IFLA_GTP_PDP_HASHSIZE,
- 	IFLA_GTP_ROLE,
-+	IFLA_GTP_RESTART_COUNT,
- 	__IFLA_GTP_MAX,
- };
- #define IFLA_GTP_MAX (__IFLA_GTP_MAX - 1)
---=20
-2.31.1
+It might make sense to mention in the commit log that this patch by itself
+would create GTP-U without GTP ECHO capabilities, and that a subsequent
+patch will address this.
 
+> This patch allows to create GTP device without providing
+> IFLA_GTP_FD0 and IFLA_GTP_FD1 arguments. If the user does not
+> provide file handles to the sockets, then GTP module takes care
+> of creating UDP sockets by itself. 
+
+I'm wondering if we should make this more explicit, i.e. rather than
+implicitly creating the kernel socket automagically, make this mode
+explicit upon request by some netlink attribute.
+
+> Sockets are created with the
+> commonly known UDP ports used for GTP protocol (GTP0_PORT and
+> GTP1U_PORT).
+
+I'm wondering if there are use cases that need to operate on
+non-standard ports.  The current module can be used that way (as the
+socket is created in user space). If the "kernel socket mode" was
+requested explicitly via netlink attribute, one could just as well
+pass along the port number[s] this way.
+
+-- 
+- Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.org/
+============================================================================
+"Privacy in residential applications is a desirable marketing option."
+                                                  (ETSI EN 300 175-7 Ch. A6)
