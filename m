@@ -1,102 +1,96 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB524B0A80
+Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3DBB4B0A81
 	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 10 Feb 2022 11:26:06 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 0CBAC283DB;
-	Thu, 10 Feb 2022 10:26:04 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 95161283D8;
+	Thu, 10 Feb 2022 10:26:06 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id JYGxDycvm-w7; Thu, 10 Feb 2022 10:26:03 +0000 (UTC)
+	with ESMTP id vhZVZfhJO768; Thu, 10 Feb 2022 10:26:06 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id E9E7F283D3;
-	Thu, 10 Feb 2022 10:25:58 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 8F845283D2;
+	Thu, 10 Feb 2022 10:26:04 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id BBD0138A0087
-	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  8 Feb 2022 13:30:41 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 9195338A0038
+	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  8 Feb 2022 14:12:42 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 73DB228399
-	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  8 Feb 2022 13:30:41 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 5A8D52838A
+	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  8 Feb 2022 14:12:42 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ADfwQiOUhlEO for <osmocom-net-gprs@lists.osmocom.org>;
-	Tue,  8 Feb 2022 13:30:40 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mail.osmocom.org (Postfix) with ESMTPS id 8F70D282E5
-	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  8 Feb 2022 13:30:39 +0000 (UTC)
+	with ESMTP id uCfs-epQhVwY for <osmocom-net-gprs@lists.osmocom.org>;
+	Tue,  8 Feb 2022 14:12:40 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mail.osmocom.org (Postfix) with ESMTPS id E0DAE282E5
+	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  8 Feb 2022 14:12:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644327039; x=1675863039;
+  t=1644329560; x=1675865560;
   h=from:to:cc:subject:date:message-id:references:
    in-reply-to:content-transfer-encoding:mime-version;
-  bh=Xp0tG5WSiP7IdiadWbJJftDRBnLJslsZtCgRb4NZ2ag=;
-  b=JUDhMD+vKJkUM+AsvCIjQM7C26Y5oy0utcUFhvTFyPcB77Ds+4iQTmxh
-   iifFbKcGjcBRi8k3404bsO2/ej2eDB6bNAFW72gNhwBSJNaE0DfkLps45
-   cL+DE22jFJ/cpocDhRoCcHsmoRP9qWyetTF+pHGB+hiHZPG3KwugGdMYQ
-   5QsgU6yLuhcfOeo6M5EnluMV7SiWZVFr0tv3V4wURs6pKVwhx7UpJ2d4I
-   xaEU1d3lu6V5ALRo6z2TXaGnq2GdsGrdwyVtihg54YqUJeQ6TJLadR6Nv
-   odJIBJD/RwULXI/RfTW6U9++RY4I5SXUByT8S4wjRLdNyNfYrCPff9bMO
+  bh=gRMvYIzkqrLjGYShYCrkN3+D1PIWOHgOo/4mmgwt8Xo=;
+  b=cP9pGf3tA7ulZwBJpHXBBU4BcXrx+vu+HsZkpwxBCAFdKbvifnSqtLe8
+   yMG7jfeIthyjSbkJc1QxMXiH3MnRozo2ZW1XX9uudHLp8kgqqBL7LyJYl
+   ya6QIKhmULSvCKC3zepNZ3nhnJaOnlh1Z9b0Ohn01eobLUMORobMl1SfE
+   Y2+b0Q8SeyPfc3Y/JuQw9jEzKgPYvn+tKG4wa1yHQjcROawedAS6DLn5D
+   HgPAfUK1RKrkkf08wCoc3wZoJqXTdBJiCPVtd8UbLQNXHZDKWtHLo9B09
+   LcKe+69/4VJMdbo11sHhU+wUVDUtT7+OWlO5E2uxgX7wyEpr72uqYTQ3A
    Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="273476025"
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="246543922"
 X-IronPort-AV: E=Sophos;i="5.88,352,1635231600";
-   d="scan'208";a="273476025"
+   d="scan'208";a="246543922"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2022 05:30:37 -0800
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2022 06:12:37 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.88,352,1635231600";
-   d="scan'208";a="678104434"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
-  by fmsmga001.fm.intel.com with ESMTP; 08 Feb 2022 05:30:36 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+   d="scan'208";a="678114452"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+  by fmsmga001.fm.intel.com with ESMTP; 08 Feb 2022 06:12:37 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 8 Feb 2022 05:30:36 -0800
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 8 Feb 2022 05:30:35 -0800
+ 15.1.2308.20; Tue, 8 Feb 2022 06:12:36 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Tue, 8 Feb 2022 05:30:35 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.105)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2308.20 via Frontend Transport; Tue, 8 Feb 2022 06:12:36 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Tue, 8 Feb 2022 05:30:34 -0800
+ 15.1.2308.20; Tue, 8 Feb 2022 06:12:36 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fSm4uJ9nYPb/4/0YZep3lfauf5zjaga7GoKJA81GmSz/VG9i628Z0XeBnHzS3YiGIJT8yUWOfHi+VBVfP2r0Ps8ZRrlwO2HyXikcNPRhIpFv4wuu4ATtGlO9Ra+YaPSaieHzayxyYlVOYtAJk1EcnJmnirYC2zJXUgziWfu3nzKcZtePsSgH9Yo4Yz9QI3ObOhw+T5JQEI7DYgodc9aAvM7K7/LRWXy5ZNpVOnfeq/g9KvSI0pXWLx01EfHBCydVm1oiEeMu22eMRVnWz1YlLfnXyb/LjBI6vNLBWh7AmNLBVOyABLizjdhiAKMFc1wwfhTEJlmuw5MYAWySPEYj0g==
+ b=Q5EK4615yD7rkCBQjzmftnaNf7l6ll1Vmx1tnPdNuR/n97sfndq7fpY3Ne1Ai70sO9nlnRuuiUNlG3PBwxVqUQ/4AUh42dydCs7k2UHYSfyww3Y/1yblgBFudJlRfAUWBclUdlLog3tXnTzoEcDk+rWu0XukBdUZLqmeztb6k6Oaf2ZEVs3UVbcwlhrRTmfI2OYW1cbZ77rvMxB3/UdUWu3vvXBVsuPV8wz+7xPFwSQCsHEdIqb1w+95EIIWO6zUlNCucyp/f/bwGbc9c+1Jl/duvbb5WgazAlXnyjYfEZFWUx3xlQraQmAaF7OyMPI3IVwW8jKavoDIb3oKK9NZQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DjSW5yi95/Poknmry0bwDZNn2aJFepraTXU1mv7e930=;
- b=KPXAALNek5zKRLeTA7QHV+t+SwikTrZHe+YKkRbdx/LoB4Fj8WDSoDv/ZA7Tc+WLAUP4lx3GYvtQxv/exvly1+MvwSf9nY1MqJ9lo6/OwmZpqQ37p2AThRcd/Ni4HD6w7HqeGvUJuHHkey8zeYQPddwUbHmQ2gyQ7WfN+G2C2VopSI63AWK5lFIQ5sjJ7Oa1C4CCI6BH0BcCeRTNp4gFA2gdSso0OyXymQOuxg9efVzyDXvqKY82bBhJB8mSKsw8t2MbTBmln3deju/WnYbmqwLuckrlVT2MQIz2oYIhlPuTNC0TNiNqeJl8wdSvEXugEyH7GpRazt8dsQDe/+iUuQ==
+ bh=0p5Gvr+JTF/1N5z0sNa4zfCJ96ylRmjVpMkhfEHzTTw=;
+ b=Cr17mpnSdpJnl+Nb5CXm7xeAlTPgak8VQNIfw2tOuX6gcLLOs6ykkhLJYObkMuTVmKJbziDpqbniWTS03W+S2PaIy+Oflo3sOfk33Jqkf4tf35MRsgnqSh0Yo4qRQuFdO21vpuj/kle9AUWrF3GUQFZQv2ltCZebuhNodYtE86fhupu8mN++A/TdLB+Rg7FB5VsuQjOba3I6Bxqme1T3G0W+rhFrblNRdGizP6IhMXCAKL1AQRnh1FBY3HcIz6RVDucVTpof4kDQiSS0T5DBsf22OPyqCQ/YmeCddzBCmnnpmpQ39HaXMCMGg7qEJDdEcJEq+tNaksCNX0Mw/3X3oQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 Received: from MW4PR11MB5776.namprd11.prod.outlook.com (2603:10b6:303:183::9)
- by CY4PR1101MB2135.namprd11.prod.outlook.com (2603:10b6:910:1d::11) with
+ by SN6PR11MB3151.namprd11.prod.outlook.com (2603:10b6:805:d2::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Tue, 8 Feb
- 2022 13:30:33 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.14; Tue, 8 Feb
+ 2022 14:12:34 +0000
 Received: from MW4PR11MB5776.namprd11.prod.outlook.com
  ([fe80::6cb5:fdfd:71be:ce6e]) by MW4PR11MB5776.namprd11.prod.outlook.com
  ([fe80::6cb5:fdfd:71be:ce6e%3]) with mapi id 15.20.4951.019; Tue, 8 Feb 2022
- 13:30:32 +0000
+ 14:12:34 +0000
 From: "Drewek, Wojciech" <wojciech.drewek@intel.com>
 To: Harald Welte <laforge@osmocom.org>, Marcin Szycik
 	<marcin.szycik@linux.intel.com>
-Subject: RE: [RFC PATCH net-next v3 1/5] gtp: Allow to create GTP device
- without FDs
-Thread-Topic: [RFC PATCH net-next v3 1/5] gtp: Allow to create GTP device
- without FDs
-Thread-Index: AQHYE5zTRbNi3Iwp1UKjRr6c/FDo0KyFNS8AgAR+t3A=
-Date: Tue, 8 Feb 2022 13:30:32 +0000
-Message-ID: <MW4PR11MB57764998297DC775D71753E8FD2D9@MW4PR11MB5776.namprd11.prod.outlook.com>
-References: <20220127163749.374283-1-marcin.szycik@linux.intel.com>
- <20220127163900.374645-1-marcin.szycik@linux.intel.com>
- <Yf6nBDg/v1zuTf8l@nataraja>
-In-Reply-To: <Yf6nBDg/v1zuTf8l@nataraja>
+Subject: RE: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
+Thread-Topic: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
+Thread-Index: AQHYGefbqRcNOb4NqUCQWYuxV/hGwqyFLYqAgAR+yXA=
+Date: Tue, 8 Feb 2022 14:12:33 +0000
+Message-ID: <MW4PR11MB5776D18B1DA527575987CB1DFD2D9@MW4PR11MB5776.namprd11.prod.outlook.com>
+References: <20220204164929.10356-1-marcin.szycik@linux.intel.com>
+ <20220204165101.10673-1-marcin.szycik@linux.intel.com>
+ <Yf6rKbkyzCnZE/10@nataraja>
+In-Reply-To: <Yf6rKbkyzCnZE/10@nataraja>
 Accept-Language: pl-PL, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -107,69 +101,69 @@ dlp-reaction: no-action
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bf6c471d-1657-4831-0ca5-08d9eb072e91
-x-ms-traffictypediagnostic: CY4PR1101MB2135:EE_
-x-microsoft-antispam-prvs: <CY4PR1101MB21351EFF5F78C1986BE84AFEFD2D9@CY4PR1101MB2135.namprd11.prod.outlook.com>
+x-ms-office365-filtering-correlation-id: 8fb2d0af-5af6-4016-38e5-08d9eb0d0d51
+x-ms-traffictypediagnostic: SN6PR11MB3151:EE_
+x-microsoft-antispam-prvs: <SN6PR11MB31519706A38612D1DB5F9DF9FD2D9@SN6PR11MB3151.namprd11.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:10000;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: W3Og4rg5yokf1vr311rGURSniDooBlFgJa2tqvsCYK1FZD/JVFkcIX86ce8fmEbShj2+uBJxJaAsVwGx30XEDqfsdb4wJKHmH1CCG568gDq53FNHw1aaHWlblJ1Lql2m9WxHA7nate+DnLD5q2SAHf9kpTY11+QvrOCarVzhiLV6HupN0/6s1al8YaVoC9gs1mnwgpU3W7iKH3Z+qJ8yX87UODF7VpkTeGfsNaKm0j6b+KnyjInA+AvEeJI1kl/gfcXbZYIW9TCbf6dJYCktzFb85clrLQ9gBCC7cmC7hfDrFQUTo01GeuPMXvOyWlYmd71LCQ4VqMnQDxyNbSJusGyYHSfEEoPKw6JcQfqJneNJlfflPoczHXzxdeqU5UzfLJH7hyJX91UOJupKEPDrOxQJQ5Ks2fIuocC0LHb8tEPNM12ZmpUDcY6WaksikU4HRgSXHmwtaB3XXdZ1uy54AT0d8f4T///W1cF/9GPLE1NFQVnErUnJxcpWRihKwUlw0+kQios0E76cFuLcPxX8etzHkWaE2JVNwQaRQvCMnRaHG5VT3+YXNwf1V/z9VmNIh3eulQHLmFbsh4haRwucip4PKPtVEfK69ZR2eoK6jG08U2DFy1FPfgAVo9zf6ZDISNs/wmqRxr8xaCEnpL2QuJwseizdFgM4WrH22GEyt56UOf3jwElhammwe5KFqCmbgfMP7wrByY0A01oG0AUvAVuEZotFskwlM8vXJDLcfzfafMbR/jWlGMYM8CqLaGx1ecSyEzr0/t9jgPj7nTDg7u7WpcqKYC8Palv4OUCv82g=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR11MB5776.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(83380400001)(38100700002)(55016003)(86362001)(122000001)(82960400001)(66556008)(966005)(64756008)(66446008)(66476007)(54906003)(76116006)(8676002)(66946007)(4326008)(508600001)(110136005)(316002)(52536014)(2906002)(5660300002)(71200400001)(186003)(26005)(38070700005)(7696005)(33656002)(9686003)(8936002)(6506007)(53546011);DIR:OUT;SFP:1102;
+x-microsoft-antispam-message-info: SwOfRZGcjxAFREEw7hwBjvRKg6jUIM2om55PYgD8d8ERDpt2JwNRTjNjzeTSBj2cza6c/aOdvw4WiJwRBqIW5ZwPWmkoMOhTgfUmH1D+iDzXsxFJ7w6A2tFUP1QBpvsSnjSt+3glJA2NAZ3oEiFH0f4d450ifcR/gILolmxD0LDCrBGgZo2pKOsD9auwR2DvjmrN7ZIcMaraoRcif7RDcukw3mzS+6GaW5WUWHwa5GcgN75GiEqFe42IppJJSovQkX9pogNJFrqQums6rPPaWMQ6HtbZhY2eaVLcOAOBC9QNMuFZ6J81FggvVQ65ygRNLPE6vOL6V97uysJRQHJIDqeiW6uyYSDSwdW49fa89Fperz5Wb2eiQTJ1RS38bRCWXu2j2t+++xV+SczhIeZrKXRxRiqHs4WYeQ42YcqA3GTXUN3NlIRlFkYX164V+QcmpFpMKLscbireZgY1yR+zjGuNqXcAZAV7gN48gD+V7KWMx2isHCxP8lUc/TUjQA8y8LxW4a7y43UPLcZlE4+dv5JfYjB7drYMbAfkTV8I+b5M2343Eu892ht0EhBch6KMf7ypXBEsdCKasTE5Gl63vHqxIwFVmzZOEjRNJCv7fwxwrAhQlSYZOL+iS/VOL/AjBgSHe+Ye6OAvYC9yLInu1ka0a8FrvUEHKYp7grDfjzUpeHwdd6u9macuHBpYVoalfHKTpOTATxA793omiT1d6wLuSj/JMjpINFdDY2zc4eB9uEijrvM8Kmut4ilbmTRKJSysr/nXBSuJzNaQysOeQcyvJZ/hx0ve5OmYGDbtKDE=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR11MB5776.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(2906002)(8676002)(4326008)(7696005)(71200400001)(9686003)(508600001)(53546011)(38100700002)(66946007)(122000001)(64756008)(6506007)(66446008)(86362001)(66556008)(26005)(76116006)(5660300002)(38070700005)(55016003)(110136005)(52536014)(8936002)(82960400001)(66476007)(186003)(316002)(83380400001)(966005)(33656002)(54906003);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3nboboT54ihII26L2tdMmuqsUv5hX0P6wbg2+SoXLkB+Cg4pBgj67Y90Gd5b?=
- =?us-ascii?Q?Haxhuhs2KUbCQHo6d98L7Rmfmu1SMEfQfTls2kkep8WCqpWNGe8sKJ5bVrM3?=
- =?us-ascii?Q?HecNpdOJwW+X3srPsD/tfCSaT30fUasBrIw/6/1QAIsv/3rHVI1JR8kps2/y?=
- =?us-ascii?Q?aETdnJbI2TQCbykNhVjG+JP/FFZqnPjW7INYtSlJIgMjgIcek09XFgtcQZrP?=
- =?us-ascii?Q?8Ux1iD2e6dnnU7AMljWGVIGr3MSw+i/SDX+QSlgP9d3O3PUChGopKDoWbgrU?=
- =?us-ascii?Q?fWN6Ns5syFsSOmEg9/mhVGGi4F40kVqyfKoeZMIgKCdaGk70bpzqkOdBs5xt?=
- =?us-ascii?Q?NY4pM5swfqRR2y16mNTKZAIic28iiW1IU4Q4paNbkyKyWtmo+M8laMQu6n0g?=
- =?us-ascii?Q?VDohmSyZj2c8TDCGZNoaj3NQZC5QIcil1QaiOVAuoKY/U5lhRE6r+TiYJQJ5?=
- =?us-ascii?Q?yX+pNhYpusySP6va5BzEsFDl26l4JwDTdj6E2IO7PcubGkRKxX3z3QUoX34T?=
- =?us-ascii?Q?i6/29Xid9jXuUHXJcqICfcDnFbzg9opcoqzfj8fnRrVDGd7KikPq8j+f55kd?=
- =?us-ascii?Q?Eh10u84HySp8n80d6meDn4GNLdO/qAtXEDoCD5lN37uSZWAY4tjP4CHRUWcm?=
- =?us-ascii?Q?Z93qUN0mj0P8YP2uhq7LCilnYyqU/R+kael/OE/J8g3TeghUFVFupb98fkR3?=
- =?us-ascii?Q?WEeyV1QzZNrWOc58JK2FZMEzvrx0EIQ77Sh1an0m4Lf+nRoWXvNvAmeza9MQ?=
- =?us-ascii?Q?FfXP8nw31dbRSGVfYZmmlCMPwP2CAjI78On2NUa7f4lld2gTci+St14Vs6HB?=
- =?us-ascii?Q?qVt6DcybmPdK+2Q3d71Qlv6kbR1ITooajBy7VBbFcaCay5aSNXSwZR9npkPt?=
- =?us-ascii?Q?cByWzKAEtFBj8G5tewjqaHVuFK1KkkffL5p1i7MkcAiVXb6PQ9g2ImhHb86A?=
- =?us-ascii?Q?NZpwv38SdPI9oYMDlyxSjkZXmGMNT73ZqtQXgMEwZsyomD2VDuYewCYBiEU8?=
- =?us-ascii?Q?n0xOVPbzllDB2/gqJ6nrbniikPBVPY4RsKpbiKu0FOpyi9Mk9TDW+V4tuw3f?=
- =?us-ascii?Q?9zAD56eRzC6Ck4MYBsTTkH0HtMdQ5VlMfDu/s97mNK+mS0q1XA3T/h01la2i?=
- =?us-ascii?Q?c13Xwfimza3X0jVDdHxjRyRBirBl6vrexkH6NsJtKb5BXxsQH06Y1JGLsnKh?=
- =?us-ascii?Q?FAjHl2hDIq1i/GQP1B2KFXAjT53I2heW2AlEqlvil4TjdSEWIDvVF9W129IT?=
- =?us-ascii?Q?MkB3fyWC7G8+jlWQoGTjZsB3WJcxC+1/JBEfyZtynjV4JNUQtuRdOXrBCYPK?=
- =?us-ascii?Q?D8Zu5R7y5dH7uRYHjtTcGct6ixOreTdThuHgtCd9x0c9PQbZ+zPLZFu8RNQZ?=
- =?us-ascii?Q?CR/r1ZqJxdNZqixEDVdH44OKTSsfWXce/7zvuHLFaOXoiEcFEA3WB5FDlxrd?=
- =?us-ascii?Q?MRQIaRSyHjcg93WBNUNn1cAXG/OrAzPd48YEuwxodO7wgeYtBmOnnnS+coMw?=
- =?us-ascii?Q?seSzRZM7BAaaJUwfdcIkoHegW0+KYo9zVQSh5QSspsjS9JBVHe0GD94pkl0Y?=
- =?us-ascii?Q?LCZuyauBRCszSOnL2ZDeXCg9gOvcMO6KpQ/euiFcX1QWi22TWP19ISHUnANT?=
- =?us-ascii?Q?GLWNtSNjn+RU3mwNDmzLWavz4HpkDNI+kHFjcfFlHHAM?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JjcvzzsbOZKVKhRGbrnBXY6DaIRvz6CTJMoNzU2sLsYaQgp6GI5j3U7xkMcS?=
+ =?us-ascii?Q?z1+bmQa1RNnHQa9yUCoJBk69r7PCv6Yy1BNhd49xXkTYjIfXCIii6N8RE+aM?=
+ =?us-ascii?Q?o9CoOIF5f5DS9xaf8sy5IwRbZGk3uSUq3Tm8y/hY7F8tB3VMovMXRiFmwWK3?=
+ =?us-ascii?Q?g3p2uQ926GSWKJzh/JFnShub+vDDM+UZM/N7zbjWUP/WvpzvTr8qPQ0vCZsN?=
+ =?us-ascii?Q?lgZ8Nf1pWfmMHC0XfEByouxCd1gQJEC7GuVeNpiMrPBy78lnNi3lQ9vv5795?=
+ =?us-ascii?Q?pGSSyrOPe8HBonToJ+D0eI2IPnbo2bzdQK5deReEprjtkxOhJrR28+LttX+Y?=
+ =?us-ascii?Q?hKlPCfAj9NugjdaCjoL02VHmxEwkKOUBF4tJ8UXaz/XjY265sd/QVHm8DrqT?=
+ =?us-ascii?Q?MvEIvOYUw+npfzPBUW8PyNWZ4IR2mMWj6jSVx4jGL0r8v4bSsVSIVLUEc+9n?=
+ =?us-ascii?Q?IOtDAd4xyXw6TcaMGfrr17bWNNfI37mrU5bBvQhOZYaVFHYlz2uP/cuZuxrZ?=
+ =?us-ascii?Q?s2sDJZFDtq/ILKUEI0GgIp04ESd+fBeUjcOGDWaRYhhECR7S0Sumo4hrd5ol?=
+ =?us-ascii?Q?iUA+g6fcN1btz7T3BGH2btNCMlHKaWw3Q/is08oytP0aguHa1OGiRHPlrSOM?=
+ =?us-ascii?Q?GNv6E8M8xBNwLLuDoDfh6LidLqFJahCF/FbOaC916fV2hfb/1Uio29WgAYi4?=
+ =?us-ascii?Q?c3JG07QmdzQqMbSO1AVvZRMJeC92aZc5UOYI253fTZ4/tBxkAuD686fS6RIZ?=
+ =?us-ascii?Q?N+/HfsCHuSQCW1jH3OWLn74AQkI4Gsb+W91N/srQy7Dmxm2sMBXt+SEKaoNL?=
+ =?us-ascii?Q?w0CZbvvDxtd+OzFWy+Pxec3hDK3Ho6Tt2mjijB90asFmEZ1lqaH6iFWX4Cy+?=
+ =?us-ascii?Q?YdRgQC4CEcR8OS8NxtTKSlPrqXoxEQlavBHwJN7Gs1ppmlV3h/uvom/Klo0j?=
+ =?us-ascii?Q?rBcjkMiPUYvIXGJSV8UHDiVIt2lMeh3xboqO3emT18G2ffGUt4Z9S+9enl+o?=
+ =?us-ascii?Q?5IvdZ/D3y1vRT+h+RGbaIHeXgu0wIE725bZasnUyu+jqEMcjbqeAU0YBtPXv?=
+ =?us-ascii?Q?cWib7hydwCtuHbR9HGcY9dv9zIiYHlsnapZcIjgO0yB9a+lARQz6smfXYX5K?=
+ =?us-ascii?Q?7436bcOGf6R59OdTjXpskb45m9ycyVC0dCdLoTALBMvjwvbR1XlpLKJcyYSn?=
+ =?us-ascii?Q?8NvaxtQGuZgA9D7czXvEC1vEtPCgd3Pe7/9JrI9heXprjPxuYG+yrwQgk+Ar?=
+ =?us-ascii?Q?nOKuoqcFwki3xEAPqt8fNCDGRZU4M1sn0jJphosV9zIGrxl+eLA1Fsog7EH6?=
+ =?us-ascii?Q?8zNYxkZ/nH9kMRfipO4DzFZw+e7uEjiAWKS+omDC9L2EWflvXTQz5jRTtyaw?=
+ =?us-ascii?Q?gILoDOGUPo7IgvflqqArsvwoHp2SK3GmqtoIeMAJnVj351Lp+TCiur+0j0Hi?=
+ =?us-ascii?Q?h22q9DcDO9ZbcsCwWEStU2GUyHM80t7xWVkS2RxRWj7OHnxUW6asqJu49gDf?=
+ =?us-ascii?Q?UJ6LoYBVjOSOVpI9xRZ9nit+ghgsLHSpIWD1TcoIqq4fMVq09EeHriI5Duj0?=
+ =?us-ascii?Q?DxWrsF23YPRO7vDja9DNTPQxqcLTDQsrcNt2tnWkOwUd54I8muDPm6CPcdD1?=
+ =?us-ascii?Q?l45hKNchhXmOzjiTYnzUTUqDSuctC0zMHculSLhwt2LN?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB5776.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf6c471d-1657-4831-0ca5-08d9eb072e91
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Feb 2022 13:30:32.6942
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8fb2d0af-5af6-4016-38e5-08d9eb0d0d51
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Feb 2022 14:12:33.8758
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Di89Mcr/+wb/0/yyR31v44enre/SG7OBGxerensaQxYCAuglppUaAScH/u+RNfRKutoz0mnZpiWGRYS7gJ8v3YwDLuFhd4Lszz7/y9IjBgA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1101MB2135
+X-MS-Exchange-CrossTenant-userprincipalname: JOKTK79ks/6gSd2A7X/zD/iVDRLxLonx6d6ofXBYpzBtRCq2w0orhViOuiQLtVxyFy3EcdUR110dCwRaN2vbHMLt43rcPawnrZHmPyfoOyY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3151
 X-OriginatorOrg: intel.com
 X-MailFrom: wojciech.drewek@intel.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: YY2UQDYSAEX5NGJRSGOT77X32OS4B435
-X-Message-ID-Hash: YY2UQDYSAEX5NGJRSGOT77X32OS4B435
+Message-ID-Hash: JQFDE7AQYL7MOBLX5SVOXLXSS7SKOQ72
+X-Message-ID-Hash: JQFDE7AQYL7MOBLX5SVOXLXSS7SKOQ72
 X-Mailman-Approved-At: Thu, 10 Feb 2022 10:25:10 +0000
 CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>, "michal.swiatkowski@linux.intel.com" <michal.swiatkowski@linux.intel.com>, "davem@davemloft.net" <davem@davemloft.net>, "kuba@kernel.org" <kuba@kernel.org>, "pablo@netfilter.org" <pablo@netfilter.org>, "osmocom-net-gprs@lists.osmocom.org" <osmocom-net-gprs@lists.osmocom.org>
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/YY2UQDYSAEX5NGJRSGOT77X32OS4B435/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/JQFDE7AQYL7MOBLX5SVOXLXSS7SKOQ72/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -179,67 +173,64 @@ List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
 Hi Harald
 
-Thanks for the response.
-
 > -----Original Message-----
 > From: Harald Welte <laforge@osmocom.org>
-> Sent: sobota, 5 lutego 2022 17:34
+> Sent: sobota, 5 lutego 2022 17:52
 > To: Marcin Szycik <marcin.szycik@linux.intel.com>
 > Cc: netdev@vger.kernel.org; michal.swiatkowski@linux.intel.com; Drewek, W=
 ojciech <wojciech.drewek@intel.com>;
 > davem@davemloft.net; kuba@kernel.org; pablo@netfilter.org; osmocom-net-gp=
 rs@lists.osmocom.org
-> Subject: Re: [RFC PATCH net-next v3 1/5] gtp: Allow to create GTP device =
-without FDs
+> Subject: Re: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
 >=20
 > Hi Marcin, Wojciech,
 >=20
-> thanks for the revised patch. In general it looks fine to me.
->=20
-> Do you have a public git tree with your patchset applied?  I'm asking as
-> we do have automatic testing in place at https://jenkins.osmocom.org/ whe=
-re I
-> just need to specify a remote git repo andit will build this kernel and
-> run the test suite.
-For now we don't have such tree. I will see what we can do.
+> I would prefer to move this patch to right after introducing the
+> kernel-socket mode, as the former makes no sense without this patch.
+Sure thing
 
 >=20
-> Some minor remarks below, all not critical, just some thoughts.
+> Now that this patch implements responding to the GTP ECHO procedure,
+> one interesting question that comes to mind is how you would foresee
+> outbound GTP echo procedures to be used in this new use pattern.
 >=20
-> It might make sense to mention in the commit log that this patch by itsel=
-f
-> would create GTP-U without GTP ECHO capabilities, and that a subsequent
-> patch will address this.
-Sure, I'll add such comment.
+> With the existing (userspace creates the socket) pattern, the userspace
+> instance can at any point send GTP ECHO request packets to any of the
+> peers, while I don't really see how this would work if the socket is in
+> the kernel.
+>=20
+> The use of the outbound ECHO procedure is not required for GTP-U by TS
+> 29.060, so spec-wise it is fine to not support it.  It just means
+> that any higher-layer applications using this 'socketless' use pattern
+> will be deprived of being able to check for GTP-U path failure.
+>=20
+> IMHO, this is non-negligable, as there are no other rqeust-response
+> message pairs on the GTP-U plane,  so transmitting and receiving ECHO
+> is the only way a control plane / management instance has to detect
+> GTP-U path failure.
+>=20
+> So without being able to trigger GTP-ECHO, things could look prefectly
+> fine on the GPT-C side of things, but GTP-U may not be working at all.
+>=20
+> Remember, GTP-U uses different IP addresses and also typically completely
+> different hosts/systems, so having GTP-C connectivity between two GSN
+> doesn't say anything about the GTP-U path.
+Two  approaches come to mind.
+The first one assumes that peers are stored in kernel as PDP contexts in
+gtp_dev (tid_hash and addr_hash). Then we could enable a watchdog
+that could in regular intervals (defined by the user) send echo requests
+to all peers.
+In the second one user could trigger echo request from userspace
+(using new genl cmd) at any time. However this approach would require that
+some userspace daemon would implement triggering this command.
+What do you think?
+
+Regards,
+Wojtek
 
 >=20
-> > This patch allows to create GTP device without providing
-> > IFLA_GTP_FD0 and IFLA_GTP_FD1 arguments. If the user does not
-> > provide file handles to the sockets, then GTP module takes care
-> > of creating UDP sockets by itself.
->=20
-> I'm wondering if we should make this more explicit, i.e. rather than
-> implicitly creating the kernel socket automagically, make this mode
-> explicit upon request by some netlink attribute.
-I agree, it would look cleaner.
-
->=20
-> > Sockets are created with the
-> > commonly known UDP ports used for GTP protocol (GTP0_PORT and
-> > GTP1U_PORT).
->=20
-> I'm wondering if there are use cases that need to operate on
-> non-standard ports.  The current module can be used that way (as the
-> socket is created in user space). If the "kernel socket mode" was
-> requested explicitly via netlink attribute, one could just as well
-> pass along the port number[s] this way.
-Yes, it is possible to create socket with any port number using FD approach=
-,
-but gtp module still assumes that ports are 2152 and 3386 at least in tx pa=
-th
-(see gtp_push_header).  Implementing this shouldn't be hard but is it cruci=
-al?
-
+> Regards,
+> 	Harald
 >=20
 > --
 > - Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.o=
