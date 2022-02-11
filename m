@@ -1,101 +1,98 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 507D84B67E7
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 15 Feb 2022 10:42:42 +0100 (CET)
+Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
+	by mail.lfdr.de (Postfix) with ESMTPS id A25994B67E8
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 15 Feb 2022 10:42:43 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 145E1283BD;
-	Tue, 15 Feb 2022 09:42:41 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 8978E283BF;
+	Tue, 15 Feb 2022 09:42:42 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6IcYPsSfT3OM; Tue, 15 Feb 2022 09:42:40 +0000 (UTC)
+	with ESMTP id uNpOGlApIfhi; Tue, 15 Feb 2022 09:42:42 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 60185282E5;
-	Tue, 15 Feb 2022 09:42:38 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 99E0F28399;
+	Tue, 15 Feb 2022 09:42:41 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 43E4438A0011
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 10:27:38 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 3011A38A0090
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 12:48:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 189B228389
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 10:27:38 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 0737F282E5
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 12:48:44 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id DhtsMIjw1UkC for <osmocom-net-gprs@lists.osmocom.org>;
-	Fri, 11 Feb 2022 10:27:36 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by mail.osmocom.org (Postfix) with ESMTPS id 8C5AE282E5
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 10:27:34 +0000 (UTC)
+	with ESMTP id r_vESQkYif2i for <osmocom-net-gprs@lists.osmocom.org>;
+	Fri, 11 Feb 2022 12:48:41 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by mail.osmocom.org (Postfix) with ESMTPS id C6EA928389
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 12:48:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644575255; x=1676111255;
+  t=1644583720; x=1676119720;
   h=from:to:cc:subject:date:message-id:references:
    in-reply-to:content-transfer-encoding:mime-version;
-  bh=aUX2cWK0WzllJrdwVPxA5m9aY8KEX+OvGoknCYjhGtw=;
-  b=HcIvUdxIx7HicHBzDQh9Zmni8pQ/DaRAIBAZv3UdwZaVHMn4I5TN5VSV
-   0ICVmB495dShSy/OaclBJ+AC/N9R2BmMQTWvvlOGmtf2hTyPMrQi8zlCw
-   I9PAHojatjOI8Qncn5NvL9p6JnO0ffM7YOh1JP6vNy75tYGKatKA+QSCT
-   26Ix/7XdNLVNvHifIEFylb6/YgXDQOI4R/xMHRd0MQAyXdoBatOtMXl6A
-   mebk46rgER2nGHkYTkk0NoelsQqTBgR0VjGXkZIvvDdTAOj1gGR75qNfR
-   sEUgH2c30hu19O7hoK8m9EkiXpKK++hvKIkeKH2Agzd3P22sNjCJ8xwCC
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="312990320"
+  bh=CPffyBivGYtsoJTtb68BBVknnTNJ1qyrUfE9ujgOBG0=;
+  b=Vf0+dtUqIO3mwdaRrWqzZHOAN9xCq/cbhJooF53GTYjkgNifF4Hyy08J
+   xttufvQ00ijsSBJo/IkUHCRVNk9vsJr1aErSGz+QTjKyiCKhoRX8baTDL
+   1RTcPpgU47etq21Cu96frpPxuCiNNwEuUc40wnCgcj+V8Be0PUqQiWTkA
+   drzQlFDFjAWLtpy/Sln+etCie8959ayMC0zP4Q+eGqDNn8cyjMs7iGnd1
+   2dQzeM58I4/JAHK9VtX+1EgEryLo/nvvVKyHjGoPZyLw89ODEUpidvZ8K
+   sKeUr16zHu5tFg8Jh4BsiqdmrxP1FAUfw0doOH8eev3h4L7hN8z4ORfhK
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="310461554"
 X-IronPort-AV: E=Sophos;i="5.88,360,1635231600";
-   d="scan'208";a="312990320"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 02:27:32 -0800
+   d="scan'208";a="310461554"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 04:48:38 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.88,360,1635231600";
-   d="scan'208";a="500738342"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by orsmga002.jf.intel.com with ESMTP; 11 Feb 2022 02:27:32 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+   d="scan'208";a="537640510"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+  by fmsmga007.fm.intel.com with ESMTP; 11 Feb 2022 04:48:38 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 11 Feb 2022 02:27:32 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2308.20; Fri, 11 Feb 2022 04:48:37 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 11 Feb 2022 02:27:16 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Fri, 11 Feb 2022 02:27:16 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2308.20 via Frontend Transport; Fri, 11 Feb 2022 04:48:37 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.175)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Fri, 11 Feb 2022 02:27:16 -0800
+ 15.1.2308.20; Fri, 11 Feb 2022 04:48:37 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=krjxLXnhd4F8mhswjCKjNOtDqJyiCL7tp3kUIOrBnwz+qGP92ExagyNdP3ZTDpzGPbh8eEFoD2HmOzvDT0/SpxFzCVD2dcjhol39PfN5fmZHnZLOvdqAJ5hTYeTseZ6QasPHVx8q2a3xK7zCAfx2uoOUkQ4/hejS/Qg6RwdH6bJInztgR1kbqN1ne67FDptkdpTGgo1IESGKbbg+/J10Vja39zRxJLSmOP5Fd6ZCcLmDy+Zs3NKbvNmfYfeVepuIgDDz0umHeFnRNtmEGal/+bnAh/zDBA6oLpl+RH/gPgwLIN5KX2iLeiyJbX44fjIeLz00vKrnKjrCEy3A6Y08qA==
+ b=EeDyjA72E8HmbQykQdYrAzZNZIV7udNZ54TyWaQ9KY2rNmCqC8a/NmOfa2dBa7WcUJntAyegL6GCYtlkOzloLZbW5/bDZwC50uTMpkZw5CWDuFrDLvprX4zxUkjbbclPcox6eFxsDPkbglNGTyIh3ZIMS7PHqVj6GAV7CMI6z3r21YC2pXAq4cukzYfHmjGhve3c/3gy8BRsJi8WpdYy6Dc8s8g0pud3dBBih0/GrKGHUjp5lKI0kFyxmOO8hFxEb8TItyalZ88fNUP+nik3rvE80jSfLunjT+55p5EIQpv9t3U44NX6G4amxQDLo8E47wzNL4CjuIhfUcOi/uhmNA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cFVmo8MD9P7B7L8xr6TZSW43teAfplC+tr+qDpJ/IY4=;
- b=kPIsCLoiQs0AKW0nJrRcp9WdjkwnNIoPe43uF/4GezIdwk1yK/8Cfil8iXHGbrWyvsbGdejxdyNXTZ+vPAVHcguoI85TxFm3P10TCEsrInn+zRQlCItRLAypFzzscaleO0gOBKFvAaRexDpaqHHI2LlrJ1zfqq9aLBlu4p9P2NkPAZx0jA1xY0gnWyhVme+PltJmZ0oMcETMeXJSdsMoXmW9h9dl2hzGCaRDfUF2+7PPyJr87XUvYjKQAwZtxd3yXkx0Hi1S8DPVUTmafM6gvyBxEX/Xdq6Vi35RUZderICjOLGJZ3VK9og08wyih7ZauXp3Z+x7mx6nuPqhevHscA==
+ bh=qwyeCHbQkFBO4YAIxq7WRtMzJ5dqYVOofiwpIk03Eis=;
+ b=KgM0zKxXs1IDJJMnRMRxgcXRmCqe/ENOdQZFCRGUtBVZ5VM4BBnmNU+qBaPYTkX7oG5uaPLRb+SydaCiBUCpMY0/ecpLsHE6JNHXA55UQBCIxt5xShZt8k2F2ZvM+Pd5CFFov2zpINB58mfTg2mhNf/oXSqnjzQDiGAP07ku1ZJeA3vjwfuR7e8d6JgjA43MxaLL3HtPmNDnw1ms3CTGaX7vm5fk+im97+ZRsxkRvywwIsFQmGYpQcXeyZPcux3dAd2VM9BLJOGzdNjoPk/ge5gkVxZaEFv2YDgSxRRlETzCUnlARUf/N/fE8x2dHh1e4YtmJhL1N/5oT988j1xZUQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 Received: from MW4PR11MB5776.namprd11.prod.outlook.com (2603:10b6:303:183::9)
- by BN6PR11MB1716.namprd11.prod.outlook.com (2603:10b6:404:4a::21) with
+ by CY4PR11MB1974.namprd11.prod.outlook.com (2603:10b6:903:126::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.11; Fri, 11 Feb
- 2022 10:27:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.18; Fri, 11 Feb
+ 2022 12:48:35 +0000
 Received: from MW4PR11MB5776.namprd11.prod.outlook.com
  ([fe80::6cb5:fdfd:71be:ce6e]) by MW4PR11MB5776.namprd11.prod.outlook.com
  ([fe80::6cb5:fdfd:71be:ce6e%3]) with mapi id 15.20.4951.019; Fri, 11 Feb 2022
- 10:27:14 +0000
+ 12:48:35 +0000
 From: "Drewek, Wojciech" <wojciech.drewek@intel.com>
 To: Harald Welte <laforge@osmocom.org>
 Subject: RE: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
 Thread-Topic: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
-Thread-Index: AQHYGefbqRcNOb4NqUCQWYuxV/hGwqyFLYqAgAR+yXCABG/wgIAAEuLQ
-Date: Fri, 11 Feb 2022 10:27:14 +0000
-Message-ID: <MW4PR11MB577686D883EEBDB2C9E0FEB2FD309@MW4PR11MB5776.namprd11.prod.outlook.com>
+Thread-Index: AQHYGefbqRcNOb4NqUCQWYuxV/hGwqyFLYqAgAR+yXCABG/wgIAAEuLQgAAlfDA=
+Date: Fri, 11 Feb 2022 12:48:35 +0000
+Message-ID: <MW4PR11MB5776F58DE5585DEA423716A4FD309@MW4PR11MB5776.namprd11.prod.outlook.com>
 References: <20220204164929.10356-1-marcin.szycik@linux.intel.com>
  <20220204165101.10673-1-marcin.szycik@linux.intel.com>
  <Yf6rKbkyzCnZE/10@nataraja>
  <MW4PR11MB5776D18B1DA527575987CB1DFD2D9@MW4PR11MB5776.namprd11.prod.outlook.com>
  <YgYpZzOo3FQG+SY2@nataraja>
-In-Reply-To: <YgYpZzOo3FQG+SY2@nataraja>
+ <MW4PR11MB577686D883EEBDB2C9E0FEB2FD309@MW4PR11MB5776.namprd11.prod.outlook.com>
+In-Reply-To: <MW4PR11MB577686D883EEBDB2C9E0FEB2FD309@MW4PR11MB5776.namprd11.prod.outlook.com>
 Accept-Language: pl-PL, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -106,70 +103,70 @@ dlp-reaction: no-action
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 47f3e14f-180b-4139-6c05-08d9ed491278
-x-ms-traffictypediagnostic: BN6PR11MB1716:EE_
-x-microsoft-antispam-prvs: <BN6PR11MB17169DC334495799AB96E32AFD309@BN6PR11MB1716.namprd11.prod.outlook.com>
+x-ms-office365-filtering-correlation-id: 4f5685d6-9396-4697-d40f-08d9ed5cd186
+x-ms-traffictypediagnostic: CY4PR11MB1974:EE_
+x-microsoft-antispam-prvs: <CY4PR11MB1974E8129E6A5B0FF224C2FDFD309@CY4PR11MB1974.namprd11.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:10000;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WOylykL7wmVpuv861loNOMICVo/RpgH0tTuTifStf6AFV8cK9BCXO8GCsPIOatesY/i/mmbB2JXwvUZqKra1vTtRo6tyrTi3Mb7UqkSFw2wLVEM0NKKNXYCfMUqm5FpxGqGoh3ARKnPmClM4ucoqJU/kBGsemASHnnWB41BMNGba1pUe8Bm8juF2fhWZBGBwNOTTNEIj+1ofDCc/VkzHx1Xhl2L4LOKOh7c1X+Ra/XMYUsNDll96PEKavkPYBG/x//ZowRUxsWE8sICpjX5Y3jheiZUybo6FCIe8PdzW8eSTH9PNIE04Qn3GVh9OjtCtxp/olVJtrw/tT6+UQZIPc7y4QD/xEj8SC56BQh2shIr2oh8O/qLksMaUN8luhOU9AaGsoKbB7wPao4xbhO9oPEMhGsFRAyIyvDzkwm/DNChKtyQg3NYL0IWO3MD4vS3vhaQARS/FhLc7Xlza4nGsj3BwObC742CTZ6MSZ7X9VPgl4O5hAGhN9DM/WA6N+l/A6SkGq/feLfEBBOpOMZxSfAflrD27oJnCwEmBJe2fmkpAqJ9TzAT2QZ/H9VG/zlXbZ0aptOhwBdNELjhnoDGTaRE8ekHl2zCsfMkLbIvwqgirEA38PPqzTvitHleDdvlyGD5amC3eXqWkRDXe5iR8f9KUmM2nnUzTzwHUmOAtaiyxOAsN05sM9WNNi7LiX5dmcspJLYQe0DzL8H1ik3podBxXoCzHH6xrUG/ODwQvq/+/6qyrheVcn2eYKcnzCX2kAREv4PZl+eOq67hctrKq7cr0ENs+QBKN4bMumJUTdnU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR11MB5776.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(186003)(508600001)(966005)(26005)(9686003)(53546011)(7696005)(6506007)(82960400001)(83380400001)(71200400001)(86362001)(66574015)(4326008)(66946007)(5660300002)(38100700002)(122000001)(66556008)(52536014)(33656002)(76116006)(38070700005)(66446008)(66476007)(54906003)(2906002)(316002)(64756008)(55016003)(6916009)(8676002)(8936002);DIR:OUT;SFP:1102;
+x-microsoft-antispam-message-info: L8vpzhQyzXCR7do+LdBuDZ7IOIipxhCFDf5366biIWXUbN9VRjhiKGsiUKiQ55hdR5xCTaE29SNZ0rlP3GDz5FSF+28QylppAgrfTx1x7Q2oNkFH9y6+ZFUB8nRYWCVG/DjgxopaijW5nWhpAlSExz1+cNiorYjM47jUvtS3vUuV7+INeccPr709JrkuZy0BEnCxx2Gnn5yKzAXrZZCBITsAaayutgY4zQes195zqFl+k7Tc/gyhC58alF8IbnnpzTIjzNmp7nXCS4djsBdQbFMziU/IVDfPXLb0GqSiYEjrI/k5RAtxIYIbYZT7E1/VrfKEV6o/viOWkOYVAWkItDpCkYQYk5NopFJCftUsNe2F0hyPsmUeVIbjKjt7IrEOrq7UW1d3HJr4/dH1JslzXKLoYzcJf15VsDwEiDWixW+dwDY46WCPxcwVVcM+oooLSVEZRpRaceh33MfBP+j56mzoC6CFpiqnC5meuX8zcW0vp1s+N7si4O3w3nljyCAlJat+JxOoYY/IcFYO+Om9RYtp+z+RKU4xnQXF7uSfCeoOPEvrmV+WaEbhQeFL94ElOo7DWE2U3Fy3UgmnTNbPyewFpl6jUUxGxkdFhNNPHh4aLY6AuOkl7BPFAAZp+RMUoMpdWaa/oqk05yllyisEZmOypdFS9r0y4r3R1ywgaUb67ZtJbIzC/5i52SdHkcRfmOvBC2xRwJjSp5JUqCthEjfomRYraO1kLsbv0GtqN2CQUbFNp8ihQ7LxbXZp2GhIJwrFWEZuP+ebKl+0aDquD7JhFApVs5Kj3qhUso8bit0=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR11MB5776.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(71200400001)(76116006)(316002)(26005)(2906002)(186003)(508600001)(38070700005)(66574015)(6916009)(54906003)(66946007)(53546011)(86362001)(66476007)(8676002)(55016003)(83380400001)(33656002)(52536014)(64756008)(7696005)(66556008)(6506007)(66446008)(966005)(8936002)(4326008)(2940100002)(5660300002)(38100700002)(9686003)(122000001)(82960400001);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?QaEElN5AbdkIsSEaI5tceVYWv9MpVRUJuq6o9KxZArTTKlAmGiuQAsplNY?=
- =?iso-8859-2?Q?r6bEHcNF30WVk5mr7gUEqWcJueRgNlNpdCN4+IcN1b3NQX7Vrctm11kh4g?=
- =?iso-8859-2?Q?zssPlSUMfaVePBSahB/I7glDi4ZHUtNEcvIBumHmLsCQoXW1lUweDYHMl7?=
- =?iso-8859-2?Q?fOTEOEg8fHNBKZdhfgINn9vKmR+VjQ5HibiGzxTOjpa6XoLMaQkauceaa8?=
- =?iso-8859-2?Q?9etPsA+rzcm9SJ/BGcxypUsLVgpuSXnKpyQYltDYgG4oL2yEWaK3pREF46?=
- =?iso-8859-2?Q?HFidNItUsulAM5my/8wT4LdMwhjn+WJ0Vi+UMhYpL/6ak4ipI8KmZYqsgT?=
- =?iso-8859-2?Q?W7g8Lig6tvJ/V9bqFqB9V1VS5qkWAyVOJXIcENt8p4ca//xNkUemb9K4UK?=
- =?iso-8859-2?Q?ciNfyjkXbSAuGNNao4a9/A9iz+u8bT5PwWjXDYMbD75GQsz3pCcrtgmcJg?=
- =?iso-8859-2?Q?N9+GKFJ4UBQPt5NA/EYjqz7+xSjtFcxIpbtB/zTYtYTceW2G+ZZbKJChgU?=
- =?iso-8859-2?Q?Jjo0nc9pIIRyvu9b7oeGsP5CLyhYX8N7AO2FDpsuNsBzDObJLWSbU2qerX?=
- =?iso-8859-2?Q?nKvNST/m2sIoY5+GI/OIpRWHSnmJO78s48KbkZNekgean9JTi4NiVjsREz?=
- =?iso-8859-2?Q?P3ZRP8RbDoVbfNPVz1XPe7G7XQ4VclUkr0CMGHdj3SJpQUQkSm/IzplWoz?=
- =?iso-8859-2?Q?w55qGCBazY8el+ngmrF4ttbDOSxcnpo9jvCANnVVX8FVPXdB4vboyA8j4C?=
- =?iso-8859-2?Q?6uW+v1Ve3vu47IjWAuk+jyPuH5DyRMkC25JJrU6gKhEGNd5iSAvojIoALy?=
- =?iso-8859-2?Q?JLnaQiPoZyiX9V5PVLjmgr7w3aP10fT7NJrF4GpeDvziNHUXnQepRxffpO?=
- =?iso-8859-2?Q?3KUjn4jhbPHlPph+17PnEgJbMfG76b/+tGXWA3VbEq8RqFH+W879tunVlY?=
- =?iso-8859-2?Q?sbPpp9ajegeLO7lWhOumzxUpPBywHHlaXmHsuMeJdV7/DBNIvDbOck9eal?=
- =?iso-8859-2?Q?kxZtcL/C7GHBU2eeogJwHnf7UcYDAlWwnN8f0q2eE7IbNEOuIPCtGHT8Er?=
- =?iso-8859-2?Q?/jxsktAsKNjLyuuBinNb9YwJUuM0T3vGepcuZkqjAFbIG23qdgHdEJNSa/?=
- =?iso-8859-2?Q?8NqdxyCCPAwEMRCgY18OWeZh1i9IFGR5W2ej20CGrXkLuqUMc32diVPm03?=
- =?iso-8859-2?Q?+6d4JcX20Tn2AjbLsB9vGd1c03mhV6Gw+jfVVQ1HWWwPngAEhFKaFTZkLB?=
- =?iso-8859-2?Q?Uq7iZQZ/wZO+Ykkx9XGTw24eItTsDA/ZejocvRWDKYsZB6hnw8JRLmciEB?=
- =?iso-8859-2?Q?Ki6CiTjtakRV3JLsYHvU81l/U43Tns7BUroKFcXDSyIXA02mMZ0EoXDvbV?=
- =?iso-8859-2?Q?AWntWBicLutvGZEuhC/8f8c3wcEXz50REJBHrTUClbMJKlfqHPWeh7d3rO?=
- =?iso-8859-2?Q?tXS5JJo3SqidnfQSE5ok5epwQ8pH+z/dG6JyC6kjaOuDCtJg0DBC+RV3oY?=
- =?iso-8859-2?Q?/IyzHiU33Ex6UWZtcs+XpTPwY9w4hp3W5N0yXf1fUDsNuc9y7u9vwP7Q+1?=
- =?iso-8859-2?Q?YpCau/TWd3jlvPt7nn736fNZlsYM+5L/dMTsjXaEhSO1tuGGAEZq/KBb2W?=
- =?iso-8859-2?Q?Kjyjb0dfs1wdiMg9kj+nk2t8+o/PccINQGS+No9/cNvd0yTr9DVEmrRxR5?=
- =?iso-8859-2?Q?PM/i+fDFL7SCb7dgtKwM4GWSx5rRfaEhfOjulGfn?=
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?JPOUth3LLXRR2Td+N7R8AmeJP069yEVeb/lbVdky/jJH9SjDUAmHdR9oew?=
+ =?iso-8859-2?Q?0ZQrS4UMPdTLjaEwDnXoNk489uxz+2e04+aobc95kpLFrd/Qd9EHG1w2bO?=
+ =?iso-8859-2?Q?Vl4lCTqr7ds/CYsjxYIEpHb+6qaIooSlhVb8ArfEiLrk+OgIqGFesmnaUy?=
+ =?iso-8859-2?Q?WJ+/ULxG3MMcBRltpls2Pvf6nUq8or2j9QWxbOqIc9bK6JlM+Fux15J6s1?=
+ =?iso-8859-2?Q?UCZ7snLqfhNu/hRC/MVibKJY8iDGkJW+oGckMnBmm2PkqnbPFL+E3ruPUj?=
+ =?iso-8859-2?Q?gLYv37cy2nzzQnUuiUIpeJ3UwEXL/tfFP+bCdnNr5PABqXXFZnbxey/cnw?=
+ =?iso-8859-2?Q?2kYdRVUFki2GpKN38HBd7y80E90ngOT46kfQZWy9czWCXciABSfOfS+lEa?=
+ =?iso-8859-2?Q?KU5rB51gggd/nsH5S/PpgTpODuP2aj42VyCB/GPXb5ZSVMVpiF0LSEinIV?=
+ =?iso-8859-2?Q?Fps0cel0mKwkFU9EPMsumLn8snbbvEivYNKnvG5TWJT/tGrmBuEEvO7On4?=
+ =?iso-8859-2?Q?QS1L3FdOsbDq1fZRMOjUMifyTusp2iQ7glV7HKZDP4cOaIhgyj4zi9lzKC?=
+ =?iso-8859-2?Q?jlesTqEPcJRdTKdqhyaaKFCYJMUnboQkfUruJDxp8CfP+PeybKD2kclhrc?=
+ =?iso-8859-2?Q?DsZR4vpX3O2SgpHeB2aLPSzgWhQWMEuo3t/J0C9/RXcAl8zuOplz2YtmjM?=
+ =?iso-8859-2?Q?dOl8YjNnd1C4G5v0Xbi8tC144SzZdLTuCTdNeE3ZYdBlJ8fSs2jnfIrqNL?=
+ =?iso-8859-2?Q?0VqrRwRmYjGqKEM7MnIh06RYg7K3BiGUGy3ITYMl3Tdl5KjLKKAeqCXkno?=
+ =?iso-8859-2?Q?ZP0dLKqZxGFx+y24w/xOt1BYiut72GUorGGV/5lO36B0PDAxhYHE6XK8MD?=
+ =?iso-8859-2?Q?za5zJ2N3bV8kZS8zH69deKT0COW4+1PaqajOaCJuyiLmYFaVOiIxu3QA01?=
+ =?iso-8859-2?Q?oT5xkRBDeG4eEhFLQEEVs4QXLtDc6+mIR0Uoc5YMOH/6UGo70lPg78uEcB?=
+ =?iso-8859-2?Q?NHJNxhPKshfXrmK1HMrLqkrJpMJbMdFw7AfSzuZvgKnO05BHkC/5bYAQto?=
+ =?iso-8859-2?Q?8R6NSY96+DQuBF3tVV5BZrAIrLOemr9juGu/CIem7wwEH9uOMnlzbAp5Sj?=
+ =?iso-8859-2?Q?6yyN20VtZnEzHEJcIEDkcKe7LETNwaQHkXHaVB/98ixhTUmToPcDt9X19D?=
+ =?iso-8859-2?Q?iwsfgQAtcSB7UNPyRTxcRGOScz4hgrE4Nvn0OQEYIQrE15Ni76R4cmAPsD?=
+ =?iso-8859-2?Q?JGJ5fA6gaVpfaDEfixZUfHwSNPg+cdDHX3sy+6kpMofDptRSxWAIxiFRto?=
+ =?iso-8859-2?Q?UN4Cwqq2diQG2QQ7WL1qxp6kgfVdy1yRM+INNyUE3oRb/nR7qicEgrZXL/?=
+ =?iso-8859-2?Q?8IDDaCEGDjNpd08t9pn9ZXXDOm/9UMLg+AqTqSfgVnCjUbH0fHo117Oqjc?=
+ =?iso-8859-2?Q?iRabo9oyKSN/KyK9tQIU7aaRaq+kIHl6ZBVCigFyN/9yEW1kPJhb4BfUBW?=
+ =?iso-8859-2?Q?LWnudu2SBSdZLR+Au/xS1dj5d0b9Zshs7paN0704Lb5jE0e4jpFS9Yqc2q?=
+ =?iso-8859-2?Q?kH1oXs+O+c2Yp42t2Em3cR+yNtSGkS7JH5GpFA7oB8CfWvgXeZR9TfzTns?=
+ =?iso-8859-2?Q?RcuWZKdFk5rVTLqQ9guTHflIOy8OmvAGEb9kHHhrV7qv3evb0A6e6GIHOp?=
+ =?iso-8859-2?Q?QZyRH0t/ywOx4OUBI+sxpqUVZz3/cNYxTzFS0ArN?=
 Content-Type: text/plain; charset="iso-8859-2"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB5776.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47f3e14f-180b-4139-6c05-08d9ed491278
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Feb 2022 10:27:14.7133
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f5685d6-9396-4697-d40f-08d9ed5cd186
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Feb 2022 12:48:35.6590
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4qdNsFXa/IbmlfYMJzxvj/3glLoSh8+MUakaRM7ZrcL7ZzOoEPwBRPZ3TilppUAc55dNVbGYV3ZWd9dVxf4V6eLa3GwEmWFJQH4H4ahsBuw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1716
+X-MS-Exchange-CrossTenant-userprincipalname: hmVaftsalxKLs8K9wMbOt9/Fu9E8eu5ZkQNpolrti3VU6CPEpEWUP1tyEO/yHq17LpWNmAV5fhZOwJ4Z+AKYgEpVH1ZcGDVSOaeCiwqoxis=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1974
 X-OriginatorOrg: intel.com
 X-MailFrom: wojciech.drewek@intel.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: VVIGBAD5TKLUCCYSUCAKONWMKXP3CZQD
-X-Message-ID-Hash: VVIGBAD5TKLUCCYSUCAKONWMKXP3CZQD
+Message-ID-Hash: NWCPVQKUJE23DIWW25V3NUSYYE65KU5E
+X-Message-ID-Hash: NWCPVQKUJE23DIWW25V3NUSYYE65KU5E
 X-Mailman-Approved-At: Tue, 15 Feb 2022 09:42:28 +0000
 CC: Marcin Szycik <marcin.szycik@linux.intel.com>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, "michal.swiatkowski@linux.intel.com" <michal.swiatkowski@linux.intel.com>, "davem@davemloft.net" <davem@davemloft.net>, "kuba@kernel.org" <kuba@kernel.org>, "pablo@netfilter.org" <pablo@netfilter.org>, "osmocom-net-gprs@lists.osmocom.org" <osmocom-net-gprs@lists.osmocom.org>
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/VVIGBAD5TKLUCCYSUCAKONWMKXP3CZQD/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/NWCPVQKUJE23DIWW25V3NUSYYE65KU5E/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -177,75 +174,98 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Hi Harald,
+Hi Harald
 
 > -----Original Message-----
-> From: Harald Welte <laforge@osmocom.org>
-> Sent: pi=B1tek, 11 lutego 2022 10:16
-> To: Drewek, Wojciech <wojciech.drewek@intel.com>
+> From: Drewek, Wojciech
+> Sent: pi=B1tek, 11 lutego 2022 11:27
+> To: Harald Welte <laforge@osmocom.org>
 > Cc: Marcin Szycik <marcin.szycik@linux.intel.com>; netdev@vger.kernel.org=
 ; michal.swiatkowski@linux.intel.com;
 > davem@davemloft.net; kuba@kernel.org; pablo@netfilter.org; osmocom-net-gp=
 rs@lists.osmocom.org
-> Subject: Re: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
+> Subject: RE: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
 >=20
-> Hi Wojciech,
+> Hi Harald,
 >=20
-> On Tue, Feb 08, 2022 at 02:12:33PM +0000, Drewek, Wojciech wrote:
-> > > Remember, GTP-U uses different IP addresses and also typically comple=
-tely
-> > > different hosts/systems, so having GTP-C connectivity between two GSN
-> > > doesn't say anything about the GTP-U path.
+> > -----Original Message-----
+> > From: Harald Welte <laforge@osmocom.org>
+> > Sent: pi=B1tek, 11 lutego 2022 10:16
+> > To: Drewek, Wojciech <wojciech.drewek@intel.com>
+> > Cc: Marcin Szycik <marcin.szycik@linux.intel.com>; netdev@vger.kernel.o=
+rg; michal.swiatkowski@linux.intel.com;
+> > davem@davemloft.net; kuba@kernel.org; pablo@netfilter.org; osmocom-net-=
+gprs@lists.osmocom.org
+> > Subject: Re: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo respon=
+se
 > >
-> > Two  approaches come to mind.
-> > The first one assumes that peers are stored in kernel as PDP contexts i=
-n
-> > gtp_dev (tid_hash and addr_hash). Then we could enable a watchdog
-> > that could in regular intervals (defined by the user) send echo request=
-s
-> > to all peers.
->=20
-> Interesting proposal.  However, it raises the next question of what to do=
- if
-> the path is deemed to be lost (N out of M recent echo requests unanswered=
-)? It
-> would have to notify the userspace daemon (control plane) via a netlink e=
-vent
-> or the like.  So at that point you need to implement some special process=
-ing in
-> that userspace daemon...
->=20
-> > In the second one user could trigger echo request from userspace
-> > (using new genl cmd) at any time. However this approach would require t=
-hat
-> > some userspace daemon would implement triggering this command.
->=20
-> I think this is the better approach.  It keeps a lot of logic like timeou=
-ts,
-> frequency of transmission, determining when a path is considered dead, ..=
-. out
-> of the kernel, where it doesn't need to be.
->=20
-> > What do you think?
->=20
-> As both approaches require some support from the userspace control plane =
-instance,
-> I would argue that the second proposal is superior.
->=20
-> Regards,
-> 	Harald
-I agree that second option is better so I'll start to implementing it.
+> > Hi Wojciech,
+> >
+> > On Tue, Feb 08, 2022 at 02:12:33PM +0000, Drewek, Wojciech wrote:
+> > > > Remember, GTP-U uses different IP addresses and also typically comp=
+letely
+> > > > different hosts/systems, so having GTP-C connectivity between two G=
+SN
+> > > > doesn't say anything about the GTP-U path.
+> > >
+> > > Two  approaches come to mind.
+> > > The first one assumes that peers are stored in kernel as PDP contexts=
+ in
+> > > gtp_dev (tid_hash and addr_hash). Then we could enable a watchdog
+> > > that could in regular intervals (defined by the user) send echo reque=
+sts
+> > > to all peers.
+> >
+> > Interesting proposal.  However, it raises the next question of what to =
+do if
+> > the path is deemed to be lost (N out of M recent echo requests unanswer=
+ed)? It
+> > would have to notify the userspace daemon (control plane) via a netlink=
+ event
+> > or the like.  So at that point you need to implement some special proce=
+ssing in
+> > that userspace daemon...
+> >
+> > > In the second one user could trigger echo request from userspace
+> > > (using new genl cmd) at any time. However this approach would require=
+ that
+> > > some userspace daemon would implement triggering this command.
+> >
+> > I think this is the better approach.  It keeps a lot of logic like time=
+outs,
+> > frequency of transmission, determining when a path is considered dead, =
+... out
+> > of the kernel, where it doesn't need to be.
+> >
+> > > What do you think?
+> >
+> > As both approaches require some support from the userspace control plan=
+e instance,
+> > I would argue that the second proposal is superior.
+> >
+> > Regards,
+> > 	Harald
+> I agree that second option is better so I'll start to implementing it.
+I have one question. The new cmd should be allowed to send echo request
+only to the peers stored in the kernel space (PDP contexts) or the userspac=
+e
+daemon has its own list of peers and any request should be allowed to be se=
+nd?
 
 Regards,
-Wojtek
+Wojtek=20
+
 >=20
-> --
-> - Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks.o=
-rg/
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+> Regards,
+> Wojtek
+> >
+> > --
+> > - Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks=
+.org/
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-> "Privacy in residential applications is a desirable marketing option."
->                                                   (ETSI EN 300 175-7 Ch. =
-A6)
+=3D=3D=3D
+> > "Privacy in residential applications is a desirable marketing option."
+> >                                                   (ETSI EN 300 175-7 Ch=
+. A6)
