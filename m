@@ -1,67 +1,69 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7EF4BBB14
-	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 18 Feb 2022 15:55:09 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 37447283AE;
-	Fri, 18 Feb 2022 14:55:09 +0000 (UTC)
-Received: from mail.osmocom.org ([127.0.0.1])
-	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id GN7Hwo2_vIhR; Fri, 18 Feb 2022 14:55:08 +0000 (UTC)
-Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 8A8E2283AB;
-	Fri, 18 Feb 2022 14:55:07 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 80E0738A0051
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:55:03 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD9F94BBB4B
+	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 18 Feb 2022 15:57:02 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 5186A283AB
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:55:03 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 72BC2283B1;
+	Fri, 18 Feb 2022 14:57:02 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id M84n_cclofBk for <osmocom-net-gprs@lists.osmocom.org>;
-	Fri, 18 Feb 2022 14:55:01 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mail.osmocom.org (Postfix) with ESMTPS id 4163D282E6
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:55:00 +0000 (UTC)
+	with ESMTP id sEXHFFEf0LJC; Fri, 18 Feb 2022 14:57:02 +0000 (UTC)
+Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
+	by mail.osmocom.org (Postfix) with ESMTP id 01773283AC;
+	Fri, 18 Feb 2022 14:57:00 +0000 (UTC)
+Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
+	by lists (Postfix) with ESMTPS id 7155238A003F
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:56:55 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.osmocom.org (Postfix) with ESMTP id 482CB283AC
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:56:55 +0000 (UTC)
+Received: from mail.osmocom.org ([127.0.0.1])
+	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id pCybdAH3PkEC for <osmocom-net-gprs@lists.osmocom.org>;
+	Fri, 18 Feb 2022 14:56:53 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by mail.osmocom.org (Postfix) with ESMTPS id 27ED9282E6
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:56:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645196101; x=1676732101;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
+  t=1645196213; x=1676732213;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
   bh=Oot5vKYLSs2UkYMj+ZH1Hyc+zD8ANsy6IYISq39riik=;
-  b=bakMsQc7I0/nQjpyaSjIn34oeFyJl6E8K7HaHMoS3RxVCPvzy9J+Xmok
-   A+d3fr5ecaxNACLFdgwKEzs5vz32Tk7eelQQa7gWFILFGof/1DyvCgs6x
-   HOFMzLLE6uM53h+CupROG6ByhMhgef9t4ezlDBA0t19RR4lHq3+uERfOU
-   nSkjTDh/C53H1kilfvaGq2WyRroQ+YyORqDtN/pwj+7QMzDzQwOXLQIok
-   1gvyyU/ly0SegAKvIhabZCtnGYgoczCVhKNIVVkKHokw1Cz6i+kXWZzee
-   yMfLQha2wH6g/qou+n2xHGtXoya/eqbP9BbB1nbhVcTACDQ25WCoKU06j
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="250894078"
+  b=EnoUns3i0s2fPgmPvFZWvmjOhnCbfjdaklN1D7mF0d02CtyGWbnip3bZ
+   Xu65A2m6kr1N1APmW1RG/zrk4B1qc7gSr8DqOGfUCQmes/78/6tiQDI06
+   bHw+2J8nIGG8wZpC6td30lcmwL9lMdA8wGmcTUfU7i+wQfJAl3g0V90uV
+   996XhThIM+0sfryK4Uk2hpZCWvMkZJE21Kv/d7WIPxHqoYClRqj4pDWrb
+   pQqR5NPizr2GTCwz7xMQesToUIBBtwA+XHdR3TWn8a43LORAqt08/HsCd
+   ts6ofbtwgHFHVJrCJ7Oh3Djw0nbZL5wteqPFZdq32khJyTuS0RwxJ1wyA
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="311880759"
 X-IronPort-AV: E=Sophos;i="5.88,379,1635231600";
-   d="scan'208";a="250894078"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2022 06:54:58 -0800
+   d="scan'208";a="311880759"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2022 06:56:50 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.88,379,1635231600";
-   d="scan'208";a="626654199"
+   d="scan'208";a="637761125"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
-  by FMSMGA003.fm.intel.com with ESMTP; 18 Feb 2022 06:54:56 -0800
+  by orsmga004.jf.intel.com with ESMTP; 18 Feb 2022 06:56:48 -0800
 Received: from switcheroo.igk.intel.com (switcheroo.igk.intel.com [172.22.229.137])
-	by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id 21IEstVa010235;
-	Fri, 18 Feb 2022 14:54:55 GMT
+	by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id 21IEulS0010476;
+	Fri, 18 Feb 2022 14:56:47 GMT
 From: Marcin Szycik <marcin.szycik@linux.intel.com>
 To: netdev@vger.kernel.org
 Subject: [PATCH net-next v6 1/7] gtp: Allow to create GTP device without FDs
-Date: Fri, 18 Feb 2022 15:51:30 +0100
-Message-Id: <20220218145130.6858-1-marcin.szycik@linux.intel.com>
+Date: Fri, 18 Feb 2022 15:53:17 +0100
+Message-Id: <20220218145317.7073-1-marcin.szycik@linux.intel.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20220218145048.6718-1-marcin.szycik@linux.intel.com>
+References: <20220218145048.6718-1-marcin.szycik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: O7Z6UDQHJNV3VPORGXYM3VFGRZNV27US
-X-Message-ID-Hash: O7Z6UDQHJNV3VPORGXYM3VFGRZNV27US
+Message-ID-Hash: 3HER3AWRGSGQ6U5JTGBMJ656LJHQQX7B
+X-Message-ID-Hash: 3HER3AWRGSGQ6U5JTGBMJ656LJHQQX7B
 X-MailFrom: marcin.szycik@linux.intel.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
@@ -69,7 +71,7 @@ CC: michal.swiatkowski@linux.intel.com, wojciech.drewek@intel.com, davem@davemlo
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/O7Z6UDQHJNV3VPORGXYM3VFGRZNV27US/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/3HER3AWRGSGQ6U5JTGBMJ656LJHQQX7B/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
