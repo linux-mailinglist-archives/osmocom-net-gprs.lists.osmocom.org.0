@@ -2,171 +2,74 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25994B67E8
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 15 Feb 2022 10:42:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD7EF4BBB14
+	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 18 Feb 2022 15:55:09 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 8978E283BF;
-	Tue, 15 Feb 2022 09:42:42 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 37447283AE;
+	Fri, 18 Feb 2022 14:55:09 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id uNpOGlApIfhi; Tue, 15 Feb 2022 09:42:42 +0000 (UTC)
+	with ESMTP id GN7Hwo2_vIhR; Fri, 18 Feb 2022 14:55:08 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 99E0F28399;
-	Tue, 15 Feb 2022 09:42:41 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 8A8E2283AB;
+	Fri, 18 Feb 2022 14:55:07 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 3011A38A0090
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 12:48:44 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 80E0738A0051
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:55:03 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 0737F282E5
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 12:48:44 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 5186A283AB
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:55:03 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id r_vESQkYif2i for <osmocom-net-gprs@lists.osmocom.org>;
-	Fri, 11 Feb 2022 12:48:41 +0000 (UTC)
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by mail.osmocom.org (Postfix) with ESMTPS id C6EA928389
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 11 Feb 2022 12:48:40 +0000 (UTC)
+	with ESMTP id M84n_cclofBk for <osmocom-net-gprs@lists.osmocom.org>;
+	Fri, 18 Feb 2022 14:55:01 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mail.osmocom.org (Postfix) with ESMTPS id 4163D282E6
+	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 18 Feb 2022 14:55:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644583720; x=1676119720;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=CPffyBivGYtsoJTtb68BBVknnTNJ1qyrUfE9ujgOBG0=;
-  b=Vf0+dtUqIO3mwdaRrWqzZHOAN9xCq/cbhJooF53GTYjkgNifF4Hyy08J
-   xttufvQ00ijsSBJo/IkUHCRVNk9vsJr1aErSGz+QTjKyiCKhoRX8baTDL
-   1RTcPpgU47etq21Cu96frpPxuCiNNwEuUc40wnCgcj+V8Be0PUqQiWTkA
-   drzQlFDFjAWLtpy/Sln+etCie8959ayMC0zP4Q+eGqDNn8cyjMs7iGnd1
-   2dQzeM58I4/JAHK9VtX+1EgEryLo/nvvVKyHjGoPZyLw89ODEUpidvZ8K
-   sKeUr16zHu5tFg8Jh4BsiqdmrxP1FAUfw0doOH8eev3h4L7hN8z4ORfhK
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="310461554"
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600";
-   d="scan'208";a="310461554"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 04:48:38 -0800
+  t=1645196101; x=1676732101;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Oot5vKYLSs2UkYMj+ZH1Hyc+zD8ANsy6IYISq39riik=;
+  b=bakMsQc7I0/nQjpyaSjIn34oeFyJl6E8K7HaHMoS3RxVCPvzy9J+Xmok
+   A+d3fr5ecaxNACLFdgwKEzs5vz32Tk7eelQQa7gWFILFGof/1DyvCgs6x
+   HOFMzLLE6uM53h+CupROG6ByhMhgef9t4ezlDBA0t19RR4lHq3+uERfOU
+   nSkjTDh/C53H1kilfvaGq2WyRroQ+YyORqDtN/pwj+7QMzDzQwOXLQIok
+   1gvyyU/ly0SegAKvIhabZCtnGYgoczCVhKNIVVkKHokw1Cz6i+kXWZzee
+   yMfLQha2wH6g/qou+n2xHGtXoya/eqbP9BbB1nbhVcTACDQ25WCoKU06j
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="250894078"
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600";
+   d="scan'208";a="250894078"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2022 06:54:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600";
-   d="scan'208";a="537640510"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
-  by fmsmga007.fm.intel.com with ESMTP; 11 Feb 2022 04:48:38 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 11 Feb 2022 04:48:37 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Fri, 11 Feb 2022 04:48:37 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.175)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Fri, 11 Feb 2022 04:48:37 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EeDyjA72E8HmbQykQdYrAzZNZIV7udNZ54TyWaQ9KY2rNmCqC8a/NmOfa2dBa7WcUJntAyegL6GCYtlkOzloLZbW5/bDZwC50uTMpkZw5CWDuFrDLvprX4zxUkjbbclPcox6eFxsDPkbglNGTyIh3ZIMS7PHqVj6GAV7CMI6z3r21YC2pXAq4cukzYfHmjGhve3c/3gy8BRsJi8WpdYy6Dc8s8g0pud3dBBih0/GrKGHUjp5lKI0kFyxmOO8hFxEb8TItyalZ88fNUP+nik3rvE80jSfLunjT+55p5EIQpv9t3U44NX6G4amxQDLo8E47wzNL4CjuIhfUcOi/uhmNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qwyeCHbQkFBO4YAIxq7WRtMzJ5dqYVOofiwpIk03Eis=;
- b=KgM0zKxXs1IDJJMnRMRxgcXRmCqe/ENOdQZFCRGUtBVZ5VM4BBnmNU+qBaPYTkX7oG5uaPLRb+SydaCiBUCpMY0/ecpLsHE6JNHXA55UQBCIxt5xShZt8k2F2ZvM+Pd5CFFov2zpINB58mfTg2mhNf/oXSqnjzQDiGAP07ku1ZJeA3vjwfuR7e8d6JgjA43MxaLL3HtPmNDnw1ms3CTGaX7vm5fk+im97+ZRsxkRvywwIsFQmGYpQcXeyZPcux3dAd2VM9BLJOGzdNjoPk/ge5gkVxZaEFv2YDgSxRRlETzCUnlARUf/N/fE8x2dHh1e4YtmJhL1N/5oT988j1xZUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from MW4PR11MB5776.namprd11.prod.outlook.com (2603:10b6:303:183::9)
- by CY4PR11MB1974.namprd11.prod.outlook.com (2603:10b6:903:126::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.18; Fri, 11 Feb
- 2022 12:48:35 +0000
-Received: from MW4PR11MB5776.namprd11.prod.outlook.com
- ([fe80::6cb5:fdfd:71be:ce6e]) by MW4PR11MB5776.namprd11.prod.outlook.com
- ([fe80::6cb5:fdfd:71be:ce6e%3]) with mapi id 15.20.4951.019; Fri, 11 Feb 2022
- 12:48:35 +0000
-From: "Drewek, Wojciech" <wojciech.drewek@intel.com>
-To: Harald Welte <laforge@osmocom.org>
-Subject: RE: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
-Thread-Topic: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
-Thread-Index: AQHYGefbqRcNOb4NqUCQWYuxV/hGwqyFLYqAgAR+yXCABG/wgIAAEuLQgAAlfDA=
-Date: Fri, 11 Feb 2022 12:48:35 +0000
-Message-ID: <MW4PR11MB5776F58DE5585DEA423716A4FD309@MW4PR11MB5776.namprd11.prod.outlook.com>
-References: <20220204164929.10356-1-marcin.szycik@linux.intel.com>
- <20220204165101.10673-1-marcin.szycik@linux.intel.com>
- <Yf6rKbkyzCnZE/10@nataraja>
- <MW4PR11MB5776D18B1DA527575987CB1DFD2D9@MW4PR11MB5776.namprd11.prod.outlook.com>
- <YgYpZzOo3FQG+SY2@nataraja>
- <MW4PR11MB577686D883EEBDB2C9E0FEB2FD309@MW4PR11MB5776.namprd11.prod.outlook.com>
-In-Reply-To: <MW4PR11MB577686D883EEBDB2C9E0FEB2FD309@MW4PR11MB5776.namprd11.prod.outlook.com>
-Accept-Language: pl-PL, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4f5685d6-9396-4697-d40f-08d9ed5cd186
-x-ms-traffictypediagnostic: CY4PR11MB1974:EE_
-x-microsoft-antispam-prvs: <CY4PR11MB1974E8129E6A5B0FF224C2FDFD309@CY4PR11MB1974.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: L8vpzhQyzXCR7do+LdBuDZ7IOIipxhCFDf5366biIWXUbN9VRjhiKGsiUKiQ55hdR5xCTaE29SNZ0rlP3GDz5FSF+28QylppAgrfTx1x7Q2oNkFH9y6+ZFUB8nRYWCVG/DjgxopaijW5nWhpAlSExz1+cNiorYjM47jUvtS3vUuV7+INeccPr709JrkuZy0BEnCxx2Gnn5yKzAXrZZCBITsAaayutgY4zQes195zqFl+k7Tc/gyhC58alF8IbnnpzTIjzNmp7nXCS4djsBdQbFMziU/IVDfPXLb0GqSiYEjrI/k5RAtxIYIbYZT7E1/VrfKEV6o/viOWkOYVAWkItDpCkYQYk5NopFJCftUsNe2F0hyPsmUeVIbjKjt7IrEOrq7UW1d3HJr4/dH1JslzXKLoYzcJf15VsDwEiDWixW+dwDY46WCPxcwVVcM+oooLSVEZRpRaceh33MfBP+j56mzoC6CFpiqnC5meuX8zcW0vp1s+N7si4O3w3nljyCAlJat+JxOoYY/IcFYO+Om9RYtp+z+RKU4xnQXF7uSfCeoOPEvrmV+WaEbhQeFL94ElOo7DWE2U3Fy3UgmnTNbPyewFpl6jUUxGxkdFhNNPHh4aLY6AuOkl7BPFAAZp+RMUoMpdWaa/oqk05yllyisEZmOypdFS9r0y4r3R1ywgaUb67ZtJbIzC/5i52SdHkcRfmOvBC2xRwJjSp5JUqCthEjfomRYraO1kLsbv0GtqN2CQUbFNp8ihQ7LxbXZp2GhIJwrFWEZuP+ebKl+0aDquD7JhFApVs5Kj3qhUso8bit0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR11MB5776.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(71200400001)(76116006)(316002)(26005)(2906002)(186003)(508600001)(38070700005)(66574015)(6916009)(54906003)(66946007)(53546011)(86362001)(66476007)(8676002)(55016003)(83380400001)(33656002)(52536014)(64756008)(7696005)(66556008)(6506007)(66446008)(966005)(8936002)(4326008)(2940100002)(5660300002)(38100700002)(9686003)(122000001)(82960400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?JPOUth3LLXRR2Td+N7R8AmeJP069yEVeb/lbVdky/jJH9SjDUAmHdR9oew?=
- =?iso-8859-2?Q?0ZQrS4UMPdTLjaEwDnXoNk489uxz+2e04+aobc95kpLFrd/Qd9EHG1w2bO?=
- =?iso-8859-2?Q?Vl4lCTqr7ds/CYsjxYIEpHb+6qaIooSlhVb8ArfEiLrk+OgIqGFesmnaUy?=
- =?iso-8859-2?Q?WJ+/ULxG3MMcBRltpls2Pvf6nUq8or2j9QWxbOqIc9bK6JlM+Fux15J6s1?=
- =?iso-8859-2?Q?UCZ7snLqfhNu/hRC/MVibKJY8iDGkJW+oGckMnBmm2PkqnbPFL+E3ruPUj?=
- =?iso-8859-2?Q?gLYv37cy2nzzQnUuiUIpeJ3UwEXL/tfFP+bCdnNr5PABqXXFZnbxey/cnw?=
- =?iso-8859-2?Q?2kYdRVUFki2GpKN38HBd7y80E90ngOT46kfQZWy9czWCXciABSfOfS+lEa?=
- =?iso-8859-2?Q?KU5rB51gggd/nsH5S/PpgTpODuP2aj42VyCB/GPXb5ZSVMVpiF0LSEinIV?=
- =?iso-8859-2?Q?Fps0cel0mKwkFU9EPMsumLn8snbbvEivYNKnvG5TWJT/tGrmBuEEvO7On4?=
- =?iso-8859-2?Q?QS1L3FdOsbDq1fZRMOjUMifyTusp2iQ7glV7HKZDP4cOaIhgyj4zi9lzKC?=
- =?iso-8859-2?Q?jlesTqEPcJRdTKdqhyaaKFCYJMUnboQkfUruJDxp8CfP+PeybKD2kclhrc?=
- =?iso-8859-2?Q?DsZR4vpX3O2SgpHeB2aLPSzgWhQWMEuo3t/J0C9/RXcAl8zuOplz2YtmjM?=
- =?iso-8859-2?Q?dOl8YjNnd1C4G5v0Xbi8tC144SzZdLTuCTdNeE3ZYdBlJ8fSs2jnfIrqNL?=
- =?iso-8859-2?Q?0VqrRwRmYjGqKEM7MnIh06RYg7K3BiGUGy3ITYMl3Tdl5KjLKKAeqCXkno?=
- =?iso-8859-2?Q?ZP0dLKqZxGFx+y24w/xOt1BYiut72GUorGGV/5lO36B0PDAxhYHE6XK8MD?=
- =?iso-8859-2?Q?za5zJ2N3bV8kZS8zH69deKT0COW4+1PaqajOaCJuyiLmYFaVOiIxu3QA01?=
- =?iso-8859-2?Q?oT5xkRBDeG4eEhFLQEEVs4QXLtDc6+mIR0Uoc5YMOH/6UGo70lPg78uEcB?=
- =?iso-8859-2?Q?NHJNxhPKshfXrmK1HMrLqkrJpMJbMdFw7AfSzuZvgKnO05BHkC/5bYAQto?=
- =?iso-8859-2?Q?8R6NSY96+DQuBF3tVV5BZrAIrLOemr9juGu/CIem7wwEH9uOMnlzbAp5Sj?=
- =?iso-8859-2?Q?6yyN20VtZnEzHEJcIEDkcKe7LETNwaQHkXHaVB/98ixhTUmToPcDt9X19D?=
- =?iso-8859-2?Q?iwsfgQAtcSB7UNPyRTxcRGOScz4hgrE4Nvn0OQEYIQrE15Ni76R4cmAPsD?=
- =?iso-8859-2?Q?JGJ5fA6gaVpfaDEfixZUfHwSNPg+cdDHX3sy+6kpMofDptRSxWAIxiFRto?=
- =?iso-8859-2?Q?UN4Cwqq2diQG2QQ7WL1qxp6kgfVdy1yRM+INNyUE3oRb/nR7qicEgrZXL/?=
- =?iso-8859-2?Q?8IDDaCEGDjNpd08t9pn9ZXXDOm/9UMLg+AqTqSfgVnCjUbH0fHo117Oqjc?=
- =?iso-8859-2?Q?iRabo9oyKSN/KyK9tQIU7aaRaq+kIHl6ZBVCigFyN/9yEW1kPJhb4BfUBW?=
- =?iso-8859-2?Q?LWnudu2SBSdZLR+Au/xS1dj5d0b9Zshs7paN0704Lb5jE0e4jpFS9Yqc2q?=
- =?iso-8859-2?Q?kH1oXs+O+c2Yp42t2Em3cR+yNtSGkS7JH5GpFA7oB8CfWvgXeZR9TfzTns?=
- =?iso-8859-2?Q?RcuWZKdFk5rVTLqQ9guTHflIOy8OmvAGEb9kHHhrV7qv3evb0A6e6GIHOp?=
- =?iso-8859-2?Q?QZyRH0t/ywOx4OUBI+sxpqUVZz3/cNYxTzFS0ArN?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600";
+   d="scan'208";a="626654199"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+  by FMSMGA003.fm.intel.com with ESMTP; 18 Feb 2022 06:54:56 -0800
+Received: from switcheroo.igk.intel.com (switcheroo.igk.intel.com [172.22.229.137])
+	by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id 21IEstVa010235;
+	Fri, 18 Feb 2022 14:54:55 GMT
+From: Marcin Szycik <marcin.szycik@linux.intel.com>
+To: netdev@vger.kernel.org
+Subject: [PATCH net-next v6 1/7] gtp: Allow to create GTP device without FDs
+Date: Fri, 18 Feb 2022 15:51:30 +0100
+Message-Id: <20220218145130.6858-1-marcin.szycik@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB5776.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f5685d6-9396-4697-d40f-08d9ed5cd186
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Feb 2022 12:48:35.6590
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hmVaftsalxKLs8K9wMbOt9/Fu9E8eu5ZkQNpolrti3VU6CPEpEWUP1tyEO/yHq17LpWNmAV5fhZOwJ4Z+AKYgEpVH1ZcGDVSOaeCiwqoxis=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1974
-X-OriginatorOrg: intel.com
-X-MailFrom: wojciech.drewek@intel.com
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: O7Z6UDQHJNV3VPORGXYM3VFGRZNV27US
+X-Message-ID-Hash: O7Z6UDQHJNV3VPORGXYM3VFGRZNV27US
+X-MailFrom: marcin.szycik@linux.intel.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: NWCPVQKUJE23DIWW25V3NUSYYE65KU5E
-X-Message-ID-Hash: NWCPVQKUJE23DIWW25V3NUSYYE65KU5E
-X-Mailman-Approved-At: Tue, 15 Feb 2022 09:42:28 +0000
-CC: Marcin Szycik <marcin.szycik@linux.intel.com>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, "michal.swiatkowski@linux.intel.com" <michal.swiatkowski@linux.intel.com>, "davem@davemloft.net" <davem@davemloft.net>, "kuba@kernel.org" <kuba@kernel.org>, "pablo@netfilter.org" <pablo@netfilter.org>, "osmocom-net-gprs@lists.osmocom.org" <osmocom-net-gprs@lists.osmocom.org>
+CC: michal.swiatkowski@linux.intel.com, wojciech.drewek@intel.com, davem@davemloft.net, kuba@kernel.org, pablo@netfilter.org, laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/NWCPVQKUJE23DIWW25V3NUSYYE65KU5E/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/O7Z6UDQHJNV3VPORGXYM3VFGRZNV27US/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -174,98 +77,224 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Hi Harald
+From: Wojciech Drewek <wojciech.drewek@intel.com>
 
-> -----Original Message-----
-> From: Drewek, Wojciech
-> Sent: pi=B1tek, 11 lutego 2022 11:27
-> To: Harald Welte <laforge@osmocom.org>
-> Cc: Marcin Szycik <marcin.szycik@linux.intel.com>; netdev@vger.kernel.org=
-; michal.swiatkowski@linux.intel.com;
-> davem@davemloft.net; kuba@kernel.org; pablo@netfilter.org; osmocom-net-gp=
-rs@lists.osmocom.org
-> Subject: RE: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo response
->=20
-> Hi Harald,
->=20
-> > -----Original Message-----
-> > From: Harald Welte <laforge@osmocom.org>
-> > Sent: pi=B1tek, 11 lutego 2022 10:16
-> > To: Drewek, Wojciech <wojciech.drewek@intel.com>
-> > Cc: Marcin Szycik <marcin.szycik@linux.intel.com>; netdev@vger.kernel.o=
-rg; michal.swiatkowski@linux.intel.com;
-> > davem@davemloft.net; kuba@kernel.org; pablo@netfilter.org; osmocom-net-=
-gprs@lists.osmocom.org
-> > Subject: Re: [RFC PATCH net-next v4 4/6] gtp: Implement GTP echo respon=
-se
-> >
-> > Hi Wojciech,
-> >
-> > On Tue, Feb 08, 2022 at 02:12:33PM +0000, Drewek, Wojciech wrote:
-> > > > Remember, GTP-U uses different IP addresses and also typically comp=
-letely
-> > > > different hosts/systems, so having GTP-C connectivity between two G=
-SN
-> > > > doesn't say anything about the GTP-U path.
-> > >
-> > > Two  approaches come to mind.
-> > > The first one assumes that peers are stored in kernel as PDP contexts=
- in
-> > > gtp_dev (tid_hash and addr_hash). Then we could enable a watchdog
-> > > that could in regular intervals (defined by the user) send echo reque=
-sts
-> > > to all peers.
-> >
-> > Interesting proposal.  However, it raises the next question of what to =
-do if
-> > the path is deemed to be lost (N out of M recent echo requests unanswer=
-ed)? It
-> > would have to notify the userspace daemon (control plane) via a netlink=
- event
-> > or the like.  So at that point you need to implement some special proce=
-ssing in
-> > that userspace daemon...
-> >
-> > > In the second one user could trigger echo request from userspace
-> > > (using new genl cmd) at any time. However this approach would require=
- that
-> > > some userspace daemon would implement triggering this command.
-> >
-> > I think this is the better approach.  It keeps a lot of logic like time=
-outs,
-> > frequency of transmission, determining when a path is considered dead, =
-... out
-> > of the kernel, where it doesn't need to be.
-> >
-> > > What do you think?
-> >
-> > As both approaches require some support from the userspace control plan=
-e instance,
-> > I would argue that the second proposal is superior.
-> >
-> > Regards,
-> > 	Harald
-> I agree that second option is better so I'll start to implementing it.
-I have one question. The new cmd should be allowed to send echo request
-only to the peers stored in the kernel space (PDP contexts) or the userspac=
-e
-daemon has its own list of peers and any request should be allowed to be se=
-nd?
+Currently, when the user wants to create GTP device, he has to
+provide file handles to the sockets created in userspace (IFLA_GTP_FD0,
+IFLA_GTP_FD1). This behaviour is not ideal, considering the option of
+adding support for GTP device creation through ip link. Ip link
+application is not a good place to create such sockets.
 
-Regards,
-Wojtek=20
+This patch allows to create GTP device without providing
+IFLA_GTP_FD0 and IFLA_GTP_FD1 arguments. If the user sets
+IFLA_GTP_CREATE_SOCKETS attribute, then GTP module takes care
+of creating UDP sockets by itself. Sockets are created with the
+commonly known UDP ports used for GTP protocol (GTP0_PORT and
+GTP1U_PORT). In this case we don't have to provide encap_destroy
+because no extra deinitialization is needed, everything is covered
+by udp_tunnel_sock_release.
 
->=20
-> Regards,
-> Wojtek
-> >
-> > --
-> > - Harald Welte <laforge@osmocom.org>            http://laforge.gnumonks=
-.org/
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> > "Privacy in residential applications is a desirable marketing option."
-> >                                                   (ETSI EN 300 175-7 Ch=
-. A6)
+Note: GTP instance created with only this change applied, does
+not handle GTP Echo Requests. This is implemented in the following
+patch.
+
+Signed-off-by: Wojciech Drewek <wojciech.drewek@intel.com>
+---
+v4: use ntohs when creating UDP socket
+v5: IFLA_GTP_CREATE_SOCKETS introduced, gtp_newlink refactor
+v6: reordering refactor removed
+---
+ drivers/net/gtp.c            | 101 +++++++++++++++++++++++++++++------
+ include/uapi/linux/if_link.h |   1 +
+ 2 files changed, 85 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index bf087171bcf0..25d8521897b3 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -66,8 +66,10 @@ struct gtp_dev {
+=20
+ 	struct sock		*sk0;
+ 	struct sock		*sk1u;
++	u8			sk_created;
+=20
+ 	struct net_device	*dev;
++	struct net		*net;
+=20
+ 	unsigned int		role;
+ 	unsigned int		hash_size;
+@@ -320,8 +322,16 @@ static void gtp_encap_disable_sock(struct sock *sk)
+=20
+ static void gtp_encap_disable(struct gtp_dev *gtp)
+ {
+-	gtp_encap_disable_sock(gtp->sk0);
+-	gtp_encap_disable_sock(gtp->sk1u);
++	if (gtp->sk_created) {
++		udp_tunnel_sock_release(gtp->sk0->sk_socket);
++		udp_tunnel_sock_release(gtp->sk1u->sk_socket);
++		gtp->sk_created =3D false;
++		gtp->sk0 =3D NULL;
++		gtp->sk1u =3D NULL;
++	} else {
++		gtp_encap_disable_sock(gtp->sk0);
++		gtp_encap_disable_sock(gtp->sk1u);
++	}
+ }
+=20
+ /* UDP encapsulation receive handler. See net/ipv4/udp.c.
+@@ -656,17 +666,69 @@ static void gtp_destructor(struct net_device *dev)
+ 	kfree(gtp->tid_hash);
+ }
+=20
++static struct sock *gtp_create_sock(int type, struct gtp_dev *gtp)
++{
++	struct udp_tunnel_sock_cfg tuncfg =3D {};
++	struct udp_port_cfg udp_conf =3D {
++		.local_ip.s_addr	=3D htonl(INADDR_ANY),
++		.family			=3D AF_INET,
++	};
++	struct net *net =3D gtp->net;
++	struct socket *sock;
++	int err;
++
++	if (type =3D=3D UDP_ENCAP_GTP0)
++		udp_conf.local_udp_port =3D htons(GTP0_PORT);
++	else if (type =3D=3D UDP_ENCAP_GTP1U)
++		udp_conf.local_udp_port =3D htons(GTP1U_PORT);
++	else
++		return ERR_PTR(-EINVAL);
++
++	err =3D udp_sock_create(net, &udp_conf, &sock);
++	if (err)
++		return ERR_PTR(err);
++
++	tuncfg.sk_user_data =3D gtp;
++	tuncfg.encap_type =3D type;
++	tuncfg.encap_rcv =3D gtp_encap_recv;
++	tuncfg.encap_destroy =3D NULL;
++
++	setup_udp_tunnel_sock(net, sock, &tuncfg);
++
++	return sock->sk;
++}
++
++static int gtp_create_sockets(struct gtp_dev *gtp, struct nlattr *data[]=
+)
++{
++	struct sock *sk1u =3D NULL;
++	struct sock *sk0 =3D NULL;
++
++	sk0 =3D gtp_create_sock(UDP_ENCAP_GTP0, gtp);
++	if (IS_ERR(sk0))
++		return PTR_ERR(sk0);
++
++	sk1u =3D gtp_create_sock(UDP_ENCAP_GTP1U, gtp);
++	if (IS_ERR(sk1u)) {
++		udp_tunnel_sock_release(sk0->sk_socket);
++		return PTR_ERR(sk1u);
++	}
++
++	gtp->sk_created =3D true;
++	gtp->sk0 =3D sk0;
++	gtp->sk1u =3D sk1u;
++
++	return 0;
++}
++
+ static int gtp_newlink(struct net *src_net, struct net_device *dev,
+ 		       struct nlattr *tb[], struct nlattr *data[],
+ 		       struct netlink_ext_ack *extack)
+ {
++	unsigned int role =3D GTP_ROLE_GGSN;
+ 	struct gtp_dev *gtp;
+ 	struct gtp_net *gn;
+ 	int hashsize, err;
+=20
+-	if (!data[IFLA_GTP_FD0] && !data[IFLA_GTP_FD1])
+-		return -EINVAL;
+-
+ 	gtp =3D netdev_priv(dev);
+=20
+ 	if (!data[IFLA_GTP_PDP_HASHSIZE]) {
+@@ -677,11 +739,23 @@ static int gtp_newlink(struct net *src_net, struct =
+net_device *dev,
+ 			hashsize =3D 1024;
+ 	}
+=20
++	if (data[IFLA_GTP_ROLE]) {
++		role =3D nla_get_u32(data[IFLA_GTP_ROLE]);
++		if (role > GTP_ROLE_SGSN)
++			return -EINVAL;
++	}
++	gtp->role =3D role;
++
++	gtp->net =3D src_net;
++
+ 	err =3D gtp_hashtable_new(gtp, hashsize);
+ 	if (err < 0)
+ 		return err;
+=20
+-	err =3D gtp_encap_enable(gtp, data);
++	if (data[IFLA_GTP_CREATE_SOCKETS])
++		err =3D gtp_create_sockets(gtp, data);
++	else
++		err =3D gtp_encap_enable(gtp, data);
+ 	if (err < 0)
+ 		goto out_hashtable;
+=20
+@@ -726,6 +800,7 @@ static const struct nla_policy gtp_policy[IFLA_GTP_MA=
+X + 1] =3D {
+ 	[IFLA_GTP_FD1]			=3D { .type =3D NLA_U32 },
+ 	[IFLA_GTP_PDP_HASHSIZE]		=3D { .type =3D NLA_U32 },
+ 	[IFLA_GTP_ROLE]			=3D { .type =3D NLA_U32 },
++	[IFLA_GTP_CREATE_SOCKETS]	=3D { .type =3D NLA_U8 },
+ };
+=20
+ static int gtp_validate(struct nlattr *tb[], struct nlattr *data[],
+@@ -848,7 +923,9 @@ static int gtp_encap_enable(struct gtp_dev *gtp, stru=
+ct nlattr *data[])
+ {
+ 	struct sock *sk1u =3D NULL;
+ 	struct sock *sk0 =3D NULL;
+-	unsigned int role =3D GTP_ROLE_GGSN;
++
++	if (!data[IFLA_GTP_FD0] && !data[IFLA_GTP_FD1])
++		return -EINVAL;
+=20
+ 	if (data[IFLA_GTP_FD0]) {
+ 		u32 fd0 =3D nla_get_u32(data[IFLA_GTP_FD0]);
+@@ -868,18 +945,8 @@ static int gtp_encap_enable(struct gtp_dev *gtp, str=
+uct nlattr *data[])
+ 		}
+ 	}
+=20
+-	if (data[IFLA_GTP_ROLE]) {
+-		role =3D nla_get_u32(data[IFLA_GTP_ROLE]);
+-		if (role > GTP_ROLE_SGSN) {
+-			gtp_encap_disable_sock(sk0);
+-			gtp_encap_disable_sock(sk1u);
+-			return -EINVAL;
+-		}
+-	}
+-
+ 	gtp->sk0 =3D sk0;
+ 	gtp->sk1u =3D sk1u;
+-	gtp->role =3D role;
+=20
+ 	return 0;
+ }
+diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
+index 6218f93f5c1a..42f3fb097271 100644
+--- a/include/uapi/linux/if_link.h
++++ b/include/uapi/linux/if_link.h
+@@ -822,6 +822,7 @@ enum {
+ 	IFLA_GTP_FD1,
+ 	IFLA_GTP_PDP_HASHSIZE,
+ 	IFLA_GTP_ROLE,
++	IFLA_GTP_CREATE_SOCKETS,
+ 	__IFLA_GTP_MAX,
+ };
+ #define IFLA_GTP_MAX (__IFLA_GTP_MAX - 1)
+--=20
+2.31.1
+
