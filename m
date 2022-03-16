@@ -2,74 +2,76 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4C7E4DD882
-	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 18 Mar 2022 11:54:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 774F34DD884
+	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 18 Mar 2022 11:54:51 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 895B628050;
-	Fri, 18 Mar 2022 10:54:46 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 3C3B228390;
+	Fri, 18 Mar 2022 10:54:50 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id D9T0wMX2as8t; Fri, 18 Mar 2022 10:54:46 +0000 (UTC)
+	with ESMTP id INDMcr3GFMGe; Fri, 18 Mar 2022 10:54:50 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 98A9828040;
-	Fri, 18 Mar 2022 10:54:41 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 63BDA28058;
+	Fri, 18 Mar 2022 10:54:48 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 2A1AA38A0855
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 16 Mar 2022 20:40:05 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id ABC0538A0C3A
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 16 Mar 2022 20:40:06 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 0359428041
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 16 Mar 2022 20:40:05 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 904AA28048
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 16 Mar 2022 20:40:06 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
 	by localhost (mail.osmocom.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8KCJGgtyuFOX for <osmocom-net-gprs@lists.osmocom.org>;
-	Wed, 16 Mar 2022 20:40:03 +0000 (UTC)
+	with ESMTP id c8-9q1PDsg9X for <osmocom-net-gprs@lists.osmocom.org>;
+	Wed, 16 Mar 2022 20:40:05 +0000 (UTC)
 Received: from mga11.intel.com (unknown [192.55.52.93])
-	by mail.osmocom.org (Postfix) with ESMTPS id 55CCC28024
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 16 Mar 2022 20:40:03 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTPS id 6027A28024
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 16 Mar 2022 20:40:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647463203; x=1678999203;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=9C1SQPxyOOlWxIV9rinEX1eBJD0Ip0C2royJ916KelQ=;
-  b=SM6xgqCzidmBmcEiwUDy1r9ewIwe8Bxk2VmLPumkLWDYrY9EIK1DogDC
-   R1+6pG98Ub3xqxP0J8+t1GhGlE49I/gUmWzlN9TLa/9M1oTSM8PLKHcku
-   PE/IpKGEYJg/Mqsz3fiyhaBDdQ950tjNAzHGxoKzozg8mr8cPlsYmZHXm
-   wNpYftwx85etjQYHAjja9Ze4JIwYrJTGPcPxjU6+N0JVjcNeNbLSydgpK
-   eE+JThUS71OTq8jOG5ByQYRsuozMeP22BydCA2EJvB+mRbM/oBWx7fo8X
-   HntQlpqSOWwvPRg8LGNKfN9cbkc4csMnj4JY672lzlrnuxgQsjwTKcp8B
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="254265724"
+  t=1647463205; x=1678999205;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ICHO+fWkBDhcURAakNs4ToUsSuhHlLbq17ag72OMWaY=;
+  b=AEqFwxMxEQaYyJh6pMXpy1hryaiKQpHnnPNPUC3YuTNnjBOK6uj+YSie
+   FfD/8xsY2H8Ph3NdzAgOUjJR9JUTaX+o8eIQWLzsO49kvMX3w3sgjtIMg
+   mOyL2In1Vm63kFpAmftjpEq2br/TMrOF+WZMv+ffYG+WfsqXunLkssMCR
+   zzDt3wFHYx0OQcrAeAGLFIpyfSVAFytoXqjqHLmiVpLpgl5gOe1b0ih7Q
+   grvjiBifkHZAwC7PB9jDb4LG2GbzdkBbP7ElVvMNVO5TRjS5YKIKv4A9p
+   sbOMJnOLyXtHzqc1bQQpX6Ld1uxW9jXrIbsycIKCS/WSrCptDvBd8049R
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="254265727"
 X-IronPort-AV: E=Sophos;i="5.90,187,1643702400";
-   d="scan'208";a="254265724"
+   d="scan'208";a="254265727"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
   by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2022 13:40:00 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.90,187,1643702400";
-   d="scan'208";a="646799203"
+   d="scan'208";a="646799207"
 Received: from anguy11-desk2.jf.intel.com ([10.166.244.147])
   by orsmga004.jf.intel.com with ESMTP; 16 Mar 2022 13:39:59 -0700
 From: Tony Nguyen <anthony.l.nguyen@intel.com>
 To: davem@davemloft.net,
 	kuba@kernel.org,
 	pabeni@redhat.com
-Subject: [PATCH net-next 0/4][pull request] 100GbE Intel Wired LAN Driver Updates 2022-03-16
-Date: Wed, 16 Mar 2022 13:40:20 -0700
-Message-Id: <20220316204024.3201500-1-anthony.l.nguyen@intel.com>
+Subject: [PATCH net-next 1/4] gtp: Fix inconsistent indenting
+Date: Wed, 16 Mar 2022 13:40:21 -0700
+Message-Id: <20220316204024.3201500-2-anthony.l.nguyen@intel.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20220316204024.3201500-1-anthony.l.nguyen@intel.com>
+References: <20220316204024.3201500-1-anthony.l.nguyen@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 X-MailFrom: anthony.l.nguyen@intel.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: 6SMQ6KFQ6BIPS24JECH3GCTZYZEGESC7
-X-Message-ID-Hash: 6SMQ6KFQ6BIPS24JECH3GCTZYZEGESC7
+Message-ID-Hash: 4QEAQASN4POMONV5KQPQWXMPFWECPICC
+X-Message-ID-Hash: 4QEAQASN4POMONV5KQPQWXMPFWECPICC
 X-Mailman-Approved-At: Fri, 18 Mar 2022 10:54:38 +0000
-CC: Tony Nguyen <anthony.l.nguyen@intel.com>, netdev@vger.kernel.org, wojciech.drewek@intel.com, pablo@netfilter.org, laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org
+CC: Wojciech Drewek <wojciech.drewek@intel.com>, netdev@vger.kernel.org, anthony.l.nguyen@intel.com, pablo@netfilter.org, laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org, kernel test robot <lkp@intel.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/6SMQ6KFQ6BIPS24JECH3GCTZYZEGESC7/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/4QEAQASN4POMONV5KQPQWXMPFWECPICC/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -77,38 +79,36 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-This series contains updates to gtp and ice driver.
+From: Wojciech Drewek <wojciech.drewek@intel.com>
 
-Wojciech fixes smatch reported inconsistent indenting for gtp and ice.
+Fix the following warning as reported by smatch:
 
-Yang Yingliang fixes a couple of return value checks for GNSS to IS_PTR
-instead of null.
+New smatch warnings:
+drivers/net/gtp.c:1796 gtp_genl_send_echo_req() warn: inconsistent indent=
+ing
 
-Jacob adds support for trace events on tx timestamps.
+Fixes: d33bd757d362 ("gtp: Implement GTP echo request")
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Wojciech Drewek <wojciech.drewek@intel.com>
+Signed-off-by: Tony Nguyen <anthony.l.nguyen@intel.com>
+---
+ drivers/net/gtp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The following are changes since commit 49045b9c810cd9b4ac5f8f235ad8ef1755=
-3a00fa:
-  Merge branch 'mediatek-next'
-and are available in the git repository at:
-  git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/next-queue 100GbE
-
-Jacob Keller (1):
-  ice: add trace events for tx timestamps
-
-Wojciech Drewek (2):
-  gtp: Fix inconsistent indenting
-  ice: Fix inconsistent indenting in ice_switch
-
-Yang Yingliang (1):
-  ice: fix return value check in ice_gnss.c
-
- drivers/net/ethernet/intel/ice/ice_gnss.c   |  4 ++--
- drivers/net/ethernet/intel/ice/ice_ptp.c    |  8 +++++++
- drivers/net/ethernet/intel/ice/ice_switch.c |  2 +-
- drivers/net/ethernet/intel/ice/ice_trace.h  | 24 +++++++++++++++++++++
- drivers/net/gtp.c                           |  2 +-
- 5 files changed, 36 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index 756714d4ad92..a208e2b1a9af 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -1793,7 +1793,7 @@ static int gtp_genl_send_echo_req(struct sk_buff *s=
+kb, struct genl_info *info)
+ 	if (IS_ERR(rt)) {
+ 		netdev_dbg(gtp->dev, "no route for echo request to %pI4\n",
+ 			   &dst_ip);
+-			   kfree_skb(skb_to_send);
++		kfree_skb(skb_to_send);
+ 		return -ENODEV;
+ 	}
+=20
 --=20
 2.31.1
 
