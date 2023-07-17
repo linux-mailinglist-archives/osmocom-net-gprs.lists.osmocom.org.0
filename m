@@ -2,53 +2,61 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A7C1755C11
-	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 17 Jul 2023 08:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27AAF755F41
+	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 17 Jul 2023 11:31:11 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 55E9A2878B;
-	Mon, 17 Jul 2023 06:49:27 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id D3B1528788;
+	Mon, 17 Jul 2023 09:31:09 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id by4GvEttO77B; Mon, 17 Jul 2023 06:49:27 +0000 (UTC)
+ id 7ipTihUEaw2Q; Mon, 17 Jul 2023 09:31:09 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 99224280E9;
-	Mon, 17 Jul 2023 06:49:23 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 9D07A2878A;
+	Mon, 17 Jul 2023 09:31:06 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 1A46438A1079;
-	Mon, 17 Jul 2023 06:49:12 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 9F8B738A1084;
+	Mon, 17 Jul 2023 09:30:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id DFB81280E9;
-	Mon, 17 Jul 2023 06:49:11 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 64DE6280E9;
+	Mon, 17 Jul 2023 09:30:57 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id PdCjWNgaApel; Mon, 17 Jul 2023 06:49:11 +0000 (UTC)
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
-	by mail.osmocom.org (Postfix) with ESMTPS id 5628F27F26;
-	Mon, 17 Jul 2023 06:49:11 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.94.2)
-	(envelope-from <laforge@gnumonks.org>)
-	id 1qLI2g-00FgXU-KY; Mon, 17 Jul 2023 08:49:10 +0200
-Received: from laforge by nataraja with local (Exim 4.96)
-	(envelope-from <laforge@gnumonks.org>)
-	id 1qLI2Y-00BwM7-0V;
-	Mon, 17 Jul 2023 08:49:02 +0200
-Date: Mon, 17 Jul 2023 08:49:02 +0200
-From: Harald Welte <laforge@gnumonks.org>
-To: openbsc@lists.osmocom.org
-Subject: Deprecating support for big endian in Osmocom
-Message-ID: <ZLTkXpP7ugmztRjI@nataraja>
+ id vGn7fgMJ8e8H; Mon, 17 Jul 2023 09:30:56 +0000 (UTC)
+Received: from mail.sysmocom.de (mail.sysmocom.de [IPv6:2a01:4f8:13b:828::1:500])
+	by mail.osmocom.org (Postfix) with ESMTPS id 9BE7427F26;
+	Mon, 17 Jul 2023 09:30:56 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.sysmocom.de (Postfix) with ESMTP id 53D5E19805D0;
+	Mon, 17 Jul 2023 09:30:56 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at sysmocom.de
+Received: from mail.sysmocom.de ([127.0.0.1])
+	by localhost (mail.sysmocom.de [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id o_U5Yn2_Xshg; Mon, 17 Jul 2023 09:30:56 +0000 (UTC)
+Received: from [192.168.1.140] (unknown [207.188.171.64])
+	by mail.sysmocom.de (Postfix) with ESMTPSA id D23861980145;
+	Mon, 17 Jul 2023 09:30:55 +0000 (UTC)
+Message-ID: <f20137e6-00a8-dbc7-5037-b38e7dccec6b@sysmocom.de>
+Date: Mon, 17 Jul 2023 11:30:55 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Message-ID-Hash: ORBO2FWVVPCHTAXSPZTQLSSM4YB76ITB
-X-Message-ID-Hash: ORBO2FWVVPCHTAXSPZTQLSSM4YB76ITB
-X-MailFrom: laforge@gnumonks.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: Deprecating support for big endian in Osmocom
+To: Harald Welte <laforge@gnumonks.org>, openbsc@lists.osmocom.org
+References: <ZLTkXpP7ugmztRjI@nataraja>
+Content-Language: en-US
+From: Pau Espin Pedrol <pespin@sysmocom.de>
+In-Reply-To: <ZLTkXpP7ugmztRjI@nataraja>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: V6X75K2ES3HCHWQ2YP2T34NFRSSUD34O
+X-Message-ID-Hash: V6X75K2ES3HCHWQ2YP2T34NFRSSUD34O
+X-MailFrom: pespin@sysmocom.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/ORBO2FWVVPCHTAXSPZTQLSSM4YB76ITB/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/V6X75K2ES3HCHWQ2YP2T34NFRSSUD34O/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -56,37 +64,26 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Hi all,
+Hi,
 
-during recent patch review
-(https://gerrit.osmocom.org/c/osmo-trx/+/33737) the topic of continuing
-to maintain support for big endian machines has come up.
+if we want to drop big endian support officially let that be it, but I 
+would keep the struct_endianness check since it's not really a lot of 
+work running it to generate the structs and it's only seldomly used.
 
-While traditionally I've always been a strong proponent of writing
-portable code that can run also on big endian systems, it is not the
-year 2003 or 2008 anymore, and PowerPC (the main big endian platform) is
-dead by now, as is SPARC.  Not just in newly-built processors, but also
-in existing and still operating machines, at least of the class that
-would run our code.
+Moreover, I would for sure not spend time in *removing* big endian 
+support. Maybe let's simply avoid spending extra time in adding specific 
+big endian support in places where it would require some time to 
+implement, and leave a FIXME/TODO commit instead, like the patch which 
+originated this topic discussion.
 
-So unless somebody objects with strong arguments, I'd propose to
-officially and explicitly drop supporting big endian systems from
-osmocom CNI projects.  
-
-From what I can tell, this would primarily mean
-* drop the struct_endianness check from the commit verification
-* removing all our struct_endianness-generated or other code that
-  explicitly adds big endian support
-* adding some kind of #warning or even #error to a common libosmocore
-  header file if anyone tries to build on big endian
-
-This obviously doesn't mean we can abandon using [osmo_]{htonl,ntohl},
-as network byte order is still network byte order.
 
 Regards,
-	Harald
+Pau
 -- 
-- Harald Welte <laforge@gnumonks.org>          https://laforge.gnumonks.org/
-============================================================================
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
+- Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
+=======================================================================
+* sysmocom - systems for mobile communications GmbH
+* Alt-Moabit 93
+* 10559 Berlin, Germany
+* Sitz / Registered office: Berlin, HRB 134158 B
+* Geschaeftsfuehrer / Managing Director: Harald Welte
