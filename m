@@ -1,57 +1,91 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3333756CA8
-	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 17 Jul 2023 20:59:33 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 6989D2879C;
-	Mon, 17 Jul 2023 18:59:33 +0000 (UTC)
-Received: from mail.osmocom.org ([127.0.0.1])
- by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id MG9QQb7L9dTH; Mon, 17 Jul 2023 18:59:33 +0000 (UTC)
-Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 65E1728176;
-	Mon, 17 Jul 2023 18:59:30 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 3154A38A10AF;
-	Mon, 17 Jul 2023 18:59:18 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8A4F758D62
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 19 Jul 2023 08:03:05 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 0743F2817D;
-	Mon, 17 Jul 2023 18:59:18 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 1D7C928795;
+	Wed, 19 Jul 2023 06:03:05 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id q42E4Ta19yML; Mon, 17 Jul 2023 18:59:17 +0000 (UTC)
-Received: from ganesha.gnumonks.org (ganesha.gnumonks.org [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
-	by mail.osmocom.org (Postfix) with ESMTPS id 0738627F26;
-	Mon, 17 Jul 2023 18:59:16 +0000 (UTC)
-Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.94.2)
-	(envelope-from <laforge@gnumonks.org>)
-	id 1qLTRE-00H9vm-H2; Mon, 17 Jul 2023 20:59:16 +0200
-Received: from laforge by nataraja with local (Exim 4.96)
-	(envelope-from <laforge@gnumonks.org>)
-	id 1qLTJF-00CAMS-0f;
-	Mon, 17 Jul 2023 20:51:01 +0200
-Date: Mon, 17 Jul 2023 20:51:01 +0200
-From: Harald Welte <laforge@gnumonks.org>
-To: Neels Hofmeyr <nhofmeyr@sysmocom.de>
-Subject: Re: Deprecating support for big endian in Osmocom
-Message-ID: <ZLWNlbPt2QkXE5L3@nataraja>
-References: <ZLTkXpP7ugmztRjI@nataraja>
- <ZLWBR2dTdsUJ7jmk@my.box>
+ id Ms_OghjDnzE9; Wed, 19 Jul 2023 06:03:04 +0000 (UTC)
+Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
+	by mail.osmocom.org (Postfix) with ESMTP id 391EA2810E;
+	Wed, 19 Jul 2023 06:02:59 +0000 (UTC)
+Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
+	by lists (Postfix) with ESMTPS id 0150C38A109E
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 17 Jul 2023 13:53:37 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.osmocom.org (Postfix) with ESMTP id D13E0280E9
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 17 Jul 2023 13:53:36 +0000 (UTC)
+Received: from mail.osmocom.org ([127.0.0.1])
+ by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id ZFdOL-vPurSD for <osmocom-net-gprs@lists.osmocom.org>;
+ Mon, 17 Jul 2023 13:53:36 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by mail.osmocom.org (Postfix) with ESMTPS id 1257A27F26
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 17 Jul 2023 13:53:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1689602014;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+	bh=cxwNxY4JS8J6tPLEogfd2SFfXj3N8uNj2U1eKeq6+xE=;
+	b=Tciml48Jb8afZz3cX7JA5o0TBxnzAGNSkeOKatB5jAenyd00YNsKrQFzarUFvwlsHx5jVh
+	lTpfaOcC5ABRWLYz1TzvT91cG6BhCiC7Vwzj8ITiTb3vwCs9rRaU4Ngd613hYFcariur23
+	tsgfAPPGhsCJgXBxvANtcRVLz+rQ9H0=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-491-sjmNirK1OUKe9bP_X9hs8A-1; Mon, 17 Jul 2023 09:53:32 -0400
+X-MC-Unique: sjmNirK1OUKe9bP_X9hs8A-1
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-403f48dc8a1so1411971cf.1
+        for <osmocom-net-gprs@lists.osmocom.org>; Mon, 17 Jul 2023 06:53:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689602012; x=1692194012;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cxwNxY4JS8J6tPLEogfd2SFfXj3N8uNj2U1eKeq6+xE=;
+        b=XSLifK0IioUiimhHcpF0WZf6QpWOmXn0nhzcWKF/YUjRna8fkyjZM2hvmJxxor40Du
+         biuSbhqIMkKIVhBnItjA5HZEnfuAKvrYkH/GeQxpyfbAdyksw5UWif4FI5s13hCFClED
+         /1aqX7twaz9YrLfSTG4xCpR5au5kJvOGkFKtNVHURZgg+MAIDadmbZWbfH6xUY6Ww83w
+         3bTtBnwmNL4eb9ae42kZ9ipUdAVWSL7ESpvV6oFvdIrXDUVJTBPDfz1hFBpZvY6yj3/a
+         z11Ua+GkimJ5pWOFK0la1gC2yCqwYFUvl44u1xHZcCNQb3Vx1RQ2TPX2zjEkrn3DAOuh
+         ICLQ==
+X-Gm-Message-State: ABy/qLaRq91lDBvEp4mjlnpZGJ7cp438vvC3+3Y8MT/p65L3lC1daDma
+	comPJfBYo2RYKKSZ9VTnBk44BZlAKYKFWz+DTtgCn619v297UbU6wNVEwl6EBOlEyIqlpUkX0/9
+	yaj/YVsvRNn6Km8xiuQedV76jWjooRkIk
+X-Received: by 2002:a05:622a:104c:b0:3e3:9117:66e8 with SMTP id f12-20020a05622a104c00b003e3911766e8mr15174581qte.35.1689602012147;
+        Mon, 17 Jul 2023 06:53:32 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlFQ6vap0ITLUfu8vhP2jR7nb8amW+13ht5RG1X59wHJKsZtwSGwA6x7Lps3sxW4+8YYauf9HQ==
+X-Received: by 2002:a05:622a:104c:b0:3e3:9117:66e8 with SMTP id f12-20020a05622a104c00b003e3911766e8mr15174559qte.35.1689602011845;
+        Mon, 17 Jul 2023 06:53:31 -0700 (PDT)
+Received: from debian ([92.62.32.42])
+        by smtp.gmail.com with ESMTPSA id x10-20020ac87eca000000b00403b44bc230sm6250267qtj.95.2023.07.17.06.53.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jul 2023 06:53:31 -0700 (PDT)
+Date: Mon, 17 Jul 2023 15:53:24 +0200
+From: Guillaume Nault <gnault@redhat.com>
+To: David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>
+Subject: [PATCH net-next 0/3] net: Remove more RTO_ONLINK users.
+Message-ID: <cover.1689600901.git.gnault@redhat.com>
 MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZLWBR2dTdsUJ7jmk@my.box>
-Message-ID-Hash: 6A36VKCKCUZO55QIDXROKMVGNSUFOTPP
-X-Message-ID-Hash: 6A36VKCKCUZO55QIDXROKMVGNSUFOTPP
-X-MailFrom: laforge@gnumonks.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: openbsc@lists.osmocom.org, osmocom-net-gprs@lists.osmocom.org
+X-MailFrom: gnault@redhat.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
+Message-ID-Hash: J6X7RUQ6PRCP6LK5UTXQLL7X3VYS3Z3Q
+X-Message-ID-Hash: J6X7RUQ6PRCP6LK5UTXQLL7X3VYS3Z3Q
+X-Mailman-Approved-At: Wed, 19 Jul 2023 06:01:57 +0000
+CC: netdev@vger.kernel.org, Pablo Neira Ayuso <pablo@netfilter.org>, Harald Welte <laforge@gnumonks.org>, osmocom-net-gprs@lists.osmocom.org, dccp@vger.kernel.org, Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>, Xin Long <lucien.xin@gmail.com>, linux-sctp@vger.kernel.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/6A36VKCKCUZO55QIDXROKMVGNSUFOTPP/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/J6X7RUQ6PRCP6LK5UTXQLL7X3VYS3Z3Q/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -59,47 +93,24 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Hi Neels and others,
+Code that initialise a flowi4 structure manually before doing a fib
+lookup can easily avoid overloading ->flowi4_tos with the RTO_ONLINK
+bit. They can just set ->flowi4_scope correctly instead.
 
-On Mon, Jul 17, 2023 at 07:58:31PM +0200, Neels Hofmeyr wrote:
-> From my personal, practical POV, I have no need ever of using a BE platform.
+Properly separating the routing scope from ->flowi4_tos will allow to
+eventually convert this field to dscp_t (to ensure proper separation
+between DSCP and ECN).
 
-For me its different: I have been using BE in the past and I may still use BE
-platforms at some point in time.  But that's my personal retrocomputing intrest,
-and I don't need to run osmo* on it.  And if I want, it is my personal choice
-to invest time into it, I don't want to burden other developers with it.
+Guillaume Nault (3):
+  gtp: Set TOS and routing scope independently for fib lookups.
+  dccp: Set TOS and routing scope independently for fib lookups.
+  sctp: Set TOS and routing scope independently for fib lookups.
 
-> It's true that running the struct_endianness.py is not much effort, but that
-> script is not very intelligent and can only handle very specific cases (IIRC
-> unions don't work, and the data type needs to be <= 8bit). I remember that
-> recently there was a case of that script not working properly. So there is at
-> leat *some* quirkiness that remains, even though we have this script.
-
-yes, we have that script, it doesn't handle all cases, and we have zero testing.
-
-So rather than providing the impression we have BE support, let's just drop
-it and be clear about it.  If anyone actually shows up and wants to
-maintain it, we wouldn't mind related patches, I guess.  Similar to the
-statement at the time we dropped FreeBSD support: If somebody wants to
-work on that and provide alternatives for the various linux-specific
-bits in libosmocore (timerfd, etc.) - fine.
-
-> Another thought is that a good friend of mine likes to operate legacy hardware,
-> [...]
-
-I am such a person myself, see above.  But it is not the job of the average
-osmocom developer to care for the peculiar fetishes of 0.0001% of a user base
-that's already working in a niche industry.
-
-> Every C/C++ code is having this problem.
-
-Well, every C/C++ code dealing with external binary data formats stored
-in a non-native endianess.  So pure application code dealing only with
-textual protocols (HTTP, SMTP, ...) or data formats (XML, JSON) is
-unaffected.
+ drivers/net/gtp.c   | 3 ++-
+ net/dccp/ipv4.c     | 3 ++-
+ net/sctp/protocol.c | 3 ++-
+ 3 files changed, 6 insertions(+), 3 deletions(-)
 
 -- 
-- Harald Welte <laforge@gnumonks.org>          https://laforge.gnumonks.org/
-============================================================================
-"Privacy in residential applications is a desirable marketing option."
-                                                  (ETSI EN 300 175-7 Ch. A6)
+2.39.2
+
