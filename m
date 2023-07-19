@@ -1,96 +1,74 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B2F0758D65
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 19 Jul 2023 08:03:57 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id C3BED28799;
-	Wed, 19 Jul 2023 06:03:56 +0000 (UTC)
-Received: from mail.osmocom.org ([127.0.0.1])
- by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id KqmoqdOIdaO8; Wed, 19 Jul 2023 06:03:56 +0000 (UTC)
-Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id CF01728058;
-	Wed, 19 Jul 2023 06:03:54 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 3111838A109E
-	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 17 Jul 2023 13:53:40 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CE0C763E29
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Jul 2023 20:09:12 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 0F1B2280E9
-	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 17 Jul 2023 13:53:40 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 1925428155;
+	Wed, 26 Jul 2023 18:09:11 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 9oKicOZN4oTE for <osmocom-net-gprs@lists.osmocom.org>;
- Mon, 17 Jul 2023 13:53:39 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by mail.osmocom.org (Postfix) with ESMTPS id 2D4F627F26
-	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 17 Jul 2023 13:53:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1689602018;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=K56/Xqw2n1ZvKULuZ30MMWN4kbPwGNfcAsA3x+nB8mA=;
-	b=MKqpmV8vPy/J0M/lfZ9yB3TKhU16PSVLgnIYS7JA0PeAGoqT+jv9A5r+SRou7hr4VziNe0
-	Pykll/s5g4FO5wWEg5jClX7A8cvkCwa1MEtXdGBRebOM7ny/UVkTt45lcQLgNpAdN5i3B0
-	VfpIrdjLRw4/QfVH9amhc+Vlkd6tbrY=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-301-ZjCFehgePIKnYfuOQIPXWw-1; Mon, 17 Jul 2023 09:53:36 -0400
-X-MC-Unique: ZjCFehgePIKnYfuOQIPXWw-1
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-63511adcf45so52113606d6.2
-        for <osmocom-net-gprs@lists.osmocom.org>; Mon, 17 Jul 2023 06:53:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689602016; x=1692194016;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K56/Xqw2n1ZvKULuZ30MMWN4kbPwGNfcAsA3x+nB8mA=;
-        b=TrLXDkpcmkUrTE75FmyxIvo1IYuZpraqXuY9kjM/vbZZ4myXn39JB/hPh3okW9X97h
-         Pnx+lrWH2ubpHqEr1xnoICQP6DZSgRzhk1kiaXX/gkd5aRohudJ1YFksH2/OPeDQX/sE
-         Blp3Du3ioytUPIuSf3CuBC0cLwHTCN1jzLX7qiZQQVm7vTNA3tSQz1xKrtMxM+fDMm3K
-         bd9Vz9gYtKzJRBks0klc5ffFd2DzXowja2LVz/j2pTfoLHTWyS5c1wrNgRDQ/eOhAryY
-         nGAGwXc0ANL+FaKVdHMH1f7mw69a3jMdjEp7yG4DbjWgaI49/oTovm8QoVvPxxfyFpFr
-         H7XA==
-X-Gm-Message-State: ABy/qLZYIEBDxdN8tMEHcxXTkSxO8LHjplDTf/u0FWi4X/OFHuEanwQv
-	BA4AXtpUOTS/y0yyvXWCqNOujXEN7q/q7E93WeF485p9k2fVvGsQcaJcan1RkmHbSz7POqr2CnD
-	sR2ePRbKzp66qxxczMbdiolUGSgS5PzOS
-X-Received: by 2002:a0c:f194:0:b0:635:5a95:bb48 with SMTP id m20-20020a0cf194000000b006355a95bb48mr12113024qvl.24.1689602016387;
-        Mon, 17 Jul 2023 06:53:36 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlFV5fomCE7nyPplywCBoISP71GTts2gOATnk7D/Tsz54T+B6cPi/kr9VTBv7MVGW3wH/asTNw==
-X-Received: by 2002:a0c:f194:0:b0:635:5a95:bb48 with SMTP id m20-20020a0cf194000000b006355a95bb48mr12113012qvl.24.1689602016127;
-        Mon, 17 Jul 2023 06:53:36 -0700 (PDT)
-Received: from debian ([92.62.32.42])
-        by smtp.gmail.com with ESMTPSA id b10-20020a0cf04a000000b0063c79938606sm2541741qvl.120.2023.07.17.06.53.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jul 2023 06:53:35 -0700 (PDT)
-Date: Mon, 17 Jul 2023 15:53:30 +0200
-From: Guillaume Nault <gnault@redhat.com>
-To: David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>
-Subject: [PATCH net-next 1/3] gtp: Set TOS and routing scope independently
- for fib lookups.
-Message-ID: <239feab76be1770fd8ed43e7ce6e004a2a7f8471.1689600901.git.gnault@redhat.com>
-References: <cover.1689600901.git.gnault@redhat.com>
+ id ZUYCMg3K9J1i; Wed, 26 Jul 2023 18:09:10 +0000 (UTC)
+Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
+	by mail.osmocom.org (Postfix) with ESMTP id D422A2810E;
+	Wed, 26 Jul 2023 18:09:07 +0000 (UTC)
+Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
+	by lists (Postfix) with ESMTPS id BBA8538A1104
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Jul 2023 11:40:23 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.osmocom.org (Postfix) with ESMTP id 832052817D
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Jul 2023 11:40:23 +0000 (UTC)
+Received: from mail.osmocom.org ([127.0.0.1])
+ by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id GBVpbimiuHXH for <osmocom-net-gprs@lists.osmocom.org>;
+ Wed, 19 Jul 2023 11:40:23 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+	by mail.osmocom.org (Postfix) with ESMTPS id D3FB128058
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Jul 2023 11:40:22 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 0A401615FD;
+	Wed, 19 Jul 2023 11:40:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4C881C433C8;
+	Wed, 19 Jul 2023 11:40:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1689766820;
+	bh=O7KE6QURVyG2deYSiL5ojlS/R2PfvC0hv2Gs+IrY7Rs=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=SM9HlMi7I0VLwP3EQW15edoyGCWkpKwaeHJi4bIXhmZkYQcIDjBgHb/7Jak7n5bFS
+	 CyCkOqV4zi2haiMnI+3xG1kIKn96Zv5YFgLp4A1N6ikTxWt75ZT2e5MPKiuw0xdGk9
+	 fLwyr40vmJKeBNs0L5MRrwKptRLsxuTI0PpgiY5EUocQq5QSbtEn1FWTM9Zx629fYG
+	 TONpweJHqoRh9hI4LJeo4Hldz+pOrVKPnSPLk/AA34esMprz2YvgGo3CD4xVkev4e2
+	 R5G509oCwCJAkVR6irYLIr4rCqQ2CMQ7qRNyPR1/9Dw7gNZyCeqitfgWTfl3ET7+8d
+	 GUNvmoG0K+Q7Q==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 2A891E21EFA;
+	Wed, 19 Jul 2023 11:40:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Subject: Re: [PATCH net-next 0/3] net: Remove more RTO_ONLINK users.
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <168976682016.23748.15879521041642434800.git-patchwork-notify@kernel.org>
+Date: Wed, 19 Jul 2023 11:40:20 +0000
+References: <cover.1689600901.git.gnault@redhat.com>
 In-Reply-To: <cover.1689600901.git.gnault@redhat.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-MailFrom: gnault@redhat.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: 4H6INLSGV3RJOC2KPQTRN3JSF77T6CAL
-X-Message-ID-Hash: 4H6INLSGV3RJOC2KPQTRN3JSF77T6CAL
-X-Mailman-Approved-At: Wed, 19 Jul 2023 06:01:57 +0000
-CC: netdev@vger.kernel.org, Pablo Neira Ayuso <pablo@netfilter.org>, Harald Welte <laforge@gnumonks.org>, osmocom-net-gprs@lists.osmocom.org
+To: Guillaume Nault <gnault@redhat.com>
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: patchwork-bot+netdevbpf@kernel.org
+X-Mailman-Rule-Hits: max-recipients
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-size; news-moderation; no-subject; digests; suspicious-header
+Message-ID-Hash: ANBO4TIERA7KEOTAB4ISURVHDXTNV7S5
+X-Message-ID-Hash: ANBO4TIERA7KEOTAB4ISURVHDXTNV7S5
+X-Mailman-Approved-At: Wed, 26 Jul 2023 18:09:03 +0000
+CC: davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, edumazet@google.com, netdev@vger.kernel.org, pablo@netfilter.org, laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org, dccp@vger.kernel.org, marcelo.leitner@gmail.com, lucien.xin@gmail.com, linux-sctp@vger.kernel.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/4H6INLSGV3RJOC2KPQTRN3JSF77T6CAL/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/GKJGABC6I2EQJM2LFQTFWBHJJV7H6MAO/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -98,30 +76,36 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-There's no reason for setting the RTO_ONLINK flag in ->flowi4_tos as
-RT_CONN_FLAGS() does. We can easily set ->flowi4_scope properly
-instead. This makes the code more explicit and will allow to convert
-->flowi4_tos to dscp_t in the future.
+Hello:
 
-Signed-off-by: Guillaume Nault <gnault@redhat.com>
----
- drivers/net/gtp.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
-index acb20ad4e37e..144ec626230d 100644
---- a/drivers/net/gtp.c
-+++ b/drivers/net/gtp.c
-@@ -243,7 +243,8 @@ static struct rtable *ip4_route_output_gtp(struct flowi4 *fl4,
- 	fl4->flowi4_oif		= sk->sk_bound_dev_if;
- 	fl4->daddr		= daddr;
- 	fl4->saddr		= saddr;
--	fl4->flowi4_tos		= RT_CONN_FLAGS(sk);
-+	fl4->flowi4_tos		= ip_sock_rt_tos(sk);
-+	fl4->flowi4_scope	= ip_sock_rt_scope(sk);
- 	fl4->flowi4_proto	= sk->sk_protocol;
- 
- 	return ip_route_output_key(sock_net(sk), fl4);
--- 
-2.39.2
+On Mon, 17 Jul 2023 15:53:24 +0200 you wrote:
+> Code that initialise a flowi4 structure manually before doing a fib
+> lookup can easily avoid overloading ->flowi4_tos with the RTO_ONLINK
+> bit. They can just set ->flowi4_scope correctly instead.
+>=20
+> Properly separating the routing scope from ->flowi4_tos will allow to
+> eventually convert this field to dscp_t (to ensure proper separation
+> between DSCP and ECN).
+>=20
+> [...]
+
+Here is the summary with links:
+  - [net-next,1/3] gtp: Set TOS and routing scope independently for fib l=
+ookups.
+    https://git.kernel.org/netdev/net-next/c/b16b50476714
+  - [net-next,2/3] dccp: Set TOS and routing scope independently for fib =
+lookups.
+    https://git.kernel.org/netdev/net-next/c/2d6c85ca3eb8
+  - [net-next,3/3] sctp: Set TOS and routing scope independently for fib =
+lookups.
+    https://git.kernel.org/netdev/net-next/c/ba80e20d7f3f
+
+You are awesome, thank you!
+--=20
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
