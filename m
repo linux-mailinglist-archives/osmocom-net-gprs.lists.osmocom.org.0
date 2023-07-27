@@ -1,74 +1,55 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CE0C763E29
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Jul 2023 20:09:12 +0200 (CEST)
+Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC59765209
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 27 Jul 2023 13:16:17 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 1925428155;
-	Wed, 26 Jul 2023 18:09:11 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id A5F0928186;
+	Thu, 27 Jul 2023 11:16:09 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id ZUYCMg3K9J1i; Wed, 26 Jul 2023 18:09:10 +0000 (UTC)
+ id 9paLBnu4zfcE; Thu, 27 Jul 2023 11:16:09 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id D422A2810E;
-	Wed, 26 Jul 2023 18:09:07 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 2607128171;
+	Thu, 27 Jul 2023 11:16:06 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id BBA8538A1104
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Jul 2023 11:40:23 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 25BC138A16A8;
+	Thu, 27 Jul 2023 11:15:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 832052817D
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Jul 2023 11:40:23 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id E85D82810E;
+	Thu, 27 Jul 2023 11:15:07 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id GBVpbimiuHXH for <osmocom-net-gprs@lists.osmocom.org>;
- Wed, 19 Jul 2023 11:40:23 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-	by mail.osmocom.org (Postfix) with ESMTPS id D3FB128058
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Jul 2023 11:40:22 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0A401615FD;
-	Wed, 19 Jul 2023 11:40:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4C881C433C8;
-	Wed, 19 Jul 2023 11:40:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689766820;
-	bh=O7KE6QURVyG2deYSiL5ojlS/R2PfvC0hv2Gs+IrY7Rs=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=SM9HlMi7I0VLwP3EQW15edoyGCWkpKwaeHJi4bIXhmZkYQcIDjBgHb/7Jak7n5bFS
-	 CyCkOqV4zi2haiMnI+3xG1kIKn96Zv5YFgLp4A1N6ikTxWt75ZT2e5MPKiuw0xdGk9
-	 fLwyr40vmJKeBNs0L5MRrwKptRLsxuTI0PpgiY5EUocQq5QSbtEn1FWTM9Zx629fYG
-	 TONpweJHqoRh9hI4LJeo4Hldz+pOrVKPnSPLk/AA34esMprz2YvgGo3CD4xVkev4e2
-	 R5G509oCwCJAkVR6irYLIr4rCqQ2CMQ7qRNyPR1/9Dw7gNZyCeqitfgWTfl3ET7+8d
-	 GUNvmoG0K+Q7Q==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 2A891E21EFA;
-	Wed, 19 Jul 2023 11:40:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ id hhwCzNDpXtgg; Thu, 27 Jul 2023 11:15:07 +0000 (UTC)
+Received: from ganesha.gnumonks.org (ganesha.gnumonks.org [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
+	by mail.osmocom.org (Postfix) with ESMTPS id 2A0EE280EF;
+	Thu, 27 Jul 2023 11:15:07 +0000 (UTC)
+Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.94.2)
+	(envelope-from <laforge@osmocom.org>)
+	id 1qOyxW-0087MV-Ic; Thu, 27 Jul 2023 13:15:06 +0200
+Received: from laforge by nataraja with local (Exim 4.96)
+	(envelope-from <laforge@osmocom.org>)
+	id 1qOytI-00EiFR-16;
+	Thu, 27 Jul 2023 13:10:44 +0200
+Date: Thu, 27 Jul 2023 13:10:44 +0200
+From: Harald Welte <laforge@osmocom.org>
+To: osmocom-announce@lists.osmocom.org
+Subject: Osmocom discourse as alternative to mailing lists
+Message-ID: <ZMJQtNUCq3D6vERT@nataraja>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next 0/3] net: Remove more RTO_ONLINK users.
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <168976682016.23748.15879521041642434800.git-patchwork-notify@kernel.org>
-Date: Wed, 19 Jul 2023 11:40:20 +0000
-References: <cover.1689600901.git.gnault@redhat.com>
-In-Reply-To: <cover.1689600901.git.gnault@redhat.com>
-To: Guillaume Nault <gnault@redhat.com>
-Content-Transfer-Encoding: quoted-printable
-X-MailFrom: patchwork-bot+netdevbpf@kernel.org
-X-Mailman-Rule-Hits: max-recipients
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-size; news-moderation; no-subject; digests; suspicious-header
-Message-ID-Hash: ANBO4TIERA7KEOTAB4ISURVHDXTNV7S5
-X-Message-ID-Hash: ANBO4TIERA7KEOTAB4ISURVHDXTNV7S5
-X-Mailman-Approved-At: Wed, 26 Jul 2023 18:09:03 +0000
-CC: davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, edumazet@google.com, netdev@vger.kernel.org, pablo@netfilter.org, laforge@gnumonks.org, osmocom-net-gprs@lists.osmocom.org, dccp@vger.kernel.org, marcelo.leitner@gmail.com, lucien.xin@gmail.com, linux-sctp@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Message-ID-Hash: F35BRHKXSYZBOVSJT4RCUG5MTUQEG3OJ
+X-Message-ID-Hash: F35BRHKXSYZBOVSJT4RCUG5MTUQEG3OJ
+X-MailFrom: laforge@osmocom.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: baseband-devel@lists.osmocom.org, gmr@lists.osmocom.org, gr-gsm@lists.osmocom.org, op25-dev@lists.osmocom.org, openbsc@lists.osmocom.org, osmocom-analog@lists.osmocom.org, osmocom-net-gprs@lists.osmocom.org, osmocom-sdr@lists.osmocom.org
 X-Mailman-Version: 3.3.3
 Precedence: list
+Reply-To: openbsc@lists.osmocom.org
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/GKJGABC6I2EQJM2LFQTFWBHJJV7H6MAO/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/F35BRHKXSYZBOVSJT4RCUG5MTUQEG3OJ/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -76,36 +57,30 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Hello:
+Dear Osmocom community,
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+while many people with a long history in FOSS development have no issues
+at all with mailing lists as primary form of engaging with their
+community, they have undoubtedly fallen out of fashion in favor of
+various chat/messaging systems or web based forums.
 
-On Mon, 17 Jul 2023 15:53:24 +0200 you wrote:
-> Code that initialise a flowi4 structure manually before doing a fib
-> lookup can easily avoid overloading ->flowi4_tos with the RTO_ONLINK
-> bit. They can just set ->flowi4_scope correctly instead.
->=20
-> Properly separating the routing scope from ->flowi4_tos will allow to
-> eventually convert this field to dscp_t (to ensure proper separation
-> between DSCP and ECN).
->=20
-> [...]
+In Osmocom, we've just launched an installation of the discourse forum
+software available at https://discourse.osmocom.org/ providing an
+alternative to our traditional mailing lists at https://lists.osmocom.org/
 
-Here is the summary with links:
-  - [net-next,1/3] gtp: Set TOS and routing scope independently for fib l=
-ookups.
-    https://git.kernel.org/netdev/net-next/c/b16b50476714
-  - [net-next,2/3] dccp: Set TOS and routing scope independently for fib =
-lookups.
-    https://git.kernel.org/netdev/net-next/c/2d6c85ca3eb8
-  - [net-next,3/3] sctp: Set TOS and routing scope independently for fib =
-lookups.
-    https://git.kernel.org/netdev/net-next/c/ba80e20d7f3f
+We're looking forward to see whether this web-based approach will
+facilitate more and/or other people to engage with the Osmocom
+developer/contributor community.
 
-You are awesome, thank you!
---=20
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Feel free to join and get the discussions started.  If there's a need
+for more categories or sub-categories, just let one of the moderators
+know and we can help with that.
 
+The old mailing lists will continue to remain available for those who
+prefer them.
 
+-- 
+- Harald Welte <laforge@osmocom.org>           https://laforge.gnumonks.org/
+============================================================================
+"Privacy in residential applications is a desirable marketing option."
+                                                  (ETSI EN 300 175-7 Ch. A6)
