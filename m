@@ -2,102 +2,67 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36B997A033E
-	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 14 Sep 2023 14:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1817D1F56
+	for <lists+osmocom-net-gprs@lfdr.de>; Sat, 21 Oct 2023 22:07:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 7DE0A282FD;
-	Thu, 14 Sep 2023 12:02:52 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 6BD4A2830E;
+	Sat, 21 Oct 2023 20:07:45 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id wsNKP78Z6Vkj; Thu, 14 Sep 2023 12:02:52 +0000 (UTC)
+ id WPMT3TZ-p8l0; Sat, 21 Oct 2023 20:07:45 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 4C3B8282F9;
-	Thu, 14 Sep 2023 12:02:49 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 996ED28312;
+	Sat, 21 Oct 2023 20:07:38 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 8604C38A1800;
-	Thu, 14 Sep 2023 12:02:38 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id CB9EB38A004A
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 16 Oct 2023 22:23:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 5FFBA28062;
-	Thu, 14 Sep 2023 12:02:38 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 616CB2815F
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 16 Oct 2023 22:23:49 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id x9C30fSVrggn; Thu, 14 Sep 2023 12:02:37 +0000 (UTC)
-Received: from mail.sysmocom.de (mail.sysmocom.de [IPv6:2a01:4f8:13b:828::1:500])
-	by mail.osmocom.org (Postfix) with ESMTPS id BAD2428060;
-	Thu, 14 Sep 2023 12:02:37 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.sysmocom.de (Postfix) with ESMTP id 568C2198253D;
-	Thu, 14 Sep 2023 12:02:37 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at sysmocom.de
-Received: from mail.sysmocom.de ([127.0.0.1])
-	by localhost (mail.sysmocom.de [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id S1ZB4G2GSGSL; Thu, 14 Sep 2023 12:02:37 +0000 (UTC)
-Received: from [192.168.1.140] (unknown [207.188.171.64])
-	by mail.sysmocom.de (Postfix) with ESMTPSA id 0B2C51980F73;
-	Thu, 14 Sep 2023 12:02:37 +0000 (UTC)
-Message-ID: <a8cbd7f4-b9e9-4809-86d2-8d3016ede04b@sysmocom.de>
-Date: Thu, 14 Sep 2023 14:02:36 +0200
+ id gHtTKWNUwAHV for <osmocom-net-gprs@lists.osmocom.org>;
+ Mon, 16 Oct 2023 22:23:48 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+	by mail.osmocom.org (Postfix) with ESMTPS id F37AF27F3A
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 16 Oct 2023 22:23:47 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 4A082611CF;
+	Mon, 16 Oct 2023 22:23:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50618C433C7;
+	Mon, 16 Oct 2023 22:23:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697495024;
+	bh=bRrY6z8Qu3DHxdJ9AWDgW2EEHgMVRnN3AxmhHve8YT0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=vDG8J87nBqFt4L6UK9UD0UURS6rn2Zw5xR5YguOBewzOHIpPmFmU7m2BWITb6nKtP
+	 1bUMsnYgmBJ4ihkMfm+CKSQdB3svbnsafQLeqhOFOT8aktvznQeOxoMXxDgMEtluL7
+	 /ItwqYCfITwZEq0Uie/0PtTtmP9FVsNExso+35t63ihM5YqgcXBMy5DV+4xCo7+VDv
+	 TPMkgErh0SFf1NgbrzXJ+Ix4F2S+8Vj/+cEVZJ8gJvDyeHUSUfZ2MG8WTaTulWAS4S
+	 EnMQJ/67pYltlKrmgWTsmdVmhsC1YnbjYbAx6+rDe3WByYmkhpCkwcVyU596eWuhgB
+	 UfsfQyYAwwdZA==
+Date: Mon, 16 Oct 2023 15:23:43 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Takeru Hayasaka <hayatake396@gmail.com>
+Subject: Re: [PATCH net-next v2] ethtool: ice: Support for RSS settings to
+ GTP from ethtool
+Message-ID: <20231016152343.1fc7c7be@kernel.org>
+In-Reply-To: <20231012060115.107183-1-hayatake396@gmail.com>
+References: <20231012060115.107183-1-hayatake396@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "openbsc@lists.osmocom.org >> OpenBSC" <openbsc@lists.osmocom.org>,
- osmocom-net-gprs <osmocom-net-gprs@lists.osmocom.org>,
- osmocom-announce@lists.osmocom.org
-From: Pau Espin Pedrol <pespin@sysmocom.de>
-Subject: September 2023 Osmocom CNI releases (202302)
-Autocrypt: addr=pespin@sysmocom.de; keydata=
- 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
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: 3YCSFWOTKF5TH4NWS4Q6LEFNXQJQJBTZ
-X-Message-ID-Hash: 3YCSFWOTKF5TH4NWS4Q6LEFNXQJQJBTZ
-X-MailFrom: pespin@sysmocom.de
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+X-MailFrom: kuba@kernel.org
+X-Mailman-Rule-Hits: max-recipients
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-size; news-moderation; no-subject; digests; suspicious-header
+Message-ID-Hash: AHRYQ7O7I2NWFSL6V4IICO7GFVUIRUWU
+X-Message-ID-Hash: AHRYQ7O7I2NWFSL6V4IICO7GFVUIRUWU
+X-Mailman-Approved-At: Sat, 21 Oct 2023 20:06:35 +0000
+CC: Jesse Brandeburg <jesse.brandeburg@intel.com>, Tony Nguyen <anthony.l.nguyen@intel.com>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, Willem de Bruijn <willemdebruijn.kernel@gmail.com>, Harald Welte <laforge@gnumonks.org>, Pablo Neira Ayuso <pablo@netfilter.org>, osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/3YCSFWOTKF5TH4NWS4Q6LEFNXQJQJBTZ/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/AHRYQ7O7I2NWFSL6V4IICO7GFVUIRUWU/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -105,20 +70,60 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Hi all,
+Thanks for the v2!
 
-I am happy to announce that a new version 202309 of the Osmocom CNI 
-(Cellular Network Infrastructure) software has been released this week.
+Adding Willem, Pablo, and Harald to CC (please CC them on future
+versions).
 
-For further information, please visit: https://osmocom.org/news/220
+On Thu, 12 Oct 2023 06:01:15 +0000 Takeru Hayasaka wrote:
+> diff --git a/include/uapi/linux/ethtool.h b/include/uapi/linux/ethtool.h
+> index f7fba0dc87e5..a2d4f2081cf3 100644
+> --- a/include/uapi/linux/ethtool.h
+> +++ b/include/uapi/linux/ethtool.h
+> @@ -2011,6 +2011,18 @@ static inline int ethtool_validate_duplex(__u8 duplex)
+>  #define	IPV4_FLOW	0x10	/* hash only */
+>  #define	IPV6_FLOW	0x11	/* hash only */
+>  #define	ETHER_FLOW	0x12	/* spec only (ether_spec) */
+> +#define GTPU_V4_FLOW 0x13	/* hash only */
+> +#define GTPU_V6_FLOW 0x14	/* hash only */
+> +#define GTPC_V4_FLOW 0x15	/* hash only */
+> +#define GTPC_V6_FLOW 0x16	/* hash only */
+> +#define GTPC_TEID_V4_FLOW 0x17	/* hash only */
+> +#define GTPC_TEID_V6_FLOW 0x18	/* hash only */
+> +#define GTPU_EH_V4_FLOW 0x19	/* hash only */
+> +#define GTPU_EH_V6_FLOW 0x20	/* hash only */
 
-Regards,
-Pau
--- 
-- Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
-=======================================================================
-* sysmocom - systems for mobile communications GmbH
-* Alt-Moabit 93
-* 10559 Berlin, Germany
-* Sitz / Registered office: Berlin, HRB 134158 B
-* Geschaeftsfuehrer / Managing Director: Harald Welte
+nit: please note that these are hex numbers,
+     next value after 0x19 is 0x1a, not 0x20.
+
+> +#define GTPU_UL_V4_FLOW 0x21	/* hash only */
+> +#define GTPU_UL_V6_FLOW 0x22	/* hash only */
+> +#define GTPU_DL_V4_FLOW 0x23	/* hash only */
+> +#define GTPU_DL_V6_FLOW 0x24	/* hash only */
+>  /* Flag to enable additional fields in struct ethtool_rx_flow_spec */
+>  #define	FLOW_EXT	0x80000000
+>  #define	FLOW_MAC_EXT	0x40000000
+
+What gives me pause here is the number of flow sub-types we define
+for GTP hashing.
+
+My understanding of GTP is limited to what I just read on Wikipedia.
+
+IIUC the GTPC vs GTPU distinction comes down to the UDP port on
+which the protocol runs? Are the frames also different?
+
+I'm guessing UL/DL are uplink/downlink but what's EH?
+
+How do GTPU_V4_FLOW, GTPU_EH_V4_FLOW, GTPU_UL_V4_FLOW, and
+GTPU_DL_V4_FLOW differ?
+
+Key question is - are there reasonable use cases that you can think of
+for enabling GTP hashing for each one of those bits individually or can
+we combine some of them?
+
+> @@ -2025,6 +2037,7 @@ static inline int ethtool_validate_duplex(__u8 duplex)
+>  #define	RXH_IP_DST	(1 << 5)
+>  #define	RXH_L4_B_0_1	(1 << 6) /* src port in case of TCP/UDP/SCTP */
+>  #define	RXH_L4_B_2_3	(1 << 7) /* dst port in case of TCP/UDP/SCTP */
+> +#define	RXH_GTP_TEID	(1 << 8) /* teid in case of GTP */
+>  #define	RXH_DISCARD	(1 << 31)
