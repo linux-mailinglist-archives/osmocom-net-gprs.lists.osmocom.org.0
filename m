@@ -2,37 +2,64 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0317D6D50
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 25 Oct 2023 15:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD1F8058C3
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue,  5 Dec 2023 16:32:24 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 64EEF28316;
-	Wed, 25 Oct 2023 13:34:02 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 192E128322;
+	Tue,  5 Dec 2023 15:32:21 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id masRtChA_LgV; Wed, 25 Oct 2023 13:34:02 +0000 (UTC)
+ id rn4RlVTGRGt2; Tue,  5 Dec 2023 15:32:20 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 24A7D27F3A;
-	Wed, 25 Oct 2023 13:34:01 +0000 (UTC)
-Received: from lists (localhost [IPv6:::1])
-	by lists (Postfix) with ESMTP id 5D23638A35E0
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 25 Oct 2023 13:29:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by mail.osmocom.org (Postfix) with ESMTP id 809962831C;
+	Tue,  5 Dec 2023 15:32:19 +0000 (UTC)
+Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
+	by lists (Postfix) with ESMTPS id 558DA38A0074;
+	Tue,  5 Dec 2023 15:32:05 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.osmocom.org (Postfix) with ESMTP id 2B7E92812D;
+	Tue,  5 Dec 2023 15:32:05 +0000 (UTC)
+Received: from mail.osmocom.org ([127.0.0.1])
+ by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id UPezSGCWT540; Tue,  5 Dec 2023 15:32:04 +0000 (UTC)
+Received: from mail.sysmocom.de (mail.sysmocom.de [IPv6:2a01:4f8:13b:828::1:500])
+	by mail.osmocom.org (Postfix) with ESMTPS id 4A33B280E9;
+	Tue,  5 Dec 2023 15:32:04 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.sysmocom.de (Postfix) with ESMTP id DFB2319801F5;
+	Tue,  5 Dec 2023 15:32:03 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at sysmocom.de
+Received: from mail.sysmocom.de ([127.0.0.1])
+	by localhost (mail.sysmocom.de [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id uKS1VpLbYUjA; Tue,  5 Dec 2023 15:32:03 +0000 (UTC)
+Message-ID: <de9dadd0-6380-42b4-8241-7c2c78b0e343@sysmocom.de>
+Date: Tue, 5 Dec 2023 16:32:03 +0100
 MIME-Version: 1.0
+Content-Language: en-US
+To: osmocom-announce@lists.osmocom.org,
+ OpenBSC Mailing List <openbsc@lists.osmocom.org>,
+ osmocom-net-gprs@lists.osmocom.org, osmocom-sdr@lists.osmocom.org
+From: Oliver Smith <osmith@sysmocom.de>
+Subject: Binary packages: changes in supported distributions
+Autocrypt: addr=osmith@sysmocom.de; keydata=
+ xjMEXqaMvBYJKwYBBAHaRw8BAQdAKlLfpb/UKvlUjGFwzzkDBT1fXdlqg+MaEG2+hTXDYUrN
+ IU9saXZlciBTbWl0aCA8b3NtaXRoQHN5c21vY29tLmRlPsKWBBMWCAA+AhsDBQsJCAcCBhUK
+ CQgLAgQWAgMBAh4BAheAFiEECfuANpg5IsWyQFcH6+DRJFm2BMUFAmDG9VIFCRTsa5YACgkQ
+ 6+DRJFm2BMUJ0wD+L0gpHABtBfkNQ7i0/qtMs5thoqt2yldxao6q31BBLAAA/iXUDIEYjQ0L
+ wsZRtiSdXNjbBfdT9boLdh4CY+TKwuYPzjgEXqaMvBIKKwYBBAGXVQEFAQEHQPGmG2/uQrDy
+ xalQoBnT1zdIbeg/xWLjl1AnOYGITnpEAwEIB8J4BBgWCAAgFiEECfuANpg5IsWyQFcH6+DR
+ JFm2BMUFAl6mjLwCGwwACgkQ6+DRJFm2BMXSRgD/f8twzpyQfpE+viVjtlOxsq0HCavXZqbW
+ VvIuvbyfSWQBAJhEIFF/fxmksu9r3FzixNQMOLc3EJgSwqvEYA28Db8O
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Professional Dissertation Writing Help
-From: markanderson8093@gmail.com
-To: osmocom-net-gprs@lists.osmocom.org
-Date: Wed, 25 Oct 2023 13:29:09 -0000
-Message-ID: <169824054938.433.14317938005315739908@lists>
-User-Agent: HyperKitty on https://lists.osmocom.org/
-Message-ID-Hash: FMJL26ZAMNA6F2UC6OCHCFDA2BL5KQWR
-X-Message-ID-Hash: FMJL26ZAMNA6F2UC6OCHCFDA2BL5KQWR
-X-MailFrom: markanderson8093@gmail.com
+Message-ID-Hash: KSSJ6IIW3CPEJ4Y6ZXKLLMLK33HHQZG2
+X-Message-ID-Hash: KSSJ6IIW3CPEJ4Y6ZXKLLMLK33HHQZG2
+X-MailFrom: osmith@sysmocom.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/FMJL26ZAMNA6F2UC6OCHCFDA2BL5KQWR/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/KSSJ6IIW3CPEJ4Y6ZXKLLMLK33HHQZG2/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -40,46 +67,35 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-NURS FPX 4020 Assessment 1In the dynamic landscape of healthcare, nursing leadership plays a pivotal role in shaping the delivery of quality patient care. NURS FPX 4020 Assessment 1 is a crucial component of the nursing curriculum, focusing on cultivating leadership skills that are essential for addressing complex challenges within healthcare systems. This article delves into the significance of Assessment 1 and its connection to NHS-FPX 5004 Assessment 1.
+Hello various Osmocom mailing lists,
 
-NURS FPX 4020 Assessment 1 is a cornerstone in the journey of aspiring nurse leaders. This assessment is meticulously designed to provide nursing students with a comprehensive understanding of leadership theories, strategies, and practical applications that empower them to drive positive changes within healthcare organizations.
+the official Osmocom binary packages will not be built anymore for the
+following distributions starting at 2024-02:
 
- 
+* Raspberry Pi OS 64-bit (use Debian_12 etc. instead)
+* Ubuntu 23.04 (Ubuntu 23.10 and LTS 20.04/22.04 feeds are available)
+* openSUSE 15.4 (openSUSE Tumbleweed feed is available)
+* Debian Testing (Debian Unstable and 12-10 feeds are available)
 
-Leadership Theories and Models: Assessment 1 delves into various leadership theories, offering students insights into transformational, situational, and servant leadership, among others. This exposure enables students to identify leadership styles that align with their values and the unique demands of healthcare settings.
+For Raspberry Pi OS 64-bit users, make sure to adjust your
+/etc/apt/sources.list.d as described here to switch to a Debian
+aarch64 feed:
+https://osmocom.org/projects/cellular-infrastructure/wiki/Latest_Builds
 
- 
+See the new linux distributions article for information on how long we
+plan to keep building packages for each distribution:
+https://osmocom.org/projects/cellular-infrastructure/wiki/Linux_distributions
 
-Strategic Decision-Making: Nursing leaders are often required to make strategic decisions that impact patient care, resource allocation, and organizational outcomes. Assessment 1 equips students with the skills to analyze complex situations, evaluate options, and make informed decisions that uphold patient-centered care.
+Let me know if you have questions.
 
- 
+Best regards,
+Oliver
 
-Communication and Team Building: Effective leadership hinges on clear communication and fostering collaborative teams. Assessment 1 guides students in honing communication skills, conflict resolution techniques, and strategies for building cohesive and high-performing healthcare teams.
-
- 
-
-Change Management: In the ever-evolving healthcare landscape, adaptability and change management are critical. Assessment 1 prepares students to lead and manage change initiatives, ensuring smooth transitions that enhance patient care quality.
-
-NURS FPX 4020 Assessment 1 yields transformative outcomes for nursing students:
-
- 
-
-Leadership Competence: By mastering leadership theories and practical skills, students develop the competence to lead with confidence, promoting a positive influence on their teams and patient outcomes.
-
- 
-
-Strategic Vision: Assessment 1 instills a strategic mindset, enabling nursing leaders to envision and implement improvements that align with organizational goals while prioritizing patient welfare.
-
- 
-
-Collaborative Excellence: Effective communication and team-building skills fostered by Assessment 1 enhance collaboration among healthcare professionals, leading to enhanced care coordination and patient safety.
-
- 
-
-Change Catalysts: Nursing professionals who excel in Assessment 1 become adept at navigating change, fostering an environment where innovation and continuous improvement thrive.
-
-NHS-FPX 5004 Assessment 1 is an extension of the leadership foundation laid by NURS FPX 4020 Assessment 1. While the latter focuses on nursing leadership within broader healthcare contexts, NHS-FPX 5004 Assessment 1 specifically addresses leadership and management within the NHS, offering insights into the unique challenges and opportunities within the UK healthcare system.
-
-NURS FPX 4020 Assessment 1 serves as a beacon guiding nursing students towards impactful leadership roles within the healthcare sector. By imparting leadership theories, strategic acumen, and effective communication strategies, Assessment 1 transforms students into dynamic nursing leaders capable of navigating complex healthcare environments. As they progress to NHS-FPX 5004 Assessment 1, students are poised to apply their leadership prowess within the context of the NHS, ultimately contributing to the enhancement of patient care, healthcare systems, and the nursing profession as a whole.
-
-https://onlineclassassignment.com/
+-- 
+- Oliver Smith <osmith@sysmocom.de>            https://www.sysmocom.de/
+=======================================================================
+* sysmocom - systems for mobile communications GmbH
+* Alt-Moabit 93
+* 10559 Berlin, Germany
+* Sitz / Registered office: Berlin, HRB 134158 B
+* Geschaeftsfuehrer / Managing Director: Harald Welte
