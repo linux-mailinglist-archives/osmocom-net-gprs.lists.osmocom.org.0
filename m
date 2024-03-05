@@ -2,89 +2,78 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E740857A8D
-	for <lists+osmocom-net-gprs@lfdr.de>; Fri, 16 Feb 2024 11:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6FAB876FAA
+	for <lists+osmocom-net-gprs@lfdr.de>; Sat,  9 Mar 2024 09:05:57 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 5998E44E3E;
-	Fri, 16 Feb 2024 10:44:07 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id AEF265D3B2;
+	Sat,  9 Mar 2024 08:05:57 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id bKFGbWX_Qpba; Fri, 16 Feb 2024 10:44:07 +0000 (UTC)
+ id rU9cqepAgT5h; Sat,  9 Mar 2024 08:05:57 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id B627044E31;
-	Fri, 16 Feb 2024 10:44:06 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 0E2A75D3A5;
+	Sat,  9 Mar 2024 08:05:57 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 8EA9238A0FAC
-	for <osmocom-net-gprs@lists.osmocom.org>; Thu, 15 Feb 2024 20:32:58 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 82E3238A10F2
+	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  5 Mar 2024 12:15:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 541C544839
-	for <osmocom-net-gprs@lists.osmocom.org>; Thu, 15 Feb 2024 20:32:58 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 6890157E25
+	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  5 Mar 2024 12:15:38 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id nR-nYZ4P2crn for <osmocom-net-gprs@lists.osmocom.org>;
- Thu, 15 Feb 2024 20:32:57 +0000 (UTC)
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by mail.osmocom.org (Postfix) with ESMTPS id 76BDD44834
-	for <osmocom-net-gprs@lists.osmocom.org>; Thu, 15 Feb 2024 20:32:57 +0000 (UTC)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-561f0f116ecso2547a12.0
-        for <osmocom-net-gprs@lists.osmocom.org>; Thu, 15 Feb 2024 12:32:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1708029176; x=1708633976; darn=lists.osmocom.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=laSyg7YQPz643rzuuYEwb1CY2iHDVt99rko3X2hSnfw=;
-        b=jt9kvEtjVFgiKaFhaShdq06kzVSEhQCa1p7c4chpVXUr2T1Kga7JhkShQodPsO8qz4
-         XvlbYIafrdvoEO7KKrCYhZQBQt8LGjUHQBjGQndKKlQjlA54HnDfK5OxNesyx1eewy7R
-         rpuI0Dwg/Cqeb+APE/Z5foAlxF2+aJtjaLmVIPfGr73QW56+DWFyNu9xr5sKlCZrwRv0
-         ilow85vUPxyxPuSwRL9VLSNjI1Q8OyNzv06FZqTcQoKgSeewa6g5euxgmwntz9pyfBPV
-         iPhdyio/ehtBPRCqLcg+355mTWmisR+49kg2P60fe67nZ9RVg181P//mAwDDzyu9Dbkt
-         W0GA==
+ id GI3kLRLK3YB6 for <osmocom-net-gprs@lists.osmocom.org>;
+ Tue,  5 Mar 2024 12:15:37 +0000 (UTC)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	by mail.osmocom.org (Postfix) with ESMTPS id C1EB757E1E
+	for <osmocom-net-gprs@lists.osmocom.org>; Tue,  5 Mar 2024 12:15:33 +0000 (UTC)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a441d7c6125so65161666b.2
+        for <osmocom-net-gprs@lists.osmocom.org>; Tue, 05 Mar 2024 04:15:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708029176; x=1708633976;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=laSyg7YQPz643rzuuYEwb1CY2iHDVt99rko3X2hSnfw=;
-        b=Fn4/suTgoUuQJKVBIZYTV8JfJ3rYrI8KWOR41NNIhJDYqYnp3TR8iylC58np0KU1Yo
-         LQfPG6TGaoKqZFOQas2rMcmk9UJXjbWZF6rg7s0rApQHSzZ6+5JL2Rz7gypfNR7sMj+v
-         RmnxeusRFDxKwRY2T3V3fxLSo2NHn9xMvmoxgFhXDRGlOqjF2Ld2GOmhHNaCdjVuLJpo
-         Lyf1+kss9/vSqN5Ss6q6OusETH69j4fDwMutoYRiW0unF8awsU2fOqA1+vO5CfilRNUI
-         t4Z3R243Y6TDVD5X26viP6CG0yLPY7JbwL/i4UlMt9lYVH+krEq9a7Kcf4O66QGXRsha
-         ly3g==
-X-Forwarded-Encrypted: i=1; AJvYcCVYw1PAEjgA7QyJ1v4Pry1ayo6FZoOQwniO/hGE54b+f2lGMCAhYupQ/FzcUwZSGmje5wOjR8jFthZeTtVLkyNfJFhVqyNfeIMTI1ohi+vZZlg1
-X-Gm-Message-State: AOJu0YyWU7aCfO4UjzHRv7ye67LxyPFEsP2l0N5alR8fHuDFaXSNww+O
-	oG4yEDzQSxZaxilwok31P319j0YJIq0vtYpM6H40jQV+MjcV79PHqa2g/pfIvEoLFHYNTb/vtwM
-	/Eib6EXeIsxB6MXiku0oecvaJJWRQqnZOBsxX
-X-Google-Smtp-Source: AGHT+IEchM9k5jNArbj5+35xIQAzhyJ/jP6cl9FmgZLvIfjEnm9gulJ+kijAQ6eqYDiIJUnuCe8d9j548sUG4qfxPWI=
-X-Received: by 2002:a50:cd8c:0:b0:561:a93:49af with SMTP id
- p12-20020a50cd8c000000b005610a9349afmr44357edi.7.1708029176383; Thu, 15 Feb
- 2024 12:32:56 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709640933; x=1710245733;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JG3VSpSBId+LffdzAqb7pqYBWbcN1uLse2eKNRmus5E=;
+        b=sBkwEeTo03KIqbgCVO4XjeG+9VLaH3b5IP8HcBmCQukrhGDu8XEv6yTE3icMHieveo
+         u4pZPtva1KOaaxRlBpIkreOlFuzOzC4UimsAQf8QEy3twOSXtFzhk2wZxYE/Zk+BZZYe
+         sUZ/FVqfXAFnX6dGyLzxtuvQMapDDAq905kzPHGTN1zaxWDQVtIvl4QIllENv6rPZrX4
+         kwJLKnZz9Bl3N00G1Pn9MjlPupcPDp5sfyFJU7HQLXp+MPIQttu35kZXLYL0NPt5AMvs
+         gUjRkM0e7mkdN3Cjl/fl4Y7mjOO95VXLoby9lDUK//0io+YjFqNS6AdWUS1kFrL01fF3
+         wFMA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwAN0gakENqXLX3FVamw4VzT0du7bfDSoVTF/O2SrqsajKf6uuaI0tK4i13e/nuALCmsVo8VMiIWhs8eNjJogRCoqFYQm32uoolFzHgJ6GFmmA
+X-Gm-Message-State: AOJu0Yxc8pAKjKNv39h/dKWbT7W6Fr2giX85xPmc8eGyig+5Ltae9GdL
+	2MPdkSr1rUMAkKHFpSfFmi6yspw+mLR5c1AkIuxfqz1GIO9/c+wv
+X-Google-Smtp-Source: AGHT+IFR3WGZuebyFFvq/51EnY9cTbsjkK/kx7Ilk++87zUVxhXQMBrOMecLr6eR2TSNRBaf4SPz1Q==
+X-Received: by 2002:a17:906:6954:b0:a45:8f10:50c6 with SMTP id c20-20020a170906695400b00a458f1050c6mr2209901ejs.57.1709640933320;
+        Tue, 05 Mar 2024 04:15:33 -0800 (PST)
+Received: from localhost (fwdproxy-lla-120.fbsv.net. [2a03:2880:30ff:78::face:b00c])
+        by smtp.gmail.com with ESMTPSA id am19-20020a170906569300b00a44cb0bf11bsm4027184ejc.79.2024.03.05.04.15.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Mar 2024 04:15:32 -0800 (PST)
+From: Breno Leitao <leitao@debian.org>
+To: Pablo Neira Ayuso <pablo@netfilter.org>,
+	Harald Welte <laforge@gnumonks.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>
+Subject: [PATCH net-next 1/3] net: gtp: Leverage core stats allocator
+Date: Tue,  5 Mar 2024 04:15:21 -0800
+Message-ID: <20240305121524.2254533-1-leitao@debian.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20240124101404.161655-1-kovalev@altlinux.org> <20240124101404.161655-2-kovalev@altlinux.org>
- <CANn89iLKc8-hwvSBE=aSTRg=52Pn9B0HmFDneGCe6PMawPFCnQ@mail.gmail.com>
- <1144600e-52f1-4c1a-4854-c53e05af5b45@basealt.ru> <CANn89iKb+NQPOuZ9wdovQYVOwC=1fUMMdWd5VrEU=EsxTH7nFg@mail.gmail.com>
- <d602ebc3-f0e7-171c-7d76-e2f9bb4c2db6@basealt.ru> <CANn89iJ4hVyRHiZXWTiW9ftyN8PFDaWiZnzE7GVAzu1dT78Daw@mail.gmail.com>
- <6cbbecf1-eba1-f3e1-259a-24df71f44785@basealt.ru>
-In-Reply-To: <6cbbecf1-eba1-f3e1-259a-24df71f44785@basealt.ru>
-From: Eric Dumazet <edumazet@google.com>
-Date: Thu, 15 Feb 2024 21:32:42 +0100
-Message-ID: <CANn89i+mSOtzxOfY=FLhQAj2bZ+a-9KdzivGhBx8_V9YwaAeOw@mail.gmail.com>
-Subject: Re: [PATCH 1/1] gtp: fix use-after-free and null-ptr-deref in gtp_genl_dump_pdp()
-To: kovalev@altlinux.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-MailFrom: edumazet@google.com
+X-MailFrom: breno.debian@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: KMI6KI3CD4L52FYC6PET3BIVZG6EYWPO
-X-Message-ID-Hash: KMI6KI3CD4L52FYC6PET3BIVZG6EYWPO
-X-Mailman-Approved-At: Fri, 16 Feb 2024 10:44:05 +0000
-CC: pablo@netfilter.org, laforge@gnumonks.org, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, osmocom-net-gprs@lists.osmocom.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, nickel@altlinux.org, oficerovas@altlinux.org, dutyrok@altlinux.org
+Message-ID-Hash: B3HMDYAAUGVF6OIK2S3VDUB5B3FMKUOU
+X-Message-ID-Hash: B3HMDYAAUGVF6OIK2S3VDUB5B3FMKUOU
+X-Mailman-Approved-At: Sat, 09 Mar 2024 08:05:48 +0000
+CC: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, horms@kernel.org, dsahern@kernel.org, "open list:GTP GPRS Tunneling Protocol" <osmocom-net-gprs@lists.osmocom.org>
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/KMI6KI3CD4L52FYC6PET3BIVZG6EYWPO/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/B3HMDYAAUGVF6OIK2S3VDUB5B3FMKUOU/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -92,41 +81,54 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-On Wed, Feb 14, 2024 at 5:50=E2=80=AFPM <kovalev@altlinux.org> wrote:
->
-> 09.02.2024 22:21, Eric Dumazet wrote:
->
-> > Maybe, but the patch is not good, I think I and Pablo gave feedback on =
-this ?
-> >
-> > Please trace __netlink_dump_start() content of control->module
-> >
-> > gtp_genl_family.module should be set, and we should get it.
-> >
-> > Otherwise, if the bug is in the core, we would need a dozen of 'work
-> > arounds because it is better than nothing'
-> >
-> > Thank you.
->
-> Thanks.
->
-> I tracked the moment when the __netlink_dump_start() function was
-> called, it turned out that in the gtp_init() initialization function
-> before registering pernet subsystem (gtp_net_ops), therefore, outdated
-> data is used, which leads to a crash.
->
-> The documentation says that ops structure must be assigned before
-> registering a generic netlink family [1].
->
-> I have fixed and sent a new patch [2].
->
-> [1]
-> https://elixir.bootlin.com/linux/v6.8-rc4/source/net/netlink/genetlink.c#=
-L773
->
-> [2]
-> https://lore.kernel.org/netdev/20240214162733.34214-1-kovalev@altlinux.or=
-g/T/#u
->
+With commit 34d21de99cea9 ("net: Move {l,t,d}stats allocation to core and
+convert veth & vrf"), stats allocation could be done on net core
+instead of in this driver.
 
-Excellent detective work, thanks a lot !
+With this new approach, the driver doesn't have to bother with error
+handling (allocation failure checking, making sure free happens in the
+right spot, etc). This is core responsibility now.
+
+Remove the allocation in the gtp driver and leverage the network
+core allocation instead.
+
+Signed-off-by: Breno Leitao <leitao@debian.org>
+---
+ drivers/net/gtp.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index 2b46b7398ade..facbfba5d77f 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -717,10 +717,6 @@ static int gtp_dev_init(struct net_device *dev)
+=20
+ 	gtp->dev =3D dev;
+=20
+-	dev->tstats =3D netdev_alloc_pcpu_stats(struct pcpu_sw_netstats);
+-	if (!dev->tstats)
+-		return -ENOMEM;
+-
+ 	return 0;
+ }
+=20
+@@ -729,7 +725,6 @@ static void gtp_dev_uninit(struct net_device *dev)
+ 	struct gtp_dev *gtp =3D netdev_priv(dev);
+=20
+ 	gtp_encap_disable(gtp);
+-	free_percpu(dev->tstats);
+ }
+=20
+ static inline void gtp0_push_header(struct sk_buff *skb, struct pdp_ctx =
+*pctx)
+@@ -970,6 +965,7 @@ static void gtp_link_setup(struct net_device *dev)
+ 	dev->type =3D ARPHRD_NONE;
+ 	dev->flags =3D IFF_POINTOPOINT | IFF_NOARP | IFF_MULTICAST;
+=20
++	dev->pcpu_stat_type =3D NETDEV_PCPU_STAT_TSTATS;
+ 	dev->priv_flags	|=3D IFF_NO_QUEUE;
+ 	dev->features	|=3D NETIF_F_LLTX;
+ 	netif_keep_dst(dev);
+--=20
+2.43.0
+
