@@ -2,75 +2,75 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3859D10A3
-	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 18 Nov 2024 13:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31FFF9D10A4
+	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 18 Nov 2024 13:38:17 +0100 (CET)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id E922E181F77;
-	Mon, 18 Nov 2024 12:38:15 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 0673B181F91;
+	Mon, 18 Nov 2024 12:38:17 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Pkzz3lnIDTwB; Mon, 18 Nov 2024 12:38:15 +0000 (UTC)
+ id BwsFO4-W0aWm; Mon, 18 Nov 2024 12:38:16 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 8863E181F60;
-	Mon, 18 Nov 2024 12:38:13 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 67E64181F82;
+	Mon, 18 Nov 2024 12:38:16 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id D4BCE38A18D0
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 13 Nov 2024 12:57:47 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 05CC338A18D0
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 13 Nov 2024 12:57:56 +0000 (UTC)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id B219B17B29D
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 13 Nov 2024 12:57:47 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id E103417B2C8
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 13 Nov 2024 12:57:55 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id pVPlYuCQY4-z for <osmocom-net-gprs@lists.osmocom.org>;
- Wed, 13 Nov 2024 12:57:47 +0000 (UTC)
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-	by mail.osmocom.org (Postfix) with ESMTPS id 0419F17B298
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 13 Nov 2024 12:57:46 +0000 (UTC)
-Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-2e2eb9dde40so5532992a91.0
-        for <osmocom-net-gprs@lists.osmocom.org>; Wed, 13 Nov 2024 04:57:46 -0800 (PST)
+ id JLClKKjNwrh9 for <osmocom-net-gprs@lists.osmocom.org>;
+ Wed, 13 Nov 2024 12:57:55 +0000 (UTC)
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+	by mail.osmocom.org (Postfix) with ESMTPS id 3EFA017B2C3
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 13 Nov 2024 12:57:54 +0000 (UTC)
+Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-2e2bd347124so5410025a91.1
+        for <osmocom-net-gprs@lists.osmocom.org>; Wed, 13 Nov 2024 04:57:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731502665; x=1732107465; darn=lists.osmocom.org;
+        d=gmail.com; s=20230601; t=1731502673; x=1732107473; darn=lists.osmocom.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9sIZI/WV8nhbNfyJEUDND2yz+m6sbgKmtk/cQXv5cxc=;
-        b=JXVsu14npe0lmnOY9hyhFQZyIrQaFfeNEfGJ8h0O/tTi1VFKpzCY+9raVd7zdHDHs0
-         FE6S7An85bYxr/7kFlh2iIu8HrtmR4ft83x+110A1KToe6ETgWKxSwfYaOZ6h7Ckb1Bx
-         YFX2UUL+KcY3Yl5YsaNCssQpY90ZaBeF5SnXWedPKf5JeIMXChAf/gIZFJ7q+VgUAyo3
-         3X2KQOwJwNsie+eLmYb0uwUoNDIFSd4nxli5j9SXKQ+eTRK18K+OubOZnUOqT1exCFnr
-         Q/RdccKa3FLc49zg56IbvZpBjquxBaW0ud5MdJOWp6hfYqJm7R5gY/HAdk2UBJXUA5x+
-         NZ2g==
+        bh=IrCaarQptqoPnVIGF6Rw6t9hI+Rf9ZxQVNSlbFD1HYQ=;
+        b=cpWK5Tgc19l+GzGqer9rm/4urnz4B6iknNMPBd8QvQQibQ/z1fnVq35htRWGUZxiYr
+         qp/zKcw+Q8DfFAYeiyue+ZhbNnYkQWJxXRuL8soMPuTbLHSHJeFAn6Wf4JTlDOMEdLn/
+         3zPOFGyp25Dzi0yGflIj1IjDKqlXtYRRQXVlk+DEaelQffaHgfYrmbbm135ioMWDs274
+         aRnBkmjTGImMl6WYVFAvdT85FiW4KHmPE143SV+2MoTKfHYtvD/bAPWrAwbfOgZynXIo
+         Jly0bF8hR8QbmYYe7PxSMjbtvgVbioIHAI0tDQXRIV2iAdrczH/iRfvZdBoLvuoRcF79
+         LwtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731502665; x=1732107465;
+        d=1e100.net; s=20230601; t=1731502673; x=1732107473;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9sIZI/WV8nhbNfyJEUDND2yz+m6sbgKmtk/cQXv5cxc=;
-        b=HHGbmo+k3U/IweDs9B9oajcjvrWI4kx8tQPCS0ZzDqiNO02I7A9ByrCsndibO+hmEq
-         iOu3gz3IjJ+Bdg5NVwECQ+0Dkyc84uFGqznyRG6/gbDfEKRB1sD1GbxDFMv7blSRH+Pg
-         raegTNZClcfQLajUZQePfcVDo51Dq+/HcYmoN3WnMOggJ4bEXM//gxY+mrxg5HEsB1TW
-         G8ulG5DpKGwYCiviTHemtrTiu5EXFonj2YPHDHonMaxJWeCNk6pAiZqRSYDS9nCwVN7E
-         Z18SXKI1MN0pXN9yJ9ycinVpV4u23mGfiJdzIYifFMfI1JaCZMn9BC8kp2VBOx/htCJg
-         zXZA==
-X-Forwarded-Encrypted: i=1; AJvYcCUaB510LdJJZHinn3XGpvnoIwHHexhd4RN2KJ9+DDmoRfCsUHjenupAnMIBe5UI3Pfm29QQF2l22VBXWbV4rAla@lists.osmocom.org
-X-Gm-Message-State: AOJu0Yzhk9UixF1P3kDL0MSYByJpLfb96NfGJfL8Oy3+CMlyRGhlRLg+
-	sd3jhd+Y9qfROK2zrGM2ieiGh+g5JpRsuOCmKEKxjnMQIgefk5bx
-X-Google-Smtp-Source: AGHT+IFBBLW/otzoU3VQWNkQ98rdfNz5WHNkXJFNuYVXzuqAWCzWf4F656wLCdVO3Ph+9deaw1I3JA==
-X-Received: by 2002:a17:90b:48c8:b0:2e2:c40c:6e8a with SMTP id 98e67ed59e1d1-2e9f2d5da7amr2684315a91.26.1731502664731;
-        Wed, 13 Nov 2024 04:57:44 -0800 (PST)
+        bh=IrCaarQptqoPnVIGF6Rw6t9hI+Rf9ZxQVNSlbFD1HYQ=;
+        b=khl2q7EeaF5Dk5wNFj/BNS4shCWpkD04VluTUBlJMhMI2lCq1MuhI3eIgifypD5kht
+         SG8C9371vPYvukW56eS0qUHOeTHa6FgbTkaQEX/mqgxN5cQ2tY6AeKq6Fe4EzlbYM1uu
+         uymVIXrBJ2S9w6VIS7uCUcJKg/nyhTOW+cGh5r/YXuTgA9Ub+/l+tV1HolCABYmx8g5Z
+         E+9VbOuY932xtJE/eDR2U90w4sPfWqI7EL1grzHf7krM52dxHlUsaJvYqkc7iMK7JB1E
+         57yKG5G29xSr2h1kkR4X8iGoC1zupj/WVj2tUunW0QSqNaCOKfDJyznuGRuly5wntrvT
+         VwpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+e6DMsSx+RJBsXmFS3ZXKNz0wE8lOomEm3WXhKn7AwTC2w8u8IniLOJV//YKp9J6DgEd/HJtJo53qx/yZ71zA@lists.osmocom.org
+X-Gm-Message-State: AOJu0YzyyRsWiLwScPhj+4YHHqsh4MkhsDmLxL07HTAwsA9kUT7QpBwY
+	pFH+zWrhZLwZ3mvr/IgmXrbbNRNYDNjEvzKjziylHJPoGTrgwOfe
+X-Google-Smtp-Source: AGHT+IGJi6Tp37K+i8d+pRtqcGbSCXzQQJQiHEkYvBXRMyT+Ytmcy1PnetStqWOPaDWwW+msVvcvjQ==
+X-Received: by 2002:a17:90b:38c4:b0:2e2:c6a6:84da with SMTP id 98e67ed59e1d1-2e9b1799123mr24937176a91.34.1731502673070;
+        Wed, 13 Nov 2024 04:57:53 -0800 (PST)
 Received: from nova-ws.. ([103.167.140.11])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e9f3f8ed0esm1398632a91.40.2024.11.13.04.57.36
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e9f3f8ed0esm1398632a91.40.2024.11.13.04.57.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 04:57:44 -0800 (PST)
+        Wed, 13 Nov 2024 04:57:52 -0800 (PST)
 From: Xiao Liang <shaw.leon@gmail.com>
 To: netdev@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	Kuniyuki Iwashima <kuniyu@amazon.com>,
 	Jakub Kicinski <kuba@kernel.org>,
 	Donald Hunter <donald.hunter@gmail.com>
-Subject: [PATCH net-next v3 1/6] Revert "tools/net/ynl: improve async notification handling"
-Date: Wed, 13 Nov 2024 20:57:10 +0800
-Message-ID: <20241113125715.150201-2-shaw.leon@gmail.com>
+Subject: [PATCH net-next v3 2/6] net: ip_tunnel: Build flow in underlay net namespace
+Date: Wed, 13 Nov 2024 20:57:11 +0800
+Message-ID: <20241113125715.150201-3-shaw.leon@gmail.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241113125715.150201-1-shaw.leon@gmail.com>
 References: <20241113125715.150201-1-shaw.leon@gmail.com>
@@ -79,14 +79,14 @@ Content-Transfer-Encoding: quoted-printable
 X-MailFrom: shaw.leon@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: VHJ6GZOJD2INDEBBGTEJEG6FAHU32HKE
-X-Message-ID-Hash: VHJ6GZOJD2INDEBBGTEJEG6FAHU32HKE
+Message-ID-Hash: 46PNTN253ZNETZ2J4X4L6G6QVPWZNVGB
+X-Message-ID-Hash: 46PNTN253ZNETZ2J4X4L6G6QVPWZNVGB
 X-Mailman-Approved-At: Mon, 18 Nov 2024 12:35:18 +0000
 CC: "David S. Miller" <davem@davemloft.net>, David Ahern <dsahern@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Ido Schimmel <idosch@nvidia.com>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Shuah Khan <shuah@kernel.org>, Jiri Pirko <jiri@resnulli.us>, Hangbin Liu <liuhangbin@gmail.com>, linux-rdma@vger.kernel.org, linux-can@vger.kernel.org, osmocom-net-gprs@lists.osmocom.org, bpf@vger.kernel.org, linux-ppp@vger.kernel.org, wireguard@lists.zx2c4.com, linux-wireless@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org, bridge@lists.linux.dev, linux-wpan@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/VHJ6GZOJD2INDEBBGTEJEG6FAHU32HKE/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/46PNTN253ZNETZ2J4X4L6G6QVPWZNVGB/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -94,149 +94,47 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-From: Donald Hunter <donald.hunter@gmail.com>
+Build IPv4 flow in underlay net namespace, where encapsulated packets
+are routed.
 
-This reverts commit 1bf70e6c3a5346966c25e0a1ff492945b25d3f80.
-
-This modification to check_ntf() is being reverted so that its behaviour
-remains equivalent to ynl_ntf_check() in the C YNL. Instead a new
-poll_ntf() will be added in a separate patch.
-
-Signed-off-by: Donald Hunter <donald.hunter@gmail.com>
+Signed-off-by: Xiao Liang <shaw.leon@gmail.com>
 ---
- tools/net/ynl/cli.py     | 10 +++-----
- tools/net/ynl/lib/ynl.py | 49 ++++++++++++++++------------------------
- 2 files changed, 23 insertions(+), 36 deletions(-)
+ net/ipv4/ip_tunnel.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/tools/net/ynl/cli.py b/tools/net/ynl/cli.py
-index 9e95016b85b3..b8481f401376 100755
---- a/tools/net/ynl/cli.py
-+++ b/tools/net/ynl/cli.py
-@@ -5,7 +5,6 @@ import argparse
- import json
- import pprint
- import time
--import signal
+diff --git a/net/ipv4/ip_tunnel.c b/net/ipv4/ip_tunnel.c
+index 25505f9b724c..09b73acf037a 100644
+--- a/net/ipv4/ip_tunnel.c
++++ b/net/ipv4/ip_tunnel.c
+@@ -294,7 +294,7 @@ static int ip_tunnel_bind_dev(struct net_device *dev)
 =20
- from lib import YnlFamily, Netlink, NlError
+ 		ip_tunnel_init_flow(&fl4, iph->protocol, iph->daddr,
+ 				    iph->saddr, tunnel->parms.o_key,
+-				    iph->tos & INET_DSCP_MASK, dev_net(dev),
++				    iph->tos & INET_DSCP_MASK, tunnel->net,
+ 				    tunnel->parms.link, tunnel->fwmark, 0, 0);
+ 		rt =3D ip_route_output_key(tunnel->net, &fl4);
 =20
-@@ -18,8 +17,6 @@ class YnlEncoder(json.JSONEncoder):
-             return list(obj)
-         return json.JSONEncoder.default(self, obj)
+@@ -611,7 +611,7 @@ void ip_md_tunnel_xmit(struct sk_buff *skb, struct ne=
+t_device *dev,
+ 	}
+ 	ip_tunnel_init_flow(&fl4, proto, key->u.ipv4.dst, key->u.ipv4.src,
+ 			    tunnel_id_to_key32(key->tun_id),
+-			    tos & INET_DSCP_MASK, dev_net(dev), 0, skb->mark,
++			    tos & INET_DSCP_MASK, tunnel->net, 0, skb->mark,
+ 			    skb_get_hash(skb), key->flow_flags);
 =20
--def handle_timeout(sig, frame):
--    exit(0)
+ 	if (!tunnel_hlen)
+@@ -774,7 +774,7 @@ void ip_tunnel_xmit(struct sk_buff *skb, struct net_d=
+evice *dev,
 =20
- def main():
-     description =3D """
-@@ -84,8 +81,7 @@ def main():
-         ynl.ntf_subscribe(args.ntf)
+ 	ip_tunnel_init_flow(&fl4, protocol, dst, tnl_params->saddr,
+ 			    tunnel->parms.o_key, tos & INET_DSCP_MASK,
+-			    dev_net(dev), READ_ONCE(tunnel->parms.link),
++			    tunnel->net, READ_ONCE(tunnel->parms.link),
+ 			    tunnel->fwmark, skb_get_hash(skb), 0);
 =20
-     if args.sleep:
--        signal.signal(signal.SIGALRM, handle_timeout)
--        signal.alarm(args.sleep)
-+        time.sleep(args.sleep)
-=20
-     if args.list_ops:
-         for op_name, op in ynl.ops.items():
-@@ -110,8 +106,8 @@ def main():
-         exit(1)
-=20
-     if args.ntf:
--        for msg in ynl.check_ntf():
--            output(msg)
-+        ynl.check_ntf()
-+        output(ynl.async_msg_queue)
-=20
-=20
- if __name__ =3D=3D "__main__":
-diff --git a/tools/net/ynl/lib/ynl.py b/tools/net/ynl/lib/ynl.py
-index 92f85698c50e..c22c22bf2cb7 100644
---- a/tools/net/ynl/lib/ynl.py
-+++ b/tools/net/ynl/lib/ynl.py
-@@ -12,8 +12,6 @@ import sys
- import yaml
- import ipaddress
- import uuid
--import queue
--import time
-=20
- from .nlspec import SpecFamily
-=20
-@@ -491,7 +489,7 @@ class YnlFamily(SpecFamily):
-         self.sock.setsockopt(Netlink.SOL_NETLINK, Netlink.NETLINK_GET_ST=
-RICT_CHK, 1)
-=20
-         self.async_msg_ids =3D set()
--        self.async_msg_queue =3D queue.Queue()
-+        self.async_msg_queue =3D []
-=20
-         for msg in self.msgs.values():
-             if msg.is_async:
-@@ -905,39 +903,32 @@ class YnlFamily(SpecFamily):
-=20
-         msg['name'] =3D op['name']
-         msg['msg'] =3D attrs
--        self.async_msg_queue.put(msg)
-+        self.async_msg_queue.append(msg)
-=20
--    def check_ntf(self, interval=3D0.1):
-+    def check_ntf(self):
-         while True:
-             try:
-                 reply =3D self.sock.recv(self._recv_size, socket.MSG_DON=
-TWAIT)
--                nms =3D NlMsgs(reply)
--                self._recv_dbg_print(reply, nms)
--                for nl_msg in nms:
--                    if nl_msg.error:
--                        print("Netlink error in ntf!?", os.strerror(-nl_=
-msg.error))
--                        print(nl_msg)
--                        continue
--                    if nl_msg.done:
--                        print("Netlink done while checking for ntf!?")
--                        continue
-+            except BlockingIOError:
-+                return
-=20
--                    decoded =3D self.nlproto.decode(self, nl_msg, None)
--                    if decoded.cmd() not in self.async_msg_ids:
--                        print("Unexpected msg id while checking for ntf"=
-, decoded)
--                        continue
-+            nms =3D NlMsgs(reply)
-+            self._recv_dbg_print(reply, nms)
-+            for nl_msg in nms:
-+                if nl_msg.error:
-+                    print("Netlink error in ntf!?", os.strerror(-nl_msg.=
-error))
-+                    print(nl_msg)
-+                    continue
-+                if nl_msg.done:
-+                    print("Netlink done while checking for ntf!?")
-+                    continue
-=20
--                    self.handle_ntf(decoded)
--            except BlockingIOError:
--                pass
-+                decoded =3D self.nlproto.decode(self, nl_msg, None)
-+                if decoded.cmd() not in self.async_msg_ids:
-+                    print("Unexpected msg id done while checking for ntf=
-", decoded)
-+                    continue
-=20
--            try:
--                yield self.async_msg_queue.get_nowait()
--            except queue.Empty:
--                try:
--                    time.sleep(interval)
--                except KeyboardInterrupt:
--                    return
-+                self.handle_ntf(decoded)
-=20
-     def operation_do_attributes(self, name):
-       """
+ 	if (ip_tunnel_encap(skb, &tunnel->encap, &protocol, &fl4) < 0)
 --=20
 2.47.0
 
