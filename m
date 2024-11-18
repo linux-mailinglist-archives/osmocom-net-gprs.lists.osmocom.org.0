@@ -2,75 +2,75 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id B15FA9D9457
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 26 Nov 2024 10:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D43CC9D9458
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 26 Nov 2024 10:26:50 +0100 (CET)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 488DB191B60;
-	Tue, 26 Nov 2024 09:26:47 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id BD134191B8F;
+	Tue, 26 Nov 2024 09:26:50 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id T7xYKRw3ipxg; Tue, 26 Nov 2024 09:26:46 +0000 (UTC)
+ id d021OeOar7CH; Tue, 26 Nov 2024 09:26:50 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id AEF2C191B50;
-	Tue, 26 Nov 2024 09:26:45 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 0D4F6191B72;
+	Tue, 26 Nov 2024 09:26:48 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 0B92E38A1A94
-	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 18 Nov 2024 14:33:25 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 685E838A1A94
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 18 Nov 2024 14:33:33 +0000 (UTC)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id E6AC3182415
-	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 18 Nov 2024 14:33:24 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 4F6DA182446
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 18 Nov 2024 14:33:33 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id SW_C6p27XU86 for <osmocom-net-gprs@lists.osmocom.org>;
- Mon, 18 Nov 2024 14:33:24 +0000 (UTC)
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-	by mail.osmocom.org (Postfix) with ESMTPS id 48CF818240F
-	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 18 Nov 2024 14:33:23 +0000 (UTC)
-Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-7e6d04f74faso2786923a12.1
-        for <osmocom-net-gprs@lists.osmocom.org>; Mon, 18 Nov 2024 06:33:23 -0800 (PST)
+ id xqyLOtg0XlkP for <osmocom-net-gprs@lists.osmocom.org>;
+ Mon, 18 Nov 2024 14:33:32 +0000 (UTC)
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+	by mail.osmocom.org (Postfix) with ESMTPS id 8F473182441
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 18 Nov 2024 14:33:31 +0000 (UTC)
+Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-2ea8b039ddcso522513a91.0
+        for <osmocom-net-gprs@lists.osmocom.org>; Mon, 18 Nov 2024 06:33:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731940402; x=1732545202; darn=lists.osmocom.org;
+        d=gmail.com; s=20230601; t=1731940410; x=1732545210; darn=lists.osmocom.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IrCaarQptqoPnVIGF6Rw6t9hI+Rf9ZxQVNSlbFD1HYQ=;
-        b=fLUPBvCl5H04153LXPAW7vRBP8PCRWCx2edEyTNSxf8kSSve5T9XdxND/+3q9MkyPV
-         3xtVWPQFLI8cU9OLGCnHSeSdmcMTjfWOKvtcc5cMMuSnZoQlx6ewfV083FIatrg8xN5N
-         QyJcGtJC9R5nKA5YRDswUroD+kChcXK4ZnIHtFmtBDqoRQauYP7X9EsuhBBCL7Qemnhp
-         N0UcksI7JnU3qpePtlrUvsV802q36iLfUnpOQDWo50Pco1jycXFIp0B4S6YkxUJo4F6Z
-         Qc4OxQvO3+IMMt1X+RfzEzRcCXKv/5sMfDorG/tFKDEDRb0QHwtfiis59GWhzoIDFK4V
-         bFqA==
+        bh=XYvUg1T5qt/avqeB8QMtp6GEfshi9DuIrKXfHc0mOQw=;
+        b=eGyC+yihCoD72LUGE9DQTn5lN1RYLgjqLZSd1lk9xiASeTBVvzW9NvJyER0B2G5NhN
+         xfgfuzZMzJbkAPSlt1zZlvCJHpQr5h4CPmIvWviQOid8Z3TdjXMWvvmaLHsR8EueATvc
+         0zrL6uyD6o1kBe81pruQGLpxfKD4bRTxGLWZq2tJhCEvLei8S7fNHh2kWirt1PwukvlZ
+         BT+mPlZqUfGJSwRorf/lFBN4pULDqowaZ2H1suuA42nEYcOz92LjtwS09c4yR6o6TjNx
+         DOeStL1heGFGKnMRTgQIbrwYCzierluYsuuk98gXv+TIHg3da2JUq1dEYODtvnCnz5TI
+         m5YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731940402; x=1732545202;
+        d=1e100.net; s=20230601; t=1731940410; x=1732545210;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IrCaarQptqoPnVIGF6Rw6t9hI+Rf9ZxQVNSlbFD1HYQ=;
-        b=xPprbT1gHwH3HE7q/4k+7dRwMiMCIY41n3KJKCM7JkiO49UUlG8RUjUFL7v2i9kYUU
-         CBqYa8a4a1C7JAOpPu4H/etvv6gVtXf56I33R7syDyAKORFiP0rzWKyiYffINMglSC3Z
-         00bnGRvOYSTyBxltJXeXQOMUH0eHa4gmh+Lo6qYKOGQDp8VwCqUFfFBS5q24Ug1I1xH2
-         9HWLG2KHzXlPfD7pha5TW+DC/H1utqVsbZ9F9j3wA2lB7LyHdNlSVN1wWnTj9PpF9/GL
-         aMnJGI+Q1KQ05cgo64v4LEtGzACq24Gvdtuas34Z5P49hCp3Ha40Gs61s+pAqCIbsvjX
-         g6vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXe4KHi9nVH/ENlAs+8y0SbcdHo0qWBJeN/08nTRTWoonnlh8i5nzKGwQBzJ7pSgQsh49D1RuFYq5QOwtLKL/uB@lists.osmocom.org
-X-Gm-Message-State: AOJu0Yw47x7aOMKo4sqBVAml8BkxCHUHn+Ahu1VQ/35lBo4VhphZK2cM
-	p2MZAyHbsTiZdEQWVawIDUhAmU5eX9UxpEkmJMN7s1gyWtqgS/OD
-X-Google-Smtp-Source: AGHT+IGzbRz7s9CT801paPWPDasO606/jlaO2UpnfJMF7tMlUetZpF6RTCqXaMFrG8I7wghYj9+EFA==
-X-Received: by 2002:a17:90b:3c4e:b0:2ea:9ccb:d206 with SMTP id 98e67ed59e1d1-2ea9ccbd33amr1559048a91.8.1731940401993;
-        Mon, 18 Nov 2024 06:33:21 -0800 (PST)
+        bh=XYvUg1T5qt/avqeB8QMtp6GEfshi9DuIrKXfHc0mOQw=;
+        b=mZpcG76gG01i0/+OyottWCpnqX1M2JrEACpxPUR+/ieDcxiMW8P5pof/pKvTgWMqZC
+         PUHZzLlgEx8gMyjwsWItCYLjPQ1em2PsOVSkVCC8k2/XAcrqtQA7u83hxqQqzLUuUpfi
+         hP+4tSNOqEge6blYW8gtVSyOpJVa1l2EsRBRNzwgQFRtdHT74X18Q5t636tFzypQmX1r
+         dXm1HMxVHIenx50yIfwn0jRRZsHGgD3pw9Q2SGV7FSnLnz1T2AEqpod3sKVLJGLouyTa
+         sekitQ0/cYI2RdEsyHRIBBpaXoCNJiyVOS+scY2v8dQ2YjHX9/UfE05WQGqmktHgp3Tp
+         mU6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVRl374GmZMTYfyxkFuTTC3PikFmM0SuV6ErdcANlgCNwN2aT1Z66P3/8XMW1j2AjQagZVkjIM9BPWPEM7rgSB7@lists.osmocom.org
+X-Gm-Message-State: AOJu0YzetwxC3Z1Ip3F2FPtQj76P2hoyMXF8mWihWU5St5LR+f6kOG6J
+	txo/03F3c/kMDrh7tn141KRcTVsIp++ugecn05k09zpoNXIcR0Fc
+X-Google-Smtp-Source: AGHT+IHPKnavfiiQCNCjr1NezmwMnBacyheV8zyl63QTPg6m3L868R+a4UJrSv5jLV5RsxhfHcRfpA==
+X-Received: by 2002:a17:90b:2687:b0:2ea:3f34:f1a0 with SMTP id 98e67ed59e1d1-2ea3f34f38amr9406817a91.30.1731940410205;
+        Mon, 18 Nov 2024 06:33:30 -0800 (PST)
 Received: from nova-ws.. ([103.167.140.11])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ea81b0e2fasm1616926a91.52.2024.11.18.06.33.14
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ea81b0e2fasm1616926a91.52.2024.11.18.06.33.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2024 06:33:21 -0800 (PST)
+        Mon, 18 Nov 2024 06:33:29 -0800 (PST)
 From: Xiao Liang <shaw.leon@gmail.com>
 To: netdev@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	Kuniyuki Iwashima <kuniyu@amazon.com>,
 	Jakub Kicinski <kuba@kernel.org>,
 	Donald Hunter <donald.hunter@gmail.com>
-Subject: [PATCH net-next v4 1/5] net: ip_tunnel: Build flow in underlay net namespace
-Date: Mon, 18 Nov 2024 22:32:40 +0800
-Message-ID: <20241118143244.1773-2-shaw.leon@gmail.com>
+Subject: [PATCH net-next v4 2/5] rtnetlink: Lookup device in target netns when creating link
+Date: Mon, 18 Nov 2024 22:32:41 +0800
+Message-ID: <20241118143244.1773-3-shaw.leon@gmail.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241118143244.1773-1-shaw.leon@gmail.com>
 References: <20241118143244.1773-1-shaw.leon@gmail.com>
@@ -79,14 +79,14 @@ Content-Transfer-Encoding: quoted-printable
 X-MailFrom: shaw.leon@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: XHCCGLE75WPPYPUALZCOMJSVFQYTWRQC
-X-Message-ID-Hash: XHCCGLE75WPPYPUALZCOMJSVFQYTWRQC
+Message-ID-Hash: GXKQA47427GJURTOJJAVLJJDRWHCPAAI
+X-Message-ID-Hash: GXKQA47427GJURTOJJAVLJJDRWHCPAAI
 X-Mailman-Approved-At: Tue, 26 Nov 2024 09:26:34 +0000
 CC: "David S. Miller" <davem@davemloft.net>, David Ahern <dsahern@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Ido Schimmel <idosch@nvidia.com>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Shuah Khan <shuah@kernel.org>, Jiri Pirko <jiri@resnulli.us>, Hangbin Liu <liuhangbin@gmail.com>, linux-rdma@vger.kernel.org, linux-can@vger.kernel.org, osmocom-net-gprs@lists.osmocom.org, bpf@vger.kernel.org, linux-ppp@vger.kernel.org, wireguard@lists.zx2c4.com, linux-wireless@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org, bridge@lists.linux.dev, linux-wpan@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/XHCCGLE75WPPYPUALZCOMJSVFQYTWRQC/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/GXKQA47427GJURTOJJAVLJJDRWHCPAAI/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -94,47 +94,54 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Build IPv4 flow in underlay net namespace, where encapsulated packets
-are routed.
+When creating link, lookup for existing device in target net namespace
+instead of current one.
+For example, two links created by:
+
+  # ip link add dummy1 type dummy
+  # ip link add netns ns1 dummy1 type dummy
+
+should have no conflict since they are in different namespaces.
 
 Signed-off-by: Xiao Liang <shaw.leon@gmail.com>
 ---
- net/ipv4/ip_tunnel.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ net/core/rtnetlink.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/net/ipv4/ip_tunnel.c b/net/ipv4/ip_tunnel.c
-index 25505f9b724c..09b73acf037a 100644
---- a/net/ipv4/ip_tunnel.c
-+++ b/net/ipv4/ip_tunnel.c
-@@ -294,7 +294,7 @@ static int ip_tunnel_bind_dev(struct net_device *dev)
+diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
+index dd142f444659..bc9d0ecd3a1e 100644
+--- a/net/core/rtnetlink.c
++++ b/net/core/rtnetlink.c
+@@ -3846,20 +3846,26 @@ static int __rtnl_newlink(struct sk_buff *skb, st=
+ruct nlmsghdr *nlh,
+ {
+ 	struct nlattr ** const tb =3D tbs->tb;
+ 	struct net *net =3D sock_net(skb->sk);
++	struct net *device_net;
+ 	struct net_device *dev;
+ 	struct ifinfomsg *ifm;
+ 	bool link_specified;
 =20
- 		ip_tunnel_init_flow(&fl4, iph->protocol, iph->daddr,
- 				    iph->saddr, tunnel->parms.o_key,
--				    iph->tos & INET_DSCP_MASK, dev_net(dev),
-+				    iph->tos & INET_DSCP_MASK, tunnel->net,
- 				    tunnel->parms.link, tunnel->fwmark, 0, 0);
- 		rt =3D ip_route_output_key(tunnel->net, &fl4);
-=20
-@@ -611,7 +611,7 @@ void ip_md_tunnel_xmit(struct sk_buff *skb, struct ne=
-t_device *dev,
- 	}
- 	ip_tunnel_init_flow(&fl4, proto, key->u.ipv4.dst, key->u.ipv4.src,
- 			    tunnel_id_to_key32(key->tun_id),
--			    tos & INET_DSCP_MASK, dev_net(dev), 0, skb->mark,
-+			    tos & INET_DSCP_MASK, tunnel->net, 0, skb->mark,
- 			    skb_get_hash(skb), key->flow_flags);
-=20
- 	if (!tunnel_hlen)
-@@ -774,7 +774,7 @@ void ip_tunnel_xmit(struct sk_buff *skb, struct net_d=
-evice *dev,
-=20
- 	ip_tunnel_init_flow(&fl4, protocol, dst, tnl_params->saddr,
- 			    tunnel->parms.o_key, tos & INET_DSCP_MASK,
--			    dev_net(dev), READ_ONCE(tunnel->parms.link),
-+			    tunnel->net, READ_ONCE(tunnel->parms.link),
- 			    tunnel->fwmark, skb_get_hash(skb), 0);
-=20
- 	if (ip_tunnel_encap(skb, &tunnel->encap, &protocol, &fl4) < 0)
++	/* When creating, lookup for existing device in target net namespace */
++	device_net =3D (nlh->nlmsg_flags & NLM_F_CREATE) &&
++		     (nlh->nlmsg_flags & NLM_F_EXCL) ?
++		     tgt_net : net;
++
+ 	ifm =3D nlmsg_data(nlh);
+ 	if (ifm->ifi_index > 0) {
+ 		link_specified =3D true;
+-		dev =3D __dev_get_by_index(net, ifm->ifi_index);
++		dev =3D __dev_get_by_index(device_net, ifm->ifi_index);
+ 	} else if (ifm->ifi_index < 0) {
+ 		NL_SET_ERR_MSG(extack, "ifindex can't be negative");
+ 		return -EINVAL;
+ 	} else if (tb[IFLA_IFNAME] || tb[IFLA_ALT_IFNAME]) {
+ 		link_specified =3D true;
+-		dev =3D rtnl_dev_get(net, tb);
++		dev =3D rtnl_dev_get(device_net, tb);
+ 	} else {
+ 		link_specified =3D false;
+ 		dev =3D NULL;
 --=20
 2.47.0
 
