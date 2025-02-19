@@ -2,79 +2,79 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18ABCA4349B
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 25 Feb 2025 06:36:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39E45A4349C
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 25 Feb 2025 06:36:22 +0100 (CET)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 04D7B1F3CD9;
-	Tue, 25 Feb 2025 05:36:21 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 238C61F3CF4;
+	Tue, 25 Feb 2025 05:36:22 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id sa8K0yK8iWGX; Tue, 25 Feb 2025 05:36:20 +0000 (UTC)
+ id owzp_Q-Wt-H8; Tue, 25 Feb 2025 05:36:21 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id A4B821F3C3C;
-	Tue, 25 Feb 2025 05:36:15 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 7CDEC1F3C51;
+	Tue, 25 Feb 2025 05:36:16 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id A8E0838A0058
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:35 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id E264C38A0058
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:43 +0000 (UTC)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 902BE1ED366
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:35 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id CA5A11ED38C
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:43 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id A9OToHFSMSqe for <osmocom-net-gprs@lists.osmocom.org>;
- Wed, 19 Feb 2025 12:52:34 +0000 (UTC)
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-	by mail.osmocom.org (Postfix) with ESMTPS id D74D41ED361
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:34 +0000 (UTC)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-220d398bea9so93019915ad.3
-        for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 04:52:34 -0800 (PST)
+ id VaSmf5MqDVXZ for <osmocom-net-gprs@lists.osmocom.org>;
+ Wed, 19 Feb 2025 12:52:43 +0000 (UTC)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+	by mail.osmocom.org (Postfix) with ESMTPS id 481531ED387
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:43 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-2fbfc9ff0b9so10127195a91.2
+        for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 04:52:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739969553; x=1740574353; darn=lists.osmocom.org;
+        d=gmail.com; s=20230601; t=1739969562; x=1740574362; darn=lists.osmocom.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=14Wr2OB3TipJqOg2i3ltQmzAxlBlaCt+7msGZ+i4teQ=;
-        b=YVvTwgdeG7+zM2t5aU7p2OIaaaYqcTsV+e0kwSYO88uavmAHvItontRah+uJrbt3to
-         miwVp4IqugJyox7KhYGYtFugt/HEa0bjh5dfBIiP0QNwhxCSdFUmtvDeSx4aBX+sPWsh
-         PuEmLxCRWNS2IF07bCtpM6W48lIIj7XBV8LQbefxDuvp17uwXjDh4sSfCMeR7NfVanqb
-         H9VwfnuIqiVg35KoVkO/y9p3I1qTPtUDPHq4TONW3u9EvCJzu6d3ysQ7ygiWwMA4q9As
-         R11C62DaNNbSARVFJCysmtkr+PuMBErQMK93/3WkyG6mb1beyEuXbTdsAu+hNzUF2mdg
-         IquA==
+        bh=h02RoEg/neSt/B+WrRVdIe6OiEkHR+ibxktqvHMDB4Y=;
+        b=DbPsCEKlT+DgzKu7+SBh/O8VzuVXCrRWY+DgrtQWtFOCJCIUfOaB/RxWgSFTWd6b2r
+         U/9Wgm/pDC/ZAU2iXBEOexNrqptyAtt0dLsI5jz8jravmh4sjtH5l7ZSTUwLSls1kNe7
+         dM0VRHbeY+rgdoy6Y5hcMOjLb/GKsI8LADueKVONBzn4aQDTRS2skOvpfx98ZsTtv/i9
+         IFvVV8Hh2d0ahi4gGNxyKGlencMHKpFUnF54v/UAb65miPXkGvxxCszxN07NTygqhbow
+         373XwV3j0mUgWAyuSAnCXwHq3P5m4PkKlkP3EvEYEoEnkHKC+8HUs463OItZGqmmH/3U
+         uj6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739969553; x=1740574353;
+        d=1e100.net; s=20230601; t=1739969562; x=1740574362;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=14Wr2OB3TipJqOg2i3ltQmzAxlBlaCt+7msGZ+i4teQ=;
-        b=wKQAa+WVjmifVXVfW+BDY89Z2VoQ+DiSaQe3ZmnVkbSxkKO71jlsOpSYVkRc6HcQR9
-         +0rfTzocgVP3CL2DCrnglnN9kJuMQcvGdNyqXRN4OQIfi4CoqQ6gUJd+KRT1kMTTA167
-         3Iz8PFAP7H1LwDCF0oOQoN9k5Qm6nu9ESnwAW9DfnE3kDvDXgoQErBWt/dwGbRB+pIRH
-         Yd3E1RS0Jcel/UlJwkncewzwgvJHatRBiW3vCjQEl2ubkunJwiVFxPQh3NakptR8fdTY
-         mzKab3V7tPMcSBFRs2iy3phoWOozQgXqgPg96bcN8VRiuMtgBHTGSk6WDmzMfebUYyG8
-         ogIg==
-X-Forwarded-Encrypted: i=1; AJvYcCX6NvyeoXPNv4KoWl9dNGaV7fmvc71hBUj04Cyyv/dThDyomj15kD1ZsFKXUQykKcQk/AMMJpfPAl4NXg6TP1Si@lists.osmocom.org
-X-Gm-Message-State: AOJu0Yz1xNZLw2VX0yBnn421Iy8y8KAiJ/Pdmbj+P4YqKf2YWtkAz/vn
-	aaidzA4q9XxRHxpRzQtwBHgkaV0YwmtHi1hf0ARoAKmSNXodXAUK
-X-Gm-Gg: ASbGncvCUpWoF4IT4q+TsMqWJmKAgU0PGjeqrjO05Mguo7UqSVDzH2AWOBQTRBLy3oM
-	r8B7jGEh5VQN/zsg9Zl3U6GBpuS23DMmALV7juFavE9QtlSgFkWx8Xgmt+btQnBG9Ai6mPulTXz
-	mmnMi06ZYauI8H88gg4Ow4VWGHfbOq6WQam5BWd/bBDDvX4cEhfp28ntQti+7qfey9AaaagFE5k
-	6QU78ElDeQF8NmFXIXYEoKxBjBGoqBejUoJmJ/ueutyLL3wO5mG+UcOxwnFSBvRxaZFA+NVQSkx
-	fkMF9w==
-X-Google-Smtp-Source: AGHT+IE1TMZXqzhrHhhVSaIMtrPumBVmrpPdtKnId51KbxVQ9NXXxJP9rSJ1kBfk/uhAUxck4sNSxA==
-X-Received: by 2002:a17:903:1a2d:b0:220:c813:dfd1 with SMTP id d9443c01a7336-221040bd77bmr298031085ad.36.1739969552787;
-        Wed, 19 Feb 2025 04:52:32 -0800 (PST)
+        bh=h02RoEg/neSt/B+WrRVdIe6OiEkHR+ibxktqvHMDB4Y=;
+        b=KAFoeQVn5iQ5pZkLknZIERHA8oGnZD8AmfnldhNLHx2XdaMCOySZmDuZl/kK9ShVyH
+         kstS9MMxmPItWfj9MGejTo/dw5Ix5O9zYXFqCoDvGOrdslI1FcWtta8hl0nW9vTeOKHH
+         owpDlUztpQpqDJkh3VOx3SLEc0ibKMclrKe7r1Lzel5m178w8pfTguOVoRjnQ3iAcSaq
+         1XAxLs73NLYodnqv678bWwQc5SJifzl/6CtjPmYc63txsRXJqcKFe3CFnkW7aa0jqnnF
+         qvI2/O35NbqiB5oIc0Vyqj11KokRZ7Nd5CbiQuEYliVqTffrdLD3tGYWOyD/83mdkGXW
+         gFgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW8Jqc2TrkpRkAHDcQDiRGJsImcMRnHjhKo/oFkgaAvdq1uLVFszPE2XWA4JlkCR86jDrwGPLTHMBdasDPwuzl1@lists.osmocom.org
+X-Gm-Message-State: AOJu0YzYo2+hqNaqAPf0bjvo+V3mnUd5wgxVYy2aenzq5mgemobp5E8V
+	mW4UQ/fMp1bRh1qN6aPLsLnd/YQNN9r1DKVAHlPhLLcKAc2HvH4V
+X-Gm-Gg: ASbGncvCrpdlymvCfitbxJl4HmS9HZ2n1lqNAXywlq1AMePx93Syp1sOjhWi1HHlD5Q
+	HQzLuWeMBvlsYy1MHkfH4BpAVnEJSmhTM2mSmvXlhJq8Fo8Gm5ElWg9E4SgqgFJNGjjiRz4Z/tr
+	liZKkWGoChJE4lu14d2QPdDSaexacJLEas/nbgtonSI33nNXbR9ivHCpz/BZXpBP6KICcHsWmVB
+	eoYOO0EyccnyUvHMe/Qw6gmOEKK7tjG+6H09IR2nGdlYhgAET9jpvdMKQXhi5Frjkjtr0Al75QS
+	2kMk6g==
+X-Google-Smtp-Source: AGHT+IHPqeS3VaEOgvZ8Tx3PUVaGMIEIbKpPjORqTeM6yeMS+BbAs1PKrGLT5/zDq05f9NI0VnGgXw==
+X-Received: by 2002:a17:90b:2887:b0:2fa:1a23:c01d with SMTP id 98e67ed59e1d1-2fc40f26600mr24663034a91.21.1739969561721;
+        Wed, 19 Feb 2025 04:52:41 -0800 (PST)
 Received: from ws.. ([103.167.140.11])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d536436fsm103427175ad.64.2025.02.19.04.52.24
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d536436fsm103427175ad.64.2025.02.19.04.52.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 04:52:32 -0800 (PST)
+        Wed, 19 Feb 2025 04:52:41 -0800 (PST)
 From: Xiao Liang <shaw.leon@gmail.com>
 To: netdev@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	Kuniyuki Iwashima <kuniyu@amazon.com>,
 	Jakub Kicinski <kuba@kernel.org>
-Subject: [PATCH net-next v10 11/13] rtnetlink: Create link directly in target net namespace
-Date: Wed, 19 Feb 2025 20:50:37 +0800
-Message-ID: <20250219125039.18024-12-shaw.leon@gmail.com>
+Subject: [PATCH net-next v10 12/13] selftests: net: Add python context manager for netns entering
+Date: Wed, 19 Feb 2025 20:50:38 +0800
+Message-ID: <20250219125039.18024-13-shaw.leon@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250219125039.18024-1-shaw.leon@gmail.com>
 References: <20250219125039.18024-1-shaw.leon@gmail.com>
@@ -83,14 +83,14 @@ Content-Transfer-Encoding: quoted-printable
 X-MailFrom: shaw.leon@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: DEHYD6UYAICHC2IDSFZWD3ACY2OEVGZO
-X-Message-ID-Hash: DEHYD6UYAICHC2IDSFZWD3ACY2OEVGZO
+Message-ID-Hash: RZ5LZLAGIUHDH4YDE5URMOPG6U7GXE4I
+X-Message-ID-Hash: RZ5LZLAGIUHDH4YDE5URMOPG6U7GXE4I
 X-Mailman-Approved-At: Tue, 25 Feb 2025 05:36:06 +0000
 CC: "David S. Miller" <davem@davemloft.net>, David Ahern <dsahern@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Shuah Khan <shuah@kernel.org>, Donald Hunter <donald.hunter@gmail.com>, Alexander Aring <alex.aring@gmail.com>, Stefan Schmidt <stefan@datenfreihafen.org>, Miquel Raynal <miquel.raynal@bootlin.com>, Steffen Klassert <steffen.klassert@secunet.com>, Herbert Xu <herbert@gondor.apana.org.au>, linux-rdma@vger.kernel.org, linux-can@vger.kernel.org, osmocom-net-gprs@lists.osmocom.org, bpf@vger.kernel.org, linux-ppp@vger.kernel.org, wireguard@lists.zx2c4.com, linux-wireless@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org, bridge@lists.linux.dev, linux-wpan@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/DEHYD6UYAICHC2IDSFZWD3ACY2OEVGZO/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/RZ5LZLAGIUHDH4YDE5URMOPG6U7GXE4I/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -98,47 +98,72 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Make rtnl_newlink_create() create device in target namespace directly.
-Avoid extra netns change when link netns is provided.
+Change netns of current thread and switch back on context exit.
+For example:
 
-Device drivers has been converted to be aware of link netns, that is not
-assuming device netns is and link netns is the same when ops->newlink()
-is called.
+    with NetNSEnter("ns1"):
+        ip("link add dummy0 type dummy")
+
+The command be executed in netns "ns1".
 
 Signed-off-by: Xiao Liang <shaw.leon@gmail.com>
 ---
- net/core/rtnetlink.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ tools/testing/selftests/net/lib/py/__init__.py |  2 +-
+ tools/testing/selftests/net/lib/py/netns.py    | 18 ++++++++++++++++++
+ 2 files changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
-index e980481bdd28..b52e610e157e 100644
---- a/net/core/rtnetlink.c
-+++ b/net/core/rtnetlink.c
-@@ -3789,8 +3789,8 @@ static int rtnl_newlink_create(struct sk_buff *skb,=
- struct ifinfomsg *ifm,
- 		name_assign_type =3D NET_NAME_ENUM;
- 	}
+diff --git a/tools/testing/selftests/net/lib/py/__init__.py b/tools/testi=
+ng/selftests/net/lib/py/__init__.py
+index 729457859316..8697bd27dc30 100644
+--- a/tools/testing/selftests/net/lib/py/__init__.py
++++ b/tools/testing/selftests/net/lib/py/__init__.py
+@@ -2,7 +2,7 @@
 =20
--	dev =3D rtnl_create_link(link_net ? : tgt_net, ifname,
--			       name_assign_type, ops, tb, extack);
-+	dev =3D rtnl_create_link(tgt_net, ifname, name_assign_type, ops, tb,
-+			       extack);
- 	if (IS_ERR(dev)) {
- 		err =3D PTR_ERR(dev);
- 		goto out;
-@@ -3810,11 +3810,6 @@ static int rtnl_newlink_create(struct sk_buff *skb=
-, struct ifinfomsg *ifm,
- 	err =3D rtnl_configure_link(dev, ifm, portid, nlh);
- 	if (err < 0)
- 		goto out_unregister;
--	if (link_net) {
--		err =3D dev_change_net_namespace(dev, tgt_net, ifname);
--		if (err < 0)
--			goto out_unregister;
--	}
- 	if (tb[IFLA_MASTER]) {
- 		err =3D do_set_master(dev, nla_get_u32(tb[IFLA_MASTER]), extack);
- 		if (err)
+ from .consts import KSRC
+ from .ksft import *
+-from .netns import NetNS
++from .netns import NetNS, NetNSEnter
+ from .nsim import *
+ from .utils import *
+ from .ynl import NlError, YnlFamily, EthtoolFamily, NetdevFamily, RtnlFa=
+mily, RtnlAddrFamily
+diff --git a/tools/testing/selftests/net/lib/py/netns.py b/tools/testing/=
+selftests/net/lib/py/netns.py
+index ecff85f9074f..8e9317044eef 100644
+--- a/tools/testing/selftests/net/lib/py/netns.py
++++ b/tools/testing/selftests/net/lib/py/netns.py
+@@ -1,9 +1,12 @@
+ # SPDX-License-Identifier: GPL-2.0
+=20
+ from .utils import ip
++import ctypes
+ import random
+ import string
+=20
++libc =3D ctypes.cdll.LoadLibrary('libc.so.6')
++
+=20
+ class NetNS:
+     def __init__(self, name=3DNone):
+@@ -29,3 +32,18 @@ class NetNS:
+=20
+     def __repr__(self):
+         return f"NetNS({self.name})"
++
++
++class NetNSEnter:
++    def __init__(self, ns_name):
++        self.ns_path =3D f"/run/netns/{ns_name}"
++
++    def __enter__(self):
++        self.saved =3D open("/proc/thread-self/ns/net")
++        with open(self.ns_path) as ns_file:
++            libc.setns(ns_file.fileno(), 0)
++        return self
++
++    def __exit__(self, exc_type, exc_value, traceback):
++        libc.setns(self.saved.fileno(), 0)
++        self.saved.close()
 --=20
 2.48.1
 
