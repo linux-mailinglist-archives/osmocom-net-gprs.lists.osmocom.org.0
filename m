@@ -1,80 +1,80 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D2C0A43499
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 25 Feb 2025 06:36:18 +0100 (CET)
-Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id E41CD1F3C7D;
-	Tue, 25 Feb 2025 05:36:17 +0000 (UTC)
-Received: from mail.osmocom.org ([127.0.0.1])
- by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id MgwB8xKpxo1C; Tue, 25 Feb 2025 05:36:17 +0000 (UTC)
-Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id EDD341F3BFF;
-	Tue, 25 Feb 2025 05:36:13 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 7520E38A0058
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:17 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85406A4349A
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 25 Feb 2025 06:36:19 +0100 (CET)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 5D4351ED30A
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:17 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 1B8581F3CA8;
+	Tue, 25 Feb 2025 05:36:19 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id qMBTOtA9mrdT for <osmocom-net-gprs@lists.osmocom.org>;
- Wed, 19 Feb 2025 12:52:16 +0000 (UTC)
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-	by mail.osmocom.org (Postfix) with ESMTPS id AF8E11ED302
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:16 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-220f4dd756eso93415025ad.3
-        for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 04:52:16 -0800 (PST)
+ id UhVKWjhHYaPC; Tue, 25 Feb 2025 05:36:18 +0000 (UTC)
+Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
+	by mail.osmocom.org (Postfix) with ESMTP id CCAEA1F3C1A;
+	Tue, 25 Feb 2025 05:36:14 +0000 (UTC)
+Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
+	by lists (Postfix) with ESMTPS id 55CBF38A0058
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:26 +0000 (UTC)
+Received: from localhost (mail.osmocom.org [127.0.0.1])
+	by mail.osmocom.org (Postfix) with ESMTP id 3DFB21ED335
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:26 +0000 (UTC)
+Received: from mail.osmocom.org ([127.0.0.1])
+ by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id NN1ZYCncOhki for <osmocom-net-gprs@lists.osmocom.org>;
+ Wed, 19 Feb 2025 12:52:25 +0000 (UTC)
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+	by mail.osmocom.org (Postfix) with ESMTPS id 89B5D1ED330
+	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 12:52:25 +0000 (UTC)
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-220bff984a0so120191825ad.3
+        for <osmocom-net-gprs@lists.osmocom.org>; Wed, 19 Feb 2025 04:52:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739969535; x=1740574335; darn=lists.osmocom.org;
+        d=gmail.com; s=20230601; t=1739969544; x=1740574344; darn=lists.osmocom.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PyZ7Oa5HQm/CyDGlUAOCpKikT+Z0UZAcxIZ482ECX9g=;
-        b=hmj6VORQR2sWeEQFd3fmpy+yNYfL90AHfVJoivHRZNrgUI4shrIF9pY0HIuRZDMmAV
-         1Ej7QUbmOiUrghD8Mmf1IBPsK7idYEr/wH2QUVoId05nlhr9Ij8ArH+mf8GxvR0/0Qyq
-         BWL+VcZIqqEtgdD/xAf5G3paWJjKTpDWxGYFlmshBmRAoG+dKrxU4x1q/gR+CNRvf/EI
-         NUnQNRIvvhdrmAo/ZwRUBi4QAzZXpUvhV9ydlntrWxuo3qeePmp56aY+CdCLnMBnHn92
-         juzo59td3BjGoIGUqjpBwIVjSsx26LCPPMT6eL9htG+Ddl/F2j3rLvxFZXt/TWrM0UD3
-         fALA==
+        bh=HRequyiks98F4TvQO/vmtwESixnPXuO1TfB2/aKs1TA=;
+        b=nCy2jSCgF46U1Sf3NWTKHS5vdDafXFL3F+c5yL8i6w9RXjiZ3aFlADEAk0pC/D2QAt
+         528E5nIQvPudPfyX36IC24e4tOXClQpGhxcBbvy9tXP5/TjlseOQyRMW0GQkz36x2uGZ
+         EwtF2J0mYpgACbzXtQ9cf3fRS5eLy1vOw4Ymx7P2KRyrm2xCVcASoWJiQkRU2Zze1/Cy
+         eIn1wi4JRDerCfSe1AgnGuHZRnsJnebWKyCXFrVbK/Wn4TtTSL2pPVFGNY3+PAU0dtpk
+         PRS4KARo2D+B5RP74McUN8WXisNEcWNbPAivwFDYVRiopiZiudbZJzrjwpvVeczMYyFa
+         fsOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739969535; x=1740574335;
+        d=1e100.net; s=20230601; t=1739969544; x=1740574344;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PyZ7Oa5HQm/CyDGlUAOCpKikT+Z0UZAcxIZ482ECX9g=;
-        b=Nz0HcapTQv8jaghRYFfCzmcpebbTOa2XXXAdrxNA1/4ZodEsh0/4QjHUtBXWYMMInJ
-         INg23W6OPz3/lidQl5CBsVPFl8zIc68dK6K7blYL/vt+ZJxU2ZSTOgIth56aGSzrjlSa
-         5AtylSp0eGCUjnONK3BbMVDkgEfzYOIR3DKy2E/Q7Hb3gTVrAJN6FRxWW8Q9PwuqyVfx
-         s6HdAK341CTMsf9P+gphTxa4AQQRo+7tIlog7P5d3IBIS+pLzW9qgJEQQs/rBKzhXINB
-         adn+r747l/MZ2KK2Nu6ifd97VZIju2loBPfhiWMc0w2TcT0wfNGCkb8KUj2F3gNlXpQG
-         5Vhg==
-X-Forwarded-Encrypted: i=1; AJvYcCWsuK675o4ph3xBfFQSv3yRo3r/3uAsHXS5dr4IYwdYPloydK3/yo51E01z7otao+R7OVsKNYddV/dGA9NfNJSN@lists.osmocom.org
-X-Gm-Message-State: AOJu0YwRkhEm9+bdCAvVafO/hAv/OFAn/tioqblQU+pJc7f4teTwPfTQ
-	1xd/A7MLJKiQ/VspWikiP5lrLmZbhRtBHYBPTmQHuiSe/LvjP9YG
-X-Gm-Gg: ASbGncsKtzBBX10f3S6GQj27Tdr8Slw5czL4hRDRMYH0plSGTboyvCIK78uVOKWjgez
-	GtzG7EVKiRZv++V3w5kxQV4wO/ckohF8bI8h0rSjmWQOEaeWyK+dqEzMm9dlMK+xsD0ajXP5IRI
-	FSDa9QLOI7gAnMl8xLcIsYKIWfGNu5FS+kFx8qXCCbfSuhW5hCZP04xAYiuu/sDYI/PKNw/SAvN
-	WD3nEP1at9j5+taP03KkwYXH8pmlCdjXSRyCKsa0F4hWlPseYiw5uVEPWJ5DabsdNPzRozwyT2S
-	oVFGhg==
-X-Google-Smtp-Source: AGHT+IGEFP67zSY2isKHwZ8c/HiTSEQrpqN9J90h0hy0pUrJ6TwQBaUnsvMftR+A8p8DsBy8+Vg8gQ==
-X-Received: by 2002:a17:902:d502:b0:21f:dc3:890e with SMTP id d9443c01a7336-221040255fcmr244598235ad.18.1739969534802;
-        Wed, 19 Feb 2025 04:52:14 -0800 (PST)
+        bh=HRequyiks98F4TvQO/vmtwESixnPXuO1TfB2/aKs1TA=;
+        b=JA4AePfKP9GZBbJTuUlg3PIufSCMaQWE8WAXyuzYOKAEuo53X3z4ZNI0lkPDY6abiV
+         zhjGSXBZLLOn/6J80y/XnckRmibDvL5si1i2Ac7WdJkrf0a8ljlvUfoZcQMEgL9gRa2h
+         r5bKHHoV90gueVlaAL9jXoSYGu3p2gsSCEXtB15+Z4E4niEDDLR9vG1SOL95kycIeW87
+         BSkBf2rSWOszT4e6eZD/1M6W4Vh7pI7YBaw/1eeq7rTEhjuC3tFXvlaEVnLynIk+9ydh
+         eUDu7/IZXn6N7Ha8c4rcG2OmQQeL38gnPKGzna/iX+6kUSihyej6RkEfw3UEz/P/h41U
+         XOng==
+X-Forwarded-Encrypted: i=1; AJvYcCXZHZ2+79KVUigP1vEDmFTgCga+adPAfhIViT7/ngNxB+9I8atDQvh9Qj+2z+Z79OBUHKS1C2kuEjEAwGXz+4w+@lists.osmocom.org
+X-Gm-Message-State: AOJu0YznvYyVO5EScPMuwznZLcevItjeY1bO+/PbuGR+mcKu4DEQQ0uU
+	kTatwb/zFGYjbFlpqg6YvDu4RAr+WkHcacEUjOvFodC3JlkQtcjn
+X-Gm-Gg: ASbGncsAQZ82M430IVcKrkCgDdJwzctcbpKz5IqcZXw/AuVXQdqL3gLEKpo7BFOTZmk
+	V/ih39BvemYPUu95sU2O4jlvDeS9rja+ata0bCo8uM6ezkDrEU/WuSPFFVCsZa55rAGhBvpPD07
+	mxqUeq+XSWlhEVp0VAYDpT9SokpBtv2YjJ5YPt8BvJrGcploWwcxkCgFv/diZjwg6duehwgIWbK
+	AHB+57coDld5CtNhegD/c9myo/q+QE5NpZOaedOfOszYzn7ZtMrrQpX2yrWojsDJZauWGVooJ/G
+	1UTrwQ==
+X-Google-Smtp-Source: AGHT+IHnb5v62m0BvDxfIowP9iMNtE/Y7pYhM/eIGIlagffbyppVP0uCqTnvfVFz3C1LICvyxAmpug==
+X-Received: by 2002:a17:902:e841:b0:21f:564:80a4 with SMTP id d9443c01a7336-221040a9a0emr294098225ad.33.1739969543796;
+        Wed, 19 Feb 2025 04:52:23 -0800 (PST)
 Received: from ws.. ([103.167.140.11])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d536436fsm103427175ad.64.2025.02.19.04.52.06
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d536436fsm103427175ad.64.2025.02.19.04.52.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 04:52:14 -0800 (PST)
+        Wed, 19 Feb 2025 04:52:23 -0800 (PST)
 From: Xiao Liang <shaw.leon@gmail.com>
 To: netdev@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	Kuniyuki Iwashima <kuniyu@amazon.com>,
 	Jakub Kicinski <kuba@kernel.org>
-Subject: [PATCH net-next v10 09/13] net: xfrm: Use link netns in newlink() of rtnl_link_ops
-Date: Wed, 19 Feb 2025 20:50:35 +0800
-Message-ID: <20250219125039.18024-10-shaw.leon@gmail.com>
+Subject: [PATCH net-next v10 10/13] rtnetlink: Remove "net" from newlink params
+Date: Wed, 19 Feb 2025 20:50:36 +0800
+Message-ID: <20250219125039.18024-11-shaw.leon@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250219125039.18024-1-shaw.leon@gmail.com>
 References: <20250219125039.18024-1-shaw.leon@gmail.com>
@@ -83,14 +83,14 @@ Content-Transfer-Encoding: quoted-printable
 X-MailFrom: shaw.leon@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: BUFQYZBXCUHWNZ57UIRQWZDJLZ2UA5TM
-X-Message-ID-Hash: BUFQYZBXCUHWNZ57UIRQWZDJLZ2UA5TM
+Message-ID-Hash: HQZVCXQWSWT5W7H6AMUI3DPI3M2A42G3
+X-Message-ID-Hash: HQZVCXQWSWT5W7H6AMUI3DPI3M2A42G3
 X-Mailman-Approved-At: Tue, 25 Feb 2025 05:36:06 +0000
 CC: "David S. Miller" <davem@davemloft.net>, David Ahern <dsahern@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Shuah Khan <shuah@kernel.org>, Donald Hunter <donald.hunter@gmail.com>, Alexander Aring <alex.aring@gmail.com>, Stefan Schmidt <stefan@datenfreihafen.org>, Miquel Raynal <miquel.raynal@bootlin.com>, Steffen Klassert <steffen.klassert@secunet.com>, Herbert Xu <herbert@gondor.apana.org.au>, linux-rdma@vger.kernel.org, linux-can@vger.kernel.org, osmocom-net-gprs@lists.osmocom.org, bpf@vger.kernel.org, linux-ppp@vger.kernel.org, wireguard@lists.zx2c4.com, linux-wireless@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org, bridge@lists.linux.dev, linux-wpan@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/BUFQYZBXCUHWNZ57UIRQWZDJLZ2UA5TM/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/HQZVCXQWSWT5W7H6AMUI3DPI3M2A42G3/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -98,55 +98,55 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-When link_net is set, use it as link netns instead of dev_net(). This
-prepares for rtnetlink core to create device in target netns directly,
-in which case the two namespaces may be different.
+Now that devices have been converted to use the specific netns instead
+of ambiguous "net", let's remove it from newlink parameters.
 
 Signed-off-by: Xiao Liang <shaw.leon@gmail.com>
 ---
- net/xfrm/xfrm_interface_core.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ include/net/rtnetlink.h | 2 --
+ net/core/rtnetlink.c    | 6 ------
+ 2 files changed, 8 deletions(-)
 
-diff --git a/net/xfrm/xfrm_interface_core.c b/net/xfrm/xfrm_interface_cor=
-e.c
-index 5659a6cadd51..622445f041d3 100644
---- a/net/xfrm/xfrm_interface_core.c
-+++ b/net/xfrm/xfrm_interface_core.c
-@@ -242,10 +242,9 @@ static void xfrmi_dev_free(struct net_device *dev)
- 	gro_cells_destroy(&xi->gro_cells);
- }
+diff --git a/include/net/rtnetlink.h b/include/net/rtnetlink.h
+index b22a106621fb..ec65a8cebb99 100644
+--- a/include/net/rtnetlink.h
++++ b/include/net/rtnetlink.h
+@@ -72,7 +72,6 @@ static inline int rtnl_msg_family(const struct nlmsghdr=
+ *nlh)
+ /**
+  * struct rtnl_newlink_params - parameters of rtnl_link_ops::newlink()
+  *
+- * @net: Netns of interest
+  * @src_net: Source netns of rtnetlink socket
+  * @link_net: Link netns by IFLA_LINK_NETNSID, NULL if not specified
+  * @peer_net: Peer netns
+@@ -80,7 +79,6 @@ static inline int rtnl_msg_family(const struct nlmsghdr=
+ *nlh)
+  * @data: IFLA_INFO_DATA attributes
+  */
+ struct rtnl_newlink_params {
+-	struct net *net;
+ 	struct net *src_net;
+ 	struct net *link_net;
+ 	struct net *peer_net;
+diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
+index 9ebbde0d131c..e980481bdd28 100644
+--- a/net/core/rtnetlink.c
++++ b/net/core/rtnetlink.c
+@@ -3798,12 +3798,6 @@ static int rtnl_newlink_create(struct sk_buff *skb=
+, struct ifinfomsg *ifm,
 =20
--static int xfrmi_create(struct net_device *dev)
-+static int xfrmi_create(struct net *net, struct net_device *dev)
- {
- 	struct xfrm_if *xi =3D netdev_priv(dev);
--	struct net *net =3D dev_net(dev);
- 	struct xfrmi_net *xfrmn =3D net_generic(net, xfrmi_net_id);
- 	int err;
+ 	dev->ifindex =3D ifm->ifi_index;
 =20
-@@ -819,11 +818,12 @@ static int xfrmi_newlink(struct net_device *dev,
- 			 struct netlink_ext_ack *extack)
- {
- 	struct nlattr **data =3D params->data;
--	struct net *net =3D dev_net(dev);
- 	struct xfrm_if_parms p =3D {};
- 	struct xfrm_if *xi;
-+	struct net *net;
- 	int err;
-=20
-+	net =3D params->link_net ? : dev_net(dev);
- 	xfrmi_netlink_parms(data, &p);
- 	if (p.collect_md) {
- 		struct xfrmi_net *xfrmn =3D net_generic(net, xfrmi_net_id);
-@@ -852,7 +852,7 @@ static int xfrmi_newlink(struct net_device *dev,
- 	xi->net =3D net;
- 	xi->dev =3D dev;
-=20
--	err =3D xfrmi_create(dev);
-+	err =3D xfrmi_create(net, dev);
- 	return err;
- }
-=20
+-	params.net =3D params.src_net;
+-	if (link_net)
+-		params.net =3D link_net;
+-	if (peer_net)
+-		params.net =3D peer_net;
+-
+ 	if (ops->newlink)
+ 		err =3D ops->newlink(dev, &params, extack);
+ 	else
 --=20
 2.48.1
 
