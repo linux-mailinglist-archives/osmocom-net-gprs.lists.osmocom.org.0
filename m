@@ -2,64 +2,103 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64119A44183
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 25 Feb 2025 14:58:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D56DA45F62
+	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Feb 2025 13:36:40 +0100 (CET)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 07C471F55DD;
-	Tue, 25 Feb 2025 13:58:13 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 9307E1F6CCE;
+	Wed, 26 Feb 2025 12:36:39 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 55rpulbRppt0; Tue, 25 Feb 2025 13:58:12 +0000 (UTC)
+ id VxuT4q6eg8It; Wed, 26 Feb 2025 12:36:39 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 8FC611F55CD;
-	Tue, 25 Feb 2025 13:58:07 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id E0A141F6CBE;
+	Wed, 26 Feb 2025 12:36:36 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 9B1E838A1A01;
-	Tue, 25 Feb 2025 13:57:52 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 9F3E938A1964;
+	Wed, 26 Feb 2025 12:36:23 +0000 (UTC)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 7696E1F55A9;
-	Tue, 25 Feb 2025 13:57:52 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 79D1F1F6C9E;
+	Wed, 26 Feb 2025 12:36:23 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 9yCLUYcVfiRs; Tue, 25 Feb 2025 13:57:51 +0000 (UTC)
-Received: from mail.base45.de (mail.base45.de [IPv6:2001:4ce8:8690::a:a])
-	by mail.osmocom.org (Postfix) with ESMTPS id ABBB21F55A4;
-	Tue, 25 Feb 2025 13:57:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fe80.eu;
-	s=20190804; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=6OaYIkxYTGbjhpHzxP+Bu/J5sPK1D3efYCSMlOY4jpc=; b=t2Vqoiv99lXudzAtHIzxVQJWgU
-	djlEairQtAVyYP/C8tgnwr88q2KG7KHkxbNcNlGKIHY11Z/mKqvFXa7ppHb+1Qvl2FYPJDClMn59t
-	26/38VGtk5TbFDxeta3vSTz80FMj31Tna4dlpSDK/bDwcbVck7G0fmycihC7slAbiXZ4BuJ+N5GL+
-	MN+2WlczeSrAVGHX/X4DlkRMp/gpEqAdbEGu3jvNIMm1yfw1kLsMtyIYPsVRQ+GXZwgXOXCd9x+/f
-	NSwXtgFhZJl2tzX4tR2gYvQyKt1FC8f/AOTt+PpNpMxObcWKJsxfj/ZqD8K34bJbO/hAyH5r/4bc6
-	ZgMDgmoA==;
-Received: from [80.153.21.36] (helo=javelin)
-	by mail.base45.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <lynxis@fe80.eu>)
-	id 1tmvRU-001L7j-32;
-	Tue, 25 Feb 2025 13:57:48 +0000
-Date: Tue, 25 Feb 2025 14:57:48 +0100
-From: Alexander 'lynxis' Couzens <lynxis@fe80.eu>
-To: openbsc@lists.osmocom.org
-Subject: Adding doxygen style comments to header files
-Message-ID: <20250225145748.28479793@javelin>
+ id QDWUtOfuacyw; Wed, 26 Feb 2025 12:36:21 +0000 (UTC)
+Received: from mail.sysmocom.de (mail.sysmocom.de [IPv6:2a01:4f8:13b:828::1:500])
+	by mail.osmocom.org (Postfix) with ESMTPS id 86F811F6C99;
+	Wed, 26 Feb 2025 12:36:20 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.sysmocom.de (Postfix) with ESMTP id 7A882C8A705;
+	Wed, 26 Feb 2025 12:36:20 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at sysmocom.de
+Received: from mail.sysmocom.de ([127.0.0.1])
+	by localhost (mail.sysmocom.de [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ArGXHRk3SAfM; Wed, 26 Feb 2025 12:36:19 +0000 (UTC)
+Received: from [192.168.1.140] (unknown [207.188.174.15])
+	by mail.sysmocom.de (Postfix) with ESMTPSA id A5566C8A399;
+	Wed, 26 Feb 2025 12:36:19 +0000 (UTC)
+Message-ID: <fa7007b6-336e-4f88-bcc1-709274987fe7@sysmocom.de>
+Date: Wed, 26 Feb 2025 13:36:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: Adding doxygen style comments to header files
+To: Alexander 'lynxis' Couzens <lynxis@fe80.eu>, openbsc@lists.osmocom.org
+References: <20250225145748.28479793@javelin>
+Content-Language: en-US
+From: Pau Espin Pedrol <pespin@sysmocom.de>
+Autocrypt: addr=pespin@sysmocom.de; keydata=
+ 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
+In-Reply-To: <20250225145748.28479793@javelin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: VA7ZMVK3V23WKL54PFHCWRDV2RCWNXSJ
-X-Message-ID-Hash: VA7ZMVK3V23WKL54PFHCWRDV2RCWNXSJ
-X-MailFrom: lynxis@fe80.eu
+Message-ID-Hash: CXCYPWS5IB2VXOIBSQBDJDC7KIVB5NYQ
+X-Message-ID-Hash: CXCYPWS5IB2VXOIBSQBDJDC7KIVB5NYQ
+X-MailFrom: pespin@sysmocom.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "osmocom-net-gprs@lists.osmocom.org" <osmocom-net-gprs@lists.osmocom.org>
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/VA7ZMVK3V23WKL54PFHCWRDV2RCWNXSJ/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/CXCYPWS5IB2VXOIBSQBDJDC7KIVB5NYQ/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -69,29 +108,42 @@ List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
 Hi,
 
-it came up again in gerrit again.
+while I wouldn't be against it if we were to start writing a whole new 
+project, we have tons and tons of files already doing doxygen in the .c 
+files, so I wouldn't start now doing differently and have mixed 
+codebase. Also moving all current doxygen documentation to header files 
+sounds like a huge tasks with lots of changes in lots of places, so it 
+looks like a no-go to me.
 
-Currently the osmocom style states doxygen style comments should be done in the .c file.
-Doxygen are those comments:
-/*! a brief description of the function
- * \param something      Some description of the use
- * \return 0 if ...
- */
-Doxygen takes those comments and generates a html documentation of the code.
+Moreover, I don't really see a good reason for moving documentation to 
+header files other than:
+* "My foobar editor decides it only parses header files"
+* A user may want to inspect documentation through installed -dev 
+packages in /usr/include/osmocom/.
 
-I would like to change it to have those in the headers files instead (when the function in included in a header file).
-When using the doxygen comments only for doyxen, for sure, there isn't a difference between 
-having it in .c or in .h files.
+Is actually doxygen explicitly enforcing the API documentation to be on 
+header files? I doubt it.
 
-But when using IDEs or language servers, they usually only parses headers files and
-the .c files of the current active project (e.g. osmo-sgsn),
-but not the .c files of other projects (libosmocore).
+There's also some benefits of having it in .c files:
+* Documentation is next to the implementation, so one can quickly 
+validate the implementation and formal behavior of the function
+* Way shorter header files wich allow seing the full set of APIs 
+available with a quick glance at the screen.
+* Functions can be declared in several headers/places (we hopefully 
+don't do this).
 
-On the downside I only see the problem of increasing the size of header files, but I don't see
-an issue in here.
+So not like I have a strong opinion on this, but I don't think it really 
+makes sense to change the current approach right now?
 
-Any thoughts?
+Regards,
+Pau
 
-Best,
-lynxis
+-- 
+- Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
+=======================================================================
+* sysmocom - systems for mobile communications GmbH
+* Siemensstr. 26a
+* 10551 Berlin, Germany
+* Sitz / Registered office: Berlin, HRB 134158 B
+* Geschaeftsfuehrer / Managing Director: Harald Welte
 
