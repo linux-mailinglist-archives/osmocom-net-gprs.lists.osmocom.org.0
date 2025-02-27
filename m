@@ -2,103 +2,58 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D56DA45F62
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 26 Feb 2025 13:36:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F8AEA48888
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 27 Feb 2025 20:06:38 +0100 (CET)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 9307E1F6CCE;
-	Wed, 26 Feb 2025 12:36:39 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id C56D21F8564;
+	Thu, 27 Feb 2025 19:06:35 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id VxuT4q6eg8It; Wed, 26 Feb 2025 12:36:39 +0000 (UTC)
+ id pkkcOoJ_6rU0; Thu, 27 Feb 2025 19:06:35 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id E0A141F6CBE;
-	Wed, 26 Feb 2025 12:36:36 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 094501F8552;
+	Thu, 27 Feb 2025 19:06:32 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 9F3E938A1964;
-	Wed, 26 Feb 2025 12:36:23 +0000 (UTC)
+	by lists (Postfix) with ESMTPS id 256DD38A1964;
+	Thu, 27 Feb 2025 19:06:11 +0000 (UTC)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 79D1F1F6C9E;
-	Wed, 26 Feb 2025 12:36:23 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 004EE1F852F;
+	Thu, 27 Feb 2025 19:06:11 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id QDWUtOfuacyw; Wed, 26 Feb 2025 12:36:21 +0000 (UTC)
-Received: from mail.sysmocom.de (mail.sysmocom.de [IPv6:2a01:4f8:13b:828::1:500])
-	by mail.osmocom.org (Postfix) with ESMTPS id 86F811F6C99;
-	Wed, 26 Feb 2025 12:36:20 +0000 (UTC)
+ id sddHAb4fcw9v; Thu, 27 Feb 2025 19:06:10 +0000 (UTC)
+Received: from mail.sysmocom.de (mail.sysmocom.de [176.9.212.161])
+	by mail.osmocom.org (Postfix) with ESMTPS id 394F51F852A;
+	Thu, 27 Feb 2025 19:06:09 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.sysmocom.de (Postfix) with ESMTP id 7A882C8A705;
-	Wed, 26 Feb 2025 12:36:20 +0000 (UTC)
+	by mail.sysmocom.de (Postfix) with ESMTP id 72260C8A706;
+	Thu, 27 Feb 2025 19:06:09 +0000 (UTC)
 X-Virus-Scanned: Debian amavisd-new at sysmocom.de
 Received: from mail.sysmocom.de ([127.0.0.1])
 	by localhost (mail.sysmocom.de [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ArGXHRk3SAfM; Wed, 26 Feb 2025 12:36:19 +0000 (UTC)
-Received: from [192.168.1.140] (unknown [207.188.174.15])
-	by mail.sysmocom.de (Postfix) with ESMTPSA id A5566C8A399;
-	Wed, 26 Feb 2025 12:36:19 +0000 (UTC)
-Message-ID: <fa7007b6-336e-4f88-bcc1-709274987fe7@sysmocom.de>
-Date: Wed, 26 Feb 2025 13:36:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	with ESMTP id P8mbKHYLomML; Thu, 27 Feb 2025 19:06:09 +0000 (UTC)
+Received: from my.box (ip-109-40-242-243.web.vodafone.de [109.40.242.243])
+	by mail.sysmocom.de (Postfix) with ESMTPSA id F1BC9C8A701;
+	Thu, 27 Feb 2025 19:06:08 +0000 (UTC)
+Date: Thu, 27 Feb 2025 20:06:07 +0100
+From: Neels Hofmeyr <nhofmeyr@sysmocom.de>
+To: Alexander 'lynxis' Couzens <lynxis@fe80.eu>
 Subject: Re: Adding doxygen style comments to header files
-To: Alexander 'lynxis' Couzens <lynxis@fe80.eu>, openbsc@lists.osmocom.org
+Message-ID: <Z8C3nwdC2h8jfQXt@my.box>
 References: <20250225145748.28479793@javelin>
-Content-Language: en-US
-From: Pau Espin Pedrol <pespin@sysmocom.de>
-Autocrypt: addr=pespin@sysmocom.de; keydata=
- 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
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 In-Reply-To: <20250225145748.28479793@javelin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: CXCYPWS5IB2VXOIBSQBDJDC7KIVB5NYQ
-X-Message-ID-Hash: CXCYPWS5IB2VXOIBSQBDJDC7KIVB5NYQ
-X-MailFrom: pespin@sysmocom.de
+Message-ID-Hash: EFP2GFSXOKOYFNWJNMQGJGLWIBZAWRLL
+X-Message-ID-Hash: EFP2GFSXOKOYFNWJNMQGJGLWIBZAWRLL
+X-MailFrom: nhofmeyr@sysmocom.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "osmocom-net-gprs@lists.osmocom.org" <osmocom-net-gprs@lists.osmocom.org>
+CC: openbsc@lists.osmocom.org, "osmocom-net-gprs@lists.osmocom.org" <osmocom-net-gprs@lists.osmocom.org>
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/CXCYPWS5IB2VXOIBSQBDJDC7KIVB5NYQ/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/EFP2GFSXOKOYFNWJNMQGJGLWIBZAWRLL/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -106,44 +61,29 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Hi,
+BTW, for me, the argument isn't so much doxygen. I never use that HTML and if
+anyone does, please raise your hand. For me it's about reading the source tree.
+(I would very much enjoy dropping the weird doxygen syntax and markers)
 
-while I wouldn't be against it if we were to start writing a whole new 
-project, we have tons and tons of files already doing doxygen in the .c 
-files, so I wouldn't start now doing differently and have mixed 
-codebase. Also moving all current doxygen documentation to header files 
-sounds like a huge tasks with lots of changes in lots of places, so it 
-looks like a no-go to me.
+There may also be the aspect of the license applying only to the .c files. IIUC
+.h files are considered flat compiling necessity, not substance of a project.
+I'm not sure about this / don't feel strong about that aspect.
 
-Moreover, I don't really see a good reason for moving documentation to 
-header files other than:
-* "My foobar editor decides it only parses header files"
-* A user may want to inspect documentation through installed -dev 
-packages in /usr/include/osmocom/.
+My two main strong opinions are opposing each other:
 
-Is actually doxygen explicitly enforcing the API documentation to be on 
-header files? I doubt it.
+1. when hacking on our code, i enjoy that a .h has only the terse list of
+actual API without long comments in-between. It makes it easy to get a good big
+picture of the API very rapidly. The doc is just one ctags jump away.
 
-There's also some benefits of having it in .c files:
-* Documentation is next to the implementation, so one can quickly 
-validate the implementation and formal behavior of the function
-* Way shorter header files wich allow seing the full set of APIs 
-available with a quick glance at the screen.
-* Functions can be declared in several headers/places (we hopefully 
-don't do this).
+2. when using other libraries, i enjoy when the .h file already explains
+everything i need to know about the function arguments. Because I don't have
+the .c file anywhere near.
 
-So not like I have a strong opinion on this, but I don't think it really 
-makes sense to change the current approach right now?
+A good example for both is talloc. Very useful to read the .h for docs. But it
+also took me a very long time to get a big picture of the API. Years later I
+was still finding functions i wished i had known about sooner.
 
-Regards,
-Pau
+My preference for either is not strong enough to want to change how we're doing
+it in osmocom.
 
--- 
-- Pau Espin Pedrol <pespin@sysmocom.de>         http://www.sysmocom.de/
-=======================================================================
-* sysmocom - systems for mobile communications GmbH
-* Siemensstr. 26a
-* 10551 Berlin, Germany
-* Sitz / Registered office: Berlin, HRB 134158 B
-* Geschaeftsfuehrer / Managing Director: Harald Welte
-
+~N
