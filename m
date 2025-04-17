@@ -2,37 +2,56 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15BF6A8B720
-	for <lists+osmocom-net-gprs@lfdr.de>; Wed, 16 Apr 2025 12:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A92F0A91EBD
+	for <lists+osmocom-net-gprs@lfdr.de>; Thu, 17 Apr 2025 15:53:11 +0200 (CEST)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 64ED623769B;
-	Wed, 16 Apr 2025 10:48:07 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 323DA2396E8;
+	Thu, 17 Apr 2025 13:53:11 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id JbViJQHkaQ5A; Wed, 16 Apr 2025 10:48:07 +0000 (UTC)
+ id b25XII2Y3uOF; Thu, 17 Apr 2025 13:53:10 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 7CDB6237690;
-	Wed, 16 Apr 2025 10:48:04 +0000 (UTC)
-Received: from lists (localhost [IPv6:::1])
-	by lists (Postfix) with ESMTP id BD0C438A1964
-	for <osmocom-net-gprs@lists.osmocom.org>; Wed, 16 Apr 2025 10:47:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by mail.osmocom.org (Postfix) with ESMTP id 0F4542396DA;
+	Thu, 17 Apr 2025 13:53:08 +0000 (UTC)
+Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
+	by lists (Postfix) with ESMTPS id A1FBB38ADA24
+	for <osmocom-net-gprs@lists.osmocom.org>; Thu, 17 Apr 2025 13:53:04 +0000 (UTC)
+Received: from localhost (mail.osmocom.org [127.0.0.1])
+	by mail.osmocom.org (Postfix) with ESMTP id 852C72396D8
+	for <osmocom-net-gprs@lists.osmocom.org>; Thu, 17 Apr 2025 13:53:04 +0000 (UTC)
+Received: from mail.osmocom.org ([127.0.0.1])
+ by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id RQOYCueFABro for <osmocom-net-gprs@lists.osmocom.org>;
+ Thu, 17 Apr 2025 13:53:03 +0000 (UTC)
+Received: from ganesha.gnumonks.org (ganesha.gnumonks.org [IPv6:2001:780:45:1d:225:90ff:fe52:c662])
+	by mail.osmocom.org (Postfix) with ESMTPS id C7FDB2396D3
+	for <osmocom-net-gprs@lists.osmocom.org>; Thu, 17 Apr 2025 13:53:02 +0000 (UTC)
+Received: from uucp by ganesha.gnumonks.org with local-bsmtp (Exim 4.94.2)
+	(envelope-from <laforge@osmocom.org>)
+	id 1u5Pfq-003aq2-B7; Thu, 17 Apr 2025 15:53:02 +0200
+Received: from laforge by localhost.localdomain with local (Exim 4.98.2)
+	(envelope-from <laforge@osmocom.org>)
+	id 1u5Pfk-00000002x7h-31tN;
+	Thu, 17 Apr 2025 15:52:56 +0200
+Date: Thu, 17 Apr 2025 15:52:56 +0200
+From: Harald Welte <laforge@osmocom.org>
+To: boufaresimen1994@gmail.com
+Subject: Re: PGW stress test using OSMO-UECUPS and TTCN-3/PGW test suite
+Message-ID: <aAEHuNAiNU20Ibyf@nataraja>
+References: <174480047976.526.5339824699417082982@lists>
 MIME-Version: 1.0
-Subject: PGW stress test using OSMO-UECUPS and TTCN-3/PGW test suite
-From: boufaresimen1994@gmail.com
-To: osmocom-net-gprs@lists.osmocom.org
-Date: Wed, 16 Apr 2025 10:47:59 -0000
-Message-ID: <174480047976.526.5339824699417082982@lists>
-User-Agent: HyperKitty on https://lists.osmocom.org/
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: JU4THKQVRNLEO47GR2EIVACGLYARJETR
-X-Message-ID-Hash: JU4THKQVRNLEO47GR2EIVACGLYARJETR
-X-MailFrom: boufaresimen1994@gmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <174480047976.526.5339824699417082982@lists>
+Message-ID-Hash: V2GQPCKWWA74WWENAA32XWAZL3YOKY3A
+X-Message-ID-Hash: V2GQPCKWWA74WWENAA32XWAZL3YOKY3A
+X-MailFrom: laforge@osmocom.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: osmocom-net-gprs@lists.osmocom.org
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/JU4THKQVRNLEO47GR2EIVACGLYARJETR/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/V2GQPCKWWA74WWENAA32XWAZL3YOKY3A/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -40,92 +59,32 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
-Dear Osmocom Community,
+Hi Imen,
 
-I hope this message finds you well.
+osmo-uecups is a very niche tool, which sysmocom developed internally as
+a tool for testing. It is doing what we needed it to do, and it gets
+used continuously for what we wrote it.
 
-I am currently setting up a testing environment to evaluate the performan=
-ce of my Packet Gateway (PGW) in terms of maximum simultaneous active ses=
-sions and bandwidth.
+sysmocom does not earn any money with that tool, nor the test suite, yet
+both are developed as open source and available to the wider community
+"as-is".
 
-The architecture of my test setup includes:
-VM osmo-ttcn3: Hosts the TTCN-3 framework, which initiates GTP-C session =
-creation and integrates with the osmo-uecups solution to simulate user se=
-ssions by sending ICMP echo requests (pings) to public IP addresses (e.g.=
-, 8.8.8.8).=E2=80=8B
-VM osmo-uecups: Manages network namespaces (netns), each representing a s=
-imulated user session.=E2=80=8B
-VM pgw: My Packet Gateway, handling the routing and forwarding of packets=
- between the simulated users and the external network via the GTP-U proto=
-col.=E2=80=8B
+I doubt it is used widely (or at all) by anyone else so far, and it's
+sadly highly unlikely that you would find someone here who would be
+willing to investigate any issues you encounter in their spare time,
+sorry.
 
-Issue Encountered:
-While using the TTCN-3/PGW test suite scripts that execute ping tests ins=
-ide each created GTP tunnel, I observed the following on the osmo-uecups =
-VM:=E2=80=8B
-ICMP echo requests are successfully sent from the netns and are visible i=
-n tcpdump captures both inside each netns and on the physical interfaces =
-of the osmo-uecups VM.=E2=80=8B
-ICMP echo replies are sent back by my PGW for each UE session, and I can =
-see them when capturing traces on the physical interface of the osmo-uecu=
-ps VM. However, these ICMP echo replies are not injected into each netns.=
- When capturing tcpdump inside each netns, I can see the ICMP echo reques=
-ts but no corresponding replies.=E2=80=8B
-This behavior results in ping test failures in the TTCN-3 test suite, as =
-the echo replies do not reach the originating netns.=E2=80=8B
+In case this is a commercial requirement, feel free to reach out to
+sales@sysmocom.de to acquire paid support services.
 
-Additional Context:
-Initially, when running the test suite, I encountered the following error=
- in the osmo-uecups-daemon logs:=E2=80=8B
-DEP NOTICE X.X.X.X:2152: Unexpected GTP Flags: 0x32 (gtp_endpoint.c:59)=E2=
-=80=8B
-Upon investigation, I found that this was due to my PGW including a seque=
-nce number in the GTP-U header, resulting in a flag value of 0x32.=E2=80=8B
-To address this, I manually modified the gtp_endpoint.c file to accept th=
-is flag. After this adjustment, the "Unexpected GTP Flags: 0x32" message =
-no longer appears.=E2=80=8B
-However, despite resolving this issue, the ping tests continue to fail be=
-cause the ICMP echo replies are not being injected back into the respecti=
-ve netns.=E2=80=8B
-Additionally, I now receive the following message in the osmo-uecups-daem=
-on log:=E2=80=8B
-DEP NOTICE X.X.X.X:2152: Short GTP Message: 98 < len=3D96 (gtp_endpoint.c=
-:74)=E2=80=8B
+Having said that, we're of course happy to review and merge any patches
+you might want to submit to help us improve the tool.
 
-I would greatly appreciate any guidance or suggestions you can provide to=
- help resolve this issue.=E2=80=8B
+Kind regards,
+	Harald
 
-Please find below the configuration changes I made in the gtp_endpoint.c =
-file::
-*************************************************************************=
-*************
-/* check GTP header contents */
-if (gtph->flags !=3D 0x30 && gtph->flags !=3D 0x32) {
-    LOGEP(ep, LOGL_NOTICE, "Unexpected GTP Flags: 0x%02x\n", gtph->flags)=
-;
-    continue;
-}
-//////////////////////////////
-unsigned int hdr_len =3D sizeof(*gtph);
-if (gtph->flags & 0x02) {
-    hdr_len +=3D 2;  // Si le flag Sequence est activ=C3=A9
-}
-
-/* V=C3=A9rifie que la longueur totale attendue (header + payload) est pr=
-=C3=A9sente */
-if (hdr_len + ntohs(gtph->length) > nread) {
-    LOGEP(ep, LOGL_NOTICE, "Shotr GTP Message: %u < len=3D%d\n",
-          hdr_len + ntohs(gtph->length), nread);
-    continue;
-}
-
-/* Transmission du payload au TUN device =C3=A0 partir de l'offset hdr_le=
-n */
-rc =3D write(outfd, buffer+hdr_len, ntohs(gtph->length));
-*************************************************************************=
-**********
-
-Thank you for your time and assistance.=20
-
-Best regards,
-Imen Boufares
+-- 
+- Harald Welte <laforge@osmocom.org>           https://laforge.gnumonks.org/
+============================================================================
+"Privacy in residential applications is a desirable marketing option."
+                                                  (ETSI EN 300 175-7 Ch. A6)
