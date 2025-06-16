@@ -1,150 +1,151 @@
 Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7596EAE471D
-	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 23 Jun 2025 16:42:01 +0200 (CEST)
-Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 4EC3D26F9B3;
-	Mon, 23 Jun 2025 14:42:00 +0000 (UTC)
-Received: from mail.osmocom.org ([127.0.0.1])
- by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 9kvhNSxUcruA; Mon, 23 Jun 2025 14:41:59 +0000 (UTC)
-Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 796B426F9A3;
-	Mon, 23 Jun 2025 14:41:59 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 3A76838A1A93
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 13 Jun 2025 19:41:35 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE206AE471E
+	for <lists+osmocom-net-gprs@lfdr.de>; Mon, 23 Jun 2025 16:42:03 +0200 (CEST)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 1CBC1269830
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 13 Jun 2025 19:41:35 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id C967E26F9DD;
+	Mon, 23 Jun 2025 14:42:03 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id AAwXXlNQ15rq for <osmocom-net-gprs@lists.osmocom.org>;
- Fri, 13 Jun 2025 19:41:34 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on20627.outbound.protection.outlook.com [IPv6:2a01:111:f403:2416::627])
-	by mail.osmocom.org (Postfix) with ESMTPS id 1163226982B
-	for <osmocom-net-gprs@lists.osmocom.org>; Fri, 13 Jun 2025 19:41:33 +0000 (UTC)
+ id e0T4dsVsakAd; Mon, 23 Jun 2025 14:42:03 +0000 (UTC)
+Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
+	by mail.osmocom.org (Postfix) with ESMTP id C4E4B26F9BD;
+	Mon, 23 Jun 2025 14:42:01 +0000 (UTC)
+Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
+	by lists (Postfix) with ESMTPS id F25B738A1A93
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 16 Jun 2025 22:45:19 +0000 (UTC)
+Received: from localhost (mail.osmocom.org [127.0.0.1])
+	by mail.osmocom.org (Postfix) with ESMTP id D4DDE26B5A1
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 16 Jun 2025 22:45:19 +0000 (UTC)
+Received: from mail.osmocom.org ([127.0.0.1])
+ by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id l0L1H3eL9qPu for <osmocom-net-gprs@lists.osmocom.org>;
+ Mon, 16 Jun 2025 22:45:19 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on20616.outbound.protection.outlook.com [IPv6:2a01:111:f403:2416::616])
+	by mail.osmocom.org (Postfix) with ESMTPS id B176826B59C
+	for <osmocom-net-gprs@lists.osmocom.org>; Mon, 16 Jun 2025 22:45:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ygIlO5cA/6d7nSZc4Z1bwRxO4sOTrZHFbLmLb+aluM9xDrdzHGEm+OPQcZjpkJyxe3TtVrGhRsDfYJV3rWbrxfzLnH3OQ3ehs3XIJB6aqaZuSFEQrfQxgPRw+43fjmK18mBN74Pt+m6UBTE725RN5pzaVwKXVS98cLtfKVF6Nlr6lie0Rpe5/EHWZk6Tz3Rj36YARzUUkXyqOGqGL6RY3WzwYrlkBJkJQ318Y4yyiaVWIE57guW/ABm3REzxmUWCfRbrjjJaJgjTA6ITMzRHwcnAIeruEdBHB6J77aMYsIPbzECa/vpSdXl0hWO8rv2KlO2zPYKTG1J6hddx1XvACg==
+ b=ib3sONdHhRTHmy57hA2nOO47WIvD8LSoXsSBAeAqzQUGULW+oAyAbQe/y2/hBtZlma205tNB9z/hwRw/Cf1yjJOabzoLaxuW/7CKOnmT6MUifUdJCGBSH1nfoOdchB6P3wbpGgA0CC3PTDz9DBogDcvTANv/O+LHusrfdiETUysVu+OcnTWcjEQnVR/QgC4iHquaGaFMYcuQ3XTq0jAJXP5HXq8/uelLLavRQLb523Ykkp2x3FydYjwH5XICTFyPoNscjvo1bIYoYFUiL1cfZRBzLUxDMMroWIaxFVEfC7nn9y6jl3FZIp5mtePuIEQ0oBonyvopdMqKUV157c6IwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sI6avApYmQ5bbzeWsf6br1B5roaScusavIhlEKslpTU=;
- b=kkdem+DBAOH08ciVErc1LnHqeVUFjvH4Xqw8HKuwKufAtsHKy3B4+WBdFxhQ5OkA3xgq9wgAbJMqxZzBxYLbsEhu2ipOKhSBsfKGeKuGSJvkUYuk4zOX0OWQkFYoQhAVZDvfxpRMQ22E95Uxp6lP0DuO4r0E0Xwi/1zgvM3ge2Clu2Agd8FvCuCe+NHMfuD4ig2ykwUkBi12r7DecQkalf3R8VmuefNGFLc6/H9cwcydUqvQFUGz9UmY24wkrx+afBPu9cg7PQyxn6IiB4TJRLB+Ja5UBJS/HqkEGy2ns1dyGM+y8teLPzTZtASDGI6NpCGhab5MWIx7q4UqLj1Sfw==
+ bh=tncj5mtc7TKNUZVgU9K5603jRMuApQ0Vz0TCXVxNwDc=;
+ b=QaDjBk7pVIUn28Yc29Ebf/IeUJg0kFPg69F3JOsf+w1FlhRX1pVWGJGsxq/DpesxISPJGDiNrq2EPRA90iy+A43KF/MazrElvcri3TEmK7LCxxuf6S8vzcaW6ApN0OjnAA+R6mrzKKXLfWpNyiAnEptwuCDAmY5sI/O8o1F3hxKnrfOxMp5j7LoQKaQeJZUqPWcPZ09tqbexH6nrrTeaIYOzuKp3W+1Ut9uLAeXubBd0xJp3q3eA6xtRLF7oGLUZaU4BfN+YsemBO5FGn8Swv2khoYln6GGxw0yBjd+8CfEXvM4/iqca/OXxmlV6c0o1/s38uixCa/Jke504pKnE9Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=lists.sourceforge.net
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
+ 216.228.117.160) smtp.rcpttodomain=davemloft.net smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sI6avApYmQ5bbzeWsf6br1B5roaScusavIhlEKslpTU=;
- b=pdIFp3WUWJHcW+HMda1UOdafw6GZUWU/meQU5d19l9j3hlAbLWw+H4CHa73xh5rqB9T6NpHwWWrwz0XKL0YFa58Iqlkxx1fQqu4ICFMsIlkEkNJobQHu0kG1rXKe9jkrrnaPblKwFaOQM0tBXQ0914YJPNKWy+XQ6tJ59eWtAs9gs9JrGo6dvMoDE5mf1tm3ntVLctlfUQjfCyoh7YKweM1RvIllASYewyher25T7lEcd31XxyYNWgBY3yli8rxIKZb80xApzsXgQnaaoxdvAQiUsduDpyHuwlktSav4eTmZPKZhftKmO3S3lkT358L0dJXUeosMFmbDMtHUl+komQ==
-Received: from MW2PR2101CA0004.namprd21.prod.outlook.com (2603:10b6:302:1::17)
- by BL1PR12MB5801.namprd12.prod.outlook.com (2603:10b6:208:391::16) with
+ bh=tncj5mtc7TKNUZVgU9K5603jRMuApQ0Vz0TCXVxNwDc=;
+ b=VW2ote7xLyYKyEXCvK+ZWVW0EFeuyUjDy1ZVc4T2GSG6qObeTifIhhjopkd9BzENklBHjTsxnx8D/zV7kj7iJ1io2/aAsSFEz6UCBfZqWPhSXxBGDOmeZfah+f+zWEy4C2HGcc2FIxxvSKY2c1KKTj1Tjpw9C05Wg1U8UXaN4WlVdxsJEHeKwdWoOfcl+z6Ad1GGFEl//t24QVUMXN0nDz4PY6zcWasQvqRcU9kYUc2dOh19+6SfyNPTjG1Mc95sjLrJo75IKmzAb1yzZJswNScmtTymDSOdX5buWQXqnRkw0yVFzaQXyh52KkMRiXKbYk9yrorx4z64pNxLo7acqQ==
+Received: from SN6PR05CA0015.namprd05.prod.outlook.com (2603:10b6:805:de::28)
+ by SA3PR12MB9090.namprd12.prod.outlook.com (2603:10b6:806:397::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.19; Fri, 13 Jun
- 2025 19:41:25 +0000
-Received: from SN1PEPF00036F40.namprd05.prod.outlook.com
- (2603:10b6:302:1:cafe::cd) by MW2PR2101CA0004.outlook.office365.com
- (2603:10b6:302:1::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8857.11 via Frontend Transport; Fri,
- 13 Jun 2025 19:41:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Mon, 16 Jun
+ 2025 22:45:12 +0000
+Received: from SN1PEPF00026367.namprd02.prod.outlook.com
+ (2603:10b6:805:de:cafe::25) by SN6PR05CA0015.outlook.office365.com
+ (2603:10b6:805:de::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.19 via Frontend Transport; Mon,
+ 16 Jun 2025 22:45:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- SN1PEPF00036F40.mail.protection.outlook.com (10.167.248.24) with Microsoft
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ SN1PEPF00026367.mail.protection.outlook.com (10.167.241.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8835.15 via Frontend Transport; Fri, 13 Jun 2025 19:41:24 +0000
+ 15.20.8835.15 via Frontend Transport; Mon, 16 Jun 2025 22:45:11 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Fri, 13 Jun
- 2025 12:41:03 -0700
-Received: from fedora (10.126.230.35) by rnnvmail201.nvidia.com (10.129.68.8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Fri, 13 Jun
- 2025 12:40:53 -0700
-References: <cover.1749757582.git.petrm@nvidia.com>
- <93258d0156bab6c2d8c7c6e1a43d23e13e9830ec.1749757582.git.petrm@nvidia.com>
- <20250613094858.5dfa435e@kernel.org>
-User-agent: mu4e 1.8.14; emacs 29.4
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 16 Jun
+ 2025 15:45:01 -0700
+Received: from fedora.mtl.com (10.126.230.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Mon, 16 Jun
+ 2025 15:44:48 -0700
 From: Petr Machata <petrm@nvidia.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Subject: Re: [PATCH net-next v2 01/14] net: ipv4: Add a flags argument to
- iptunnel_xmit(), udp_tunnel_xmit_skb()
-Date: Fri, 13 Jun 2025 21:23:20 +0200
-In-Reply-To: <20250613094858.5dfa435e@kernel.org>
-Message-ID: <87wm9f2zwd.fsf@nvidia.com>
+To: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, David Ahern <dsahern@gmail.com>,
+	<netdev@vger.kernel.org>
+Subject: [PATCH net-next v3 01/15] net: ipv4: Add a flags argument to iptunnel_xmit(), udp_tunnel_xmit_skb()
+Date: Tue, 17 Jun 2025 00:44:09 +0200
+Message-ID: <89c9daf9f2dc088b6b92ccebcc929f51742de91f.1750113335.git.petrm@nvidia.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <cover.1750113335.git.petrm@nvidia.com>
+References: <cover.1750113335.git.petrm@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
+X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00036F40:EE_|BL1PR12MB5801:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b0bda78-e74f-4502-195f-08ddaab24847
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026367:EE_|SA3PR12MB9090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01949420-7e7d-4075-9b73-08ddad2773e3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700013|7416014|376014|1800799024|82310400026;
+	BCL:0;ARA:13230040|7416014|376014|82310400026|36860700013|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?pBkOBtaw2nYDDxcz9jKxBfa8Qfqxk30adb/NuDjtE7m3/kAqgS+5IelgdgDT?=
- =?us-ascii?Q?xsQ8pzomx1aJg1iGPGgUYSyt6bFXXz1HYsgcnmsdgnBltecg/3McyLU0SRyB?=
- =?us-ascii?Q?HhqQahB5Z8cDeHTnLpuLXs4Q5WQreK/c3txOaa6LRBmPMEfIMCw/CA3i/TLH?=
- =?us-ascii?Q?rBvc4Nnpm5oCzBtuJ7Dy4Fp/EimodDI9v5/Xxn+jDHysAJqq/zYYmee3SnAf?=
- =?us-ascii?Q?TV1Y5yv8vNO3x7tHhf7o8fxfurvOaylrqzadro1mTFZjKM+3QD7AQaOLkgHf?=
- =?us-ascii?Q?ZWpcsPsQP4ML1o0WO6scAmMpKUs7nzyAhGZelyggsnKSem1gvYNOcx/HruFt?=
- =?us-ascii?Q?r/cEHeK4rm8bmAzciQuN9Tvn72Bfooylv7mEA8kYAFBcBWryJlmnNggCJ+47?=
- =?us-ascii?Q?BQ1OkZWBb+XWZUKpRMnUfMeaY1Q/c8si/SM5sPtGzUjrconqEXXNUnW3KCmn?=
- =?us-ascii?Q?QMpCYt1vx2undm3x2bwQXC+vB6JWjptJaUtMnrIkLnEJb678PDMkmaC8r8V3?=
- =?us-ascii?Q?zrHQBDOYdOPYvsvK16kLFyyLfw8ZsHiy0HALfwTGbVEgM3n0sedk4QHEDNsn?=
- =?us-ascii?Q?XHnoXWEabntvD88WkI+iaCWsW7JRajWPMltHheeXLESsdTYYk5sksKbzHv7E?=
- =?us-ascii?Q?Ce6N7/QKzgBx4oIGTo+M1+9L58W9AFsnfS6fTWPsFJOTJxr/cMvdE1ehPW1Q?=
- =?us-ascii?Q?Fmb/XhP/q1/y4V2H8rnHIk5m7Mhos0a3RgiYJUnbKA+3vws/kmNVCW3OQ0wA?=
- =?us-ascii?Q?E/CYxhch8Qo7amA4ufrU6MMxgCe+EITCxL3n3Tfj2OklQux0bkf2Y5vRgp46?=
- =?us-ascii?Q?mFf4Aei8Iot5qb20E2ySFnfaMTNTYCsep673p7Z4iwIQe8B95EYbry6pkoM3?=
- =?us-ascii?Q?s70Sv58jI1uS9UkvGBZQlyFo1X0NmQUU3Ju4HoBV0Zmij0Ahc1Mgn41oX2N5?=
- =?us-ascii?Q?7jAlBLOaWuS/o0b9QK6XCx+7GhN2lERjrYgWWfvj7gyx5++RLcO7BRe6eCdG?=
- =?us-ascii?Q?r0BWlVbLpKsxGxb6NBFoiIDRhDIzdOaAKFu8hnxJ/muOiV8JxNyp7o7bURB4?=
- =?us-ascii?Q?h4x+I/4+AZS2fAYXqZ+in/dMv9ZY4kD0lLQEOP4Rd0bkCQ592BdkYbEbOcrP?=
- =?us-ascii?Q?aQTsX56V9t1XF7IEIsBQDKAM9B/lDzC3DwLz6bCgL2cFlMKMXLRNtl6GCgCo?=
- =?us-ascii?Q?Gb11ZUlMNuqauur6rVhub2bD77LmdupfZRNSLbM3yz+b1Q4aU9jM61LUeQve?=
- =?us-ascii?Q?Ka/nGKjaHMAIkAFQaUazR40hZRCJJZauBVBlIufLLV20OTMQUOHKR6EophYv?=
- =?us-ascii?Q?3fi1u3MkXaFA9v5GBccLJGH1sMlFbFDvLNg259dmQ1QVOovvkxZzsNq8Hr3b?=
- =?us-ascii?Q?nmLh0gWItEDK078t7CttIAigb56AmFi04cbmBKb+qN05hKbMYl2Ej7SrJBfN?=
- =?us-ascii?Q?FZHHAYdDMRvoR6CiDOOgsLBNKNfv6xYDUhZYQf7pD+90nQNrfBKUoWbbyN3Z?=
- =?us-ascii?Q?dLTa90lJ9Yc8deGScQ01mT1E4/Efl3WQCGGh?=
+	=?us-ascii?Q?TrJLsiSFg1dgy8OMZOkqc+2tUp0rt1PZ01zwgTjXoV2ASQr6LpRkJ37eysmp?=
+ =?us-ascii?Q?n2LvZx1W4nMCKOBPyGLowG5f0LITjaf6joRhQaP3EH4FxsHcDFFuODaD9PqJ?=
+ =?us-ascii?Q?Aa2Rxz9X8YF4FZhZXU+oopvEIc85Zvp+Ei4fylSpELaKZAFm177PhiNFTm2k?=
+ =?us-ascii?Q?XNN2/TFz+Zi7ZidCqSq9NtipuEVEflLvHLYzAM15GVKyKav3dOj7Pw+f67iQ?=
+ =?us-ascii?Q?qz9PCIocHC68r5w7lOCWTSkGV9fAFfwpdtyGn32OwzHLTgCfdrdsNQsDiG0T?=
+ =?us-ascii?Q?+Y4s9oVgMmqgcHfSJ6yopHO37QKn5jx83wxG9giY/r2F2kZJ2Y6BC5vpQ/K4?=
+ =?us-ascii?Q?SMIW0OZ22jpytL9yeuFBGxO0cthif5kGMcN2sxooKfXJbxUR8UeemFQ51qW0?=
+ =?us-ascii?Q?+Vfr0WD4SbjMLjBmaqk9LdwQyi+sSU9ZL9BisAg7rRgL4sdYv/hJ5SXTxRuX?=
+ =?us-ascii?Q?+4CuFlgZ0ab0h4JMcAqMluZ7/1cD1lNV7bi4uWiLIyAOOqM+gSTpGBgZUDuL?=
+ =?us-ascii?Q?MMiSpQHIt+/18vz0DvwkxoH8hViGi1IOp1naNU5GB2UlZ01KxL9agG6gHPOO?=
+ =?us-ascii?Q?Em8YZP6AjGBDo8jgAPb5rlUpiWw1NUY1+zcdTVzYpTS7T/VZNA8C9hh0YX1m?=
+ =?us-ascii?Q?dQ799k7/X8eNM/hNbNvTAR4GsE2hSfHXSQx4YzJut6oDZPH3yRdzZIGiwHko?=
+ =?us-ascii?Q?XWRxpROo4bgS0lVKlgfdXEzoS8IRI8e9w6Rv6DAmNZKuIwSGkeyuVZKNEe87?=
+ =?us-ascii?Q?bdECIs+JkXv8Q6IcaMRLdPhw5ORGh8HTjd2PKKNYq7nFL8MydzETbvW2scEO?=
+ =?us-ascii?Q?XUnTm5aMjzweqZxosnRfgsRiJMDVW/4shVPvAK2iRJWjGEteUgihcjWlxyIO?=
+ =?us-ascii?Q?JDG9HPOcmEroqwvPWJjS1tz0mqTTpwSqCn9BV20CINRaFTBpLRVLhFhz40G1?=
+ =?us-ascii?Q?QtIZrrFE95jQMVEElUd0/rpC19o0WEmCuOzhkwvjw+Sl6cN/l5ANWVDUT4WG?=
+ =?us-ascii?Q?u2LBhBvQZl5J1COjHPQr7e9UYhNJA6ivjG9K5jaxTcfdgWdOOWC60//1f39E?=
+ =?us-ascii?Q?OELgn1fzokjgHWz3n5lrdk2uLCDPAZw6JJGJIsrtq0jRFFm8rn0YKSpbgfyX?=
+ =?us-ascii?Q?rxR1AYf1a6/mcDBjTmr+iRJMj7ceK6vnYf7yu+twv3PqK4pUD/vV2puuRnLv?=
+ =?us-ascii?Q?2+yg1edQ3uRCp5LoM6KRM6kYXNxJUmgFuu4u5V13Z1Jo87oH3glmhIJNbUnK?=
+ =?us-ascii?Q?FX5ARfXLo6oq73XxYgj+tHp5puInSMNT22SSpyJEHYwY6sI5m84iLtdnMoSi?=
+ =?us-ascii?Q?wAnCcj+mkatHVJYaogxAP0peVdkjN5Yi58g9/NnCIR8r9yLZ5pAv+CmiHL8c?=
+ =?us-ascii?Q?wAoN/JbWsmkLGZizaXsUbVu2c+DtHqG75klyE6GlepORcbp04sPKa99GQb8P?=
+ =?us-ascii?Q?A+KUH9GgCxXxEXsLVQpmDnj66gjIz5k06DzLKtkyAp75EmD8ZK2MHfH9guov?=
+ =?us-ascii?Q?ks3d60wDA4sB3gp3hog9AMNCDPmrD8GxEu/4?=
 X-Forefront-Antispam-Report: 
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2025 19:41:24.8480
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2025 22:45:11.4992
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b0bda78-e74f-4502-195f-08ddaab24847
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01949420-7e7d-4075-9b73-08ddad2773e3
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	SN1PEPF00036F40.namprd05.prod.outlook.com
+	SN1PEPF00026367.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5801
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9090
+Content-Transfer-Encoding: quoted-printable
 X-MailFrom: petrm@nvidia.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation
-Message-ID-Hash: HAYZ2P653R63CYTJTNIMDDD2BQJYI5BQ
-X-Message-ID-Hash: HAYZ2P653R63CYTJTNIMDDD2BQJYI5BQ
-X-Mailman-Approved-At: Mon, 23 Jun 2025 14:41:52 +0000
-CC: Petr Machata <petrm@nvidia.com>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, David Ahern <dsahern@gmail.com>, netdev@vger.kernel.org, Simon Horman <horms@kernel.org>, Nikolay Aleksandrov <razor@blackwall.org>, Ido Schimmel <idosch@nvidia.com>, mlxsw@nvidia.com, Antonio Quartulli <antonio@openvpn.net>, Pablo Neira Ayuso <pablo@netfilter.org>, osmocom-net-gprs@lists.osmocom.org, Andrew Lunn <andrew+netdev@lunn.ch>, Taehee Yoo <ap420073@gmail.com>, "Jason A. Donenfeld" <Jason@zx2c4.com>, wireguard@lists.zx2c4.com, Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>, linux-sctp@vger.kernel.org, Jon Maloy <jmaloy@redhat.com>, tipc-discussion@lists.sourceforge.net
+Message-ID-Hash: 3AZV5EMFMZO7Z7T5Z4SLUA7TWYCKHWK6
+X-Message-ID-Hash: 3AZV5EMFMZO7Z7T5Z4SLUA7TWYCKHWK6
+X-Mailman-Approved-At: Mon, 23 Jun 2025 14:41:59 +0000
+CC: Simon Horman <horms@kernel.org>, Nikolay Aleksandrov <razor@blackwall.org>, Ido Schimmel <idosch@nvidia.com>, Petr Machata <petrm@nvidia.com>, mlxsw@nvidia.com, Antonio Quartulli <antonio@openvpn.net>, Pablo Neira Ayuso <pablo@netfilter.org>, osmocom-net-gprs@lists.osmocom.org, Andrew Lunn <andrew+netdev@lunn.ch>, Taehee Yoo <ap420073@gmail.com>, "Jason A. Donenfeld" <Jason@zx2c4.com>, wireguard@lists.zx2c4.com, Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>, linux-sctp@vger.kernel.org, Jon Maloy <jmaloy@redhat.com>, tipc-discussion@lists.sourceforge.net
 X-Mailman-Version: 3.3.3
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU, OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
-Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/HAYZ2P653R63CYTJTNIMDDD2BQJYI5BQ/>
+Archived-At: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/3AZV5EMFMZO7Z7T5Z4SLUA7TWYCKHWK6/>
 List-Archive: <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
 List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
@@ -152,23 +153,356 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 
+iptunnel_xmit() erases the contents of the SKB control block. In order to
+be able to set particular IPCB flags on the SKB, add a corresponding
+parameter, and propagate it to udp_tunnel_xmit_skb() as well.
 
-Jakub Kicinski <kuba@kernel.org> writes:
+In one of the following patches, VXLAN driver will use this facility to
+mark packets as subject to IP multicast routing.
 
-> On Thu, 12 Jun 2025 22:10:35 +0200 Petr Machata wrote:
->>  void udp_tunnel_xmit_skb(struct rtable *rt, struct sock *sk, struct sk_buff *skb,
->>  			 __be32 src, __be32 dst, __u8 tos, __u8 ttl,
->>  			 __be16 df, __be16 src_port, __be16 dst_port,
->> -			 bool xnet, bool nocheck)
->> +			 bool xnet, bool nocheck, u16 ipcb_flags)
->
-> This is a lot of arguments for a function.
-> I don't have a great suggestion off the top of my head, but maybe
-> think more about it?
+Signed-off-by: Petr Machata <petrm@nvidia.com>
+Reviewed-by: Ido Schimmel <idosch@nvidia.com>
+Reviewed-by: Nikolay Aleksandrov <razor@blackwall.org>
+Acked-by: Antonio Quartulli <antonio@openvpn.net>
+---
 
-It wraps functions that take many arguments ^o^
+Notes:
+CC: Pablo Neira Ayuso <pablo@netfilter.org>
+CC: osmocom-net-gprs@lists.osmocom.org
+CC: Andrew Lunn <andrew+netdev@lunn.ch>
+CC: Taehee Yoo <ap420073@gmail.com>
+CC: Antonio Quartulli <antonio@openvpn.net>
+CC: "Jason A. Donenfeld" <Jason@zx2c4.com>
+CC: wireguard@lists.zx2c4.com
+CC: Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>
+CC: linux-sctp@vger.kernel.org
+CC: Jon Maloy <jmaloy@redhat.com>
+CC: tipc-discussion@lists.sourceforge.net
 
-We could exchange src_port, dst_port by passing in the UDP header
-directly, but I don't think that's a good idea.
+ drivers/net/amt.c              |  9 ++++++---
+ drivers/net/bareudp.c          |  4 ++--
+ drivers/net/geneve.c           |  4 ++--
+ drivers/net/gtp.c              | 10 ++++++----
+ drivers/net/ovpn/udp.c         |  2 +-
+ drivers/net/vxlan/vxlan_core.c |  2 +-
+ drivers/net/wireguard/socket.c |  2 +-
+ include/net/ip_tunnels.h       |  2 +-
+ include/net/udp_tunnel.h       |  2 +-
+ net/ipv4/ip_tunnel.c           |  4 ++--
+ net/ipv4/ip_tunnel_core.c      |  4 +++-
+ net/ipv4/udp_tunnel_core.c     |  5 +++--
+ net/ipv6/sit.c                 |  2 +-
+ net/sctp/protocol.c            |  3 ++-
+ net/tipc/udp_media.c           |  2 +-
+ 15 files changed, 33 insertions(+), 24 deletions(-)
 
-I guess I don't have great ideas either.
+diff --git a/drivers/net/amt.c b/drivers/net/amt.c
+index fb130fde68c0..ed86537b2f61 100644
+--- a/drivers/net/amt.c
++++ b/drivers/net/amt.c
+@@ -1046,7 +1046,8 @@ static bool amt_send_membership_update(struct amt_d=
+ev *amt,
+ 			    amt->gw_port,
+ 			    amt->relay_port,
+ 			    false,
+-			    false);
++			    false,
++			    0);
+ 	amt_update_gw_status(amt, AMT_STATUS_SENT_UPDATE, true);
+ 	return false;
+ }
+@@ -1103,7 +1104,8 @@ static void amt_send_multicast_data(struct amt_dev =
+*amt,
+ 			    amt->relay_port,
+ 			    tunnel->source_port,
+ 			    false,
+-			    false);
++			    false,
++			    0);
+ }
+=20
+ static bool amt_send_membership_query(struct amt_dev *amt,
+@@ -1161,7 +1163,8 @@ static bool amt_send_membership_query(struct amt_de=
+v *amt,
+ 			    amt->relay_port,
+ 			    tunnel->source_port,
+ 			    false,
+-			    false);
++			    false,
++			    0);
+ 	amt_update_relay_status(tunnel, AMT_STATUS_SENT_QUERY, true);
+ 	return false;
+ }
+diff --git a/drivers/net/bareudp.c b/drivers/net/bareudp.c
+index a9dffdcac805..5e613080d3f8 100644
+--- a/drivers/net/bareudp.c
++++ b/drivers/net/bareudp.c
+@@ -362,8 +362,8 @@ static int bareudp_xmit_skb(struct sk_buff *skb, stru=
+ct net_device *dev,
+ 	udp_tunnel_xmit_skb(rt, sock->sk, skb, saddr, info->key.u.ipv4.dst,
+ 			    tos, ttl, df, sport, bareudp->port,
+ 			    !net_eq(bareudp->net, dev_net(bareudp->dev)),
+-			    !test_bit(IP_TUNNEL_CSUM_BIT,
+-				      info->key.tun_flags));
++			    !test_bit(IP_TUNNEL_CSUM_BIT, info->key.tun_flags),
++			    0);
+ 	return 0;
+=20
+ free_dst:
+diff --git a/drivers/net/geneve.c b/drivers/net/geneve.c
+index ffc15a432689..c668e8b00ed2 100644
+--- a/drivers/net/geneve.c
++++ b/drivers/net/geneve.c
+@@ -921,8 +921,8 @@ static int geneve_xmit_skb(struct sk_buff *skb, struc=
+t net_device *dev,
+ 	udp_tunnel_xmit_skb(rt, gs4->sock->sk, skb, saddr, info->key.u.ipv4.dst=
+,
+ 			    tos, ttl, df, sport, geneve->cfg.info.key.tp_dst,
+ 			    !net_eq(geneve->net, dev_net(geneve->dev)),
+-			    !test_bit(IP_TUNNEL_CSUM_BIT,
+-				      info->key.tun_flags));
++			    !test_bit(IP_TUNNEL_CSUM_BIT, info->key.tun_flags),
++			    0);
+ 	return 0;
+ }
+=20
+diff --git a/drivers/net/gtp.c b/drivers/net/gtp.c
+index d4dec741c7f4..14584793fe4e 100644
+--- a/drivers/net/gtp.c
++++ b/drivers/net/gtp.c
+@@ -446,7 +446,8 @@ static int gtp0_send_echo_resp_ip(struct gtp_dev *gtp=
+, struct sk_buff *skb)
+ 			    htons(GTP0_PORT), htons(GTP0_PORT),
+ 			    !net_eq(sock_net(gtp->sk1u),
+ 				    dev_net(gtp->dev)),
+-			    false);
++			    false,
++			    0);
+=20
+ 	return 0;
+ }
+@@ -704,7 +705,8 @@ static int gtp1u_send_echo_resp(struct gtp_dev *gtp, =
+struct sk_buff *skb)
+ 			    htons(GTP1U_PORT), htons(GTP1U_PORT),
+ 			    !net_eq(sock_net(gtp->sk1u),
+ 				    dev_net(gtp->dev)),
+-			    false);
++			    false,
++			    0);
+ 	return 0;
+ }
+=20
+@@ -1304,7 +1306,7 @@ static netdev_tx_t gtp_dev_xmit(struct sk_buff *skb=
+, struct net_device *dev)
+ 				    pktinfo.gtph_port, pktinfo.gtph_port,
+ 				    !net_eq(sock_net(pktinfo.pctx->sk),
+ 					    dev_net(dev)),
+-				    false);
++				    false, 0);
+ 		break;
+ 	case AF_INET6:
+ #if IS_ENABLED(CONFIG_IPV6)
+@@ -2405,7 +2407,7 @@ static int gtp_genl_send_echo_req(struct sk_buff *s=
+kb, struct genl_info *info)
+ 			    port, port,
+ 			    !net_eq(sock_net(sk),
+ 				    dev_net(gtp->dev)),
+-			    false);
++			    false, 0);
+ 	return 0;
+ }
+=20
+diff --git a/drivers/net/ovpn/udp.c b/drivers/net/ovpn/udp.c
+index bff00946eae2..d866e6bfda70 100644
+--- a/drivers/net/ovpn/udp.c
++++ b/drivers/net/ovpn/udp.c
+@@ -199,7 +199,7 @@ static int ovpn_udp4_output(struct ovpn_peer *peer, s=
+truct ovpn_bind *bind,
+ transmit:
+ 	udp_tunnel_xmit_skb(rt, sk, skb, fl.saddr, fl.daddr, 0,
+ 			    ip4_dst_hoplimit(&rt->dst), 0, fl.fl4_sport,
+-			    fl.fl4_dport, false, sk->sk_no_check_tx);
++			    fl.fl4_dport, false, sk->sk_no_check_tx, 0);
+ 	ret =3D 0;
+ err:
+ 	local_bh_enable();
+diff --git a/drivers/net/vxlan/vxlan_core.c b/drivers/net/vxlan/vxlan_cor=
+e.c
+index 97792de896b7..1cc18acd242d 100644
+--- a/drivers/net/vxlan/vxlan_core.c
++++ b/drivers/net/vxlan/vxlan_core.c
+@@ -2522,7 +2522,7 @@ void vxlan_xmit_one(struct sk_buff *skb, struct net=
+_device *dev,
+=20
+ 		udp_tunnel_xmit_skb(rt, sock4->sock->sk, skb, saddr,
+ 				    pkey->u.ipv4.dst, tos, ttl, df,
+-				    src_port, dst_port, xnet, !udp_sum);
++				    src_port, dst_port, xnet, !udp_sum, 0);
+ #if IS_ENABLED(CONFIG_IPV6)
+ 	} else {
+ 		struct vxlan_sock *sock6 =3D rcu_dereference(vxlan->vn6_sock);
+diff --git a/drivers/net/wireguard/socket.c b/drivers/net/wireguard/socke=
+t.c
+index 0414d7a6ce74..88e685667bc0 100644
+--- a/drivers/net/wireguard/socket.c
++++ b/drivers/net/wireguard/socket.c
+@@ -84,7 +84,7 @@ static int send4(struct wg_device *wg, struct sk_buff *=
+skb,
+ 	skb->ignore_df =3D 1;
+ 	udp_tunnel_xmit_skb(rt, sock, skb, fl.saddr, fl.daddr, ds,
+ 			    ip4_dst_hoplimit(&rt->dst), 0, fl.fl4_sport,
+-			    fl.fl4_dport, false, false);
++			    fl.fl4_dport, false, false, 0);
+ 	goto out;
+=20
+ err:
+diff --git a/include/net/ip_tunnels.h b/include/net/ip_tunnels.h
+index 0c3d571a04a1..8cf1380f3656 100644
+--- a/include/net/ip_tunnels.h
++++ b/include/net/ip_tunnels.h
+@@ -603,7 +603,7 @@ static inline int iptunnel_pull_header(struct sk_buff=
+ *skb, int hdr_len,
+=20
+ void iptunnel_xmit(struct sock *sk, struct rtable *rt, struct sk_buff *s=
+kb,
+ 		   __be32 src, __be32 dst, u8 proto,
+-		   u8 tos, u8 ttl, __be16 df, bool xnet);
++		   u8 tos, u8 ttl, __be16 df, bool xnet, u16 ipcb_flags);
+ struct metadata_dst *iptunnel_metadata_reply(struct metadata_dst *md,
+ 					     gfp_t flags);
+ int skb_tunnel_check_pmtu(struct sk_buff *skb, struct dst_entry *encap_d=
+st,
+diff --git a/include/net/udp_tunnel.h b/include/net/udp_tunnel.h
+index 2df3b8344eb5..28102c8fd8a8 100644
+--- a/include/net/udp_tunnel.h
++++ b/include/net/udp_tunnel.h
+@@ -150,7 +150,7 @@ static inline void udp_tunnel_drop_rx_info(struct net=
+_device *dev)
+ void udp_tunnel_xmit_skb(struct rtable *rt, struct sock *sk, struct sk_b=
+uff *skb,
+ 			 __be32 src, __be32 dst, __u8 tos, __u8 ttl,
+ 			 __be16 df, __be16 src_port, __be16 dst_port,
+-			 bool xnet, bool nocheck);
++			 bool xnet, bool nocheck, u16 ipcb_flags);
+=20
+ int udp_tunnel6_xmit_skb(struct dst_entry *dst, struct sock *sk,
+ 			 struct sk_buff *skb,
+diff --git a/net/ipv4/ip_tunnel.c b/net/ipv4/ip_tunnel.c
+index 678b8f96e3e9..aaeb5d16f0c9 100644
+--- a/net/ipv4/ip_tunnel.c
++++ b/net/ipv4/ip_tunnel.c
+@@ -668,7 +668,7 @@ void ip_md_tunnel_xmit(struct sk_buff *skb, struct ne=
+t_device *dev,
+ 	ip_tunnel_adj_headroom(dev, headroom);
+=20
+ 	iptunnel_xmit(NULL, rt, skb, fl4.saddr, fl4.daddr, proto, tos, ttl,
+-		      df, !net_eq(tunnel->net, dev_net(dev)));
++		      df, !net_eq(tunnel->net, dev_net(dev)), 0);
+ 	return;
+ tx_error:
+ 	DEV_STATS_INC(dev, tx_errors);
+@@ -857,7 +857,7 @@ void ip_tunnel_xmit(struct sk_buff *skb, struct net_d=
+evice *dev,
+ 	ip_tunnel_adj_headroom(dev, max_headroom);
+=20
+ 	iptunnel_xmit(NULL, rt, skb, fl4.saddr, fl4.daddr, protocol, tos, ttl,
+-		      df, !net_eq(tunnel->net, dev_net(dev)));
++		      df, !net_eq(tunnel->net, dev_net(dev)), 0);
+ 	return;
+=20
+ #if IS_ENABLED(CONFIG_IPV6)
+diff --git a/net/ipv4/ip_tunnel_core.c b/net/ipv4/ip_tunnel_core.c
+index f65d2f727381..cc9915543637 100644
+--- a/net/ipv4/ip_tunnel_core.c
++++ b/net/ipv4/ip_tunnel_core.c
+@@ -49,7 +49,8 @@ EXPORT_SYMBOL(ip6tun_encaps);
+=20
+ void iptunnel_xmit(struct sock *sk, struct rtable *rt, struct sk_buff *s=
+kb,
+ 		   __be32 src, __be32 dst, __u8 proto,
+-		   __u8 tos, __u8 ttl, __be16 df, bool xnet)
++		   __u8 tos, __u8 ttl, __be16 df, bool xnet,
++		   u16 ipcb_flags)
+ {
+ 	int pkt_len =3D skb->len - skb_inner_network_offset(skb);
+ 	struct net *net =3D dev_net(rt->dst.dev);
+@@ -62,6 +63,7 @@ void iptunnel_xmit(struct sock *sk, struct rtable *rt, =
+struct sk_buff *skb,
+ 	skb_clear_hash_if_not_l4(skb);
+ 	skb_dst_set(skb, &rt->dst);
+ 	memset(IPCB(skb), 0, sizeof(*IPCB(skb)));
++	IPCB(skb)->flags =3D ipcb_flags;
+=20
+ 	/* Push down and install the IP header. */
+ 	skb_push(skb, sizeof(struct iphdr));
+diff --git a/net/ipv4/udp_tunnel_core.c b/net/ipv4/udp_tunnel_core.c
+index 2326548997d3..9efd62505916 100644
+--- a/net/ipv4/udp_tunnel_core.c
++++ b/net/ipv4/udp_tunnel_core.c
+@@ -169,7 +169,7 @@ EXPORT_SYMBOL_GPL(udp_tunnel_notify_del_rx_port);
+ void udp_tunnel_xmit_skb(struct rtable *rt, struct sock *sk, struct sk_b=
+uff *skb,
+ 			 __be32 src, __be32 dst, __u8 tos, __u8 ttl,
+ 			 __be16 df, __be16 src_port, __be16 dst_port,
+-			 bool xnet, bool nocheck)
++			 bool xnet, bool nocheck, u16 ipcb_flags)
+ {
+ 	struct udphdr *uh;
+=20
+@@ -185,7 +185,8 @@ void udp_tunnel_xmit_skb(struct rtable *rt, struct so=
+ck *sk, struct sk_buff *skb
+=20
+ 	udp_set_csum(nocheck, skb, src, dst, skb->len);
+=20
+-	iptunnel_xmit(sk, rt, skb, src, dst, IPPROTO_UDP, tos, ttl, df, xnet);
++	iptunnel_xmit(sk, rt, skb, src, dst, IPPROTO_UDP, tos, ttl, df, xnet,
++		      ipcb_flags);
+ }
+ EXPORT_SYMBOL_GPL(udp_tunnel_xmit_skb);
+=20
+diff --git a/net/ipv6/sit.c b/net/ipv6/sit.c
+index a72dbca9e8fc..12496ba1b7d4 100644
+--- a/net/ipv6/sit.c
++++ b/net/ipv6/sit.c
+@@ -1035,7 +1035,7 @@ static netdev_tx_t ipip6_tunnel_xmit(struct sk_buff=
+ *skb,
+ 	skb_set_inner_ipproto(skb, IPPROTO_IPV6);
+=20
+ 	iptunnel_xmit(NULL, rt, skb, fl4.saddr, fl4.daddr, protocol, tos, ttl,
+-		      df, !net_eq(tunnel->net, dev_net(dev)));
++		      df, !net_eq(tunnel->net, dev_net(dev)), 0);
+ 	return NETDEV_TX_OK;
+=20
+ tx_error_icmp:
+diff --git a/net/sctp/protocol.c b/net/sctp/protocol.c
+index f402f90eb6b6..a5ccada55f2b 100644
+--- a/net/sctp/protocol.c
++++ b/net/sctp/protocol.c
+@@ -1103,7 +1103,8 @@ static inline int sctp_v4_xmit(struct sk_buff *skb,=
+ struct sctp_transport *t)
+ 	skb_set_inner_ipproto(skb, IPPROTO_SCTP);
+ 	udp_tunnel_xmit_skb(dst_rtable(dst), sk, skb, fl4->saddr,
+ 			    fl4->daddr, dscp, ip4_dst_hoplimit(dst), df,
+-			    sctp_sk(sk)->udp_port, t->encap_port, false, false);
++			    sctp_sk(sk)->udp_port, t->encap_port, false, false,
++			    0);
+ 	return 0;
+ }
+=20
+diff --git a/net/tipc/udp_media.c b/net/tipc/udp_media.c
+index 108a4cc2e001..87e8c1e6d550 100644
+--- a/net/tipc/udp_media.c
++++ b/net/tipc/udp_media.c
+@@ -197,7 +197,7 @@ static int tipc_udp_xmit(struct net *net, struct sk_b=
+uff *skb,
+ 		ttl =3D ip4_dst_hoplimit(&rt->dst);
+ 		udp_tunnel_xmit_skb(rt, ub->ubsock->sk, skb, src->ipv4.s_addr,
+ 				    dst->ipv4.s_addr, 0, ttl, 0, src->port,
+-				    dst->port, false, true);
++				    dst->port, false, true, 0);
+ #if IS_ENABLED(CONFIG_IPV6)
+ 	} else {
+ 		if (!ndst) {
+--=20
+2.49.0
+
