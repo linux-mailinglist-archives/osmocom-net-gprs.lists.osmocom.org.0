@@ -2,124 +2,124 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kOd9LY4LzGnGNgYAu9opvQ
+	id EBh1IZALzGnGNgYAu9opvQ
 	(envelope-from <osmocom-net-gprs-bounces@lists.osmocom.org>)
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:42 +0200
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:44 +0200
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
-Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79C1436F96F
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:42 +0200 (CEST)
+Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EBA836F977
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:44 +0200 (CEST)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 2E5554C0307;
-	Tue, 31 Mar 2026 17:59:42 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 126864C0328;
+	Tue, 31 Mar 2026 17:59:44 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id VCpykTqHRfuw; Tue, 31 Mar 2026 17:59:41 +0000 (UTC)
+ id ALPejDsuKBYY; Tue, 31 Mar 2026 17:59:43 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id 2A9EE4C02DA;
-	Tue, 31 Mar 2026 17:59:39 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 20D434C02E0;
+	Tue, 31 Mar 2026 17:59:40 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org
  [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 0415838A019C
+	by lists (Postfix) with ESMTPS id 3ADB938A0224
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Mon,  9 Mar 2026 02:21:41 +0000 (UTC)
+ Tue, 10 Mar 2026 15:37:29 +0000 (UTC)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id D5F7B477E32
+	by mail.osmocom.org (Postfix) with ESMTP id 1843E47D283
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Mon,  9 Mar 2026 02:21:40 +0000 (UTC)
+ Tue, 10 Mar 2026 15:37:29 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id g-WhLisChOKY for <osmocom-net-gprs@lists.osmocom.org>;
- Mon,  9 Mar 2026 02:21:39 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de
- [IPv6:2a07:de40:b251:101:10:150:64:2])
-	by mail.osmocom.org (Postfix) with ESMTPS id DD030477E2D
+ id vhEF4fbMv0mP for <osmocom-net-gprs@lists.osmocom.org>;
+ Tue, 10 Mar 2026 15:37:28 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de
+ [IPv6:2a07:de40:b251:101:10:150:64:1])
+	by mail.osmocom.org (Postfix) with ESMTPS id 1AD1D47D27E
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Mon,  9 Mar 2026 02:21:39 +0000 (UTC)
+ Tue, 10 Mar 2026 15:37:27 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id EA7195BD22;
-	Mon,  9 Mar 2026 02:21:38 +0000 (UTC)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 365393E783;
+	Tue, 10 Mar 2026 15:37:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1773022899;
+	t=1773157046;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jVv02tfcRgtSEKVALIvrkOAVP5Jeq+JdQwNEuWorCiE=;
-	b=WSYDKsv8g+f4LCv2LASDDs3DdL20aXBXiZ/BeKcGMJAOYDv/b68OLFIM8gxDx7sVAZWkVT
-	fTScJIHWHZvh5+EoP0O6CPVfk0Chm/PyRq3rdc7/ufowT+T4KLFXhZRCod5t8U2LdonDFz
-	XaEnbQr6qyk/LUzy7T8CW/Cu63XP80Q=
+	bh=5WH5etI920qUPxE1d1L7Q+bHd5Betyr8Gc/npmYrBJQ=;
+	b=OK+rZL4dcnTcomSXHKXQUsQmVO14bCk9w+uqYgbG1zFM4QbTLFipLhu9zlhv3yr4AbSkMF
+	fMEnQXR04LBFbwvueQXfArorh0VVpQE5Zp3enbl1mFDFxsc1raHOP13fQ5LBYErJTZxo2X
+	q+Gpbq/XCprk4rvqzon75wOrUvyRyHk=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1773022899;
+	s=susede2_ed25519; t=1773157046;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jVv02tfcRgtSEKVALIvrkOAVP5Jeq+JdQwNEuWorCiE=;
-	b=ph6Mh9RLbuQhmVLHoVsMOuw5K2JNmew7Qpo2+orYIFOjPJv3FY+PQCSbvnTUg0GFJ9Jx8i
-	Dx9SscttQI/kviAw==
-Authentication-Results: smtp-out2.suse.de;
+	bh=5WH5etI920qUPxE1d1L7Q+bHd5Betyr8Gc/npmYrBJQ=;
+	b=ZChLOkZuVRQnCQ0XJrrYpvJIii6xs7EA77hP5OkIQAdRjp5+8MGsgjbpB8k74YLrxAKhwb
+	76pmeiCjNtyD94Dg==
+Authentication-Results: smtp-out1.suse.de;
 	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1773022898;
+	t=1773157046;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jVv02tfcRgtSEKVALIvrkOAVP5Jeq+JdQwNEuWorCiE=;
-	b=w9qaC52yeyQIXwtoxltjT1126iTRUMS/BFDaKs2lR63otIaF50y7MyB1srLRL8ysCKo8Kr
-	XbEhlBd2iwCQt4OhgyeblPKwvkSi6KO4dVQzFlENIL4jON7xjcX5EgNW41uKVKGFyxjcY6
-	LnVwkBIo6euh8vlZKEzGDbuOYwjnURU=
+	bh=5WH5etI920qUPxE1d1L7Q+bHd5Betyr8Gc/npmYrBJQ=;
+	b=OK+rZL4dcnTcomSXHKXQUsQmVO14bCk9w+uqYgbG1zFM4QbTLFipLhu9zlhv3yr4AbSkMF
+	fMEnQXR04LBFbwvueQXfArorh0VVpQE5Zp3enbl1mFDFxsc1raHOP13fQ5LBYErJTZxo2X
+	q+Gpbq/XCprk4rvqzon75wOrUvyRyHk=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1773022898;
+	s=susede2_ed25519; t=1773157046;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jVv02tfcRgtSEKVALIvrkOAVP5Jeq+JdQwNEuWorCiE=;
-	b=kYck04HxBMoyMRcBY+4V7Clt8wQ2Fyeou2JBDY7x86J6dnWl1vNJgmZOyN0+5Z/2ufsLpG
-	gtENfByqYGp+E6DQ==
+	bh=5WH5etI920qUPxE1d1L7Q+bHd5Betyr8Gc/npmYrBJQ=;
+	b=ZChLOkZuVRQnCQ0XJrrYpvJIii6xs7EA77hP5OkIQAdRjp5+8MGsgjbpB8k74YLrxAKhwb
+	76pmeiCjNtyD94Dg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 09B623EC6D;
-	Mon,  9 Mar 2026 02:21:35 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 663433F519;
+	Tue, 10 Mar 2026 15:37:23 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id ACSSOq8urmk0MgAAD6G6ig
-	(envelope-from <fmancera@suse.de>); Mon, 09 Mar 2026 02:21:35 +0000
+	id GGWpFbM6sGlKXwAAD6G6ig
+	(envelope-from <fmancera@suse.de>); Tue, 10 Mar 2026 15:37:23 +0000
 From: Fernando Fernandez Mancera <fmancera@suse.de>
 To: netdev@vger.kernel.org
-Subject: [PATCH 05/10 net-next] drivers: net: drop ipv6_stub usage and use
+Subject: [PATCH 05/10 net-next v2] drivers: net: drop ipv6_stub usage and use
  direct function calls
-Date: Mon,  9 Mar 2026 03:19:38 +0100
-Message-ID: <20260309022013.5199-6-fmancera@suse.de>
+Date: Tue, 10 Mar 2026 16:34:28 +0100
+Message-ID: <20260310153506.5181-6-fmancera@suse.de>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260309022013.5199-1-fmancera@suse.de>
-References: <20260309022013.5199-1-fmancera@suse.de>
+In-Reply-To: <20260310153506.5181-1-fmancera@suse.de>
+References: <20260310153506.5181-1-fmancera@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-MailFrom: fmancera@suse.de
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 3OXJSQBIZAUNHM5FIKQMAIEENKWXNDAN
-X-Message-ID-Hash: 3OXJSQBIZAUNHM5FIKQMAIEENKWXNDAN
+Message-ID-Hash: YD633WTRBPKG322LKWBXYNCZCPHEQLAY
+X-Message-ID-Hash: YD633WTRBPKG322LKWBXYNCZCPHEQLAY
 X-Mailman-Approved-At: Tue, 31 Mar 2026 17:59:25 +0000
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU,
  OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
 Archived-At: 
- <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/3OXJSQBIZAUNHM5FIKQMAIEENKWXNDAN/>
+ <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/YD633WTRBPKG322LKWBXYNCZCPHEQLAY/>
 List-Archive: 
  <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
@@ -128,11 +128,11 @@ List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
 X-Spamd-Result: default: False [3.09 / 15.00];
-	DATE_IN_PAST(1.00)[543];
+	DATE_IN_PAST(1.00)[506];
 	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_REJECT(1.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+a:ganesha.gnumonks.org:c];
+	R_SPF_ALLOW(-0.20)[+mx:c];
 	MAILLIST(-0.20)[mailman];
 	DMARC_POLICY_SOFTFAIL(0.10)[suse.de : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
@@ -145,21 +145,21 @@ X-Spamd-Result: default: False [3.09 / 15.00];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER(0.00)[fmancera@suse.de,osmocom-net-gprs-bounces@lists.osmocom.org];
 	DKIM_TRACE(0.00)[suse.de:-];
-	ASN(0.00)[asn:12337, ipnet:2001:780::/32, country:DE];
+	ASN(0.00)[asn:12337, ipnet:213.95.0.0/16, country:DE];
 	RCPT_COUNT_ONE(0.00)[1];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[fmancera@suse.de,osmocom-net-gprs-bounces@lists.osmocom.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,mail.osmocom.org:helo,mail.osmocom.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.osmocom.org:helo,mail.osmocom.org:rdns,suse.de:email,suse.de:mid];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	NEURAL_HAM(-0.00)[-0.981];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[osmocom-net-gprs];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 79C1436F96F
+X-Rspamd-Queue-Id: 5EBA836F977
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -172,16 +172,18 @@ prevent linkage errors when CONFIG_IPV6 is disabled.
 
 Signed-off-by: Fernando Fernandez Mancera <fmancera@suse.de>
 ---
+v2: no changes
+---
  drivers/infiniband/core/addr.c                  |  3 +--
  drivers/infiniband/sw/rxe/rxe_net.c             |  6 +++---
- .../ethernet/mellanox/mlx5/core/en/rep/neigh.c  | 11 +++++++----
+ .../ethernet/mellanox/mlx5/core/en/rep/neigh.c  | 12 ++++++++----
  .../net/ethernet/mellanox/mlx5/core/en/tc_tun.c |  3 +--
  .../mellanox/mlx5/core/en/tc_tun_encap.c        |  2 +-
  .../mellanox/mlx5/core/en_accel/ipsec.c         |  1 -
  .../net/ethernet/mellanox/mlx5/core/en_rep.c    |  1 -
  drivers/net/ethernet/mellanox/mlx5/core/en_tc.c |  1 -
- .../ethernet/mellanox/mlxsw/spectrum_router.c   |  8 ++++----
- .../net/ethernet/mellanox/mlxsw/spectrum_span.c |  2 +-
+ .../ethernet/mellanox/mlxsw/spectrum_router.c   |  9 +++++----
+ .../net/ethernet/mellanox/mlxsw/spectrum_span.c |  3 ++-
  .../net/ethernet/netronome/nfp/flower/action.c  |  2 +-
  .../ethernet/netronome/nfp/flower/tunnel_conf.c |  9 ++++-----
  drivers/net/ethernet/sfc/tc_counters.c          |  2 +-
@@ -191,13 +193,13 @@ Signed-off-by: Fernando Fernandez Mancera <fmancera@suse.de>
  drivers/net/ovpn/peer.c                         |  3 +--
  drivers/net/ovpn/udp.c                          |  3 +--
  drivers/net/usb/cdc_mbim.c                      | 17 +++++++++--------
- drivers/net/vrf.c                               |  2 +-
+ drivers/net/vrf.c                               |  3 ++-
  drivers/net/vxlan/vxlan_core.c                  | 11 +++++------
  drivers/net/vxlan/vxlan_multicast.c             |  6 ++----
  drivers/net/wireguard/socket.c                  |  3 +--
  drivers/net/wireless/intel/ipw2x00/ipw2100.c    |  2 +-
  net/bridge/br_arp_nd_proxy.c                    |  3 +--
- 25 files changed, 49 insertions(+), 60 deletions(-)
+ 25 files changed, 53 insertions(+), 60 deletions(-)
 
 diff --git a/drivers/infiniband/core/addr.c b/drivers/infiniband/core/addr.c
 index 866746695712..48d4b06384ec 100644
@@ -238,7 +240,7 @@ index 0bd0902b11f7..cbc646a30003 100644
  		rxe_dbg_qp(qp, "no route to %pI6\n", daddr);
  		return NULL;
 diff --git a/drivers/net/ethernet/mellanox/mlx5/core/en/rep/neigh.c b/drivers/net/ethernet/mellanox/mlx5/core/en/rep/neigh.c
-index d220b045b331..2c07a53e12c0 100644
+index d220b045b331..56930bad94eb 100644
 --- a/drivers/net/ethernet/mellanox/mlx5/core/en/rep/neigh.c
 +++ b/drivers/net/ethernet/mellanox/mlx5/core/en/rep/neigh.c
 @@ -10,6 +10,7 @@
@@ -271,12 +273,13 @@ index d220b045b331..2c07a53e12c0 100644
  #else
  		if (n->tbl != &arp_tbl)
  #endif
-@@ -238,7 +241,7 @@ static int mlx5e_rep_netevent_event(struct notifier_block *nb,
+@@ -238,7 +241,8 @@ static int mlx5e_rep_netevent_event(struct notifier_block *nb,
  		 * done per device delay prob time parameter.
  		 */
  #if IS_ENABLED(CONFIG_IPV6)
 -		if (!p->dev || (p->tbl != ipv6_stub->nd_tbl && p->tbl != &arp_tbl))
-+		if (!p->dev || (p->tbl != ipv6_get_nd_tbl() && p->tbl != &arp_tbl))
++		if (!p->dev ||
++		    (p->tbl != ipv6_get_nd_tbl() && p->tbl != &arp_tbl))
  #else
  		if (!p->dev || p->tbl != &arp_tbl)
  #endif
@@ -344,7 +347,7 @@ index 1434b65d4746..4e4ee1d520ce 100644
  #include <net/bonding.h>
  #include <net/dst_metadata.h>
 diff --git a/drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c b/drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c
-index 7bd87d0547d8..5146663f9d23 100644
+index 7bd87d0547d8..8531216f6389 100644
 --- a/drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c
 +++ b/drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c
 @@ -2458,7 +2458,7 @@ static void mlxsw_sp_router_neigh_ent_ipv6_process(struct mlxsw_sp *mlxsw_sp,
@@ -356,16 +359,17 @@ index 7bd87d0547d8..5146663f9d23 100644
  	if (!n)
  		return;
  
-@@ -3022,7 +3022,7 @@ static int mlxsw_sp_neigh_rif_made_sync(struct mlxsw_sp *mlxsw_sp,
+@@ -3022,7 +3022,8 @@ static int mlxsw_sp_neigh_rif_made_sync(struct mlxsw_sp *mlxsw_sp,
  		goto err_arp;
  
  #if IS_ENABLED(CONFIG_IPV6)
 -	neigh_for_each(&nd_tbl, mlxsw_sp_neigh_rif_made_sync_each, &rms);
-+	neigh_for_each(ipv6_get_nd_tbl(), mlxsw_sp_neigh_rif_made_sync_each, &rms);
++	neigh_for_each(ipv6_get_nd_tbl(),
++		       mlxsw_sp_neigh_rif_made_sync_each, &rms);
  #endif
  	if (rms.err)
  		goto err_nd;
-@@ -5124,7 +5124,7 @@ mlxsw_sp_nexthop_obj_init(struct mlxsw_sp *mlxsw_sp,
+@@ -5124,7 +5125,7 @@ mlxsw_sp_nexthop_obj_init(struct mlxsw_sp *mlxsw_sp,
  	case AF_INET6:
  		memcpy(&nh->gw_addr, &nh_obj->ipv6, sizeof(nh_obj->ipv6));
  #if IS_ENABLED(CONFIG_IPV6)
@@ -374,7 +378,7 @@ index 7bd87d0547d8..5146663f9d23 100644
  #endif
  		break;
  	}
-@@ -6980,7 +6980,7 @@ static int mlxsw_sp_nexthop6_init(struct mlxsw_sp *mlxsw_sp,
+@@ -6980,7 +6981,7 @@ static int mlxsw_sp_nexthop6_init(struct mlxsw_sp *mlxsw_sp,
  	nh->nh_weight = rt->fib6_nh->fib_nh_weight;
  	memcpy(&nh->gw_addr, &rt->fib6_nh->fib_nh_gw6, sizeof(nh->gw_addr));
  #if IS_ENABLED(CONFIG_IPV6)
@@ -384,15 +388,16 @@ index 7bd87d0547d8..5146663f9d23 100644
  
  	err = mlxsw_sp_nexthop_counter_enable(mlxsw_sp, nh);
 diff --git a/drivers/net/ethernet/mellanox/mlxsw/spectrum_span.c b/drivers/net/ethernet/mellanox/mlxsw/spectrum_span.c
-index ae63d549b542..7bf0b07f2e09 100644
+index ae63d549b542..f05ccf3db876 100644
 --- a/drivers/net/ethernet/mellanox/mlxsw/spectrum_span.c
 +++ b/drivers/net/ethernet/mellanox/mlxsw/spectrum_span.c
-@@ -576,7 +576,7 @@ mlxsw_sp_span_entry_gretap6_parms(struct mlxsw_sp *mlxsw_sp,
+@@ -576,7 +576,8 @@ mlxsw_sp_span_entry_gretap6_parms(struct mlxsw_sp *mlxsw_sp,
  	l3edev = mlxsw_sp_span_gretap6_route(to_dev, &saddr.addr6, &gw.addr6);
  	return mlxsw_sp_span_entry_tunnel_parms_common(l3edev, saddr, daddr, gw,
  						       tparm.hop_limit,
 -						       &nd_tbl, sparmsp);
-+						       ipv6_get_nd_tbl(), sparmsp);
++						       ipv6_get_nd_tbl(),
++						       sparmsp);
  }
  
  static int
@@ -605,15 +610,16 @@ index dbf01210b0e7..877fb0ed7d3d 100644
  			break;
  		default:
 diff --git a/drivers/net/vrf.c b/drivers/net/vrf.c
-index 8c009bcaa8e7..8d9e312d536d 100644
+index 8c009bcaa8e7..68edb47cc4eb 100644
 --- a/drivers/net/vrf.c
 +++ b/drivers/net/vrf.c
-@@ -616,7 +616,7 @@ static int vrf_finish_output6(struct net *net, struct sock *sk,
+@@ -616,7 +616,8 @@ static int vrf_finish_output6(struct net *net, struct sock *sk,
  	nexthop = rt6_nexthop(dst_rt6_info(dst), &ipv6_hdr(skb)->daddr);
  	neigh = __ipv6_neigh_lookup_noref(dst->dev, nexthop);
  	if (unlikely(!neigh))
 -		neigh = __neigh_create(&nd_tbl, nexthop, dst->dev, false);
-+		neigh = __neigh_create(ipv6_get_nd_tbl(), nexthop, dst->dev, false);
++		neigh = __neigh_create(ipv6_get_nd_tbl(), nexthop,
++				       dst->dev, false);
  	if (!IS_ERR(neigh)) {
  		sock_confirm_neigh(skb, neigh);
  		ret = neigh_output(neigh, skb, false);
