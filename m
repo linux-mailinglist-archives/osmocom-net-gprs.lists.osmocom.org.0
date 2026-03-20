@@ -2,118 +2,84 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KN5xI5cLzGnGNgYAu9opvQ
+	id kL1IN5gLzGnGNgYAu9opvQ
 	(envelope-from <osmocom-net-gprs-bounces@lists.osmocom.org>)
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:51 +0200
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:52 +0200
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51F4836F98D
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD71336F994
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:52 +0200 (CEST)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 2E0CD4C03A9;
-	Tue, 31 Mar 2026 17:59:51 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id A97C14C03C2;
+	Tue, 31 Mar 2026 17:59:52 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id FBPnok2IbkeM; Tue, 31 Mar 2026 17:59:50 +0000 (UTC)
+ id OZpgm9_R6Att; Tue, 31 Mar 2026 17:59:52 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id CE1954C0326;
-	Tue, 31 Mar 2026 17:59:43 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id BD1324C033A;
+	Tue, 31 Mar 2026 17:59:44 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org
  [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id CE27938A03AC
+	by lists (Postfix) with ESMTPS id 572E338A0203
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Tue, 17 Mar 2026 14:03:51 +0000 (UTC)
+ Fri, 20 Mar 2026 19:00:37 +0000 (UTC)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id A9BC1493E60
+	by mail.osmocom.org (Postfix) with ESMTP id 987F349E912
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Tue, 17 Mar 2026 14:03:51 +0000 (UTC)
+ Fri, 20 Mar 2026 19:00:36 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id VOCDVTG5ekAZ for <osmocom-net-gprs@lists.osmocom.org>;
- Tue, 17 Mar 2026 14:03:50 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de
- [IPv6:2a07:de40:b251:101:10:150:64:2])
-	by mail.osmocom.org (Postfix) with ESMTPS id AFDC0493E5B
+ id Dz_rxTQnY18i for <osmocom-net-gprs@lists.osmocom.org>;
+ Fri, 20 Mar 2026 19:00:35 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	by mail.osmocom.org (Postfix) with ESMTPS id 9CD2449E90C
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Tue, 17 Mar 2026 14:03:50 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ Fri, 20 Mar 2026 19:00:35 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id E5B055BE0D;
-	Tue, 17 Mar 2026 14:03:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1773756224;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IjJG4+eBf234gf25TIf5S+ExqzLP/QpJradFvOgQTdE=;
-	b=Ebz/G3R+uFTlL1jKI4o/k3zoo1EFr3pJws2qzVb3XsS1QrIydmD4MvCuUGhyb3f3ZFBaB5
-	V77sNNbVSRwR9ICGsAe2wMZVuKMNtXT+tctFXIqFUJH9vUM9+dg35BOuh8BvnpuRAZP8Li
-	Z0kADZyhbf/ifvuCW7W632cDC+/YKew=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1773756224;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IjJG4+eBf234gf25TIf5S+ExqzLP/QpJradFvOgQTdE=;
-	b=bY/Sxi5Z+mgIke4KMYiPhnm1/QC0bmPykDEgY2IeO0/f9pYrDgPKPxfebx/U7r5kb2lqrf
-	26+n+6ljkRad/0CA==
+	by smtp-out2.suse.de (Postfix) with ESMTPS id E1D8B5BE11;
+	Fri, 20 Mar 2026 19:00:34 +0000 (UTC)
 Authentication-Results: smtp-out2.suse.de;
 	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1773756219;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IjJG4+eBf234gf25TIf5S+ExqzLP/QpJradFvOgQTdE=;
-	b=hZgmHstnhJWf3r2ke5rsOqUvJpVU7bbKmu3Dv/wkDOfrKGniV+C5UPLcTbe6I1PawXm0nb
-	s7n1Gy3rmrUqzM/sZd7Q/GJvzdAtb7qVXqc+Y3JzX/hNygoxiM3inY6y2/Thtm7fV1Hd4+
-	MEOGnWq6EMoL2J7aHtgrUQKbnzb46Wo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1773756219;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IjJG4+eBf234gf25TIf5S+ExqzLP/QpJradFvOgQTdE=;
-	b=rJ/vBunS9I2TjiUZSPBAuvuyUOex2M28ZCLz6lYHyP+bf2fV2pQBSogZ82OXHuCwbHf29S
-	GRKrjInR9XU14aDw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4A8344273B;
-	Tue, 17 Mar 2026 14:03:37 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2499642955;
+	Fri, 20 Mar 2026 19:00:32 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id QK4gDzlfuWmpYwAAD6G6ig
-	(envelope-from <fmancera@suse.de>); Tue, 17 Mar 2026 14:03:37 +0000
+	id kDKmBVCZvWnyTgAAD6G6ig
+	(envelope-from <fmancera@suse.de>); Fri, 20 Mar 2026 19:00:32 +0000
 From: Fernando Fernandez Mancera <fmancera@suse.de>
 To: netdev@vger.kernel.org
-Subject: [PATCH 05/10 net-next v3] drivers: net: drop ipv6_stub usage and use
+Subject: [PATCH 06/11 net-next v4] drivers: net: drop ipv6_stub usage and use
  direct function calls
-Date: Tue, 17 Mar 2026 15:01:01 +0100
-Message-ID: <20260317140141.5723-6-fmancera@suse.de>
+Date: Fri, 20 Mar 2026 19:56:00 +0100
+Message-ID: <20260320185649.5411-9-fmancera@suse.de>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260317140141.5723-1-fmancera@suse.de>
-References: <20260317140141.5723-1-fmancera@suse.de>
+In-Reply-To: <20260320185649.5411-1-fmancera@suse.de>
+References: <20260320185649.5411-1-fmancera@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Pre-Result: action=no action;
+	module=replies;
+	Message is reply to one we originated
+X-Rspamd-Pre-Result: action=no action;
+	module=replies;
+	Message is reply to one we originated
 X-MailFrom: fmancera@suse.de
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 55RXKLTTDYQJSMZM3KJXJ3PASIJS6RQS
-X-Message-ID-Hash: 55RXKLTTDYQJSMZM3KJXJ3PASIJS6RQS
+Message-ID-Hash: 3RV4JNNIO3J3ONQGMBFMVO47N2IO75HH
+X-Message-ID-Hash: 3RV4JNNIO3J3ONQGMBFMVO47N2IO75HH
 X-Mailman-Approved-At: Tue, 31 Mar 2026 17:59:25 +0000
 CC: Fernando Fernandez Mancera <fmancera@suse.de>,
  =?UTF-8?q?Ricardo=20B=2E=20Marli=C3=A8re?= <rbm@suse.com>,
@@ -125,19 +91,17 @@ CC: Fernando Fernandez Mancera <fmancera@suse.de>,
  Mark Bloch <mbloch@nvidia.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Boris Pismenny <borisp@nvidia.com>, Ido Schimmel <idosch@nvidia.com>,
- Petr Machata <petrm@nvidia.com>, Simon Horman <horms@kernel.org>,
+ Boris Pismenny <borisp@nvidia.com>, Simon Horman <horms@kernel.org>,
  Pablo Neira Ayuso <pablo@netfilter.org>, Harald Welte <laforge@gnumonks.org>,
  Sabrina Dubroca <sd@queasysnail.net>, Oliver Neukum <oliver@neukum.org>,
- David Ahern <dsahern@kernel.org>,
  Stanislav Yakovlev <stas.yakovlev@gmail.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Vlad Dumitrescu <vdumitrescu@nvidia.com>, Edward Srouji <edwards@nvidia.com>,
- Parav Pandit <parav@nvidia.com>, Kees Cook <kees@kernel.org>,
- Guillaume Nault <gnault@redhat.com>, Jianbo Liu <jianbol@nvidia.com>,
- Gal Pressman <gal@nvidia.com>, Alexei Lazar <alazar@nvidia.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>, Ido Schimmel <idosch@nvidia.com>,
+ Edward Srouji <edwards@nvidia.com>, Parav Pandit <parav@nvidia.com>,
+ Vlad Dumitrescu <vdumitrescu@nvidia.com>, Kees Cook <kees@kernel.org>,
+ Jianbo Liu <jianbol@nvidia.com>, Gal Pressman <gal@nvidia.com>,
+ Guillaume Nault <gnault@redhat.com>, Alexei Lazar <alazar@nvidia.com>,
  Cosmin Ratiu <cratiu@nvidia.com>, Carolina Jubran <cjubran@nvidia.com>,
- Alexandre Cassen <acassen@corp.free.fr>,
+ Alexandre Cassen <acassen@corp.free.fr>, Petr Machata <petrm@nvidia.com>,
  Stanislav Fomichev <sdf@fomichev.me>, linux-rdma@vger.kernel.org,
  linux-kernel@vger.kernel.org, oss-drivers@corigine.com,
  linux-net-drivers@amd.com, osmocom-net-gprs@lists.osmocom.org,
@@ -148,7 +112,7 @@ Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU,
  OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
 Archived-At: 
- <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/55RXKLTTDYQJSMZM3KJXJ3PASIJS6RQS/>
+ <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/3RV4JNNIO3J3ONQGMBFMVO47N2IO75HH/>
 List-Archive: 
  <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
@@ -156,42 +120,41 @@ List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
 List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
-X-Spamd-Result: default: False [2.29 / 15.00];
+X-Spamd-Result: default: False [3.09 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[263];
 	MID_CONTAINS_FROM(1.00)[];
-	DATE_IN_PAST(1.00)[339];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	R_SPF_ALLOW(-0.20)[+mx:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	DMARC_POLICY_SOFTFAIL(0.10)[suse.de : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[suse.de,suse.com,zx2c4.com,openvpn.net,gmail.com,ziepe.ca,kernel.org,nvidia.com,lunn.ch,davemloft.net,google.com,redhat.com,netfilter.org,gnumonks.org,queasysnail.net,neukum.org,blackwall.org,corp.free.fr,fomichev.me,vger.kernel.org,corigine.com,amd.com,lists.osmocom.org,lists.zx2c4.com,lists.linux.dev];
-	FORGED_RECIPIENTS(0.00)[m:netdev@vger.kernel.org,m:fmancera@suse.de,m:rbm@suse.com,m:Jason@zx2c4.com,m:antonio@openvpn.net,m:ecree.xilinx@gmail.com,m:jgg@ziepe.ca,m:leon@kernel.org,m:zyjzyj2000@gmail.com,m:saeedm@nvidia.com,m:tariqt@nvidia.com,m:mbloch@nvidia.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:borisp@nvidia.com,m:idosch@nvidia.com,m:petrm@nvidia.com,m:horms@kernel.org,m:pablo@netfilter.org,m:laforge@gnumonks.org,m:sd@queasysnail.net,m:oliver@neukum.org,m:dsahern@kernel.org,m:stas.yakovlev@gmail.com,m:razor@blackwall.org,m:vdumitrescu@nvidia.com,m:edwards@nvidia.com,m:parav@nvidia.com,m:kees@kernel.org,m:gnault@redhat.com,m:jianbol@nvidia.com,m:gal@nvidia.com,m:alazar@nvidia.com,m:cratiu@nvidia.com,m:cjubran@nvidia.com,m:acassen@corp.free.fr,m:sdf@fomichev.me,m:linux-rdma@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:oss-drivers@corigine.com,m:linux-net-drivers@amd.com,m:osmocom-net-gprs@lists.osmocom.org
- ,m:linux-usb@vger.kernel.org,m:wireguard@lists.zx2c4.com,m:linux-wireless@vger.kernel.org,m:bridge@lists.linux.dev,m:ecreexilinx@gmail.com,m:andrew@lunn.ch,m:stasyakovlev@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[fmancera@suse.de,osmocom-net-gprs-bounces@lists.osmocom.org];
-	RCPT_COUNT_TWELVE(0.00)[49];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[48];
+	FREEMAIL_CC(0.00)[suse.de,suse.com,zx2c4.com,openvpn.net,gmail.com,ziepe.ca,kernel.org,nvidia.com,lunn.ch,davemloft.net,google.com,redhat.com,netfilter.org,gnumonks.org,queasysnail.net,neukum.org,blackwall.org,corp.free.fr,fomichev.me,vger.kernel.org,corigine.com,amd.com,lists.osmocom.org,lists.zx2c4.com,lists.linux.dev];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:netdev@vger.kernel.org,m:fmancera@suse.de,m:rbm@suse.com,m:Jason@zx2c4.com,m:antonio@openvpn.net,m:ecree.xilinx@gmail.com,m:jgg@ziepe.ca,m:leon@kernel.org,m:zyjzyj2000@gmail.com,m:saeedm@nvidia.com,m:tariqt@nvidia.com,m:mbloch@nvidia.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:borisp@nvidia.com,m:horms@kernel.org,m:pablo@netfilter.org,m:laforge@gnumonks.org,m:sd@queasysnail.net,m:oliver@neukum.org,m:stas.yakovlev@gmail.com,m:razor@blackwall.org,m:idosch@nvidia.com,m:edwards@nvidia.com,m:parav@nvidia.com,m:vdumitrescu@nvidia.com,m:kees@kernel.org,m:jianbol@nvidia.com,m:gal@nvidia.com,m:gnault@redhat.com,m:alazar@nvidia.com,m:cratiu@nvidia.com,m:cjubran@nvidia.com,m:acassen@corp.free.fr,m:petrm@nvidia.com,m:sdf@fomichev.me,m:linux-rdma@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:oss-drivers@corigine.com,m:linux-net-drivers@amd.com,m:osmocom-net-gprs@lists.osmocom.org,m:linux-usb@vger.ker
+ nel.org,m:wireguard@lists.zx2c4.com,m:linux-wireless@vger.kernel.org,m:bridge@lists.linux.dev,m:ecreexilinx@gmail.com,m:andrew@lunn.ch,m:stasyakovlev@gmail.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[fmancera@suse.de,osmocom-net-gprs-bounces@lists.osmocom.org];
 	FORWARDED(0.00)[osmocom-net-gprs@lists.osmocom.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:email,suse.de:mid,openvpn.net:email,mail.osmocom.org:helo,mail.osmocom.org:rdns,suse.com:email];
-	DKIM_TRACE(0.00)[suse.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,openvpn.net:email,mail.osmocom.org:helo,mail.osmocom.org:rdns,suse.com:email];
+	ASN(0.00)[asn:12337, ipnet:213.95.0.0/16, country:DE];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[fmancera@suse.de,osmocom-net-gprs-bounces@lists.osmocom.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[osmocom-net-gprs@lists.osmocom.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:12337, ipnet:213.95.0.0/16, country:DE];
-	NEURAL_HAM(-0.00)[-1.000];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[osmocom-net-gprs,netdev];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 51F4836F98D
+X-Rspamd-Queue-Id: CD71336F994
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -210,16 +173,14 @@ Reviewed-by: Edward Cree <ecree.xilinx@gmail.com>
 ---
  drivers/infiniband/core/addr.c                  |  3 +--
  drivers/infiniband/sw/rxe/rxe_net.c             |  6 +++---
- .../ethernet/mellanox/mlx5/core/en/rep/neigh.c  | 12 ++++++++----
+ .../ethernet/mellanox/mlx5/core/en/rep/neigh.c  |  9 +++++----
  .../net/ethernet/mellanox/mlx5/core/en/tc_tun.c |  3 +--
  .../mellanox/mlx5/core/en/tc_tun_encap.c        |  2 +-
  .../mellanox/mlx5/core/en_accel/ipsec.c         |  1 -
  .../net/ethernet/mellanox/mlx5/core/en_rep.c    |  1 -
  drivers/net/ethernet/mellanox/mlx5/core/en_tc.c |  1 -
- .../ethernet/mellanox/mlxsw/spectrum_router.c   |  9 +++++----
- .../net/ethernet/mellanox/mlxsw/spectrum_span.c |  3 ++-
  .../net/ethernet/netronome/nfp/flower/action.c  |  2 +-
- .../ethernet/netronome/nfp/flower/tunnel_conf.c |  9 ++++-----
+ .../ethernet/netronome/nfp/flower/tunnel_conf.c |  7 +++----
  drivers/net/ethernet/sfc/tc_counters.c          |  2 +-
  drivers/net/ethernet/sfc/tc_encap_actions.c     |  5 ++---
  drivers/net/geneve.c                            |  1 -
@@ -227,13 +188,12 @@ Reviewed-by: Edward Cree <ecree.xilinx@gmail.com>
  drivers/net/ovpn/peer.c                         |  3 +--
  drivers/net/ovpn/udp.c                          |  3 +--
  drivers/net/usb/cdc_mbim.c                      | 17 +++++++++--------
- drivers/net/vrf.c                               |  3 ++-
  drivers/net/vxlan/vxlan_core.c                  | 11 +++++------
  drivers/net/vxlan/vxlan_multicast.c             |  6 ++----
  drivers/net/wireguard/socket.c                  |  3 +--
  drivers/net/wireless/intel/ipw2x00/ipw2100.c    |  2 +-
  net/bridge/br_arp_nd_proxy.c                    |  3 +--
- 25 files changed, 53 insertions(+), 60 deletions(-)
+ 22 files changed, 40 insertions(+), 53 deletions(-)
 
 diff --git a/drivers/infiniband/core/addr.c b/drivers/infiniband/core/addr.c
 index 866746695712..48d4b06384ec 100644
@@ -274,7 +234,7 @@ index 0bd0902b11f7..cbc646a30003 100644
  		rxe_dbg_qp(qp, "no route to %pI6\n", daddr);
  		return NULL;
 diff --git a/drivers/net/ethernet/mellanox/mlx5/core/en/rep/neigh.c b/drivers/net/ethernet/mellanox/mlx5/core/en/rep/neigh.c
-index d220b045b331..56930bad94eb 100644
+index d220b045b331..648f4521c096 100644
 --- a/drivers/net/ethernet/mellanox/mlx5/core/en/rep/neigh.c
 +++ b/drivers/net/ethernet/mellanox/mlx5/core/en/rep/neigh.c
 @@ -10,6 +10,7 @@
@@ -285,35 +245,32 @@ index d220b045b331..56930bad94eb 100644
  #include "neigh.h"
  #include "tc.h"
  #include "en_rep.h"
-@@ -18,8 +19,10 @@
+@@ -18,8 +19,8 @@
  
  static unsigned long mlx5e_rep_ipv6_interval(void)
  {
 -	if (IS_ENABLED(CONFIG_IPV6) && ipv6_stub->nd_tbl)
 -		return NEIGH_VAR(&ipv6_stub->nd_tbl->parms, DELAY_PROBE_TIME);
-+	struct neigh_table *tbl = ipv6_get_nd_tbl();
-+
 +	if (IS_ENABLED(CONFIG_IPV6) && ipv6_mod_enabled())
-+		return NEIGH_VAR(&tbl->parms, DELAY_PROBE_TIME);
++		return NEIGH_VAR(&nd_tbl.parms, DELAY_PROBE_TIME);
  
  	return ~0UL;
  }
-@@ -217,7 +220,7 @@ static int mlx5e_rep_netevent_event(struct notifier_block *nb,
+@@ -217,7 +218,7 @@ static int mlx5e_rep_netevent_event(struct notifier_block *nb,
  	case NETEVENT_NEIGH_UPDATE:
  		n = ptr;
  #if IS_ENABLED(CONFIG_IPV6)
 -		if (n->tbl != ipv6_stub->nd_tbl && n->tbl != &arp_tbl)
-+		if (n->tbl != ipv6_get_nd_tbl() && n->tbl != &arp_tbl)
++		if (n->tbl != &nd_tbl && n->tbl != &arp_tbl)
  #else
  		if (n->tbl != &arp_tbl)
  #endif
-@@ -238,7 +241,8 @@ static int mlx5e_rep_netevent_event(struct notifier_block *nb,
+@@ -238,7 +239,7 @@ static int mlx5e_rep_netevent_event(struct notifier_block *nb,
  		 * done per device delay prob time parameter.
  		 */
  #if IS_ENABLED(CONFIG_IPV6)
 -		if (!p->dev || (p->tbl != ipv6_stub->nd_tbl && p->tbl != &arp_tbl))
-+		if (!p->dev ||
-+		    (p->tbl != ipv6_get_nd_tbl() && p->tbl != &arp_tbl))
++		if (!p->dev || (p->tbl != &nd_tbl && p->tbl != &arp_tbl))
  #else
  		if (!p->dev || p->tbl != &arp_tbl)
  #endif
@@ -332,7 +289,7 @@ index a14f216048cd..de74dbfe7b20 100644
  		return PTR_ERR(dst);
  
 diff --git a/drivers/net/ethernet/mellanox/mlx5/core/en/tc_tun_encap.c b/drivers/net/ethernet/mellanox/mlx5/core/en/tc_tun_encap.c
-index bfd401bee9e8..ce2a27124642 100644
+index bfd401bee9e8..8b827201935e 100644
 --- a/drivers/net/ethernet/mellanox/mlx5/core/en/tc_tun_encap.c
 +++ b/drivers/net/ethernet/mellanox/mlx5/core/en/tc_tun_encap.c
 @@ -402,7 +402,7 @@ void mlx5e_tc_update_neigh_used_value(struct mlx5e_neigh_hash_entry *nhe)
@@ -340,7 +297,7 @@ index bfd401bee9e8..ce2a27124642 100644
  #if IS_ENABLED(CONFIG_IPV6)
  	else if (m_neigh->family == AF_INET6)
 -		tbl = ipv6_stub->nd_tbl;
-+		tbl = ipv6_get_nd_tbl();
++		tbl = &nd_tbl;
  #endif
  	else
  		return;
@@ -369,10 +326,10 @@ index 1db4ecb2356f..5ec5cae8d229 100644
  #include "eswitch.h"
  #include "en.h"
 diff --git a/drivers/net/ethernet/mellanox/mlx5/core/en_tc.c b/drivers/net/ethernet/mellanox/mlx5/core/en_tc.c
-index 1434b65d4746..4e4ee1d520ce 100644
+index 397a93584fd6..a9001d1c902f 100644
 --- a/drivers/net/ethernet/mellanox/mlx5/core/en_tc.c
 +++ b/drivers/net/ethernet/mellanox/mlx5/core/en_tc.c
-@@ -40,7 +40,6 @@
+@@ -41,7 +41,6 @@
  #include <linux/refcount.h>
  #include <linux/completion.h>
  #include <net/arp.h>
@@ -380,61 +337,6 @@ index 1434b65d4746..4e4ee1d520ce 100644
  #include <net/bareudp.h>
  #include <net/bonding.h>
  #include <net/dst_metadata.h>
-diff --git a/drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c b/drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c
-index 7bd87d0547d8..8531216f6389 100644
---- a/drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c
-+++ b/drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c
-@@ -2458,7 +2458,7 @@ static void mlxsw_sp_router_neigh_ent_ipv6_process(struct mlxsw_sp *mlxsw_sp,
- 	}
- 
- 	dev = mlxsw_sp_rif_dev(mlxsw_sp->router->rifs[rif]);
--	n = neigh_lookup(&nd_tbl, &dip, dev);
-+	n = neigh_lookup(ipv6_get_nd_tbl(), &dip, dev);
- 	if (!n)
- 		return;
- 
-@@ -3022,7 +3022,8 @@ static int mlxsw_sp_neigh_rif_made_sync(struct mlxsw_sp *mlxsw_sp,
- 		goto err_arp;
- 
- #if IS_ENABLED(CONFIG_IPV6)
--	neigh_for_each(&nd_tbl, mlxsw_sp_neigh_rif_made_sync_each, &rms);
-+	neigh_for_each(ipv6_get_nd_tbl(),
-+		       mlxsw_sp_neigh_rif_made_sync_each, &rms);
- #endif
- 	if (rms.err)
- 		goto err_nd;
-@@ -5124,7 +5125,7 @@ mlxsw_sp_nexthop_obj_init(struct mlxsw_sp *mlxsw_sp,
- 	case AF_INET6:
- 		memcpy(&nh->gw_addr, &nh_obj->ipv6, sizeof(nh_obj->ipv6));
- #if IS_ENABLED(CONFIG_IPV6)
--		nh->neigh_tbl = &nd_tbl;
-+		nh->neigh_tbl = ipv6_get_nd_tbl();
- #endif
- 		break;
- 	}
-@@ -6980,7 +6981,7 @@ static int mlxsw_sp_nexthop6_init(struct mlxsw_sp *mlxsw_sp,
- 	nh->nh_weight = rt->fib6_nh->fib_nh_weight;
- 	memcpy(&nh->gw_addr, &rt->fib6_nh->fib_nh_gw6, sizeof(nh->gw_addr));
- #if IS_ENABLED(CONFIG_IPV6)
--	nh->neigh_tbl = &nd_tbl;
-+	nh->neigh_tbl = ipv6_get_nd_tbl();
- #endif
- 
- 	err = mlxsw_sp_nexthop_counter_enable(mlxsw_sp, nh);
-diff --git a/drivers/net/ethernet/mellanox/mlxsw/spectrum_span.c b/drivers/net/ethernet/mellanox/mlxsw/spectrum_span.c
-index ae63d549b542..f05ccf3db876 100644
---- a/drivers/net/ethernet/mellanox/mlxsw/spectrum_span.c
-+++ b/drivers/net/ethernet/mellanox/mlxsw/spectrum_span.c
-@@ -576,7 +576,8 @@ mlxsw_sp_span_entry_gretap6_parms(struct mlxsw_sp *mlxsw_sp,
- 	l3edev = mlxsw_sp_span_gretap6_route(to_dev, &saddr.addr6, &gw.addr6);
- 	return mlxsw_sp_span_entry_tunnel_parms_common(l3edev, saddr, daddr, gw,
- 						       tparm.hop_limit,
--						       &nd_tbl, sparmsp);
-+						       ipv6_get_nd_tbl(),
-+						       sparmsp);
- }
- 
- static int
 diff --git a/drivers/net/ethernet/netronome/nfp/flower/action.c b/drivers/net/ethernet/netronome/nfp/flower/action.c
 index aca2a7417af3..ae2f8b31adfb 100644
 --- a/drivers/net/ethernet/netronome/nfp/flower/action.c
@@ -449,18 +351,9 @@ index aca2a7417af3..ae2f8b31adfb 100644
  			set_tun->ttl = ip6_dst_hoplimit(dst);
  			dst_release(dst);
 diff --git a/drivers/net/ethernet/netronome/nfp/flower/tunnel_conf.c b/drivers/net/ethernet/netronome/nfp/flower/tunnel_conf.c
-index 0cef0e2b85d0..053265e135f6 100644
+index 0cef0e2b85d0..ca30702f8878 100644
 --- a/drivers/net/ethernet/netronome/nfp/flower/tunnel_conf.c
 +++ b/drivers/net/ethernet/netronome/nfp/flower/tunnel_conf.c
-@@ -277,7 +277,7 @@ void nfp_tunnel_keep_alive_v6(struct nfp_app *app, struct sk_buff *skb)
- 		if (!netdev)
- 			continue;
- 
--		n = neigh_lookup(&nd_tbl, ipv6_add, netdev);
-+		n = neigh_lookup(ipv6_get_nd_tbl(), ipv6_add, netdev);
- 		if (!n)
- 			continue;
- 
 @@ -650,7 +650,7 @@ static void nfp_tun_neigh_update(struct work_struct *work)
  		flow6.daddr = *(struct in6_addr *)n->primary_key;
  		if (!neigh_invalid) {
@@ -475,7 +368,7 @@ index 0cef0e2b85d0..053265e135f6 100644
  	}
  #if IS_ENABLED(CONFIG_IPV6)
 -	if (n->tbl != ipv6_stub->nd_tbl && n->tbl != &arp_tbl)
-+	if (n->tbl != ipv6_get_nd_tbl() && n->tbl != &arp_tbl)
++	if (n->tbl != &nd_tbl && n->tbl != &arp_tbl)
  #else
  	if (n->tbl != &arp_tbl)
  #endif
@@ -490,7 +383,7 @@ index 0cef0e2b85d0..053265e135f6 100644
  		goto fail_rcu_unlock;
  #else
 diff --git a/drivers/net/ethernet/sfc/tc_counters.c b/drivers/net/ethernet/sfc/tc_counters.c
-index d168282f30bf..d8a5f9fd1007 100644
+index d168282f30bf..b84235e93ffe 100644
 --- a/drivers/net/ethernet/sfc/tc_counters.c
 +++ b/drivers/net/ethernet/sfc/tc_counters.c
 @@ -112,7 +112,7 @@ static void efx_tc_counter_work(struct work_struct *work)
@@ -498,12 +391,12 @@ index d168282f30bf..d8a5f9fd1007 100644
  		else
  #if IS_ENABLED(CONFIG_IPV6)
 -			n = neigh_lookup(ipv6_stub->nd_tbl,
-+			n = neigh_lookup(ipv6_get_nd_tbl(),
++			n = neigh_lookup(&nd_tbl,
  					 &encap->neigh->dst_ip6,
  					 encap->neigh->egdev);
  #else
 diff --git a/drivers/net/ethernet/sfc/tc_encap_actions.c b/drivers/net/ethernet/sfc/tc_encap_actions.c
-index da35705cc5e1..63d8f794b869 100644
+index da35705cc5e1..db222abef53b 100644
 --- a/drivers/net/ethernet/sfc/tc_encap_actions.c
 +++ b/drivers/net/ethernet/sfc/tc_encap_actions.c
 @@ -149,8 +149,7 @@ static int efx_bind_neigh(struct efx_nic *efx,
@@ -521,7 +414,7 @@ index da35705cc5e1..63d8f794b869 100644
  		keysize = sizeof(keys.dst_ip);
  #if IS_ENABLED(CONFIG_IPV6)
 -	} else if (n->tbl == ipv6_stub->nd_tbl) {
-+	} else if (n->tbl == ipv6_get_nd_tbl()) {
++	} else if (n->tbl == &nd_tbl) {
  		ipv6 = true;
  		keysize = sizeof(keys.dst_ip6);
  #endif
@@ -551,10 +444,10 @@ index e8949f556209..70b9e58b9b78 100644
  		return ERR_PTR(-ENETUNREACH);
  
 diff --git a/drivers/net/ovpn/peer.c b/drivers/net/ovpn/peer.c
-index 3716a1d82801..6dd11c71204b 100644
+index 26b55d813f0e..c02dfab51a6e 100644
 --- a/drivers/net/ovpn/peer.c
 +++ b/drivers/net/ovpn/peer.c
-@@ -821,8 +821,7 @@ static struct in6_addr ovpn_nexthop_from_rt6(struct ovpn_priv *ovpn,
+@@ -827,8 +827,7 @@ static struct in6_addr ovpn_nexthop_from_rt6(struct ovpn_priv *ovpn,
  		.daddr = dest,
  	};
  
@@ -643,22 +536,8 @@ index dbf01210b0e7..877fb0ed7d3d 100644
  			proto = htons(ETH_P_IPV6);
  			break;
  		default:
-diff --git a/drivers/net/vrf.c b/drivers/net/vrf.c
-index 8c009bcaa8e7..68edb47cc4eb 100644
---- a/drivers/net/vrf.c
-+++ b/drivers/net/vrf.c
-@@ -616,7 +616,8 @@ static int vrf_finish_output6(struct net *net, struct sock *sk,
- 	nexthop = rt6_nexthop(dst_rt6_info(dst), &ipv6_hdr(skb)->daddr);
- 	neigh = __ipv6_neigh_lookup_noref(dst->dev, nexthop);
- 	if (unlikely(!neigh))
--		neigh = __neigh_create(&nd_tbl, nexthop, dst->dev, false);
-+		neigh = __neigh_create(ipv6_get_nd_tbl(), nexthop,
-+				       dst->dev, false);
- 	if (!IS_ERR(neigh)) {
- 		sock_confirm_neigh(skb, neigh);
- 		ret = neigh_output(neigh, skb, false);
 diff --git a/drivers/net/vxlan/vxlan_core.c b/drivers/net/vxlan/vxlan_core.c
-index 17c941aac32d..4ab94dfe0d12 100644
+index 17c941aac32d..b5fbd03418b6 100644
 --- a/drivers/net/vxlan/vxlan_core.c
 +++ b/drivers/net/vxlan/vxlan_core.c
 @@ -19,7 +19,6 @@
@@ -674,7 +553,7 @@ index 17c941aac32d..4ab94dfe0d12 100644
  		goto out;
  
 -	n = neigh_lookup(ipv6_stub->nd_tbl, &msg->target, dev);
-+	n = neigh_lookup(ipv6_get_nd_tbl(), &msg->target, dev);
++	n = neigh_lookup(&nd_tbl, &msg->target, dev);
  
  	if (n) {
  		struct vxlan_rdst *rdst = NULL;
@@ -694,7 +573,7 @@ index 17c941aac32d..4ab94dfe0d12 100644
  			return false;
  		pip6 = ipv6_hdr(skb);
 -		n = neigh_lookup(ipv6_stub->nd_tbl, &pip6->daddr, dev);
-+		n = neigh_lookup(ipv6_get_nd_tbl(), &pip6->daddr, dev);
++		n = neigh_lookup(&nd_tbl, &pip6->daddr, dev);
  		if (!n && (vxlan->cfg.flags & VXLAN_F_L3MISS)) {
  			union vxlan_addr ipa = {
  				.sin6.sin6_addr = pip6->daddr,
@@ -750,7 +629,7 @@ index 248a051da52d..c11428485dcc 100644
  	cmd.host_command_sequence = 0;
  	cmd.host_command_length = 0;
 diff --git a/net/bridge/br_arp_nd_proxy.c b/net/bridge/br_arp_nd_proxy.c
-index 1e2b51769eec..494bf69a3017 100644
+index 1e2b51769eec..c06386eda47f 100644
 --- a/net/bridge/br_arp_nd_proxy.c
 +++ b/net/bridge/br_arp_nd_proxy.c
 @@ -17,7 +17,6 @@
@@ -766,7 +645,7 @@ index 1e2b51769eec..494bf69a3017 100644
  	}
  
 -	n = neigh_lookup(ipv6_stub->nd_tbl, &msg->target, vlandev);
-+	n = neigh_lookup(ipv6_get_nd_tbl(), &msg->target, vlandev);
++	n = neigh_lookup(&nd_tbl, &msg->target, vlandev);
  	if (n) {
  		struct net_bridge_fdb_entry *f;
  
