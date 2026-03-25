@@ -2,84 +2,117 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kL1IN5gLzGnGNgYAu9opvQ
+	id 8KD0M5sLzGnGNgYAu9opvQ
 	(envelope-from <osmocom-net-gprs-bounces@lists.osmocom.org>)
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:52 +0200
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:55 +0200
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [213.95.46.82])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD71336F994
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F76736F99B
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 31 Mar 2026 19:59:55 +0200 (CEST)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id A97C14C03C2;
-	Tue, 31 Mar 2026 17:59:52 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 6B1E14C03F0;
+	Tue, 31 Mar 2026 17:59:55 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id OZpgm9_R6Att; Tue, 31 Mar 2026 17:59:52 +0000 (UTC)
+ id WJ4HzV_3Ly1h; Tue, 31 Mar 2026 17:59:54 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id BD1324C033A;
-	Tue, 31 Mar 2026 17:59:44 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id A69CF4C0356;
+	Tue, 31 Mar 2026 17:59:45 +0000 (UTC)
 Received: from mail.osmocom.org (mail.osmocom.org
  [IPv6:2001:780:45:1d::46:82])
-	by lists (Postfix) with ESMTPS id 572E338A0203
+	by lists (Postfix) with ESMTPS id 72E2738A02D8
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Fri, 20 Mar 2026 19:00:37 +0000 (UTC)
+ Wed, 25 Mar 2026 12:11:10 +0000 (UTC)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id 987F349E912
+	by mail.osmocom.org (Postfix) with ESMTP id 52EC64AC95C
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Fri, 20 Mar 2026 19:00:36 +0000 (UTC)
+ Wed, 25 Mar 2026 12:11:10 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Dz_rxTQnY18i for <osmocom-net-gprs@lists.osmocom.org>;
- Fri, 20 Mar 2026 19:00:35 +0000 (UTC)
+ id foJ0tGm3iUZx for <osmocom-net-gprs@lists.osmocom.org>;
+ Wed, 25 Mar 2026 12:11:09 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	by mail.osmocom.org (Postfix) with ESMTPS id 9CD2449E90C
+	by mail.osmocom.org (Postfix) with ESMTPS id 6615B4AC957
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Fri, 20 Mar 2026 19:00:35 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+ Wed, 25 Mar 2026 12:11:07 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id E1D8B5BE11;
-	Fri, 20 Mar 2026 19:00:34 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id CA58F5BCCF;
+	Wed, 25 Mar 2026 12:11:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1774440667;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GLkZ1hIrhvhokYYTEjx2CMlncHQKXTC1pL8a8hzsU8M=;
+	b=w73lPa3cLBF8rH8oQDtfso9w2BI3B7Hlyh6mmVO7sMQOtVPQ/4wM14EIQgf4UGPPI/6f9o
+	KIRr7+64mRuXQShgN1x0imoW/7YEyR6igieTeFdyPwYe2xyyQCQe8bB/wi7NTzLxs5+Nzg
+	EFLYfZ0vL8F0wmBep+dAH/77OJ83H0Y=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1774440667;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GLkZ1hIrhvhokYYTEjx2CMlncHQKXTC1pL8a8hzsU8M=;
+	b=aws09YPwm8bqQHwdMu0uWwUGXGYQxmMq38Jfn/YGJ+NEpjlOzH5QXkK+3Xf7qYkAWRlNkV
+	E0t3RC7oAenc71Dg==
 Authentication-Results: smtp-out2.suse.de;
 	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1774440666;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GLkZ1hIrhvhokYYTEjx2CMlncHQKXTC1pL8a8hzsU8M=;
+	b=W7hnkWl0B17SnTVAuKra60W6948hiSNGmeDWw+IcIR02oPa3guHKIWPxzM9tZQEJpWIr/U
+	YmmoE7BzAhD5944ceoeOxyNhKJgq85U+nm+/2JUQ4IiQ+ArAtpfnzgnXmURyDYdLpxjoEz
+	+fpcSQR9t78jk2QIFpeivHXikq17iqY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1774440666;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GLkZ1hIrhvhokYYTEjx2CMlncHQKXTC1pL8a8hzsU8M=;
+	b=jrhs+D39WxTcLO7PmCtgkurCVVC5RLET5srMfdzb+NdqK0W6t+x4yZMUBZgdzuzpXY09EL
+	gUSXOObumj5dtQCg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2499642955;
-	Fri, 20 Mar 2026 19:00:32 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 41DDB443BE;
+	Wed, 25 Mar 2026 12:11:04 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id kDKmBVCZvWnyTgAAD6G6ig
-	(envelope-from <fmancera@suse.de>); Fri, 20 Mar 2026 19:00:32 +0000
+	id gOAUDdjQw2kbNgAAD6G6ig
+	(envelope-from <fmancera@suse.de>); Wed, 25 Mar 2026 12:11:04 +0000
 From: Fernando Fernandez Mancera <fmancera@suse.de>
 To: netdev@vger.kernel.org
-Subject: [PATCH 06/11 net-next v4] drivers: net: drop ipv6_stub usage and use
+Subject: [PATCH 06/11 net-next v5] drivers: net: drop ipv6_stub usage and use
  direct function calls
-Date: Fri, 20 Mar 2026 19:56:00 +0100
-Message-ID: <20260320185649.5411-9-fmancera@suse.de>
+Date: Wed, 25 Mar 2026 13:08:47 +0100
+Message-ID: <20260325120928.15848-7-fmancera@suse.de>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260320185649.5411-1-fmancera@suse.de>
-References: <20260320185649.5411-1-fmancera@suse.de>
+In-Reply-To: <20260325120928.15848-1-fmancera@suse.de>
+References: <20260325120928.15848-1-fmancera@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
 X-MailFrom: fmancera@suse.de
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 3RV4JNNIO3J3ONQGMBFMVO47N2IO75HH
-X-Message-ID-Hash: 3RV4JNNIO3J3ONQGMBFMVO47N2IO75HH
+Message-ID-Hash: XHV7V5VBYM57YS44VWQZPX22AXDWCSEU
+X-Message-ID-Hash: XHV7V5VBYM57YS44VWQZPX22AXDWCSEU
 X-Mailman-Approved-At: Tue, 31 Mar 2026 17:59:25 +0000
 CC: Fernando Fernandez Mancera <fmancera@suse.de>,
  =?UTF-8?q?Ricardo=20B=2E=20Marli=C3=A8re?= <rbm@suse.com>,
@@ -96,10 +129,10 @@ CC: Fernando Fernandez Mancera <fmancera@suse.de>,
  Sabrina Dubroca <sd@queasysnail.net>, Oliver Neukum <oliver@neukum.org>,
  Stanislav Yakovlev <stas.yakovlev@gmail.com>,
  Nikolay Aleksandrov <razor@blackwall.org>, Ido Schimmel <idosch@nvidia.com>,
- Edward Srouji <edwards@nvidia.com>, Parav Pandit <parav@nvidia.com>,
- Vlad Dumitrescu <vdumitrescu@nvidia.com>, Kees Cook <kees@kernel.org>,
- Jianbo Liu <jianbol@nvidia.com>, Gal Pressman <gal@nvidia.com>,
+ Vlad Dumitrescu <vdumitrescu@nvidia.com>, Edward Srouji <edwards@nvidia.com>,
+ Parav Pandit <parav@nvidia.com>, Kees Cook <kees@kernel.org>,
  Guillaume Nault <gnault@redhat.com>, Alexei Lazar <alazar@nvidia.com>,
+ Gal Pressman <gal@nvidia.com>, Jianbo Liu <jianbol@nvidia.com>,
  Cosmin Ratiu <cratiu@nvidia.com>, Carolina Jubran <cjubran@nvidia.com>,
  Alexandre Cassen <acassen@corp.free.fr>, Petr Machata <petrm@nvidia.com>,
  Stanislav Fomichev <sdf@fomichev.me>, linux-rdma@vger.kernel.org,
@@ -112,7 +145,7 @@ Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU,
  OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
 Archived-At: 
- <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/3RV4JNNIO3J3ONQGMBFMVO47N2IO75HH/>
+ <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/XHV7V5VBYM57YS44VWQZPX22AXDWCSEU/>
 List-Archive: 
  <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
@@ -120,41 +153,42 @@ List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
 List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
-X-Spamd-Result: default: False [3.09 / 15.00];
+X-Spamd-Result: default: False [2.29 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[263];
 	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[149];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	R_SPF_ALLOW(-0.20)[+mx:c];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[suse.de : SPF not aligned (relaxed), No valid DKIM,none];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[48];
-	FREEMAIL_CC(0.00)[suse.de,suse.com,zx2c4.com,openvpn.net,gmail.com,ziepe.ca,kernel.org,nvidia.com,lunn.ch,davemloft.net,google.com,redhat.com,netfilter.org,gnumonks.org,queasysnail.net,neukum.org,blackwall.org,corp.free.fr,fomichev.me,vger.kernel.org,corigine.com,amd.com,lists.osmocom.org,lists.zx2c4.com,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:netdev@vger.kernel.org,m:fmancera@suse.de,m:rbm@suse.com,m:Jason@zx2c4.com,m:antonio@openvpn.net,m:ecree.xilinx@gmail.com,m:jgg@ziepe.ca,m:leon@kernel.org,m:zyjzyj2000@gmail.com,m:saeedm@nvidia.com,m:tariqt@nvidia.com,m:mbloch@nvidia.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:borisp@nvidia.com,m:horms@kernel.org,m:pablo@netfilter.org,m:laforge@gnumonks.org,m:sd@queasysnail.net,m:oliver@neukum.org,m:stas.yakovlev@gmail.com,m:razor@blackwall.org,m:idosch@nvidia.com,m:edwards@nvidia.com,m:parav@nvidia.com,m:vdumitrescu@nvidia.com,m:kees@kernel.org,m:jianbol@nvidia.com,m:gal@nvidia.com,m:gnault@redhat.com,m:alazar@nvidia.com,m:cratiu@nvidia.com,m:cjubran@nvidia.com,m:acassen@corp.free.fr,m:petrm@nvidia.com,m:sdf@fomichev.me,m:linux-rdma@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:oss-drivers@corigine.com,m:linux-net-drivers@amd.com,m:osmocom-net-gprs@lists.osmocom.org,m:linux-usb@vger.ker
+	FREEMAIL_CC(0.00)[suse.de,suse.com,zx2c4.com,openvpn.net,gmail.com,ziepe.ca,kernel.org,nvidia.com,lunn.ch,davemloft.net,google.com,redhat.com,netfilter.org,gnumonks.org,queasysnail.net,neukum.org,blackwall.org,corp.free.fr,fomichev.me,vger.kernel.org,corigine.com,amd.com,lists.osmocom.org,lists.zx2c4.com,lists.linux.dev];
+	FORGED_RECIPIENTS(0.00)[m:netdev@vger.kernel.org,m:fmancera@suse.de,m:rbm@suse.com,m:Jason@zx2c4.com,m:antonio@openvpn.net,m:ecree.xilinx@gmail.com,m:jgg@ziepe.ca,m:leon@kernel.org,m:zyjzyj2000@gmail.com,m:saeedm@nvidia.com,m:tariqt@nvidia.com,m:mbloch@nvidia.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:borisp@nvidia.com,m:horms@kernel.org,m:pablo@netfilter.org,m:laforge@gnumonks.org,m:sd@queasysnail.net,m:oliver@neukum.org,m:stas.yakovlev@gmail.com,m:razor@blackwall.org,m:idosch@nvidia.com,m:vdumitrescu@nvidia.com,m:edwards@nvidia.com,m:parav@nvidia.com,m:kees@kernel.org,m:gnault@redhat.com,m:alazar@nvidia.com,m:gal@nvidia.com,m:jianbol@nvidia.com,m:cratiu@nvidia.com,m:cjubran@nvidia.com,m:acassen@corp.free.fr,m:petrm@nvidia.com,m:sdf@fomichev.me,m:linux-rdma@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:oss-drivers@corigine.com,m:linux-net-drivers@amd.com,m:osmocom-net-gprs@lists.osmocom.org,m:linux-usb@vger.ker
  nel.org,m:wireguard@lists.zx2c4.com,m:linux-wireless@vger.kernel.org,m:bridge@lists.linux.dev,m:ecreexilinx@gmail.com,m:andrew@lunn.ch,m:stasyakovlev@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
 	FORGED_SENDER(0.00)[fmancera@suse.de,osmocom-net-gprs-bounces@lists.osmocom.org];
+	RCPT_COUNT_TWELVE(0.00)[48];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[osmocom-net-gprs@lists.osmocom.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,openvpn.net:email,mail.osmocom.org:helo,mail.osmocom.org:rdns,suse.com:email];
-	ASN(0.00)[asn:12337, ipnet:213.95.0.0/16, country:DE];
-	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:email,suse.de:mid,openvpn.net:email,mail.osmocom.org:helo,mail.osmocom.org:rdns,suse.com:email];
+	DKIM_TRACE(0.00)[suse.de:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[fmancera@suse.de,osmocom-net-gprs-bounces@lists.osmocom.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[osmocom-net-gprs@lists.osmocom.org];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[osmocom-net-gprs,netdev];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:12337, ipnet:213.95.0.0/16, country:DE];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[osmocom-net-gprs,netdev];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: CD71336F994
+X-Rspamd-Queue-Id: 8F76736F99B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -314,7 +348,7 @@ index 64e13747084e..a52e12c3c95a 100644
  #include "en.h"
  #include "eswitch.h"
 diff --git a/drivers/net/ethernet/mellanox/mlx5/core/en_rep.c b/drivers/net/ethernet/mellanox/mlx5/core/en_rep.c
-index 1db4ecb2356f..5ec5cae8d229 100644
+index 8992f0f7a870..ba6c0f38cc73 100644
 --- a/drivers/net/ethernet/mellanox/mlx5/core/en_rep.c
 +++ b/drivers/net/ethernet/mellanox/mlx5/core/en_rep.c
 @@ -38,7 +38,6 @@
