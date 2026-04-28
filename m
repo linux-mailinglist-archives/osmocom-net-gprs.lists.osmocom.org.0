@@ -2,26 +2,26 @@ Return-Path: <osmocom-net-gprs-bounces@lists.osmocom.org>
 Delivered-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GBGHHRxu8GmgTQEAu9opvQ
+	id oF5IGGNu8GmgTQEAu9opvQ
 	(envelope-from <osmocom-net-gprs-bounces@lists.osmocom.org>)
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 28 Apr 2026 10:21:48 +0200
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 28 Apr 2026 10:22:59 +0200
 X-Original-To: lists+osmocom-net-gprs@lfdr.de
 Received: from mail.osmocom.org (mail.osmocom.org [IPv6:2001:780:45:1d::46:82])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20B9447FE99
-	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 28 Apr 2026 10:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F66847FEE9
+	for <lists+osmocom-net-gprs@lfdr.de>; Tue, 28 Apr 2026 10:22:59 +0200 (CEST)
 Received: from localhost (mail.osmocom.org [127.0.0.1])
-	by mail.osmocom.org (Postfix) with ESMTP id D1C5250D625;
-	Tue, 28 Apr 2026 08:21:47 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id E657250D65C;
+	Tue, 28 Apr 2026 08:22:58 +0000 (UTC)
 Received: from mail.osmocom.org ([127.0.0.1])
  by localhost (mail.osmocom.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id iDrMcw7SBKGC; Tue, 28 Apr 2026 08:21:47 +0000 (UTC)
+ id e2w24U_bxS9O; Tue, 28 Apr 2026 08:22:58 +0000 (UTC)
 Received: from [127.0.1.1] (unknown [IPv6:2a01:4f8:120:8470::1:7])
-	by mail.osmocom.org (Postfix) with ESMTP id E9B9A50D619;
-	Tue, 28 Apr 2026 08:21:46 +0000 (UTC)
+	by mail.osmocom.org (Postfix) with ESMTP id 5C3CC50D64E;
+	Tue, 28 Apr 2026 08:22:58 +0000 (UTC)
 Received: from lists (localhost [IPv6:::1])
-	by lists (Postfix) with ESMTP id D4E0138A0389
+	by lists (Postfix) with ESMTP id 4B54938A038B
 	for <osmocom-net-gprs@lists.osmocom.org>;
- Tue, 28 Apr 2026 08:21:43 +0000 (UTC)
+ Tue, 28 Apr 2026 08:22:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -30,11 +30,11 @@ Subject:
  =?utf-8?q?m_dumps_for_a_guaranteed_high_score!?=
 From: george.taylor23587@gmail.com
 To: osmocom-net-gprs@lists.osmocom.org
-Date: Tue, 28 Apr 2026 08:21:43 -0000
-Message-ID: <177736450387.561881.13743096153189450222@lists>
+Date: Tue, 28 Apr 2026 08:22:55 -0000
+Message-ID: <177736457530.561881.10333886234891824154@lists>
 User-Agent: HyperKitty on https://lists.osmocom.org/
-Message-ID-Hash: B4AKJWLVOD56WR7ES426SCGXTVILBJ5U
-X-Message-ID-Hash: B4AKJWLVOD56WR7ES426SCGXTVILBJ5U
+Message-ID-Hash: SNUDTBSMVN2JELRQA6SQA2PERMSFAUPX
+X-Message-ID-Hash: SNUDTBSMVN2JELRQA6SQA2PERMSFAUPX
 X-MailFrom: george.taylor23587@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -45,7 +45,7 @@ Precedence: list
 List-Id: "Discussion on the Osmocom network-side GPRS components like OsmoPCU,
  OsmoSGSN" <osmocom-net-gprs.lists.osmocom.org>
 Archived-At: 
- <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/B4AKJWLVOD56WR7ES426SCGXTVILBJ5U/>
+ <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/message/SNUDTBSMVN2JELRQA6SQA2PERMSFAUPX/>
 List-Archive: 
  <https://lists.osmocom.org/hyperkitty/list/osmocom-net-gprs@lists.osmocom.org/>
 List-Help: <mailto:osmocom-net-gprs-request@lists.osmocom.org?subject=help>
@@ -53,7 +53,7 @@ List-Owner: <mailto:osmocom-net-gprs-owner@lists.osmocom.org>
 List-Post: <mailto:osmocom-net-gprs@lists.osmocom.org>
 List-Subscribe: <mailto:osmocom-net-gprs-join@lists.osmocom.org>
 List-Unsubscribe: <mailto:osmocom-net-gprs-leave@lists.osmocom.org>
-X-Rspamd-Queue-Id: 20B9447FE99
+X-Rspamd-Queue-Id: 0F66847FEE9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.09 / 15.00];
